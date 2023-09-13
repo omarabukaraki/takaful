@@ -36,8 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
               style: TextStyle(
                   fontSize: 51,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontFamily: 'ElMessiri'),
+                  color: Colors.white),
             ),
             const Text(
               'Takaful',
@@ -46,7 +45,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontFamily: 'ElMessiri',
               ),
             ),
             const SizedBox(height: 10),
