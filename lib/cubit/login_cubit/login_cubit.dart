@@ -10,6 +10,7 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> sginIn(
       {required String emailAddress, required String password}) async {
     emit(LoginLodging());
+    await Future.delayed(Duration(seconds: 2));
     try {
       // ignore: unused_local_variable
       final credential = await FirebaseAuth.instance
