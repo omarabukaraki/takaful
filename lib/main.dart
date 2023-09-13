@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/constant.dart';
+import 'package:takaful/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
 import 'package:takaful/view/auth/splash_screen.dart';
 import 'package:takaful/view/items_page/items_type_page.dart';
@@ -32,8 +33,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+          create: (context) => LoginCubit(),
+        ),
+        BlocProvider(
           create: (context) => PostCubit(),
-        )
+        ),
       ],
       child: MaterialApp(
         routes: {
