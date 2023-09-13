@@ -34,7 +34,7 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
       ]),
       actions: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           child: ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: Image.asset('assets/image/user_image.png')),
