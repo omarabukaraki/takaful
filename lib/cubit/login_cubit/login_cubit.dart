@@ -10,7 +10,6 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> sginIn(
       {required String emailAddress, required String password}) async {
     emit(LoginLodging());
-    await Future.delayed(Duration(seconds: 2));
     try {
       // ignore: unused_local_variable
       final credential = await FirebaseAuth.instance
@@ -27,6 +26,22 @@ class LoginCubit extends Cubit<LoginState> {
         // ignore: use_build_context_synchronously
       } else if (e.code == 'wrong-password') {
         emit(LoginFailure(errMessage: 'كلمة المرور خاطئة'));
+      }
+    }
+  }
+
+  Future<void> resetPassword({required String email}) async {
+    emit(LoginLodging());
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      emit(ResetPasswordSuccess());
+    } catch (e) {
+      if (email == '') {
+        emit(
+            ResetPasswordFailure(errMessage: 'الرجاء ادخال البريد الالكتروني'));
+      } else {
+        emit(ResetPasswordFailure(
+            errMessage: 'الرجاء التأكد من البريد الالكتروني'));
       }
     }
   }

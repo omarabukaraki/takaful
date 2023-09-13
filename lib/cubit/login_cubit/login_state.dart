@@ -14,3 +14,11 @@ class LoginFailure extends LoginState {
   String errMessage;
   LoginFailure({required this.errMessage});
 }
+
+class ResetPasswordSuccess extends LoginState {}
+
+// ignore: must_be_immutable
+class ResetPasswordFailure extends LoginState {
+  String errMessage;
+  ResetPasswordFailure({required this.errMessage});
+}

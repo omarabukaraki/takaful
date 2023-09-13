@@ -6,7 +6,6 @@ import 'package:takaful/component/create_account_button.dart';
 import 'package:takaful/component/forget_password_button.dart';
 import 'package:takaful/component/logo_takaful.dart';
 import 'package:takaful/cubit/login_cubit/login_cubit.dart';
-import 'package:takaful/cubit/post_cubit/post_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
 import 'package:takaful/view/auth/register.dart';
 import '../../component/custom_button.dart';
@@ -22,7 +21,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String? emailAddress;
+  String? email;
   String? password;
   bool inAsyncCall = false;
   GlobalKey<FormState> formKey = GlobalKey();
@@ -35,13 +34,20 @@ class _LoginPageState extends State<LoginPage> {
           inAsyncCall = true;
         } else if (state is LoginSuccess) {
           inAsyncCall = false;
-          BlocProvider.of<PostCubit>(context).getPost();
+          // BlocProvider.of<PostCubit>(context).getPost();
           Navigator.pushReplacement(context, MaterialPageRoute(
             builder: (context) {
               return const NavigatorBarPage();
             },
           ));
         } else if (state is LoginFailure) {
+          inAsyncCall = false;
+          showSankBar(context, state.errMessage);
+        } else if (state is ResetPasswordSuccess) {
+          inAsyncCall = false;
+          showSankBar(context, ' لقد تم ارسال بريد لاعادة تعيين كلمة المرور',
+              color: Colors.green);
+        } else if (state is ResetPasswordFailure) {
           inAsyncCall = false;
           showSankBar(context, state.errMessage);
         }
@@ -81,8 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                   CustomTextFiled(
                     icon: const Icon(Icons.email, color: kPrimary),
                     hintText: 'البريد الإلكتروني',
-                    onChanged: (email) {
-                      emailAddress = email;
+                    onChanged: (emailAddress) {
+                      email = emailAddress;
                     },
                   ),
                   CustomTextFiled(
@@ -101,11 +107,16 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
                           BlocProvider.of<LoginCubit>(context).sginIn(
-                              emailAddress: emailAddress!, password: password!);
+                              emailAddress: email!, password: password!);
                         } else {}
                       }),
                   const SizedBox(height: 20),
-                  const ForgetPasswordButton(),
+                  ForgetPasswordButton(
+                    onTap: () async {
+                      BlocProvider.of<LoginCubit>(context)
+                          .resetPassword(email: email!);
+                    },
+                  ),
                   const SizedBox(height: 20),
                   CreateAccountButton(
                     onTap: () {
