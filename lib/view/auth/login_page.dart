@@ -5,6 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:takaful/component/create_account_button.dart';
 import 'package:takaful/component/forget_password_button.dart';
 import 'package:takaful/component/logo_takaful.dart';
+import 'package:takaful/helper/show_snak_bar.dart';
 import 'package:takaful/view/auth/register.dart';
 import '../../component/custom_button.dart';
 import '../../component/custom_textfiled.dart';
@@ -97,14 +98,8 @@ class _LoginPageState extends State<LoginPage> {
                           ));
                         } else {
                           // ignore: use_build_context_synchronously
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text(
-                              'الرجاء تأكيد الحساب',
-                              textDirection: TextDirection.rtl,
-                            ),
-                            backgroundColor: Colors.green,
-                          ));
+                          showSankBar(context, 'الرجاء تأكيد الحساب',
+                              color: Colors.green);
                         }
                         //!end handel email verified
 
@@ -112,24 +107,11 @@ class _LoginPageState extends State<LoginPage> {
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           // ignore: use_build_context_synchronously
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text(
-                              'لم يتم العثور على مستخدم لهذا البريد الإلكتروني.',
-                              textDirection: TextDirection.rtl,
-                            ),
-                            backgroundColor: Colors.red,
-                          ));
+                          showSankBar(context,
+                              'لم يتم العثور على مستخدم لهذا البريد الإلكتروني.');
                         } else if (e.code == 'wrong-password') {
                           // ignore: use_build_context_synchronously
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text(
-                              ' كلمة المرور خاطئة',
-                              textDirection: TextDirection.rtl,
-                            ),
-                            backgroundColor: Colors.red,
-                          ));
+                          showSankBar(context, 'كلمة المرور خاطئة');
                         }
                       }
                       //start handel email and password messages
