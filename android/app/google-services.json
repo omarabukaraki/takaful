@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1045119223855",
+    "project_id": "takafultest-2ef6f",
+    "storage_bucket": "takafultest-2ef6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045119223855:android:96e1cf2c8b299b288a1eda",
+        "android_client_info": {
+          "package_name": "com.example.takaful"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045119223855-dfprq1ierqdjt09bmu5l48bbau7droa7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABD7dWivy1Z7QZ76GbSdPVpCK6TJLvBCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045119223855-dfprq1ierqdjt09bmu5l48bbau7droa7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
