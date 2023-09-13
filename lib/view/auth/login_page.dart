@@ -35,34 +35,7 @@ class _LoginPageState extends State<LoginPage> {
             child: ListView(children: [
               const SizedBox(height: 20),
               // start logo takaful
-              const Column(
-                children: [
-                  SizedBox(height: 20),
-                  Text('تكافل',
-                      style: TextStyle(fontSize: 51, color: Color(0xff3A44A0))),
-                  Text('Takaful',
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: kPrimary)),
-                  SizedBox(height: 10),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        CircleAve(image: 'assets/image/foodlogin.png'),
-                        CircleAve(
-                          image: 'assets/image/clotherss.png',
-                          color: Colors.white,
-                        ),
-                        CircleAve(image: 'assets/image/sofa.png'),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 40),
-                ],
-              ),
+              const LogoTakaful(),
               // end logo takaful
               const Text('تسجيل الدخول',
                   textAlign: TextAlign.center,
@@ -98,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               CustomButton(
                   text: 'الدخول',
-                  color: const Color(0xff3242A4),
+                  color: kPrimary,
                   textColor: Colors.white,
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
@@ -166,24 +139,14 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               ForgetPasswordButton(),
               const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const RegisterPage();
-                        },
-                      ));
+              CreateAccountButton(
+                onTap: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(
+                    builder: (context) {
+                      return const RegisterPage();
                     },
-                    child: const Text("انشاء حساب",
-                        style:
-                            TextStyle(fontSize: 14, color: Color(0xff3242A4))),
-                  ),
-                  const Text('ليس لديك حساب؟',
-                      style: TextStyle(color: Color(0xff7c7d7e))),
-                ],
+                  ));
+                },
               ),
               const SizedBox(height: 20)
             ]),
@@ -197,6 +160,64 @@ class _LoginPageState extends State<LoginPage> {
     // ignore: unused_local_variable
     final credential = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: emailAddress!, password: password!);
+  }
+}
+
+class LogoTakaful extends StatelessWidget {
+  const LogoTakaful({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        SizedBox(height: 20),
+        Text('تكافل', style: TextStyle(fontSize: 51, color: kPrimary)),
+        Text('Takaful',
+            style: TextStyle(
+                fontSize: 24, fontWeight: FontWeight.bold, color: kPrimary)),
+        SizedBox(height: 10),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 40),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CircleAve(image: 'assets/image/foodlogin.png'),
+              CircleAve(
+                image: 'assets/image/clotherss.png',
+                color: Colors.white,
+              ),
+              CircleAve(image: 'assets/image/sofa.png'),
+            ],
+          ),
+        ),
+        SizedBox(height: 40),
+      ],
+    );
+  }
+}
+
+class CreateAccountButton extends StatelessWidget {
+  const CreateAccountButton({
+    Key? key,
+    this.onTap,
+  }) : super(key: key);
+  final void Function()? onTap;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: onTap,
+          child: const Text("انشاء حساب",
+              style: TextStyle(fontSize: 14, color: kPrimary)),
+        ),
+        const Text('ليس لديك حساب؟',
+            style: TextStyle(color: Color(0xff7c7d7e))),
+      ],
+    );
   }
 }
 
