@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/view/auth/register.dart';
+import 'package:takaful/view/auth/register_page.dart';
 
 import '../../component/circlr_logo.dart';
 import '../../component/custom_button.dart';

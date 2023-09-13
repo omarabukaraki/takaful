@@ -7,7 +7,7 @@ import 'package:takaful/component/forget_password_button.dart';
 import 'package:takaful/component/logo_takaful.dart';
 import 'package:takaful/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
-import 'package:takaful/view/auth/register.dart';
+import 'package:takaful/view/auth/register_page.dart';
 import '../../component/custom_button.dart';
 import '../../component/custom_textfiled.dart';
 import '../../constant.dart';
@@ -23,7 +23,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String? email;
   String? password;
-  bool inAsyncCall = false;
+  bool isLodging = false;
   GlobalKey<FormState> formKey = GlobalKey();
 
   @override
@@ -31,9 +31,9 @@ class _LoginPageState extends State<LoginPage> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginLodging) {
-          inAsyncCall = true;
+          isLodging = true;
         } else if (state is LoginSuccess) {
-          inAsyncCall = false;
+          isLodging = false;
           // BlocProvider.of<PostCubit>(context).getPost();
           Navigator.pushReplacement(context, MaterialPageRoute(
             builder: (context) {
@@ -41,20 +41,20 @@ class _LoginPageState extends State<LoginPage> {
             },
           ));
         } else if (state is LoginFailure) {
-          inAsyncCall = false;
+          isLodging = false;
           showSankBar(context, state.errMessage);
         } else if (state is ResetPasswordSuccess) {
-          inAsyncCall = false;
+          isLodging = false;
           showSankBar(context, ' لقد تم ارسال بريد لاعادة تعيين كلمة المرور',
               color: Colors.green);
         } else if (state is ResetPasswordFailure) {
-          inAsyncCall = false;
+          isLodging = false;
           showSankBar(context, state.errMessage);
         }
       },
       builder: (context, state) {
         return BlurryModalProgressHUD(
-          inAsyncCall: inAsyncCall,
+          inAsyncCall: isLodging,
           progressIndicator:
               const SpinKitFadingCircle(color: kPrimary, size: 90.0),
           dismissible: false,

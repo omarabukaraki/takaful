@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/constant.dart';
 import 'package:takaful/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
+import 'package:takaful/cubit/register_cubit/register_cubit.dart';
 import 'package:takaful/view/auth/splash_screen.dart';
 import 'package:takaful/view/items_page/items_type_page.dart';
 import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_details_post_page.dart';
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => PostCubit(),
+        ),
+        BlocProvider(
+          create: (context) => RegisterCubit(),
         ),
       ],
       child: MaterialApp(
