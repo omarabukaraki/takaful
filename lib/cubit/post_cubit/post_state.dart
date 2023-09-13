@@ -6,6 +6,8 @@ abstract class PostState {}
 
 class PostInitial extends PostState {}
 
+class PostAddSuccess extends PostState {}
+
 // ignore: must_be_immutable
 class PostSuccess extends PostState {
   List<PostModel> posts = [];

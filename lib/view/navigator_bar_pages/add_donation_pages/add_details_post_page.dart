@@ -19,7 +19,7 @@ class AddDetailsPost extends StatefulWidget {
 class _AddDetailsPostState extends State<AddDetailsPost> {
   String? title;
   String? location;
-  String? state;
+  String? stateOfThePost;
   String? count;
   String? description;
   bool isLoading = false;
@@ -38,135 +38,142 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
           Navigator.pop(context);
         },
       ),
-      body: BlurryModalProgressHUD(
-        inAsyncCall: isLoading,
-        child: Form(
-          key: formKey,
-          child: ListView(children: [
-            const SizedBox(height: 10),
-            const Padding(
-              padding: EdgeInsets.only(right: 29),
-              child: Text(
-                'أضف صورة للتبرع',
-                style: TextStyle(fontSize: 17, color: kFont),
-                textAlign: TextAlign.end,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              width: double.infinity,
-              height: 164,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: kPrimary),
-              child: const Icon(
-                Icons.camera_enhance,
-                size: 60,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 10),
-            CustomTextFiled(
-              onChanged: (postTitle) {
-                title = postTitle;
-              },
-              hintText: 'العنوان',
-              icon: const Icon(Icons.title_rounded),
-            ),
-            CustomTextFiled(
-              onChanged: (postLocation) {
-                location = postLocation;
-              },
-              hintText: 'الموقع',
-              icon: const Icon(Icons.location_on),
-            ),
-            CustomTextFiled(
-              onChanged: (postState) {
-                state = postState;
-              },
-              hintText: 'الحالة',
-              icon: const Icon(Icons.fiber_new_rounded),
-            ),
-            // categoryAndItemService[0].length <= 5
-            //     ?
+      body: BlocConsumer<PostCubit, PostState>(
+        listener: (context, state) {
+          if (state is PostLodging) {
+            isLoading = true;
+          } else if (state is PostAddSuccess) {
+            isLoading = false;
+          } else if (state is PostFailure) {
+            isLoading = false;
+          }
+        },
+        builder: (context, state) {
+          return BlurryModalProgressHUD(
+            inAsyncCall: isLoading,
+            child: Form(
+              key: formKey,
+              child: ListView(children: [
+                const SizedBox(height: 10),
+                const Padding(
+                  padding: EdgeInsets.only(right: 29),
+                  child: Text(
+                    'أضف صورة للتبرع',
+                    style: TextStyle(fontSize: 17, color: kFont),
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  width: double.infinity,
+                  height: 164,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20), color: kPrimary),
+                  child: const Icon(
+                    Icons.camera_enhance,
+                    size: 60,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                CustomTextFiled(
+                  onChanged: (postTitle) {
+                    title = postTitle;
+                  },
+                  hintText: 'العنوان',
+                  icon: const Icon(Icons.title_rounded),
+                ),
+                CustomTextFiled(
+                  onChanged: (postLocation) {
+                    location = postLocation;
+                  },
+                  hintText: 'الموقع',
+                  icon: const Icon(Icons.location_on),
+                ),
+                CustomTextFiled(
+                  onChanged: (p0) {
+                    stateOfThePost = p0;
+                  },
+                  hintText: 'الحالة',
+                  icon: const Icon(Icons.fiber_new_rounded),
+                ),
+                // categoryAndItemService[0].length <= 5
+                //     ?
 
-            CustomTextFiled(
-              onChanged: (postCount) {
-                count = postCount;
-              },
-              typeKeyboardNumber: true,
-              hintText: 'العدد',
-              icon: const Icon(Icons.format_list_numbered_outlined),
-            )
-            // : const SizedBox(),
-            ,
-            CustomTextFiled(
-              onChanged: (postDescription) {
-                description = postDescription;
-              },
-              hintText: 'الوصف',
-              icon: const Icon(Icons.description),
-            ),
-            const SizedBox(height: 10),
-            CustomButton(
-              circular: 20,
-              text: 'نشر التبرع',
-              onTap: () async {
-                if (formKey.currentState!.validate()) {
-                  setState(() {
-                    isLoading = true;
-                  });
-                  BlocProvider.of<PostCubit>(context).addPost(
-                      postState: true,
-                      title: title!,
-                      image: 'sss',
-                      category: categoryAndItemService[1],
-                      itemOrService: categoryAndItemService[0],
-                      description: description!,
-                      location: location!,
-                      state: state!,
-                      count: int.parse(count!));
-                  setState(() {
-                    isLoading = false;
-                  });
-                }
-                // if (formKey.currentState!.validate()) {
-                //   setState(() {
-                //     isLoading = true;
-                //   });
-                //   CollectionReference collRef =
-                //       FirebaseFirestore.instance.collection('post');
-                //   collRef.add({
-                //     'id': FirebaseAuth.instance.currentUser!.uid,
-                //     'postState': true,
-                //     'title': title,
-                //     'images': '',
-                //     'category': categoryAndItemService[1],
-                //     'itemOrService': categoryAndItemService[0],
-                //     'count': int.parse(count!),
-                //     'description': description,
-                //     'location': location,
-                //     'state': state,
-                //     'createAt': DateTime.now(),
-                //     'donerAccount':
-                //         FirebaseAuth.instance.currentUser!.email.toString(),
-                //   });
-                //   await Future.delayed(const Duration(seconds: 2));
-                //   setState(() {
-                //     isLoading = false;
-                //   });
-                // }
+                CustomTextFiled(
+                  onChanged: (postCount) {
+                    count = postCount;
+                  },
+                  typeKeyboardNumber: true,
+                  hintText: 'العدد',
+                  icon: const Icon(Icons.format_list_numbered_outlined),
+                )
+                // : const SizedBox(),
+                ,
+                CustomTextFiled(
+                  onChanged: (postDescription) {
+                    description = postDescription;
+                  },
+                  hintText: 'الوصف',
+                  icon: const Icon(Icons.description),
+                ),
+                const SizedBox(height: 10),
+                CustomButton(
+                  circular: 20,
+                  text: 'نشر التبرع',
+                  onTap: () async {
+                    if (formKey.currentState!.validate()) {
+                      BlocProvider.of<PostCubit>(context).addPost(
+                          postState: true,
+                          title: title!,
+                          image: 'sss',
+                          category: categoryAndItemService[1],
+                          itemOrService: categoryAndItemService[0],
+                          description: description!,
+                          location: location!,
+                          state: stateOfThePost!,
+                          count: int.parse(count!));
+                    }
+                    // if (formKey.currentState!.validate()) {
+                    //   setState(() {
+                    //     isLoading = true;
+                    //   });
+                    //   CollectionReference collRef =
+                    //       FirebaseFirestore.instance.collection('post');
+                    //   collRef.add({
+                    //     'id': FirebaseAuth.instance.currentUser!.uid,
+                    //     'postState': true,
+                    //     'title': title,
+                    //     'images': '',
+                    //     'category': categoryAndItemService[1],
+                    //     'itemOrService': categoryAndItemService[0],
+                    //     'count': int.parse(count!),
+                    //     'description': description,
+                    //     'location': location,
+                    //     'state': state,
+                    //     'createAt': DateTime.now(),
+                    //     'donerAccount':
+                    //         FirebaseAuth.instance.currentUser!.email.toString(),
+                    //   });
+                    //   await Future.delayed(const Duration(seconds: 2));
+                    //   setState(() {
+                    //     isLoading = false;
+                    //   });
+                    // }
 
-                // print(collRef);
-              },
-              textColor: Colors.white,
-              color: kPrimary,
+                    // print(collRef);
+                  },
+                  textColor: Colors.white,
+                  color: kPrimary,
+                ),
+                const SizedBox(
+                  height: 20,
+                )
+              ]),
             ),
-            const SizedBox(
-              height: 20,
-            )
-          ]),
-        ),
+          );
+        },
       ),
     );
   }

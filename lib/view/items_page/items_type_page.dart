@@ -14,8 +14,10 @@ class ItemTypePage extends StatelessWidget {
   Widget build(BuildContext context) {
     String categoryName = ModalRoute.of(context)!.settings.arguments as String;
     double screenheigth = MediaQuery.of(context).size.height;
-    final Stream<QuerySnapshot> categoryStream =
-        FirebaseFirestore.instance.collection('category').snapshots();
+    final Stream<QuerySnapshot> categoryStream = FirebaseFirestore.instance
+        .collection('category')
+        .orderBy('createAt')
+        .snapshots();
     //
     return Scaffold(
       appBar: CustomAppBar(

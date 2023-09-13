@@ -9,7 +9,7 @@ part 'post_state.dart';
 class PostCubit extends Cubit<PostState> {
   PostCubit() : super(PostInitial());
   CollectionReference posts = FirebaseFirestore.instance.collection('post');
-  void addPost({
+  Future<void> addPost({
     required bool postState,
     required String title,
     required String image,
@@ -19,21 +19,27 @@ class PostCubit extends Cubit<PostState> {
     required String location,
     required String state,
     required int count,
-  }) {
-    posts.add({
-      'id': FirebaseAuth.instance.currentUser!.uid,
-      'postState': true,
-      'title': title,
-      'image': image,
-      'category': category,
-      'itemOrService': itemOrService,
-      'count': count,
-      'description': description,
-      'location': location,
-      'state': state,
-      'createAt': DateTime.now().toString(),
-      'donarAccount': FirebaseAuth.instance.currentUser!.email.toString(),
-    });
+  }) async {
+    emit(PostLodging());
+    try {
+      await posts.add({
+        'id': FirebaseAuth.instance.currentUser!.uid,
+        'postState': true,
+        'title': title,
+        'image': image,
+        'category': category,
+        'itemOrService': itemOrService,
+        'count': count,
+        'description': description,
+        'location': location,
+        'state': state,
+        'createAt': DateTime.now().toString(),
+        'donarAccount': FirebaseAuth.instance.currentUser!.email.toString(),
+      });
+      emit(PostAddSuccess());
+    } catch (e) {
+      emit(PostFailure());
+    }
   }
 
   void getPost() {
