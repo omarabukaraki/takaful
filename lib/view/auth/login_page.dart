@@ -2,6 +2,9 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:takaful/component/create_account_button.dart';
+import 'package:takaful/component/forget_password_button.dart';
+import 'package:takaful/component/logo_takaful.dart';
 import 'package:takaful/view/auth/register.dart';
 import '../../component/custom_button.dart';
 import '../../component/custom_textfiled.dart';
@@ -56,16 +59,16 @@ class _LoginPageState extends State<LoginPage> {
               CustomTextFiled(
                 icon: const Icon(Icons.email, color: kPrimary),
                 hintText: 'البريد الإلكتروني',
-                onChanged: (p0) {
-                  emailAddress = p0;
+                onChanged: (email) {
+                  emailAddress = email;
                 },
               ),
               CustomTextFiled(
                 icon: const Icon(Icons.lock, color: kPrimary),
                 typeText: true,
                 hintText: 'كلمة المرور',
-                onChanged: (p0) {
-                  password = p0;
+                onChanged: (userPassword) {
+                  password = userPassword;
                 },
               ),
               const SizedBox(height: 20),
@@ -137,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                     } else {}
                   }),
               const SizedBox(height: 20),
-              ForgetPasswordButton(),
+              const ForgetPasswordButton(),
               const SizedBox(height: 20),
               CreateAccountButton(
                 onTap: () {
@@ -160,107 +163,5 @@ class _LoginPageState extends State<LoginPage> {
     // ignore: unused_local_variable
     final credential = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: emailAddress!, password: password!);
-  }
-}
-
-class LogoTakaful extends StatelessWidget {
-  const LogoTakaful({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        SizedBox(height: 20),
-        Text('تكافل', style: TextStyle(fontSize: 51, color: kPrimary)),
-        Text('Takaful',
-            style: TextStyle(
-                fontSize: 24, fontWeight: FontWeight.bold, color: kPrimary)),
-        SizedBox(height: 10),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CircleAve(image: 'assets/image/foodlogin.png'),
-              CircleAve(
-                image: 'assets/image/clotherss.png',
-                color: Colors.white,
-              ),
-              CircleAve(image: 'assets/image/sofa.png'),
-            ],
-          ),
-        ),
-        SizedBox(height: 40),
-      ],
-    );
-  }
-}
-
-class CreateAccountButton extends StatelessWidget {
-  const CreateAccountButton({
-    Key? key,
-    this.onTap,
-  }) : super(key: key);
-  final void Function()? onTap;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        GestureDetector(
-          onTap: onTap,
-          child: const Text("انشاء حساب",
-              style: TextStyle(fontSize: 14, color: kPrimary)),
-        ),
-        const Text('ليس لديك حساب؟',
-            style: TextStyle(color: Color(0xff7c7d7e))),
-      ],
-    );
-  }
-}
-
-class ForgetPasswordButton extends StatelessWidget {
-  const ForgetPasswordButton({
-    super.key,
-    this.onTap,
-  });
-  final void Function()? onTap;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: const Text(
-        'نسيت كلمة السر؟',
-        style: TextStyle(
-            fontSize: 14,
-            color: Color(0xff7c7d7e),
-            fontWeight: FontWeight.w500),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-}
-
-class CircleAve extends StatelessWidget {
-  const CircleAve({
-    this.color,
-    required this.image,
-    super.key,
-  });
-  final String image;
-  final Color? color;
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: kPrimary,
-      radius: 27,
-      child: CircleAvatar(
-        radius: 23,
-        backgroundColor: color ?? kPrimary,
-        backgroundImage: AssetImage(image),
-      ),
-    );
   }
 }
