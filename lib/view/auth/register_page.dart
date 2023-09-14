@@ -17,13 +17,21 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  String? email;
-  String? password;
-  String? passwordTwo;
-  String? name;
-  String? mobileNo;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController passwordTwo = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController mobileNo = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
   bool isLodding = false;
+
+  void clearText() {
+    email.clear();
+    password.clear();
+    passwordTwo.clear();
+    name.clear();
+    mobileNo.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
           isLodding = true;
         } else if (state is RegisterSuccess) {
           isLodding = false;
+          clearText();
           showSankBar(context, 'تم ارسال رسالة تحقق الى بريدك الالكتروني',
               color: Colors.green);
         } else if (state is RegisterFailure) {
@@ -71,35 +80,40 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     CustomTextFiled(
+                      controller: name,
                       hintText: 'الإسم',
                       onChanged: (userName) {
-                        name = userName;
+                        name.text = userName;
                       },
                     ),
                     CustomTextFiled(
+                      controller: email,
                       hintText: 'البريد الإلكتروني',
                       onChanged: (emailAddress) {
-                        email = emailAddress;
+                        email.text = emailAddress;
                       },
                     ),
                     CustomTextFiled(
+                      controller: mobileNo,
                       hintText: 'رقم الهاتف',
                       onChanged: (mobileNumber) {
-                        mobileNo = mobileNumber;
+                        mobileNo.text = mobileNumber;
                       },
                     ),
                     CustomTextFiled(
+                      controller: password,
                       typeText: true,
                       hintText: 'كلمة المرور',
                       onChanged: (userPassword) {
-                        password = userPassword;
+                        password.text = userPassword;
                       },
                     ),
                     CustomTextFiled(
+                      controller: passwordTwo,
                       typeText: true,
                       hintText: 'تأكيد كلمة المرور',
                       onChanged: (userPasswordTwo) {
-                        passwordTwo = userPasswordTwo;
+                        passwordTwo.text = userPasswordTwo;
                       },
                     ),
                     const SizedBox(height: 20),
@@ -109,10 +123,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         textColor: Colors.white,
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
-                            if (password == passwordTwo) {
+                            if (password.text == passwordTwo.text) {
                               BlocProvider.of<RegisterCubit>(context)
                                   .createUser(
-                                      email: email!, password: password!);
+                                      email: email.text,
+                                      password: password.text);
                             } else {
                               showSankBar(context, 'كلمة المرور غير متطابقة');
                             }
