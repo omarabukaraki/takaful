@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:takaful/bloc_observer.dart';
 import 'package:takaful/constant.dart';
 import 'package:takaful/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
@@ -20,6 +21,7 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = SimpleBlocobserver();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
