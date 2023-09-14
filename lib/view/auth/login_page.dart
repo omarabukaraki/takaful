@@ -21,10 +21,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String? email;
-  String? password;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
   bool isLodging = false;
   GlobalKey<FormState> formKey = GlobalKey();
+
+  void clearText() {
+    email.clear();
+    password.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +39,7 @@ class _LoginPageState extends State<LoginPage> {
           isLodging = true;
         } else if (state is LoginSuccess) {
           isLodging = false;
+          clearText();
           // BlocProvider.of<PostCubit>(context).getPost();
           Navigator.pushReplacement(context, MaterialPageRoute(
             builder: (context) {
@@ -88,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                     icon: const Icon(Icons.email, color: kPrimary),
                     hintText: 'البريد الإلكتروني',
                     onChanged: (emailAddress) {
-                      email = emailAddress;
+                      email.text = emailAddress;
                     },
                   ),
                   CustomTextFiled(
@@ -96,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                     typeText: true,
                     hintText: 'كلمة المرور',
                     onChanged: (userPassword) {
-                      password = userPassword;
+                      password.text = userPassword;
                     },
                   ),
                   const SizedBox(height: 20),
@@ -107,14 +113,15 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
                           BlocProvider.of<LoginCubit>(context).sginIn(
-                              emailAddress: email!, password: password!);
+                              emailAddress: email.text,
+                              password: password.text);
                         } else {}
                       }),
                   const SizedBox(height: 20),
                   ForgetPasswordButton(
                     onTap: () async {
                       BlocProvider.of<LoginCubit>(context)
-                          .resetPassword(email: email!);
+                          .resetPassword(email: email.text);
                     },
                   ),
                   const SizedBox(height: 20),
