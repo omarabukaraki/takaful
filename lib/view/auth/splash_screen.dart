@@ -5,6 +5,7 @@ import 'package:takaful/view/auth/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+  static String id = 'SplashScreen';
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();

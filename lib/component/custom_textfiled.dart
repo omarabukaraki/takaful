@@ -7,12 +7,14 @@ class CustomTextFiled extends StatelessWidget {
       this.onChanged,
       this.typeText = false,
       this.icon,
-      this.typeKeyboardNumber});
+      this.typeKeyboardNumber,
+      this.controller});
   final String? hintText;
   final Function(String)? onChanged;
   final bool typeText;
   final Icon? icon;
   final bool? typeKeyboardNumber;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class CustomTextFiled extends StatelessWidget {
             ? TextInputType.number
             : TextInputType.text,
         obscureText: typeText,
+        controller: controller,
         onChanged: onChanged,
         textAlign: TextAlign.end,
         decoration: InputDecoration(

@@ -17,13 +17,20 @@ class AddDetailsPost extends StatefulWidget {
 }
 
 class _AddDetailsPostState extends State<AddDetailsPost> {
-  String? title;
-  String? location;
-  String? stateOfThePost;
-  String? count;
-  String? description;
-  bool isLoading = false;
   GlobalKey<FormState> formKey = GlobalKey();
+  TextEditingController title = TextEditingController();
+  TextEditingController location = TextEditingController();
+  TextEditingController stateOfThePost = TextEditingController();
+  TextEditingController count = TextEditingController();
+  TextEditingController description = TextEditingController();
+  bool isLoading = false;
+  void clearText() {
+    title.clear();
+    location.clear();
+    stateOfThePost.clear();
+    count.clear();
+    description.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +51,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
             isLoading = true;
           } else if (state is PostAddSuccess) {
             isLoading = false;
+            clearText();
           } else if (state is PostFailure) {
             isLoading = false;
           }
@@ -78,22 +86,25 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                 ),
                 const SizedBox(height: 10),
                 CustomTextFiled(
+                  controller: title,
                   onChanged: (postTitle) {
-                    title = postTitle;
+                    title.text = postTitle;
                   },
                   hintText: 'العنوان',
                   icon: const Icon(Icons.title_rounded),
                 ),
                 CustomTextFiled(
+                  controller: location,
                   onChanged: (postLocation) {
-                    location = postLocation;
+                    location.text = postLocation;
                   },
                   hintText: 'الموقع',
                   icon: const Icon(Icons.location_on),
                 ),
                 CustomTextFiled(
+                  controller: stateOfThePost,
                   onChanged: (p0) {
-                    stateOfThePost = p0;
+                    stateOfThePost.text = p0;
                   },
                   hintText: 'الحالة',
                   icon: const Icon(Icons.fiber_new_rounded),
@@ -102,8 +113,9 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                 //     ?
 
                 CustomTextFiled(
+                  controller: count,
                   onChanged: (postCount) {
-                    count = postCount;
+                    count.text = postCount;
                   },
                   typeKeyboardNumber: true,
                   hintText: 'العدد',
@@ -112,8 +124,9 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                 // : const SizedBox(),
                 ,
                 CustomTextFiled(
+                  controller: description,
                   onChanged: (postDescription) {
-                    description = postDescription;
+                    description.text = postDescription;
                   },
                   hintText: 'الوصف',
                   icon: const Icon(Icons.description),
@@ -126,43 +139,15 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                     if (formKey.currentState!.validate()) {
                       BlocProvider.of<PostCubit>(context).addPost(
                           postState: true,
-                          title: title!,
+                          title: title.text,
                           image: 'sss',
                           category: categoryAndItemService[1],
                           itemOrService: categoryAndItemService[0],
-                          description: description!,
-                          location: location!,
-                          state: stateOfThePost!,
-                          count: int.parse(count!));
+                          description: description.text,
+                          location: location.text,
+                          state: stateOfThePost.text,
+                          count: int.parse(count.text));
                     }
-                    // if (formKey.currentState!.validate()) {
-                    //   setState(() {
-                    //     isLoading = true;
-                    //   });
-                    //   CollectionReference collRef =
-                    //       FirebaseFirestore.instance.collection('post');
-                    //   collRef.add({
-                    //     'id': FirebaseAuth.instance.currentUser!.uid,
-                    //     'postState': true,
-                    //     'title': title,
-                    //     'images': '',
-                    //     'category': categoryAndItemService[1],
-                    //     'itemOrService': categoryAndItemService[0],
-                    //     'count': int.parse(count!),
-                    //     'description': description,
-                    //     'location': location,
-                    //     'state': state,
-                    //     'createAt': DateTime.now(),
-                    //     'donerAccount':
-                    //         FirebaseAuth.instance.currentUser!.email.toString(),
-                    //   });
-                    //   await Future.delayed(const Duration(seconds: 2));
-                    //   setState(() {
-                    //     isLoading = false;
-                    //   });
-                    // }
-
-                    // print(collRef);
                   },
                   textColor: Colors.white,
                   color: kPrimary,

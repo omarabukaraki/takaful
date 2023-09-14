@@ -9,7 +9,7 @@ import 'home_page.dart';
 
 class NavigatorBarPage extends StatefulWidget {
   const NavigatorBarPage({super.key});
-
+  static String id = 'NavigatorBarPage';
   @override
   State<NavigatorBarPage> createState() => _NavigatorBarPageState();
 }
