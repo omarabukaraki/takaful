@@ -21,16 +21,23 @@ class ImageCount extends StatelessWidget {
         ],
       ),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        const Icon(
-          Icons.image,
-          size: 15,
-          color: Colors.white,
-        ),
-        Text(
-          countImage.toString(),
-          style: const TextStyle(
-            fontSize: 11,
+        const Expanded(
+          child: Icon(
+            Icons.image,
+            size: 15,
             color: Colors.white,
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(3),
+            child: Text(
+              countImage.toString(),
+              style: const TextStyle(
+                  fontSize: 11,
+                  color: Colors.white,
+                  overflow: TextOverflow.fade),
+            ),
           ),
         )
       ]),

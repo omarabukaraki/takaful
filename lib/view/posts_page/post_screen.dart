@@ -251,15 +251,14 @@ class _PostScreenState extends State<PostScreen> {
   }
 }
 
-// ignore: must_be_immutable
 class InformationPost extends StatelessWidget {
-  InformationPost({
+  const InformationPost({
     this.section,
     this.data,
     super.key,
   });
-  String? data;
-  String? section;
+  final String? data;
+  final String? section;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -286,8 +285,9 @@ class InformationPost extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 14,
                 color: Colors.black,
-                fontFamily: 'ElMessiri',
               ),
+              maxLines: 1,
+              overflow: TextOverflow.clip,
             )),
         Expanded(
             flex: 1,
@@ -297,7 +297,6 @@ class InformationPost extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 14,
                 color: Colors.black,
-                fontFamily: 'ElMessiri',
               ),
             ))
       ]),
@@ -305,13 +304,12 @@ class InformationPost extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
 class CustomButton extends StatelessWidget {
-  CustomButton({
+  const CustomButton({
     super.key,
     this.onTap,
   });
-  VoidCallback? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -330,10 +328,9 @@ class CustomButton extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
 class ImagePostComponent extends StatelessWidget {
-  ImagePostComponent({super.key, this.image});
-  String? image;
+  const ImagePostComponent({super.key, this.image});
+  final String? image;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
