@@ -17,6 +17,10 @@ class ProfilePage extends StatelessWidget {
           children: [
             ProfileButton(
                 screenHeigth: screenheigth,
+                icon: Icons.manage_accounts,
+                text: 'إدارة حسابي'),
+            ProfileButton(
+                screenHeigth: screenheigth,
                 icon: Icons.shopping_bag_rounded,
                 text: 'طلباتي'),
             ProfileButton(
@@ -31,10 +35,6 @@ class ProfilePage extends StatelessWidget {
                 screenHeigth: screenheigth,
                 icon: Icons.settings,
                 text: 'الاعدادات'),
-            ProfileButton(
-                screenHeigth: screenheigth,
-                icon: Icons.manage_accounts,
-                text: 'إدارة حسابي'),
             ProfileButton(
                 screenHeigth: screenheigth,
                 icon: Icons.share,
