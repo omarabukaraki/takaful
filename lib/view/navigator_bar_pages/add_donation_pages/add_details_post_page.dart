@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
-
 import 'package:takaful/component/counter_post.dart';
 import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/component/custom_button.dart';
@@ -100,6 +99,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
           } else if (state is PostAddSuccess) {
             isLoading = false;
             clearText();
+            counter = 0;
           } else if (state is PostFailure) {
             isLoading = false;
           }
@@ -124,25 +124,49 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                GestureDetector(
-                  onTap: () async {
-                    await pickImageFromGallery();
-                    await uploadImage();
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    width: double.infinity,
-                    height: 164,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: kPrimary),
-                    child: const Icon(
-                      Icons.camera_enhance,
-                      size: 60,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                            onTap: () async {
+                              await pickImageFromGallery();
+                              await uploadImage();
+                              setState(() {});
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 2.4,
+                              height: 164,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: kPrimary),
+                              child: const Icon(
+                                Icons.image,
+                                size: 60,
+                                color: Colors.white,
+                              ),
+                            )),
+                        GestureDetector(
+                            onTap: () async {
+                              await pickImageFromCamera();
+                              await uploadImage();
+                              setState(() {});
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 2.4,
+                              height: 164,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: kPrimary),
+                              child: const Icon(
+                                Icons.camera_enhance,
+                                size: 60,
+                                color: Colors.white,
+                              ),
+                            )),
+                      ],
+                    )),
                 const SizedBox(height: 10),
                 CustomTextFiled(
                   controller: title,
@@ -217,7 +241,6 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                         count: counter,
                       );
                     }
-                    counter = 0;
                   },
                   textColor: Colors.white,
                   color: kPrimary,
