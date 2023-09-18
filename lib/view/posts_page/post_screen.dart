@@ -15,13 +15,6 @@ class PostScreen extends StatefulWidget {
 class _PostScreenState extends State<PostScreen> {
   int inIndex = 0;
 
-  List<String> images = [
-    'assets/image/ads_photo_one.png',
-    'assets/image/ui.png',
-    'assets/image/ads_photo_two.png',
-    'assets/image/ads_photo_three.jpg'
-  ];
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -32,10 +25,10 @@ class _PostScreenState extends State<PostScreen> {
             Stack(children: [
               CarouselSlider.builder(
                 // carouselController: _controller,
-                itemCount: images.length,
+                itemCount: 1,
                 itemBuilder: (context, index, realIndex) {
                   return ImagePostComponent(
-                    image: images[index],
+                    image: widget.postModel!.image,
                   );
                 },
                 options: CarouselOptions(
@@ -335,8 +328,10 @@ class ImagePostComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Image.asset(image ?? 'assets/image/ads_photo_one.png',
-          fit: BoxFit.fill),
+      child: Image.network(
+        image ??
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Facebook_icon.svg/1024px-Facebook_icon.svg.png',
+      ),
     );
   }
 }

@@ -13,11 +13,8 @@ class PostCoverImage extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          image: DecorationImage(
-              image: AssetImage(
-                image ?? 'assets/image/ui.png',
-              ),
-              fit: BoxFit.fill),
+          image:
+              DecorationImage(image: NetworkImage(image!), fit: BoxFit.cover),
           boxShadow: const [
             BoxShadow(
                 color: Colors.black12, blurRadius: 4, offset: Offset(0, 1))

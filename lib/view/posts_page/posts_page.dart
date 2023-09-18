@@ -52,6 +52,12 @@ class _PostPageState extends State<PostPage> {
 
                   return categoryAndItemName[1] == data['itemOrService']
                       ? CustomPostComponent(
+                          image: data['image'],
+                          location: data['location'],
+                          title: data['title'],
+                          countImage: 1,
+                          typePost:
+                              data['category'] + ' , ' + data['itemOrService'],
                           onTapRequest: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
@@ -73,11 +79,6 @@ class _PostPageState extends State<PostPage> {
                               );
                             }));
                           },
-                          location: data['location'],
-                          title: data['title'],
-                          countImage: data['count'],
-                          typePost:
-                              data['category'] + ' , ' + data['itemOrService'],
                         )
                       : const SizedBox();
                 }).toList(),

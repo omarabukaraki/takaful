@@ -51,7 +51,7 @@ class CustomPostComponent extends StatelessWidget {
                   Expanded(
                       flex: 1,
                       child: PostCoverImage(
-                        image: image ?? 'assets/image/ui.png',
+                        image: image,
                       )),
                 ],
               )),

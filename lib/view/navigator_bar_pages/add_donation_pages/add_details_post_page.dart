@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
+
 import 'package:takaful/component/counter_post.dart';
 import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/component/custom_button.dart';
@@ -31,6 +37,47 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
     location.clear();
     stateOfThePost.clear();
     description.clear();
+  }
+
+  File? file;
+  final imagePicker = ImagePicker();
+  var nameImage;
+  var url;
+
+  Future pickImageFromGallery() async {
+    try {
+      var pickedImage =
+          await imagePicker.pickImage(source: ImageSource.gallery);
+      if (pickedImage == null) return;
+      file = File(pickedImage.path);
+      nameImage = basename(pickedImage.path);
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
+
+  Future pickImageFromCamera() async {
+    try {
+      var pickedImage = await imagePicker.pickImage(source: ImageSource.camera);
+      if (pickedImage == null) return;
+      file = File(pickedImage.path);
+      nameImage = basename(pickedImage.path);
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
+
+  Future uploadImage() async {
+    try {
+      var refStorage = FirebaseStorage.instance.ref('images/$nameImage');
+      await refStorage.putFile(file!);
+      url = await refStorage.getDownloadURL();
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
   }
 
   @override
@@ -77,16 +124,23 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  width: double.infinity,
-                  height: 164,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20), color: kPrimary),
-                  child: const Icon(
-                    Icons.camera_enhance,
-                    size: 60,
-                    color: Colors.white,
+                GestureDetector(
+                  onTap: () async {
+                    await pickImageFromGallery();
+                    await uploadImage();
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    width: double.infinity,
+                    height: 164,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: kPrimary),
+                    child: const Icon(
+                      Icons.camera_enhance,
+                      size: 60,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -154,7 +208,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                       BlocProvider.of<PostCubit>(context).addPost(
                         postState: true,
                         title: title.text,
-                        image: 'sss',
+                        image: url,
                         category: categoryAndItemService[1],
                         itemOrService: categoryAndItemService[0],
                         description: description.text,
