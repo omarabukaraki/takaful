@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:takaful/constant.dart';
 
 class CustomTextFiled extends StatelessWidget {
   const CustomTextFiled(
@@ -39,11 +40,11 @@ class CustomTextFiled extends StatelessWidget {
           suffixIcon: icon,
           hintText: hintText,
           hintStyle: const TextStyle(
-            color: Color.fromARGB(255, 117, 117, 117),
+            color: kTextFiledFont,
             fontSize: 15,
           ),
           filled: true,
-          fillColor: const Color(0xffF2F2F2),
+          fillColor: kTextFiled,
           border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(

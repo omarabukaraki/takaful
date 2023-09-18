@@ -1,6 +1,7 @@
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:takaful/component/counter_post.dart';
 import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/component/custom_button.dart';
 import 'package:takaful/component/custom_textfiled.dart';
@@ -109,47 +110,26 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   icon: const Icon(Icons.fiber_new_rounded),
                 ),
                 categoryAndItemService[0].length <= 5
-                    ? Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        height: 60,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: kTextFiled,
-                        ),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      if (counter < 500) {
-                                        counter++;
-                                      } else {
-                                        counter = 500;
-                                      }
-                                    });
-                                  },
-                                  icon: const Icon(Icons.add)),
-                              counter == 0
-                                  ? const Text(
-                                      'العدد',
-                                      style: TextStyle(color: kTextFiledFont),
-                                    )
-                                  : Text(counter.toString()),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      if (counter > 0) {
-                                        counter--;
-                                      } else {
-                                        counter = 0;
-                                      }
-                                    });
-                                  },
-                                  icon: const Icon(Icons.remove)),
-                            ]),
+                    ? CounterPost(
+                        counter: counter,
+                        onTapAdd: () {
+                          setState(() {
+                            if (counter < 500) {
+                              counter++;
+                            } else {
+                              counter = 500;
+                            }
+                          });
+                        },
+                        onTapRemove: () {
+                          setState(() {
+                            if (counter > 0) {
+                              counter--;
+                            } else {
+                              counter = 0;
+                            }
+                          });
+                        },
                       )
                     : const SizedBox(),
                 CustomTextFiled(
