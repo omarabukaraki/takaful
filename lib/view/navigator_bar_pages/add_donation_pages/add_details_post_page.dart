@@ -17,18 +17,17 @@ class AddDetailsPost extends StatefulWidget {
 }
 
 class _AddDetailsPostState extends State<AddDetailsPost> {
+  int counter = 0;
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController title = TextEditingController();
   TextEditingController location = TextEditingController();
   TextEditingController stateOfThePost = TextEditingController();
-  TextEditingController count = TextEditingController();
   TextEditingController description = TextEditingController();
   bool isLoading = false;
   void clearText() {
     title.clear();
     location.clear();
     stateOfThePost.clear();
-    count.clear();
     description.clear();
   }
 
@@ -109,20 +108,50 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   hintText: 'الحالة',
                   icon: const Icon(Icons.fiber_new_rounded),
                 ),
-                // categoryAndItemService[0].length <= 5
-                //     ?
-
-                CustomTextFiled(
-                  controller: count,
-                  onChanged: (postCount) {
-                    count.text = postCount;
-                  },
-                  typeKeyboardNumber: true,
-                  hintText: 'العدد',
-                  icon: const Icon(Icons.format_list_numbered_outlined),
-                )
-                // : const SizedBox(),
-                ,
+                categoryAndItemService[0].length <= 5
+                    ? Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        height: 60,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: kTextFiled,
+                        ),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      if (counter < 500) {
+                                        counter++;
+                                      } else {
+                                        counter = 500;
+                                      }
+                                    });
+                                  },
+                                  icon: const Icon(Icons.add)),
+                              counter == 0
+                                  ? const Text(
+                                      'العدد',
+                                      style: TextStyle(color: kTextFiledFont),
+                                    )
+                                  : Text(counter.toString()),
+                              IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      if (counter > 0) {
+                                        counter--;
+                                      } else {
+                                        counter = 0;
+                                      }
+                                    });
+                                  },
+                                  icon: const Icon(Icons.remove)),
+                            ]),
+                      )
+                    : const SizedBox(),
                 CustomTextFiled(
                   controller: description,
                   onChanged: (postDescription) {
@@ -138,16 +167,18 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
                       BlocProvider.of<PostCubit>(context).addPost(
-                          postState: true,
-                          title: title.text,
-                          image: 'sss',
-                          category: categoryAndItemService[1],
-                          itemOrService: categoryAndItemService[0],
-                          description: description.text,
-                          location: location.text,
-                          state: stateOfThePost.text,
-                          count: int.parse(count.text));
+                        postState: true,
+                        title: title.text,
+                        image: 'sss',
+                        category: categoryAndItemService[1],
+                        itemOrService: categoryAndItemService[0],
+                        description: description.text,
+                        location: location.text,
+                        state: stateOfThePost.text,
+                        count: counter,
+                      );
                     }
+                    counter = 0;
                   },
                   textColor: Colors.white,
                   color: kPrimary,
