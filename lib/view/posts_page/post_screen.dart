@@ -18,165 +18,131 @@ class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(children: [
-            Stack(children: [
-              CarouselSlider.builder(
-                // carouselController: _controller,
-                itemCount: 1,
-                itemBuilder: (context, index, realIndex) {
-                  return ImagePostComponent(
-                    image: widget.postModel!.image,
-                  );
-                },
-                options: CarouselOptions(
-                  height: screenWidth < 500 ? 250 : 420,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      inIndex = index;
-                    });
+    return Container(
+      color: Colors.white,
+      child: SafeArea(
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: Column(children: [
+              Stack(children: [
+                CarouselSlider.builder(
+                  // carouselController: _controller,
+                  itemCount: 1,
+                  itemBuilder: (context, index, realIndex) {
+                    return ImagePostComponent(
+                      image: widget.postModel!.image,
+                    );
                   },
-                  viewportFraction: 1,
-                ),
-              ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: ImageCount(
-                    countImage: inIndex + 1,
-                    height: 25,
-                  ),
-                ),
-              ),
-              Positioned(
-                right: 0,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: CustomButton(
-                    onTap: () {
-                      Navigator.pop(context);
+                  options: CarouselOptions(
+                    height: screenWidth < 500 ? 250 : 420,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        inIndex = index;
+                      });
                     },
+                    viewportFraction: 1,
                   ),
                 ),
-              ),
-            ]),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    widget.postModel!.title,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: ImageCount(
+                      countImage: inIndex + 1,
+                      height: 25,
                     ),
-                    maxLines: 1,
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      height: 40,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 15),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: kPrimary),
-                      child: const Center(
-                          child: Text(
-                        'طلب',
+                ),
+                Positioned(
+                  right: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: CustomButton(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                ),
+              ]),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      widget.postModel!.title,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        height: 40,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 15),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: kPrimary),
+                        child: const Center(
+                            child: Text(
+                          'طلب',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
+                      ),
+                    ),
+                    const Text(
+                      'المعلومات',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'ElMessiri',
+                      ),
+                      maxLines: 1,
+                    ),
+                    InformationPost(
+                        section: 'القسم',
+                        data:
+                            "${widget.postModel!.category} - ${widget.postModel!.itemOrService}"),
+                    InformationPost(
+                        section: 'الموقع', data: widget.postModel!.location),
+                    InformationPost(
+                        section: 'الحالة', data: widget.postModel!.state),
+                    InformationPost(
+                        section: 'تاريخ النشر',
+                        data: widget.postModel!.createAt.substring(0, 10)),
+                    InformationPost(
+                        section: 'العدد',
+                        data: widget.postModel!.count.toString()),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
+                        'الوصف',
                         style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
+                          fontSize: 18,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
-                      )),
-                    ),
-                  ),
-                  const Text(
-                    'المعلومات',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'ElMessiri',
-                    ),
-                    maxLines: 1,
-                  ),
-                  InformationPost(
-                      section: 'القسم',
-                      data:
-                          "${widget.postModel!.category} - ${widget.postModel!.itemOrService}"),
-                  InformationPost(
-                      section: 'الموقع', data: widget.postModel!.location),
-                  InformationPost(
-                      section: 'الحالة', data: widget.postModel!.state),
-                  InformationPost(
-                      section: 'تاريخ النشر',
-                      data: widget.postModel!.createAt.substring(0, 10)),
-                  InformationPost(
-                      section: 'العدد',
-                      data: widget.postModel!.count.toString()),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Text(
-                      'الوصف',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      maxLines: 1,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 5),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 15),
-                    width: double.infinity,
-                    height: 100,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(0, 2),
-                            blurRadius: 6,
-                          )
-                        ],
-                        color: Colors.white),
-                    child: Text(
-                      widget.postModel!.description,
-                      textAlign: TextAlign.end,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
+                        maxLines: 1,
                       ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Text(
-                      'حساب المتبرع',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      maxLines: 1,
-                    ),
-                  ),
-                  Container(
+                    Container(
                       margin: const EdgeInsets.symmetric(vertical: 5),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 15),
                       width: double.infinity,
-                      height: 120,
+                      height: 100,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           boxShadow: const [
@@ -187,57 +153,95 @@ class _PostScreenState extends State<PostScreen> {
                             )
                           ],
                           color: Colors.white),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  widget.postModel!.donarAccount,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
+                      child: Text(
+                        widget.postModel!.description,
+                        textAlign: TextAlign.end,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
+                        'حساب المتبرع',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                      ),
+                    ),
+                    Container(
+                        margin: const EdgeInsets.symmetric(vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 15),
+                        width: double.infinity,
+                        height: 120,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 6,
+                              )
+                            ],
+                            color: Colors.white),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    widget.postModel!.donarAccount,
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    maxLines: 1,
                                   ),
-                                  maxLines: 1,
-                                ),
-                                const Icon(
-                                  Icons.star_purple500_sharp,
-                                  color: Colors.yellow,
-                                  size: 20,
-                                )
-                              ],
+                                  const Icon(
+                                    Icons.star_purple500_sharp,
+                                    color: Colors.yellow,
+                                    size: 20,
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                margin: const EdgeInsets.only(left: 15),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Colors.black12,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 6,
-                                    )
-                                  ],
-                                  image: const DecorationImage(
-                                    image: AssetImage(
-                                        'assets/image/user_image.png'),
-                                    fit: BoxFit.fill,
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                  margin: const EdgeInsets.only(left: 15),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color: Colors.black12,
+                                        offset: Offset(0, 2),
+                                        blurRadius: 6,
+                                      )
+                                    ],
+                                    image: const DecorationImage(
+                                      image: AssetImage(
+                                          'assets/image/user_image.png'),
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
-                                ),
-                              )),
-                        ],
-                      )),
-                ],
-              ),
-            )
-          ]),
+                                )),
+                          ],
+                        )),
+                  ],
+                ),
+              )
+            ]),
+          ),
         ),
       ),
     );
