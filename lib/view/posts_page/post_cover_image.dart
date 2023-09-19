@@ -27,6 +27,12 @@ class PostCoverImage extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: image!,
           fit: BoxFit.cover,
+          progressIndicatorBuilder: (context, url, downloadProgress) =>
+              CircularProgressIndicator(
+            value: downloadProgress.progress,
+            strokeWidth: 1,
+          ),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       ),
     );
