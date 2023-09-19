@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/component/image_count.dart';
@@ -34,6 +35,7 @@ class _PostScreenState extends State<PostScreen> {
                     );
                   },
                   options: CarouselOptions(
+                    enableInfiniteScroll: false,
                     height: screenWidth < 500 ? 250 : 420,
                     onPageChanged: (index, reason) {
                       setState(() {
@@ -332,9 +334,9 @@ class ImagePostComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Image.network(
-        image ??
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Facebook_icon.svg/1024px-Facebook_icon.svg.png',
+      child: CachedNetworkImage(
+        imageUrl: image!,
+        fit: BoxFit.cover,
       ),
     );
   }
