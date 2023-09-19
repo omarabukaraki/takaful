@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/view/posts_page/posts_page.dart';
 
@@ -21,6 +22,10 @@ class ServiceTypePage extends StatelessWidget {
   Widget build(BuildContext context) {
     String categoryName = ModalRoute.of(context)!.settings.arguments as String;
     double screenheigth = MediaQuery.of(context).size.height;
+    final Stream<QuerySnapshot> categoryStream = FirebaseFirestore.instance
+        .collection('service category')
+        .orderBy('createAt')
+        .snapshots();
     return Scaffold(
       appBar: CustomAppBar(
         onTap: () {
@@ -56,20 +61,53 @@ class ServiceTypePage extends StatelessWidget {
                 icon: Icon(Icons.search), hintText: 'إبحث في تكافل'),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: itemType.length,
-              itemBuilder: (context, index) {
-                return CategoryMenu(
-                  image: itemType[index][0],
-                  text: itemType[index][1],
-                  onTap: () {
-                    Navigator.pushNamed(context, PostPage.id,
-                        arguments: [categoryName, itemType[index][1]]);
-                  },
+            child: StreamBuilder<QuerySnapshot>(
+              stream: categoryStream,
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return const Text('Something went wrong');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                return SizedBox(
+                  child: ListView(
+                    children:
+                        snapshot.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data()! as Map<String, dynamic>;
+                      return CategoryMenu(
+                        image: data['image'],
+                        text: data['categoryName'],
+                        onTap: () {
+                          Navigator.pushNamed(context, PostPage.id,
+                              arguments: [categoryName, data['categoryName']]);
+                        },
+                      );
+                    }).toList(),
+                  ),
                 );
               },
             ),
           )
+          // Expanded(
+          //   child: ListView.builder(
+          //     itemCount: itemType.length,
+          //     itemBuilder: (context, index) {
+          //       return CategoryMenu(
+          //         image: itemType[index][0],
+          //         text: itemType[index][1],
+          //         onTap: () {
+          //           Navigator.pushNamed(context, PostPage.id,
+          //               arguments: [categoryName, itemType[index][1]]);
+          //         },
+          //       );
+          //     },
+          //   ),
+          // )
         ]),
       ]),
     );

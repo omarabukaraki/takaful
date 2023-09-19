@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../constant.dart';
 
@@ -74,24 +75,24 @@ class CategoryMenu extends StatelessWidget {
                   ),
                 )),
             Positioned(
-                right: 5,
-                top: 10,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.amber,
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.black38,
-                            offset: Offset(0, 2),
-                            blurRadius: 10)
-                      ]),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    backgroundImage: NetworkImage(image),
-                    radius: 40,
-                  ),
-                ))
+              right: 5,
+              top: 10,
+              child: Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(0, 2),
+                          blurRadius: 10)
+                    ]),
+                width: 80,
+                height: 80,
+                child: CachedNetworkImage(imageUrl: image, fit: BoxFit.cover),
+              ),
+            ),
           ],
         ),
       ),

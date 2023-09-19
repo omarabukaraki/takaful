@@ -57,37 +57,38 @@ class ItemTypePage extends StatelessWidget {
             height: 10,
           ),
           Expanded(
-              child: StreamBuilder<QuerySnapshot>(
-            stream: categoryStream,
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return const Text('Something went wrong');
-              }
+            child: StreamBuilder<QuerySnapshot>(
+              stream: categoryStream,
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return const Text('Something went wrong');
+                }
 
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-              return SizedBox(
-                child: ListView(
-                  children:
-                      snapshot.data!.docs.map((DocumentSnapshot document) {
-                    Map<String, dynamic> data =
-                        document.data()! as Map<String, dynamic>;
-                    return CategoryMenu(
-                      image: data['image'],
-                      text: data['categoryName'],
-                      onTap: () {
-                        Navigator.pushNamed(context, PostPage.id,
-                            arguments: [categoryName, data['categoryName']]);
-                      },
-                    );
-                  }).toList(),
-                ),
-              );
-            },
-          ))
+                return SizedBox(
+                  child: ListView(
+                    children:
+                        snapshot.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data()! as Map<String, dynamic>;
+                      return CategoryMenu(
+                        image: data['image'],
+                        text: data['categoryName'],
+                        onTap: () {
+                          Navigator.pushNamed(context, PostPage.id,
+                              arguments: [categoryName, data['categoryName']]);
+                        },
+                      );
+                    }).toList(),
+                  ),
+                );
+              },
+            ),
+          )
         ]),
       ]),
     );

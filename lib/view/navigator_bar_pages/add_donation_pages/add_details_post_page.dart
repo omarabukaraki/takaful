@@ -133,7 +133,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                             onTap: () async {
                               await pickImageFromGallery();
                               await uploadImage();
-                              setState(() {});
+                              // setState(() {});
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width / 2.4,
@@ -151,7 +151,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                             onTap: () async {
                               await pickImageFromCamera();
                               await uploadImage();
-                              setState(() {});
+                              // setState(() {});
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width / 2.4,
