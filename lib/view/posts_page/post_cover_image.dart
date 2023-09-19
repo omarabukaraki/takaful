@@ -13,6 +13,8 @@ class PostCoverImage extends StatelessWidget {
       padding: const EdgeInsets.only(left: 15, bottom: 5),
       child: Container(
         clipBehavior: Clip.antiAlias,
+        width: double.infinity,
+        height: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           // image:
