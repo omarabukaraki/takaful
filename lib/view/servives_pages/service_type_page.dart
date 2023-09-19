@@ -7,17 +7,10 @@ import '../../component/custom_app_bar.dart';
 import '../../component/custom_search_bar.dart';
 import '../../constant.dart';
 
-// ignore: must_be_immutable
 class ServiceTypePage extends StatelessWidget {
-  ServiceTypePage({super.key});
+  const ServiceTypePage({super.key});
   static String id = 'ServiceTypePage';
-  List<List<String>> itemType = [
-    ['assets/image/hedada.png', 'خدمات حدادة'],
-    ['assets/image/kahraba.png', 'خدمات كهربائية'],
-    ['assets/image/sebaka.jpg', 'خدمات سباكة'],
-    ['assets/image/nejara1.jpg', 'خدمات نجارة'],
-    ['assets/image/other.png', 'خدمات أخرى'],
-  ];
+
   @override
   Widget build(BuildContext context) {
     String categoryName = ModalRoute.of(context)!.settings.arguments as String;
@@ -92,22 +85,7 @@ class ServiceTypePage extends StatelessWidget {
                 );
               },
             ),
-          )
-          // Expanded(
-          //   child: ListView.builder(
-          //     itemCount: itemType.length,
-          //     itemBuilder: (context, index) {
-          //       return CategoryMenu(
-          //         image: itemType[index][0],
-          //         text: itemType[index][1],
-          //         onTap: () {
-          //           Navigator.pushNamed(context, PostPage.id,
-          //               arguments: [categoryName, itemType[index][1]]);
-          //         },
-          //       );
-          //     },
-          //   ),
-          // )
+          ),
         ]),
       ]),
     );
