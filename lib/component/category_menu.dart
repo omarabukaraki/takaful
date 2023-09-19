@@ -88,7 +88,7 @@ class CategoryMenu extends StatelessWidget {
                       ]),
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    backgroundImage: AssetImage(image),
+                    backgroundImage: NetworkImage(image),
                     radius: 40,
                   ),
                 ))
