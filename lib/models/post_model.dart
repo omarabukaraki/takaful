@@ -2,7 +2,7 @@ class PostModel {
   final String id;
   final bool postState;
   final String title;
-  final List<String> image;
+  final List<dynamic> image;
   final String category;
   final int count;
   final String itemOrService;

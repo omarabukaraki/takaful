@@ -48,7 +48,7 @@ class CustomPostComponent extends StatelessWidget {
                       )),
                 ],
               )),
-          Expanded(flex: 1, child: ImageCount(countImage: posts!.count)),
+          Expanded(flex: 1, child: ImageCount(countImage: posts!.image.length)),
           Expanded(
               flex: 2,
               child: Row(

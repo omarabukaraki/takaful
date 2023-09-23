@@ -28,14 +28,14 @@ class _PostScreenState extends State<PostScreen> {
               Stack(children: [
                 CarouselSlider.builder(
                   // carouselController: _controller,
-                  itemCount: 1,
+                  itemCount: widget.postModel!.image.length,
                   itemBuilder: (context, index, realIndex) {
                     return ImagePostComponent(
-                      image: widget.postModel!.image[0],
+                      image: widget.postModel!.image[index],
                     );
                   },
                   options: CarouselOptions(
-                    enableInfiniteScroll: false,
+                    // enableInfiniteScroll: false,
                     height: screenWidth < 500 ? 250 : 420,
                     onPageChanged: (index, reason) {
                       setState(() {

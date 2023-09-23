@@ -12,7 +12,7 @@ class AddImageCubit extends Cubit<AddImageState> {
   AddImageCubit() : super(AddImageInitial());
   List<File> image = [];
   final imagePicker = ImagePicker();
-  var nameImage;
+  List<String> nameImage = [];
   List<String> url = [];
 
   Future pickMultiImageFromGallery() async {
@@ -20,7 +20,7 @@ class AddImageCubit extends Cubit<AddImageState> {
       var pickedImage = await imagePicker.pickMultiImage();
       for (int i = 0; i < pickedImage.length; i++) {
         image.add(File(pickedImage[i].path));
-        nameImage = basename(pickedImage[i].path);
+        nameImage.add(basename(pickedImage[i].path));
       }
       if (image.isEmpty) {
         emit(AddImageFailure(errMessage: 'select image please'));
@@ -35,8 +35,8 @@ class AddImageCubit extends Cubit<AddImageState> {
   Future uploadImage() async {
     emit(UploadImageLodging());
     try {
-      var refStorage = FirebaseStorage.instance.ref('images/$nameImage');
       for (int i = 0; i < image.length; i++) {
+        var refStorage = FirebaseStorage.instance.ref('images/${nameImage[i]}');
         await refStorage.putFile(image[i]);
         url.add(await refStorage.getDownloadURL());
       }
