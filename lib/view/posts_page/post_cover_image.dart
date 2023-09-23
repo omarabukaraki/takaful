@@ -17,8 +17,6 @@ class PostCoverImage extends StatelessWidget {
           height: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            // image:
-            //     DecorationImage(image: NetworkImage(image!), fit: BoxFit.cover),
             boxShadow: const [
               BoxShadow(
                   color: Colors.black12, blurRadius: 4, offset: Offset(0, 1))
