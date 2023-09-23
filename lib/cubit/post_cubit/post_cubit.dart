@@ -48,7 +48,19 @@ class PostCubit extends Cubit<PostState> {
       posts.orderBy('createAt', descending: true).snapshots().listen((event) {
         List<PostModel> postList = [];
         for (var doc in event.docs) {
-          postList.add(PostModel.fromJson(doc));
+          postList.add(PostModel(
+              doc['id'],
+              doc['postState'],
+              doc['title'],
+              doc['image'],
+              doc['category'],
+              doc['itemOrService'],
+              doc['description'],
+              doc['location'],
+              doc['state'],
+              doc['createAt'],
+              doc['donarAccount'],
+              doc['count']));
         }
         emit(PostSuccess(posts: postList));
       });

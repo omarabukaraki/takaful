@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/component/image_count.dart';
 import 'package:takaful/constant.dart';
+import 'package:takaful/models/post_model.dart';
 import 'package:takaful/view/posts_page/post_cover_Info.dart';
 import 'package:takaful/view/posts_page/post_cover_image.dart';
 
 class CustomPostComponent extends StatelessWidget {
   const CustomPostComponent(
-      {this.image,
-      this.title,
-      this.typePost,
-      this.location,
-      this.countImage,
-      super.key,
-      this.onTapRequest,
-      this.onTapSave});
+      {super.key, this.onTapRequest, this.onTapSave, this.posts});
+  final PostModel? posts;
 
-  final String? image;
-  final String? title;
-  final String? typePost;
-  final String? location;
-  final int? countImage;
   final VoidCallback? onTapRequest;
   final VoidCallback? onTapSave;
 
@@ -46,16 +36,19 @@ class CustomPostComponent extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: PostCoverInformation(
-                        title: title, typePost: typePost, location: location),
+                        title: posts!.title,
+                        typePost:
+                            '${posts!.category} , ${posts!.itemOrService}',
+                        location: posts!.location),
                   ),
                   Expanded(
                       flex: 1,
                       child: PostCoverImage(
-                        image: image,
+                        image: posts!.image,
                       )),
                 ],
               )),
-          Expanded(flex: 1, child: ImageCount(countImage: countImage)),
+          Expanded(flex: 1, child: ImageCount(countImage: posts!.count)),
           Expanded(
               flex: 2,
               child: Row(
