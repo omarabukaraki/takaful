@@ -1,18 +1,16 @@
-import 'dart:io';
-
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'package:takaful/component/counter_post.dart';
 import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/component/custom_button.dart';
 import 'package:takaful/component/custom_textfiled.dart';
 import 'package:takaful/constant.dart';
+import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
+import 'package:takaful/helper/show_snak_bar.dart';
+import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_image.dart';
 
 class AddDetailsPost extends StatefulWidget {
   const AddDetailsPost({super.key});
@@ -38,47 +36,6 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
     description.clear();
   }
 
-  File? file;
-  final imagePicker = ImagePicker();
-  var nameImage;
-  var url;
-
-  Future pickImageFromGallery() async {
-    try {
-      var pickedImage =
-          await imagePicker.pickImage(source: ImageSource.gallery);
-      if (pickedImage == null) return;
-      file = File(pickedImage.path);
-      nameImage = basename(pickedImage.path);
-    } catch (e) {
-      // ignore: avoid_print
-      print(e);
-    }
-  }
-
-  Future pickImageFromCamera() async {
-    try {
-      var pickedImage = await imagePicker.pickImage(source: ImageSource.camera);
-      if (pickedImage == null) return;
-      file = File(pickedImage.path);
-      nameImage = basename(pickedImage.path);
-    } catch (e) {
-      // ignore: avoid_print
-      print(e);
-    }
-  }
-
-  Future uploadImage() async {
-    try {
-      var refStorage = FirebaseStorage.instance.ref('images/$nameImage');
-      await refStorage.putFile(file!);
-      url = await refStorage.getDownloadURL();
-    } catch (e) {
-      // ignore: avoid_print
-      print(e);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     List<String> categoryAndItemService =
@@ -89,6 +46,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
         textTwo: 'أضف تفاصيل التبرع',
         button: true,
         onTap: () {
+          BlocProvider.of<AddImageCubit>(context).url = [];
           Navigator.pop(context);
         },
       ),
@@ -124,50 +82,55 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                            onTap: () async {
-                              await pickImageFromGallery();
-                              await uploadImage();
-                              // setState(() {});
+                BlocProvider.of<AddImageCubit>(context).url.isEmpty
+                    ? GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return const AddImage();
                             },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 2.4,
-                              height: 164,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: kPrimary),
-                              child: const Icon(
-                                Icons.image,
-                                size: 60,
-                                color: Colors.white,
-                              ),
-                            )),
-                        GestureDetector(
-                            onTap: () async {
-                              await pickImageFromCamera();
-                              await uploadImage();
-                              // setState(() {});
-                            },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 2.4,
-                              height: 164,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: kPrimary),
-                              child: const Icon(
-                                Icons.camera_enhance,
-                                size: 60,
-                                color: Colors.white,
-                              ),
-                            )),
-                      ],
-                    )),
-                const SizedBox(height: 10),
+                          ));
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          width: double.infinity,
+                          height: 164,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: kPrimary),
+                          child: const Icon(
+                            Icons.image,
+                            size: 60,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
+                    : Container(
+                        clipBehavior: Clip.antiAlias,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 5),
+                        width: double.infinity,
+                        height: 164,
+                        decoration: BoxDecoration(
+                            color: kPrimary,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.check,
+                              size: 60,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'تم اضافة الصور بنجاح',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            )
+                          ],
+                        ),
+                      ),
                 CustomTextFiled(
                   controller: title,
                   onChanged: (postTitle) {
@@ -228,18 +191,24 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   circular: 20,
                   text: 'نشر التبرع',
                   onTap: () async {
-                    if (formKey.currentState!.validate()) {
-                      BlocProvider.of<PostCubit>(context).addPost(
-                        postState: true,
-                        title: title.text,
-                        image: url,
-                        category: categoryAndItemService[1],
-                        itemOrService: categoryAndItemService[0],
-                        description: description.text,
-                        location: location.text,
-                        state: stateOfThePost.text,
-                        count: counter,
-                      );
+                    if (BlocProvider.of<AddImageCubit>(context).url.isEmpty) {
+                      showSankBar(context, 'الرجاء اضافة صور',
+                          color: Colors.red);
+                    } else {
+                      if (formKey.currentState!.validate()) {
+                        BlocProvider.of<PostCubit>(context).addPost(
+                          postState: true,
+                          title: title.text,
+                          image: BlocProvider.of<AddImageCubit>(context).url,
+                          category: categoryAndItemService[1],
+                          itemOrService: categoryAndItemService[0],
+                          description: description.text,
+                          location: location.text,
+                          state: stateOfThePost.text,
+                          count: counter,
+                        );
+                        BlocProvider.of<AddImageCubit>(context).url = [];
+                      }
                     }
                   },
                   textColor: Colors.white,

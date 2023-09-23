@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/component/custom_search_bar.dart';
+import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
 import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_details_post_page.dart';
 import '../../../component/custom_app_bar.dart';
 import '../../../component/type_of_item_or_service.dart';
@@ -33,6 +35,7 @@ class AddItemDonation extends StatelessWidget {
         TypeOfItemOrService(
           title: 'طعام',
           onTap: () {
+            BlocProvider.of<AddImageCubit>(context).url = [];
             Navigator.pushNamed(context, AddDetailsPost.id,
                 arguments: [item[0], category]);
           },
@@ -41,6 +44,7 @@ class AddItemDonation extends StatelessWidget {
         TypeOfItemOrService(
           title: 'ملابس',
           onTap: () {
+            BlocProvider.of<AddImageCubit>(context).url = [];
             Navigator.pushNamed(context, AddDetailsPost.id,
                 arguments: [item[1], category]);
           },
@@ -49,6 +53,7 @@ class AddItemDonation extends StatelessWidget {
         TypeOfItemOrService(
           title: 'أثاث',
           onTap: () {
+            BlocProvider.of<AddImageCubit>(context).url = [];
             Navigator.pushNamed(context, AddDetailsPost.id,
                 arguments: [item[2], category]);
           },
@@ -57,6 +62,7 @@ class AddItemDonation extends StatelessWidget {
         TypeOfItemOrService(
           title: 'أخرى',
           onTap: () {
+            BlocProvider.of<AddImageCubit>(context).url = [];
             Navigator.pushNamed(context, AddDetailsPost.id,
                 arguments: [item[3], category]);
           },

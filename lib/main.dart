@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/bloc_observer.dart';
 import 'package:takaful/constant.dart';
+import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
 import 'package:takaful/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
 import 'package:takaful/cubit/register_cubit/register_cubit.dart';
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => RegisterCubit(),
+        ),
+        BlocProvider(
+          create: (context) => AddImageCubit(),
         ),
       ],
       child: MaterialApp(

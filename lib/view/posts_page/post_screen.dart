@@ -31,7 +31,7 @@ class _PostScreenState extends State<PostScreen> {
                   itemCount: 1,
                   itemBuilder: (context, index, realIndex) {
                     return ImagePostComponent(
-                      image: widget.postModel!.image,
+                      image: widget.postModel!.image[0],
                     );
                   },
                   options: CarouselOptions(

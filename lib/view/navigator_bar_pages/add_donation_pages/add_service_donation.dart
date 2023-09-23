@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/component/custom_search_bar.dart';
+import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
 import '../../../component/custom_app_bar.dart';
 import '../../../component/type_of_item_or_service.dart';
 import 'add_details_post_page.dart';
@@ -48,6 +50,7 @@ class AddServiceDonation extends StatelessWidget {
         TypeOfItemOrService(
           title: 'خدمات كهربائية',
           onTap: () {
+            BlocProvider.of<AddImageCubit>(context).url = [];
             Navigator.pushNamed(context, AddDetailsPost.id,
                 arguments: [service[1], category]);
           },
@@ -56,6 +59,7 @@ class AddServiceDonation extends StatelessWidget {
         TypeOfItemOrService(
           title: 'خدمات سباكة',
           onTap: () {
+            BlocProvider.of<AddImageCubit>(context).url = [];
             Navigator.pushNamed(context, AddDetailsPost.id,
                 arguments: [service[2], category]);
           },
@@ -64,6 +68,7 @@ class AddServiceDonation extends StatelessWidget {
         TypeOfItemOrService(
           title: 'خدمات نجارة',
           onTap: () {
+            BlocProvider.of<AddImageCubit>(context).url = [];
             Navigator.pushNamed(context, AddDetailsPost.id,
                 arguments: [service[3], category]);
           },
@@ -72,6 +77,7 @@ class AddServiceDonation extends StatelessWidget {
         TypeOfItemOrService(
           title: 'خدمات أخرى',
           onTap: () {
+            BlocProvider.of<AddImageCubit>(context).url = [];
             Navigator.pushNamed(context, AddDetailsPost.id,
                 arguments: [service[4], category]);
           },

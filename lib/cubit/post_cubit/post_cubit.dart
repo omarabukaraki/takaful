@@ -14,7 +14,7 @@ class PostCubit extends Cubit<PostState> {
   Future<void> addPost({
     required bool postState,
     required String title,
-    required String image,
+    required List<String> image,
     required String category,
     required String itemOrService,
     required String description,
