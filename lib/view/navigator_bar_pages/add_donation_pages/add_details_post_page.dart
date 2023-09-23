@@ -29,6 +29,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
   TextEditingController stateOfThePost = TextEditingController();
   TextEditingController description = TextEditingController();
   bool isLoading = false;
+  List<String> urls = [];
   void clearText() {
     title.clear();
     location.clear();

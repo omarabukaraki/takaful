@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/constant.dart';
 import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
@@ -49,6 +50,10 @@ class _AddImageState extends State<AddImage> {
           builder: (context, state) {
             return BlurryModalProgressHUD(
                 inAsyncCall: isLodging,
+                progressIndicator:
+                    const SpinKitFadingCircle(color: kPrimary, size: 90.0),
+                dismissible: false,
+                opacity: 0.4,
                 child: Column(children: [
                   images.isEmpty
                       ? GestureDetector(
