@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class CategoryMenu extends StatelessWidget {
   const CategoryMenu({
@@ -49,7 +49,7 @@ class CategoryMenu extends StatelessWidget {
                         text,
                         style: const TextStyle(
                           fontSize: 20,
-                          color: kFont,
+                          color: AppColor.kFont,
                           // fontWeight: FontWeight.bold,
                           fontFamily: 'ElMessiri',
                         ),
@@ -70,7 +70,7 @@ class CategoryMenu extends StatelessWidget {
                     backgroundColor: Colors.white,
                     child: Icon(
                       Icons.arrow_back_ios_rounded,
-                      color: kPrimary,
+                      color: AppColor.kPrimary,
                     ),
                   ),
                 )),

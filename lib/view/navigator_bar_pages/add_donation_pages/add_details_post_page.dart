@@ -6,7 +6,7 @@ import 'package:takaful/component/counter_post.dart';
 import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/component/custom_button.dart';
 import 'package:takaful/component/custom_textfiled.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
@@ -69,7 +69,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
           return BlurryModalProgressHUD(
             inAsyncCall: isLoading,
             progressIndicator:
-                const SpinKitFadingCircle(color: kPrimary, size: 90.0),
+                const SpinKitFadingCircle(color: AppColor.kPrimary, size: 90.0),
             dismissible: false,
             opacity: 0.4,
             child: Form(
@@ -80,7 +80,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   padding: EdgeInsets.only(right: 29),
                   child: Text(
                     'أضف صورة للتبرع',
-                    style: TextStyle(fontSize: 17, color: kFont),
+                    style: TextStyle(fontSize: 17, color: AppColor.kFont),
                     textAlign: TextAlign.end,
                   ),
                 ),
@@ -101,7 +101,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                           height: 164,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: kPrimary),
+                              color: AppColor.kPrimary),
                           child: const Icon(
                             Icons.image,
                             size: 60,
@@ -116,7 +116,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                         width: double.infinity,
                         height: 164,
                         decoration: BoxDecoration(
-                            color: kPrimary,
+                            color: AppColor.kPrimary,
                             borderRadius: BorderRadius.circular(20)),
                         child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -214,7 +214,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                     }
                   },
                   textColor: Colors.white,
-                  color: kPrimary,
+                  color: AppColor.kPrimary,
                 ),
                 const SizedBox(
                   height: 20,

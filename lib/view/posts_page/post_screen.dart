@@ -2,9 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/component/image_count.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/models/post_model.dart';
-
-import '../../constant.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({super.key, this.postModel});
@@ -91,7 +90,7 @@ class _PostScreenState extends State<PostScreen> {
                             horizontal: 30, vertical: 15),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: kPrimary),
+                            color: AppColor.kPrimary),
                         child: const Center(
                             child: Text(
                           'طلب',

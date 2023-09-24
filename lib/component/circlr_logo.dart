@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class CircleLogo extends StatelessWidget {
   const CircleLogo({
@@ -10,7 +10,7 @@ class CircleLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return const CircleAvatar(
       radius: 102,
-      backgroundColor: kPrimary,
+      backgroundColor: AppColor.kPrimary,
       child: CircleAvatar(
         radius: 100,
         backgroundColor: Colors.white,

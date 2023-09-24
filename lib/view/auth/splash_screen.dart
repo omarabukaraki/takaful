@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/view/auth/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: kPrimary,
+        backgroundColor: AppColor.kPrimary,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

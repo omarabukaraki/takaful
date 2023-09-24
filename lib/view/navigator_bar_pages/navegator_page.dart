@@ -1,7 +1,7 @@
 // ignore: unused_import
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_donation.dart';
 import 'package:takaful/view/navigator_bar_pages/item_request_page/item_request_page.dart';
 import 'package:takaful/view/navigator_bar_pages/profile_page/profile_page.dart';
@@ -35,16 +35,16 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
       backgroundColor: Colors.white,
       body: screen[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: kPrimary,
-        unselectedItemColor: kFont,
+        selectedItemColor: AppColor.kPrimary,
+        unselectedItemColor: AppColor.kFont,
         unselectedLabelStyle: const TextStyle(
           fontSize: 12,
-          color: kFont,
+          color: AppColor.kFont,
           fontFamily: 'ElMessiri',
         ),
         selectedLabelStyle: const TextStyle(
           fontSize: 12,
-          color: kFont,
+          color: AppColor.kFont,
           fontFamily: 'ElMessiri',
         ),
         iconSize: 30,
@@ -57,19 +57,19 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_rounded, color: kPrimary),
+            icon: Icon(Icons.person_2_rounded, color: AppColor.kPrimary),
             label: 'حسابي',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag_rounded, color: kPrimary),
+            icon: Icon(Icons.shopping_bag_rounded, color: AppColor.kPrimary),
             label: 'طلبات تبرعاتي',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.camera_enhance, color: kPrimary),
+            icon: Icon(Icons.camera_enhance, color: AppColor.kPrimary),
             label: 'أضف تبرع',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded, color: kPrimary),
+            icon: Icon(Icons.home_rounded, color: AppColor.kPrimary),
             label: 'الرئيسية',
           ),
         ],

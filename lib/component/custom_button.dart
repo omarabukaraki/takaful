@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(
@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
           width: double.infinity,
           height: 65,
           decoration: BoxDecoration(
-              border: Border.all(color: kPrimary),
+              border: Border.all(color: AppColor.kPrimary),
               borderRadius: BorderRadius.circular(20),
               color: color),
           alignment: Alignment.center,

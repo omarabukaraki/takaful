@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class Category extends StatelessWidget {
   const Category({
@@ -33,7 +33,7 @@ class Category extends StatelessWidget {
             text,
             style: const TextStyle(
               fontSize: 14,
-              color: kFont,
+              color: AppColor.kFont,
               fontFamily: 'ElMessiri',
             ),
           ),

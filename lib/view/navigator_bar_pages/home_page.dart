@@ -3,8 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/component/ad_post.dart';
 import 'package:takaful/component/custom_search_bar.dart';
-import 'package:takaful/constant.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/view/items_page/items_type_page.dart';
 import 'package:takaful/view/notifcation_page.dart';
 import 'package:takaful/view/servives_pages/service_type_page.dart';
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
             Navigator.pushNamed(context, NotificationPage.id);
           },
           icon: const Icon(Icons.notifications_rounded, size: 30),
-          color: kPrimary,
+          color: AppColor.kPrimary,
         ),
         actions: const [
           Padding(
@@ -56,7 +56,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Text(
                   'تكافل',
-                  style: TextStyle(fontSize: 28, color: kPrimary, height: 1),
+                  style: TextStyle(
+                      fontSize: 28, color: AppColor.kPrimary, height: 1),
                 ),
                 Text(
                   'Takaful',

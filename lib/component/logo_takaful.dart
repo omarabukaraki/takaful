@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class LogoTakaful extends StatelessWidget {
   const LogoTakaful({
@@ -11,10 +11,12 @@ class LogoTakaful extends StatelessWidget {
     return const Column(
       children: [
         SizedBox(height: 20),
-        Text('تكافل', style: TextStyle(fontSize: 51, color: kPrimary)),
+        Text('تكافل', style: TextStyle(fontSize: 51, color: AppColor.kPrimary)),
         Text('Takaful',
             style: TextStyle(
-                fontSize: 24, fontWeight: FontWeight.bold, color: kPrimary)),
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: AppColor.kPrimary)),
         SizedBox(height: 10),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 40),
@@ -45,11 +47,11 @@ class CircleAveLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: kPrimary,
+      backgroundColor: AppColor.kPrimary,
       radius: 27,
       child: CircleAvatar(
         radius: 23,
-        backgroundColor: color ?? kPrimary,
+        backgroundColor: color ?? AppColor.kPrimary,
         backgroundImage: AssetImage(image),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/constant.dart';
+
+import 'package:takaful/core/utils/app_colors.dart';
 
 class CounterPost extends StatelessWidget {
   const CounterPost({
@@ -21,14 +22,14 @@ class CounterPost extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: kTextFiled,
+        color: AppColor.kTextFiled,
       ),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         IconButton(onPressed: onTapAdd, icon: const Icon(Icons.add)),
         counter == 0
             ? const Text(
                 'العدد',
-                style: TextStyle(color: kTextFiledFont),
+                style: TextStyle(color: AppColor.kTextFiledFont),
               )
             : Text(counter.toString()),
         IconButton(onPressed: onTapRemove, icon: const Icon(Icons.remove)),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -30,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           textOne ?? 'ما الذي تود التبرع به',
           style: TextStyle(
             fontSize: sizeFont ?? 21,
-            color: kPrimary,
+            color: AppColor.kPrimary,
             fontFamily: 'ElMessiri',
           ),
         ),
@@ -38,7 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           textTwo ?? 'اختر القسم المناسب لإضافة التبرع ',
           style: const TextStyle(
             fontSize: 10,
-            color: kFont,
+            color: AppColor.kFont,
             height: 1,
             fontFamily: 'ElMessiri',
           ),
@@ -59,7 +58,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       child: Icon(
                         Icons.arrow_forward_ios_rounded,
                         size: 22,
-                        color: kPrimary,
+                        color: AppColor.kPrimary,
                       ),
                     ),
                   ),

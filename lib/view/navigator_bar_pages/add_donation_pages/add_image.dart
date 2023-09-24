@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:takaful/component/custom_app_bar.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
 
@@ -33,7 +33,7 @@ class _AddImageState extends State<AddImage> {
               BlocProvider.of<AddImageCubit>(context).uploadImage();
             } else if (state is AddImageFailure) {
               isLodging = false;
-              showSankBar(context, state.errMessage, color: kPrimary);
+              showSankBar(context, state.errMessage, color: AppColor.kPrimary);
             }
             if (state is UploadImageLodging) {
               isLodging = true;
@@ -44,14 +44,14 @@ class _AddImageState extends State<AddImage> {
               Navigator.pop(context);
             } else if (state is UploadImageFailure) {
               isLodging = false;
-              showSankBar(context, state.errMessage, color: kPrimary);
+              showSankBar(context, state.errMessage, color: AppColor.kPrimary);
             }
           },
           builder: (context, state) {
             return BlurryModalProgressHUD(
                 inAsyncCall: isLodging,
                 progressIndicator: const SpinKitFadingCircle(
-                  color: kPrimary,
+                  color: AppColor.kPrimary,
                   size: 90.0,
                 ),
                 dismissible: false,
@@ -69,7 +69,7 @@ class _AddImageState extends State<AddImage> {
                             margin: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: kPrimary),
+                                color: AppColor.kPrimary),
                             child: const Icon(
                               Icons.add,
                               color: Colors.white,

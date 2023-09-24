@@ -2,12 +2,12 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/cubit/register_cubit/register_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
 import 'package:takaful/view/auth/login_page.dart';
 import '../../../component/custom_button.dart';
 import '../../../component/custom_textfiled.dart';
-import '../../constant.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -53,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
         return BlurryModalProgressHUD(
           inAsyncCall: isLodding,
           progressIndicator: const SpinKitFadingCircle(
-            color: kPrimary,
+            color: AppColor.kPrimary,
             size: 90.0,
           ),
           dismissible: false,
@@ -72,7 +72,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         children: [
                           Text(
                             'إنشاء حساب مستخدم',
-                            style: TextStyle(fontSize: 30, color: kPrimary),
+                            style: TextStyle(
+                                fontSize: 30, color: AppColor.kPrimary),
                           ),
                           Text('أضف التفاصيل الخاصة بك للتسجيل',
                               style: TextStyle(fontSize: 14)),
@@ -119,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(height: 20),
                     CustomButton(
                         text: 'التسجيل',
-                        color: kPrimary,
+                        color: AppColor.kPrimary,
                         textColor: Colors.white,
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
@@ -148,8 +149,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               ));
                             },
                             child: const Text("تسجيل الدخول",
-                                style:
-                                    TextStyle(fontSize: 14, color: kPrimary)),
+                                style: TextStyle(
+                                    fontSize: 14, color: AppColor.kPrimary)),
                           ),
                           const Text(' هل لديك حساب؟',
                               style: TextStyle(color: Color(0xff7c7d7e))),

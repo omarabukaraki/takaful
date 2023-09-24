@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/component/image_count.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/models/post_model.dart';
 import 'package:takaful/view/posts_page/post_cover_Info.dart';
 import 'package:takaful/view/posts_page/post_cover_image.dart';
@@ -61,7 +61,7 @@ class CustomPostComponent extends StatelessWidget {
                         height: 100,
                         margin: const EdgeInsets.only(top: 5, left: 15),
                         decoration: BoxDecoration(
-                          border: Border.all(color: kPrimary),
+                          border: Border.all(color: AppColor.kPrimary),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: const Center(
@@ -69,7 +69,7 @@ class CustomPostComponent extends StatelessWidget {
                           'حفظ',
                           style: TextStyle(
                             fontSize: 16,
-                            color: kPrimary,
+                            color: AppColor.kPrimary,
                             fontWeight: FontWeight.bold,
                           ),
                         )),
@@ -84,7 +84,7 @@ class CustomPostComponent extends StatelessWidget {
                         margin: const EdgeInsets.only(top: 5, left: 15),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: kPrimary),
+                            color: AppColor.kPrimary),
                         child: const Center(
                             child: Text(
                           'طلب',

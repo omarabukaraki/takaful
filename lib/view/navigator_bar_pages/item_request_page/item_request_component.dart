@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/view/navigator_bar_pages/item_request_page/item_request_button.dart';
 
 class ItemRequestComponent extends StatelessWidget {
@@ -51,7 +51,7 @@ class ItemRequestComponent extends StatelessWidget {
                           padding: EdgeInsets.only(right: 40, top: 2),
                           child: Icon(
                             FontAwesomeIcons.ellipsisVertical,
-                            color: kPrimary,
+                            color: AppColor.kPrimary,
                           ),
                         ),
                       ),
@@ -64,7 +64,7 @@ class ItemRequestComponent extends StatelessWidget {
                           title,
                           style: const TextStyle(
                               fontSize: 15,
-                              color: kFont,
+                              color: AppColor.kFont,
                               fontWeight: FontWeight.bold,
                               overflow: TextOverflow.ellipsis),
                           textAlign: TextAlign.end,
@@ -79,7 +79,7 @@ class ItemRequestComponent extends StatelessWidget {
                   child: Text(' اسم الطالب' ':' ' $nameUser',
                       style: const TextStyle(
                           fontSize: 11,
-                          color: kFont,
+                          color: AppColor.kFont,
                           overflow: TextOverflow.ellipsis)),
                 ),
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
-import '../constant.dart';
+
 
 class TypeOfItemOrService extends StatelessWidget {
   const TypeOfItemOrService({super.key, required this.title, this.onTap});
@@ -31,11 +32,11 @@ class TypeOfItemOrService extends StatelessWidget {
                   const Icon(
                     Icons.arrow_back_ios_new_rounded,
                     size: 16,
-                    color: kPrimary,
+                    color: AppColor.kPrimary,
                   ),
                   Text(
                     title,
-                    style: const TextStyle(fontSize: 15, color: kFont),
+                    style: const TextStyle(fontSize: 15, color: AppColor.kFont),
                   )
                 ]),
           ),

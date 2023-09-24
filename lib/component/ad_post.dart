@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class AdPosts extends StatelessWidget {
   const AdPosts({
@@ -34,7 +33,7 @@ class AdPosts extends StatelessWidget {
                     'مشاهدة الكل',
                     style: TextStyle(
                       fontSize: 14,
-                      color: kPrimary,
+                      color: AppColor.kPrimary,
                       fontFamily: 'ElMessiri',
                     ),
                   ),
@@ -43,7 +42,7 @@ class AdPosts extends StatelessWidget {
                   headerText,
                   style: const TextStyle(
                     fontSize: 20,
-                    color: kFont,
+                    color: AppColor.kFont,
                     fontFamily: 'ElMessiri',
                   ),
                 ),
@@ -67,7 +66,7 @@ class AdPosts extends StatelessWidget {
               titlePost ?? 'وجبة لشخص صالحة لمدة يوم',
               style: const TextStyle(
                 fontSize: 16,
-                color: kFont,
+                color: AppColor.kFont,
                 fontFamily: 'ElMessiri',
               ),
               textAlign: TextAlign.start,

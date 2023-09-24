@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:takaful/component/category_menu.dart';
 import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/component/custom_search_bar.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/view/posts_page/posts_page.dart';
 
 class ItemTypePage extends StatelessWidget {
@@ -42,7 +42,7 @@ class ItemTypePage extends StatelessWidget {
                 decoration: const BoxDecoration(
                     borderRadius:
                         BorderRadius.horizontal(left: Radius.circular(38)),
-                    color: kPrimary),
+                    color: AppColor.kPrimary),
               ),
             ),
           ],

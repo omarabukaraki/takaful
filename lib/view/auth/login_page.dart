@@ -5,12 +5,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:takaful/component/create_account_button.dart';
 import 'package:takaful/component/forget_password_button.dart';
 import 'package:takaful/component/logo_takaful.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
 import 'package:takaful/view/auth/register_page.dart';
 import '../../component/custom_button.dart';
 import '../../component/custom_textfiled.dart';
-import '../../constant.dart';
 import '../navigator_bar_pages/navegator_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
         return BlurryModalProgressHUD(
           inAsyncCall: isLodging,
           progressIndicator:
-              const SpinKitFadingCircle(color: kPrimary, size: 90.0),
+              const SpinKitFadingCircle(color: AppColor.kPrimary, size: 90.0),
           dismissible: false,
           opacity: 0.4,
           child: Scaffold(
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 32,
-                          color: kPrimary,
+                          color: AppColor.kPrimary,
                           fontWeight: FontWeight.w400)),
                   const Text(
                     'أضف التفاصيل الخاصة بك لتسجيل الدخول',
@@ -91,14 +91,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
                   CustomTextFiled(
-                    icon: const Icon(Icons.email, color: kPrimary),
+                    icon: const Icon(Icons.email, color: AppColor.kPrimary),
                     hintText: 'البريد الإلكتروني',
                     onChanged: (emailAddress) {
                       email.text = emailAddress;
                     },
                   ),
                   CustomTextFiled(
-                    icon: const Icon(Icons.lock, color: kPrimary),
+                    icon: const Icon(Icons.lock, color: AppColor.kPrimary),
                     typeText: true,
                     hintText: 'كلمة المرور',
                     onChanged: (userPassword) {
@@ -108,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 20),
                   CustomButton(
                       text: 'الدخول',
-                      color: kPrimary,
+                      color: AppColor.kPrimary,
                       textColor: Colors.white,
                       onTap: () async {
                         if (formKey.currentState!.validate()) {

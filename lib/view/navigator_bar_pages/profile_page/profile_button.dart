@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class ProfileButton extends StatelessWidget {
   const ProfileButton(
@@ -27,12 +27,12 @@ class ProfileButton extends StatelessWidget {
         child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
           Text(
             text,
-            style: const TextStyle(fontSize: 14, color: kFont),
+            style: const TextStyle(fontSize: 14, color: AppColor.kFont),
           ),
           const SizedBox(
             width: 15,
           ),
-          Icon(icon, size: 30, color: kPrimary)
+          Icon(icon, size: 30, color: AppColor.kPrimary)
         ]),
       ),
     );

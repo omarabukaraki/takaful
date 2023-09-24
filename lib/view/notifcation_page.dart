@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/component/custom_app_bar.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});
@@ -98,14 +98,14 @@ class NotificationComponent extends StatelessWidget {
                     section ?? 'الاستهلاكيات , الطعام',
                     style: const TextStyle(
                       fontSize: 12,
-                      color: kFont,
+                      color: AppColor.kFont,
                     ),
                   ),
                   Text(
                     location ?? 'الموقع في عمان',
                     style: const TextStyle(
                       fontSize: 12,
-                      color: kFont,
+                      color: AppColor.kFont,
                     ),
                   ),
                   Text(

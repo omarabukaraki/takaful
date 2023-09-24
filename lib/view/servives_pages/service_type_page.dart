@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/view/posts_page/posts_page.dart';
-
 import '../../component/category_menu.dart';
 import '../../component/custom_app_bar.dart';
 import '../../component/custom_search_bar.dart';
-import '../../constant.dart';
 
 class ServiceTypePage extends StatelessWidget {
   const ServiceTypePage({super.key});
@@ -42,7 +41,7 @@ class ServiceTypePage extends StatelessWidget {
                 decoration: const BoxDecoration(
                     borderRadius:
                         BorderRadius.horizontal(left: Radius.circular(38)),
-                    color: kPrimary),
+                    color: AppColor.kPrimary),
               ),
             ),
           ],

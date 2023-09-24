@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ProfileAppBar({
@@ -20,14 +20,14 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
           'حسابي',
           style: TextStyle(
             fontSize: 21,
-            color: kPrimary,
+            color: AppColor.kPrimary,
           ),
         ),
         Text(
           FirebaseAuth.instance.currentUser!.email.toString(),
           style: const TextStyle(
             fontSize: 12,
-            color: kFont,
+            color: AppColor.kFont,
             height: 1.5,
           ),
         )

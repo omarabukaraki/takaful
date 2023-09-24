@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 class PostCoverInformation extends StatelessWidget {
   const PostCoverInformation({
@@ -24,7 +24,7 @@ class PostCoverInformation extends StatelessWidget {
               title ?? 'وجبة لشخص صالح لمدة يوم',
               style: const TextStyle(
                   fontSize: 15,
-                  color: kFont,
+                  color: AppColor.kFont,
                   fontWeight: FontWeight.bold,
                   overflow: TextOverflow.clip),
               textAlign: TextAlign.end,
@@ -36,14 +36,18 @@ class PostCoverInformation extends StatelessWidget {
               child: Text(
                 typePost ?? 'الاستهلاكيات , الطعام',
                 style: const TextStyle(
-                    fontSize: 13, color: kFont, overflow: TextOverflow.clip),
+                    fontSize: 13,
+                    color: AppColor.kFont,
+                    overflow: TextOverflow.clip),
               )),
           Expanded(
               flex: 1,
               child: Text(
                 location ?? 'الموقع في عمان',
                 style: const TextStyle(
-                    fontSize: 11, color: kFont, overflow: TextOverflow.clip),
+                    fontSize: 11,
+                    color: AppColor.kFont,
+                    overflow: TextOverflow.clip),
                 maxLines: 1,
               ))
         ],

@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/bloc_observer.dart';
-import 'package:takaful/constant.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
 import 'package:takaful/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'ElMessiri',
           colorScheme: ColorScheme.fromSeed(
-              seedColor: kPrimary, background: Colors.white),
+              seedColor: AppColor.kPrimary, background: Colors.white),
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
