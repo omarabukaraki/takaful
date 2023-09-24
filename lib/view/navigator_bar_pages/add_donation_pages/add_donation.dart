@@ -24,7 +24,7 @@ class AddDonation extends StatelessWidget {
             icon: Icon(Icons.search),
           ),
         ),
-        const SizedBox(height: 21),
+        const SizedBox(height: 10),
         TypeOfItemOrService(
           title: AppString.textItems,
           onTap: () {
@@ -32,7 +32,6 @@ class AddDonation extends StatelessWidget {
                 arguments: AppString.textItems);
           },
         ),
-        const SizedBox(height: 10),
         TypeOfItemOrService(
           title: AppString.textServices,
           onTap: () {
@@ -40,7 +39,6 @@ class AddDonation extends StatelessWidget {
                 arguments: AppString.textServices);
           },
         ),
-        const SizedBox(height: 10),
         const TypeOfItemOrService(title: AppString.textOther)
       ]),
     );

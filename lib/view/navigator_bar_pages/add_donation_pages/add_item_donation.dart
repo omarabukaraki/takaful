@@ -29,7 +29,7 @@ class AddItemDonation extends StatelessWidget {
         },
       ),
       backgroundColor: Colors.white,
-      body: ListView(children: [
+      body: Column(children: [
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: CustomSearchBar(
@@ -37,42 +37,21 @@ class AddItemDonation extends StatelessWidget {
             icon: Icon(Icons.search),
           ),
         ),
-        const SizedBox(height: 21),
-        TypeOfItemOrService(
-          title: AppString.textFood,
-          onTap: () {
-            BlocProvider.of<AddImageCubit>(context).url = [];
-            Navigator.pushNamed(context, AddDetailsPost.id,
-                arguments: [item[0], category]);
-          },
-        ),
         const SizedBox(height: 10),
-        TypeOfItemOrService(
-          title: AppString.textClothes,
-          onTap: () {
-            BlocProvider.of<AddImageCubit>(context).url = [];
-            Navigator.pushNamed(context, AddDetailsPost.id,
-                arguments: [item[1], category]);
+        Expanded(
+            child: ListView.builder(
+          itemCount: item.length,
+          itemBuilder: (context, index) {
+            return TypeOfItemOrService(
+              title: item[index],
+              onTap: () {
+                BlocProvider.of<AddImageCubit>(context).url = [];
+                Navigator.pushNamed(context, AddDetailsPost.id,
+                    arguments: [item[index], category]);
+              },
+            );
           },
-        ),
-        const SizedBox(height: 10),
-        TypeOfItemOrService(
-          title: AppString.textFurniture,
-          onTap: () {
-            BlocProvider.of<AddImageCubit>(context).url = [];
-            Navigator.pushNamed(context, AddDetailsPost.id,
-                arguments: [item[2], category]);
-          },
-        ),
-        const SizedBox(height: 10),
-        TypeOfItemOrService(
-          title: AppString.textOther,
-          onTap: () {
-            BlocProvider.of<AddImageCubit>(context).url = [];
-            Navigator.pushNamed(context, AddDetailsPost.id,
-                arguments: [item[3], category]);
-          },
-        ),
+        ))
       ]),
     );
   }
