@@ -51,7 +51,7 @@ class ServiceTypePage extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: CustomSearchBar(
-                icon: Icon(Icons.search), hintText: 'إبحث في تكافل'),
+                icon: Icon(Icons.search), hintText: 'ابحث في تكافل'),
           ),
           Expanded(
             child: StreamBuilder<QuerySnapshot>(

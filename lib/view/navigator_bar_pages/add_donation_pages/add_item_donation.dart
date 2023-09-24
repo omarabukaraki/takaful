@@ -27,7 +27,7 @@ class AddItemDonation extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: CustomSearchBar(
-            hintText: 'إبحث في  القسم',
+            hintText: 'ابحث في  القسم',
             icon: Icon(Icons.search),
           ),
         ),
