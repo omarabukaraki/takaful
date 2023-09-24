@@ -10,13 +10,14 @@ abstract class AppString {
   static const String textForgetPasswordArabic = 'نسيت كلمة السر؟';
   static const String textCreateAccountArabic = 'انشاء حساب';
   static const String textDoNotHaveAccount = 'ليس لديك حساب؟';
-//     static const String takafulEnglishName = 'Takaful';
-//      static const String takafulEnglishName = 'Takaful';
-//       static const String takafulEnglishName = 'Takaful';
-//        static const String takafulEnglishName = 'Takaful';
-//         static const String takafulEnglishName = 'Takaful';
-//          static const String takafulEnglishName = 'Takaful';
-//           static const String takafulEnglishName = 'Takaful';
+  static const String textCreateUserAccountArabic = 'إنشاء حساب مستخدم';
+  static const String textAddDetailsToRegister =
+      'أضف التفاصيل الخاصة بك للتسجيل';
+  static const String textNameArabic = 'الإسم';
+  static const String textMobileNumberArabic = 'رقم الهاتف';
+  static const String textConfirmPasswordArabic = 'تأكيد كلمة المرور';
+  static const String textRegisterArabic = 'التسجيل';
+  static const String textDoYouHaveAnAccount = 'هل لديك حساب؟';
 //            static const String takafulEnglishName = 'Takaful';
 //
 }

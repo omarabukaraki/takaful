@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/cubit/register_cubit/register_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
 import 'package:takaful/view/auth/login_page.dart';
@@ -43,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
           isLodding = false;
           clearText();
           showSankBar(context, 'تم ارسال رسالة تحقق الى بريدك الالكتروني',
-              color: Colors.green);
+              color: AppColor.kGreen);
         } else if (state is RegisterFailure) {
           isLodding = false;
           showSankBar(context, state.errMassage);
@@ -59,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
           dismissible: false,
           opacity: 0.4,
           child: Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: AppColor.kWhite,
             body: SafeArea(
               child: Center(
                 child: Form(
@@ -71,32 +72,32 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                         children: [
                           Text(
-                            'إنشاء حساب مستخدم',
+                            AppString.textCreateUserAccountArabic,
                             style: TextStyle(
                                 fontSize: 30, color: AppColor.kPrimary),
                           ),
-                          Text('أضف التفاصيل الخاصة بك للتسجيل',
+                          Text(AppString.textAddDetailsToRegister,
                               style: TextStyle(fontSize: 14)),
                         ],
                       ),
                     ),
                     CustomTextFiled(
                       controller: name,
-                      hintText: 'الإسم',
+                      hintText: AppString.textNameArabic,
                       onChanged: (userName) {
                         name.text = userName;
                       },
                     ),
                     CustomTextFiled(
                       controller: email,
-                      hintText: 'البريد الإلكتروني',
+                      hintText: AppString.textEmailArabic,
                       onChanged: (emailAddress) {
                         email.text = emailAddress;
                       },
                     ),
                     CustomTextFiled(
                       controller: mobileNo,
-                      hintText: 'رقم الهاتف',
+                      hintText: AppString.textMobileNumberArabic,
                       onChanged: (mobileNumber) {
                         mobileNo.text = mobileNumber;
                       },
@@ -104,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     CustomTextFiled(
                       controller: password,
                       typeText: true,
-                      hintText: 'كلمة المرور',
+                      hintText: AppString.textPasswordArabic,
                       onChanged: (userPassword) {
                         password.text = userPassword;
                       },
@@ -112,14 +113,14 @@ class _RegisterPageState extends State<RegisterPage> {
                     CustomTextFiled(
                       controller: passwordTwo,
                       typeText: true,
-                      hintText: 'تأكيد كلمة المرور',
+                      hintText: AppString.textConfirmPasswordArabic,
                       onChanged: (userPasswordTwo) {
                         passwordTwo.text = userPasswordTwo;
                       },
                     ),
                     const SizedBox(height: 20),
                     CustomButton(
-                        text: 'التسجيل',
+                        text: AppString.textRegisterArabic,
                         color: AppColor.kPrimary,
                         textColor: Colors.white,
                         onTap: () async {
@@ -148,12 +149,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                 },
                               ));
                             },
-                            child: const Text("تسجيل الدخول",
+                            child: const Text(AppString.textLoginArabic,
                                 style: TextStyle(
                                     fontSize: 14, color: AppColor.kPrimary)),
                           ),
-                          const Text(' هل لديك حساب؟',
-                              style: TextStyle(color: Color(0xff7c7d7e))),
+                          const Text(AppString.textDoYouHaveAnAccount,
+                              style: TextStyle(color: AppColor.kFontSecondary)),
                         ],
                       ),
                     ),
