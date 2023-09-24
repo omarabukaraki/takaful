@@ -7,6 +7,7 @@ import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/component/custom_button.dart';
 import 'package:takaful/component/custom_textfiled.dart';
 import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
@@ -44,7 +45,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
     return Scaffold(
       appBar: CustomAppBar(
         textOne: categoryAndItemService[0],
-        textTwo: 'أضف تفاصيل التبرع',
+        textTwo: AppString.textAddDetailsToDonation,
         button: true,
         onTap: () {
           BlocProvider.of<AddImageCubit>(context).url = [];
@@ -79,7 +80,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                 const Padding(
                   padding: EdgeInsets.only(right: 29),
                   child: Text(
-                    'أضف صورة للتبرع',
+                    AppString.textAddImageToDonation,
                     style: TextStyle(fontSize: 17, color: AppColor.kFont),
                     textAlign: TextAlign.end,
                   ),
@@ -139,7 +140,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   onChanged: (postTitle) {
                     title.text = postTitle;
                   },
-                  hintText: 'العنوان',
+                  hintText: AppString.textTitle,
                   icon: const Icon(Icons.title_rounded),
                 ),
                 CustomTextFiled(
@@ -147,7 +148,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   onChanged: (postLocation) {
                     location.text = postLocation;
                   },
-                  hintText: 'الموقع',
+                  hintText: AppString.textLocation,
                   icon: const Icon(Icons.location_on),
                 ),
                 CustomTextFiled(
@@ -155,7 +156,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   onChanged: (p0) {
                     stateOfThePost.text = p0;
                   },
-                  hintText: 'الحالة',
+                  hintText: AppString.textState,
                   icon: const Icon(Icons.fiber_new_rounded),
                 ),
                 categoryAndItemService[0].length <= 5
@@ -186,17 +187,17 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   onChanged: (postDescription) {
                     description.text = postDescription;
                   },
-                  hintText: 'الوصف',
+                  hintText: AppString.textDescription,
                   icon: const Icon(Icons.description),
                 ),
                 const SizedBox(height: 10),
                 CustomButton(
                   circular: 20,
-                  text: 'نشر التبرع',
+                  text: AppString.textPublishDonation,
                   onTap: () async {
                     if (BlocProvider.of<AddImageCubit>(context).url.isEmpty) {
                       showSankBar(context, 'الرجاء اضافة صور',
-                          color: Colors.red);
+                          color: AppColor.kRed);
                     } else {
                       if (formKey.currentState!.validate()) {
                         BlocProvider.of<PostCubit>(context).addPost(
@@ -213,7 +214,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                       }
                     }
                   },
-                  textColor: Colors.white,
+                  textColor: AppColor.kWhite,
                   color: AppColor.kPrimary,
                 ),
                 const SizedBox(

@@ -23,13 +23,26 @@ abstract class AppString {
   static const String textAllCategory = 'جميع الأقسام';
   static const String textServices = 'الخدمات';
   static const String textItems = 'الاستهلاكيات';
+  static const String textOther = 'أخرى';
   static const String textModernElements = 'العناصر الحديثة';
   static const String textKeepBrowsing = 'استمر في التصفح';
-  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
-  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
-  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
-  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
-  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
-  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
-  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
+  static const String textSearchInCategory = 'ابحث في  القسم';
+  static const String textWhatsYouDonation = 'ما الذي تود التبرع به';
+  static const String textChooseTheCategoryToAddDonation =
+      'اختر القسم المناسب لإضافة التبرع';
+  static const String textFood = 'طعام';
+  static const String textClothes = 'ملابس';
+  static const String textFurniture = 'أثاث';
+  static const String textAddDetailsToDonation = 'أضف تفاصيل التبرع';
+  static const String textAddImageToDonation = 'أضف صورة للتبرع';
+  static const String textTitle = 'العنوان';
+  static const String textLocation = 'الموقع';
+  static const String textState = 'الحالة';
+  static const String textCounter = 'العدد';
+  static const String textDescription = 'الوصف';
+  static const String textPublishDonation = 'نشر التبرع';
+
+  //          static const String textFurniture = 'أثاث';
+  //           static const String textFurniture = 'أثاث';
+  //            static const String textFurniture = 'أثاث';
 }

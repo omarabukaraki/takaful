@@ -50,8 +50,6 @@ class CategoryMenu extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 20,
                           color: AppColor.kFont,
-                          // fontWeight: FontWeight.bold,
-                          fontFamily: 'ElMessiri',
                         ),
                       ),
                     ],

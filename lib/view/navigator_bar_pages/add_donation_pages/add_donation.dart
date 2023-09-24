@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/component/custom_search_bar.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_item_donation.dart';
 import '../../../component/custom_app_bar.dart';
 import '../../../component/type_of_item_or_service.dart';
@@ -13,34 +14,34 @@ class AddDonation extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(
           button: false,
-          textOne: 'ما الذي تود التبرع به',
-          textTwo: 'اختر القسم المناسب لإضافة التبرع '),
+          textOne: AppString.textWhatsYouDonation,
+          textTwo: AppString.textChooseTheCategoryToAddDonation),
       body: ListView(children: [
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: CustomSearchBar(
-            hintText: 'إبحث في  القسم',
+            hintText: AppString.textSearchInCategory,
             icon: Icon(Icons.search),
           ),
         ),
         const SizedBox(height: 21),
         TypeOfItemOrService(
-          title: 'الاستهلاكيات',
+          title: AppString.textItems,
           onTap: () {
             Navigator.pushNamed(context, AddItemDonation.id,
-                arguments: 'الاستهلاكيات');
+                arguments: AppString.textItems);
           },
         ),
         const SizedBox(height: 10),
         TypeOfItemOrService(
-          title: 'الخدمات',
+          title: AppString.textServices,
           onTap: () {
             Navigator.pushNamed(context, AddServiceDonation.id,
-                arguments: 'الخدمات');
+                arguments: AppString.textServices);
           },
         ),
         const SizedBox(height: 10),
-        const TypeOfItemOrService(title: 'أخرى')
+        const TypeOfItemOrService(title: AppString.textOther)
       ]),
     );
   }
