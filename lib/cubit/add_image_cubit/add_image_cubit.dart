@@ -1,8 +1,9 @@
 import 'dart:io';
-
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 import 'package:path/path.dart';
 
@@ -10,8 +11,8 @@ part 'add_image_state.dart';
 
 class AddImageCubit extends Cubit<AddImageState> {
   AddImageCubit() : super(AddImageInitial());
-  List<File> image = [];
   final imagePicker = ImagePicker();
+  List<File> image = [];
   List<String> nameImage = [];
   List<String> url = [];
 

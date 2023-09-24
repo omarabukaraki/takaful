@@ -337,8 +337,9 @@ class ImagePostComponent extends StatelessWidget {
       child: CachedNetworkImage(
         imageUrl: image!,
         fit: BoxFit.fitHeight,
-        progressIndicatorBuilder: (context, url, downloadProgress) =>
-            CircularProgressIndicator(value: downloadProgress.progress),
+        progressIndicatorBuilder: (context, url, downloadProgress) {
+          return CircularProgressIndicator(value: downloadProgress.progress);
+        },
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );

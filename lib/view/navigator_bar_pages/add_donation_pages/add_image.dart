@@ -50,8 +50,10 @@ class _AddImageState extends State<AddImage> {
           builder: (context, state) {
             return BlurryModalProgressHUD(
                 inAsyncCall: isLodging,
-                progressIndicator:
-                    const SpinKitFadingCircle(color: kPrimary, size: 90.0),
+                progressIndicator: const SpinKitFadingCircle(
+                  color: kPrimary,
+                  size: 90.0,
+                ),
                 dismissible: false,
                 opacity: 0.4,
                 child: Column(children: [
