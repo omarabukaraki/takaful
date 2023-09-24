@@ -19,5 +19,17 @@ abstract class AppString {
   static const String textRegisterArabic = 'التسجيل';
   static const String textDoYouHaveAnAccount = 'هل لديك حساب؟';
   static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
-//
+  static const String textSearchInTakaful = 'ابحث في تكافل';
+  static const String textAllCategory = 'جميع الأقسام';
+  static const String textServices = 'الخدمات';
+  static const String textItems = 'الاستهلاكيات';
+  static const String textModernElements = 'العناصر الحديثة';
+  static const String textKeepBrowsing = 'استمر في التصفح';
+  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
+  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
+  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
+  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
+  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
+  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
+  // static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
 }

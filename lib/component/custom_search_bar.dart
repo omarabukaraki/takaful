@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 
 // ignore: must_be_immutable
 class CustomSearchBar extends StatelessWidget {
@@ -31,11 +32,11 @@ class CustomSearchBar extends StatelessWidget {
           suffixIcon: icon,
           hintText: hintText,
           hintStyle: const TextStyle(
-            color: Color.fromARGB(255, 117, 117, 117),
+            color: AppColor.kTextFiledFont,
             fontSize: 15,
           ),
           filled: true,
-          fillColor: const Color(0xffF2F2F2),
+          fillColor: AppColor.kTextFiled,
           border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(

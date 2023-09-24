@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:takaful/component/ad_post.dart';
 import 'package:takaful/component/custom_search_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:takaful/core/utils/app_assets.dart';
 import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/view/items_page/items_type_page.dart';
 import 'package:takaful/view/notifcation_page.dart';
 import 'package:takaful/view/servives_pages/service_type_page.dart';
@@ -36,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         scrolledUnderElevation: 8,
         shadowColor: Colors.grey.shade50,
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.kWhite,
         leading: IconButton(
           onPressed: () {
             Navigator.pushNamed(context, NotificationPage.id);
@@ -55,15 +57,15 @@ class _HomePageState extends State<HomePage> {
                   height: 10,
                 ),
                 Text(
-                  'تكافل',
+                  AppString.textTakafulArabicName,
                   style: TextStyle(
                       fontSize: 28, color: AppColor.kPrimary, height: 1),
                 ),
                 Text(
-                  'Takaful',
+                  AppString.textTakafulEnglishName,
                   style: TextStyle(
                       fontSize: 14,
-                      color: Colors.grey,
+                      color: AppColor.kGrey,
                       fontWeight: FontWeight.bold,
                       height: 1),
                 ),
@@ -79,7 +81,8 @@ class _HomePageState extends State<HomePage> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               child: CustomSearchBar(
-                  icon: Icon(Icons.search), hintText: 'ابحث في تكافل'),
+                  icon: Icon(Icons.search),
+                  hintText: AppString.textSearchInTakaful),
             ),
             CarouselSlider.builder(
               // carouselController: _controller,
@@ -122,24 +125,24 @@ class _HomePageState extends State<HomePage> {
                     : MainAxisAlignment.spaceEvenly,
                 children: [
                   const Category(
-                    image: 'assets/image/Untitled-2.png',
-                    text: 'جميع الأقسام',
+                    image: AppAssets.assetsImageUntitled2,
+                    text: AppString.textAllCategory,
                     radiusTwo: 30,
                   ),
                   Category(
-                    image: 'assets/image/services_image.png',
+                    image: AppAssets.assetsImageServicesImage,
                     text: 'الخدمات',
                     onTap: () {
                       Navigator.pushNamed(context, ServiceTypePage.id,
-                          arguments: 'الخدمات');
+                          arguments: AppString.textServices);
                     },
                   ),
                   Category(
-                    image: 'assets/image/items_image.png',
+                    image: AppAssets.assetsImageItemsImage,
                     text: 'الاستهلاكيات',
                     onTap: () {
                       Navigator.pushNamed(context, ItemTypePage.id,
-                          arguments: 'الاستهلاكيات');
+                          arguments: AppString.textItems);
                     },
                   )
                 ],
@@ -151,7 +154,7 @@ class _HomePageState extends State<HomePage> {
             const Column(
               children: [
                 AdPosts(
-                  headerText: 'العناصر الحديثة',
+                  headerText: AppString.textModernElements,
                   image: 'assets/image/ui.png',
                   ratingNumber: '4.8',
                   titlePost: 'وجبة لشخص صالحة لمدة يوم',
@@ -160,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                   height: 20,
                 ),
                 AdPosts(
-                  headerText: 'استمر في التصفح',
+                  headerText: AppString.textKeepBrowsing,
                   image: 'assets/image/K13.png',
                   titlePost: 'ملابس أطفال لعمر ثلاثة سنوات',
                   ratingNumber: '4.3',
