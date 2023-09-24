@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 
 class ForgetPasswordButton extends StatelessWidget {
   const ForgetPasswordButton({
@@ -11,10 +13,10 @@ class ForgetPasswordButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: const Text(
-        'نسيت كلمة السر؟',
+        AppString.textForgetPasswordArabic,
         style: TextStyle(
             fontSize: 14,
-            color: Color(0xff7c7d7e),
+            color: AppColor.kFontSecondary,
             fontWeight: FontWeight.w500),
         textAlign: TextAlign.center,
       ),

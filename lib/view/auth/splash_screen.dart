@@ -35,14 +35,14 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             const SizedBox(height: 10),
             const Text(
-              AppString.takafulArabicName,
+              AppString.textTakafulArabicName,
               style: TextStyle(
                   fontSize: 51,
                   fontWeight: FontWeight.bold,
                   color: AppColor.kWhite),
             ),
             const Text(
-              AppString.takafulEnglishName,
+              AppString.textTakafulEnglishName,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,

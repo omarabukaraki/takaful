@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:takaful/core/utils/app_assets.dart';
 import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 
 class LogoTakaful extends StatelessWidget {
   const LogoTakaful({
@@ -11,8 +13,9 @@ class LogoTakaful extends StatelessWidget {
     return const Column(
       children: [
         SizedBox(height: 20),
-        Text('تكافل', style: TextStyle(fontSize: 51, color: AppColor.kPrimary)),
-        Text('Takaful',
+        Text(AppString.textTakafulArabicName,
+            style: TextStyle(fontSize: 51, color: AppColor.kPrimary)),
+        Text(AppString.textTakafulEnglishName,
             style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -23,10 +26,11 @@ class LogoTakaful extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CircleAveLogo(image: 'assets/image/foodlogin.png'),
+              CircleAveLogo(image: AppAssets.assetsImageFoodlogin),
               CircleAveLogo(
-                  image: 'assets/image/clotherss.png', color: Colors.white),
-              CircleAveLogo(image: 'assets/image/sofa.png'),
+                  image: AppAssets.assetsImageClotherss,
+                  color: AppColor.kWhite),
+              CircleAveLogo(image: AppAssets.assetsImageSofa),
             ],
           ),
         ),

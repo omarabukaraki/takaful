@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 
 class CreateAccountButton extends StatelessWidget {
   const CreateAccountButton({
@@ -14,11 +15,11 @@ class CreateAccountButton extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: onTap,
-          child: const Text("انشاء حساب",
+          child: const Text(AppString.textCreateAccountArabic,
               style: TextStyle(fontSize: 14, color: AppColor.kPrimary)),
         ),
-        const Text('ليس لديك حساب؟',
-            style: TextStyle(color: Color(0xff7c7d7e))),
+        const Text(AppString.textDoNotHaveAccount,
+            style: TextStyle(color: AppColor.kFontSecondary)),
       ],
     );
   }

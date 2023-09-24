@@ -6,6 +6,7 @@ import 'package:takaful/component/create_account_button.dart';
 import 'package:takaful/component/forget_password_button.dart';
 import 'package:takaful/component/logo_takaful.dart';
 import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
 import 'package:takaful/view/auth/register_page.dart';
@@ -51,8 +52,8 @@ class _LoginPageState extends State<LoginPage> {
           showSankBar(context, state.errMessage);
         } else if (state is ResetPasswordSuccess) {
           isLodging = false;
-          showSankBar(context, ' لقد تم ارسال بريد لاعادة تعيين كلمة المرور',
-              color: Colors.green);
+          showSankBar(context, 'لقد تم ارسال بريد لاعادة تعيين كلمة المرور',
+              color: AppColor.kGreen);
         } else if (state is ResetPasswordFailure) {
           isLodging = false;
           showSankBar(context, state.errMessage);
@@ -74,25 +75,25 @@ class _LoginPageState extends State<LoginPage> {
                   // start logo takaful
                   const LogoTakaful(),
                   // end logo takaful
-                  const Text('تسجيل الدخول',
+                  const Text(AppString.textLoginArabic,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 32,
                           color: AppColor.kPrimary,
                           fontWeight: FontWeight.w400)),
                   const Text(
-                    'أضف التفاصيل الخاصة بك لتسجيل الدخول',
+                    AppString.textAddDetailsToLogin,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 14,
-                        color: Color(0xff7c7d7e),
+                        color: AppColor.kFontSecondary,
                         fontWeight: FontWeight.w500,
                         height: 1.4285714285714286),
                   ),
                   const SizedBox(height: 20),
                   CustomTextFiled(
                     icon: const Icon(Icons.email, color: AppColor.kPrimary),
-                    hintText: 'البريد الإلكتروني',
+                    hintText: AppString.textEmailArabic,
                     onChanged: (emailAddress) {
                       email.text = emailAddress;
                     },
@@ -100,14 +101,14 @@ class _LoginPageState extends State<LoginPage> {
                   CustomTextFiled(
                     icon: const Icon(Icons.lock, color: AppColor.kPrimary),
                     typeText: true,
-                    hintText: 'كلمة المرور',
+                    hintText: AppString.textPasswordArabic,
                     onChanged: (userPassword) {
                       password.text = userPassword;
                     },
                   ),
                   const SizedBox(height: 20),
                   CustomButton(
-                      text: 'الدخول',
+                      text: AppString.textSginINArabic,
                       color: AppColor.kPrimary,
                       textColor: Colors.white,
                       onTap: () async {
