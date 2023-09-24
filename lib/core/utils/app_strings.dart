@@ -18,6 +18,6 @@ abstract class AppString {
   static const String textConfirmPasswordArabic = 'تأكيد كلمة المرور';
   static const String textRegisterArabic = 'التسجيل';
   static const String textDoYouHaveAnAccount = 'هل لديك حساب؟';
-//            static const String takafulEnglishName = 'Takaful';
+  static const String textPasswordMismatch = 'كلمة المرور غير متطابقة';
 //
 }

@@ -131,7 +131,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                       email: email.text,
                                       password: password.text);
                             } else {
-                              showSankBar(context, 'كلمة المرور غير متطابقة');
+                              showSankBar(
+                                  context, AppString.textPasswordMismatch);
                             }
                           } else {}
                         }),
