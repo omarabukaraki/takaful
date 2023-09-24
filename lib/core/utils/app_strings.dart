@@ -41,7 +41,11 @@ abstract class AppString {
   static const String textCounter = 'العدد';
   static const String textDescription = 'الوصف';
   static const String textPublishDonation = 'نشر التبرع';
-
+  static const String textBlacksmithServices = 'خدمات حدادة';
+  static const String textElectricalServices = 'خدمات كهربائية';
+  static const String textPlumbingServices = 'خدمات سباكة';
+  static const String textCarpentryServices = 'خدمات نجارة';
+  static const String textOtherServices = 'خدمات أخرى';
   //          static const String textFurniture = 'أثاث';
   //           static const String textFurniture = 'أثاث';
   //            static const String textFurniture = 'أثاث';
