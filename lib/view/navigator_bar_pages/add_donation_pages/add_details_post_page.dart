@@ -59,6 +59,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
             isLoading = false;
             clearText();
             counter = 0;
+            BlocProvider.of<AddImageCubit>(context).image = [];
+            BlocProvider.of<AddImageCubit>(context).url = [];
           } else if (state is PostFailure) {
             isLoading = false;
           }
@@ -208,7 +210,6 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                           state: stateOfThePost.text,
                           count: counter,
                         );
-                        BlocProvider.of<AddImageCubit>(context).url = [];
                       }
                     }
                   },

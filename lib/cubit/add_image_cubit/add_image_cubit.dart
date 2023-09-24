@@ -45,6 +45,7 @@ class AddImageCubit extends Cubit<AddImageState> {
         }
       }
       image = [];
+      nameImage = [];
       emit(UploadImageSuccess(url: url));
     } catch (e) {
       emit(UploadImageFailure(errMessage: e.toString()));
