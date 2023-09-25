@@ -63,6 +63,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
               BlocProvider.of<AddImagesCubit>(context).image = [];
               BlocProvider.of<AddImagesCubit>(context).nameImage = [];
               BlocProvider.of<AddImagesCubit>(context).url = [];
+              addedImage = false;
             } else if (state is PostFailure) {
               isLoading = false;
             }
@@ -107,45 +108,10 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                                   },
                                 ));
                               },
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 5),
-                                width: double.infinity,
-                                height: 164,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: AppColor.kPrimary),
-                                child: const Icon(
-                                  Icons.image,
-                                  size: 60,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            )
-                          : Container(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 5),
-                              width: double.infinity,
-                              height: 164,
-                              decoration: BoxDecoration(
-                                  color: AppColor.kPrimary,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.check,
-                                    size: 60,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    'تم اضافة الصور بنجاح',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
-                                  )
-                                ],
-                              ),
-                            );
+                              child: const AddImage(
+                                  icon: Icons.image,
+                                  text: AppString.textAddImageToDonation))
+                          : const AddImage();
                     },
                   ),
                   CustomTextFiled(
@@ -240,5 +206,40 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
             );
           },
         ));
+  }
+}
+
+class AddImage extends StatelessWidget {
+  const AddImage({
+    super.key,
+    this.icon,
+    this.text,
+  });
+  final IconData? icon;
+  final String? text;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      width: double.infinity,
+      height: 164,
+      decoration: BoxDecoration(
+          color: AppColor.kPrimary, borderRadius: BorderRadius.circular(20)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon ?? Icons.check,
+            size: 40,
+            color: Colors.white,
+          ),
+          const SizedBox(height: 5),
+          Text(
+            text ?? 'تم اضافة الصور بنجاح',
+            style: const TextStyle(color: Colors.white, fontSize: 16),
+          )
+        ],
+      ),
+    );
   }
 }

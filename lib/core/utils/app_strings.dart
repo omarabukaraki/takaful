@@ -34,7 +34,7 @@ abstract class AppString {
   static const String textClothes = 'ملابس';
   static const String textFurniture = 'أثاث';
   static const String textAddDetailsToDonation = 'أضف تفاصيل التبرع';
-  static const String textAddImageToDonation = 'أضف صورة للتبرع';
+  static const String textAddImageToDonation = 'أضف صور للتبرع';
   static const String textTitle = 'العنوان';
   static const String textLocation = 'الموقع';
   static const String textState = 'الحالة';
