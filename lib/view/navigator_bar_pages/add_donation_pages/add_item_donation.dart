@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/component/custom_search_bar.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
+import 'package:takaful/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_details_post_page.dart';
 import '../../../component/custom_app_bar.dart';
 import '../../../component/type_of_item_or_service.dart';
@@ -45,7 +45,7 @@ class AddItemDonation extends StatelessWidget {
             return TypeOfItemOrService(
               title: item[index],
               onTap: () {
-                BlocProvider.of<AddImageCubit>(context).url = [];
+                BlocProvider.of<AddImagesCubit>(context).url = [];
                 Navigator.pushNamed(context, AddDetailsPost.id,
                     arguments: [item[index], category]);
               },

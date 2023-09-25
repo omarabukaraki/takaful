@@ -8,10 +8,10 @@ import 'package:takaful/component/custom_button.dart';
 import 'package:takaful/component/custom_textfiled.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/cubit/add_image_cubit/add_image_cubit.dart';
+import 'package:takaful/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
-import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_image.dart';
+import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_images.dart';
 
 class AddDetailsPost extends StatefulWidget {
   const AddDetailsPost({super.key});
@@ -48,7 +48,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
         textTwo: AppString.textAddDetailsToDonation,
         button: true,
         onTap: () {
-          BlocProvider.of<AddImageCubit>(context).url = [];
+          // BlocProvider.of<AddImageCubit>(context).url = [];
           Navigator.pop(context);
         },
       ),
@@ -60,8 +60,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
             isLoading = false;
             clearText();
             counter = 0;
-            BlocProvider.of<AddImageCubit>(context).image = [];
-            BlocProvider.of<AddImageCubit>(context).url = [];
+            // BlocProvider.of<AddImageCubit>(context).image = [];
+            // BlocProvider.of<AddImageCubit>(context).url = [];
           } else if (state is PostFailure) {
             isLoading = false;
           }
@@ -86,12 +86,14 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                BlocProvider.of<AddImageCubit>(context).url.isEmpty
+                BlocProvider.of<AddImagesCubit>(context).url.isEmpty
                     ? GestureDetector(
                         onTap: () {
+                          BlocProvider.of<AddImagesCubit>(context).image = [];
+                          BlocProvider.of<AddImagesCubit>(context).url = [];
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
-                              return const AddImage();
+                              return const AddImages();
                             },
                           ));
                         },
@@ -195,7 +197,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   circular: 20,
                   text: AppString.textPublishDonation,
                   onTap: () async {
-                    if (BlocProvider.of<AddImageCubit>(context).url.isEmpty) {
+                    if (BlocProvider.of<AddImagesCubit>(context).url.isEmpty) {
                       showSankBar(context, 'الرجاء اضافة صور',
                           color: AppColor.kRed);
                     } else {
@@ -203,7 +205,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                         BlocProvider.of<PostCubit>(context).addPost(
                           postState: true,
                           title: title.text,
-                          image: BlocProvider.of<AddImageCubit>(context).url,
+                          image: BlocProvider.of<AddImagesCubit>(context).url,
                           category: categoryAndItemService[1],
                           itemOrService: categoryAndItemService[0],
                           description: description.text,
@@ -212,6 +214,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                           count: counter,
                         );
                       }
+                      BlocProvider.of<AddImagesCubit>(context).image = [];
+                      BlocProvider.of<AddImagesCubit>(context).url = [];
                     }
                   },
                   textColor: AppColor.kWhite,
