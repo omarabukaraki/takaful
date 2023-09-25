@@ -46,7 +46,7 @@ abstract class AppString {
   static const String textPlumbingServices = 'خدمات سباكة';
   static const String textCarpentryServices = 'خدمات نجارة';
   static const String textOtherServices = 'خدمات أخرى';
-  //          static const String textFurniture = 'أثاث';
+  static const String textItemRequest = 'طلبات تبرعاتي';
   //           static const String textFurniture = 'أثاث';
   //            static const String textFurniture = 'أثاث';
 }

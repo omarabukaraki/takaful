@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:takaful/component/custom_app_bar.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/view/navigator_bar_pages/item_request_page/item_request_component.dart';
 
 class ItemRequest extends StatelessWidget {
@@ -10,7 +11,7 @@ class ItemRequest extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const CustomAppBar(
-            button: false, textOne: 'طلبات تبرعاتي', textTwo: ''),
+            button: false, textOne: AppString.textItemRequest, textTwo: ''),
         backgroundColor: Colors.white,
         body: ListView(
           children: [

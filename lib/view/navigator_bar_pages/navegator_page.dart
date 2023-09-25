@@ -2,6 +2,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_donation.dart';
 import 'package:takaful/view/navigator_bar_pages/item_request_page/item_request_page.dart';
 import 'package:takaful/view/navigator_bar_pages/profile_page/profile_page.dart';
@@ -40,12 +41,10 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
         unselectedLabelStyle: const TextStyle(
           fontSize: 12,
           color: AppColor.kFont,
-          fontFamily: 'ElMessiri',
         ),
         selectedLabelStyle: const TextStyle(
           fontSize: 12,
           color: AppColor.kFont,
-          fontFamily: 'ElMessiri',
         ),
         iconSize: 30,
         // fixedColor: Kprimary,
@@ -62,7 +61,7 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag_rounded, color: AppColor.kPrimary),
-            label: 'طلبات تبرعاتي',
+            label: AppString.textItemRequest,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera_enhance, color: AppColor.kPrimary),
