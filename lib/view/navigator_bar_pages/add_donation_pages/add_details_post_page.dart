@@ -60,8 +60,9 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
             isLoading = false;
             clearText();
             counter = 0;
-            // BlocProvider.of<AddImageCubit>(context).image = [];
-            // BlocProvider.of<AddImageCubit>(context).url = [];
+            BlocProvider.of<AddImagesCubit>(context).image = [];
+            BlocProvider.of<AddImagesCubit>(context).nameImage = [];
+            BlocProvider.of<AddImagesCubit>(context).url = [];
           } else if (state is PostFailure) {
             isLoading = false;
           }
@@ -216,9 +217,6 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                           count: counter,
                         );
                       }
-                      BlocProvider.of<AddImagesCubit>(context).image = [];
-                      BlocProvider.of<AddImagesCubit>(context).nameImage = [];
-                      BlocProvider.of<AddImagesCubit>(context).url = [];
                     }
                   },
                   textColor: AppColor.kWhite,
