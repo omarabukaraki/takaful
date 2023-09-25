@@ -48,6 +48,9 @@ class _AddImagesState extends State<AddImages> {
             image.isEmpty
                 ? GestureDetector(
                     onTap: () {
+                      //start show dialog and display to choose
+                      //
+                      //
                       showDialog(
                         context: context,
                         builder: (context) {
@@ -64,9 +67,7 @@ class _AddImagesState extends State<AddImages> {
                                   Navigator.pop(context);
                                 },
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
+                              const SizedBox(height: 10),
                               CustomButtonToAlertDialog(
                                 titleButton: 'بأستخدام الكاميرا',
                                 onTap: () async {
@@ -80,6 +81,9 @@ class _AddImagesState extends State<AddImages> {
                           );
                         },
                       );
+                      //
+                      //
+                      //end show dialog and display to choose
                     },
                     child: const Padding(
                       padding:
@@ -91,6 +95,8 @@ class _AddImagesState extends State<AddImages> {
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     child: ImageDisplayed(image: image[0]),
                   ),
+            // start display grid view to pick image
+            //
             Expanded(
               child: Padding(
                 padding:
@@ -131,6 +137,11 @@ class _AddImagesState extends State<AddImages> {
                 ),
               ),
             ),
+            //
+            //end display grid view to pick image
+
+            //start custom button
+            //
             url.length == image.length
                 ? CustomButton(
                     text: 'اضافة',
@@ -138,15 +149,18 @@ class _AddImagesState extends State<AddImages> {
                     textColor: AppColor.kWhite,
                     onTap: () {
                       if (image.isNotEmpty) {
+                        // BlocProvider.of<AddImagesCubit>(context).nameImage = [];
+                        // BlocProvider.of<AddImagesCubit>(context).image = [];
                         Navigator.pop(context);
                       } else {
                         showSankBar(context, 'الرجاء اختيار صورة');
                       }
                     })
                 : const CircularProgressIndicator(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 20,
-            )
+            //
+            //end custom button
+
+            SizedBox(height: MediaQuery.of(context).size.height / 20)
           ]);
         },
       ),
@@ -240,42 +254,3 @@ class CustomButtonToAlertDialog extends StatelessWidget {
     );
   }
 }
-  // onTap: () {
-  //                   showDialog(
-  //                     context: context,
-  //                     builder: (context) {
-  //                       return AlertDialog(
-  //                         title: const Text(':' 'حدد الطريقة ',
-  //                             textAlign: TextAlign.center),
-  //                         actions: [
-  //                           CustomButtonToAlertDialog(
-  //                             titleButton: 'من المعرض',
-  //                             onTap: () async {
-  //                               formGallery = true;
-  //                               await pickImageFromGallery(index: 0);
-  //                               // ignore: use_build_context_synchronously
-  //                               Navigator.pop(context);
-  //                               setState(() {});
-  //                               await uploadImage(index: 0);
-  //                             },
-  //                           ),
-  //                           const SizedBox(
-  //                             height: 10,
-  //                           ),
-  //                           CustomButtonToAlertDialog(
-  //                             titleButton: 'بأستخدام الكاميرا',
-  //                             onTap: () async {
-  //                               formGallery = false;
-  //                               await pickImageFromCamera(index: 0);
-  //                               // ignore: use_build_context_synchronously
-  //                               Navigator.pop(context);
-  //                               setState(() {});
-
-  //                               await uploadImage(index: 0);
-  //                             },
-  //                           ),
-  //                         ],
-  //                       );
-  //                     },
-  //                   );
-  //                 },

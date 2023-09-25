@@ -23,6 +23,7 @@ class AddImagesCubit extends Cubit<AddImagesState> {
       if (pickedImage == null) return;
       image.insert(index, File(pickedImage.path));
       nameImage.insert(index, basename(pickedImage.path));
+      print("nameImage : $nameImage");
       if (image.isEmpty) {
         emit(AddImagesFailure(errMessage: 'is empty! you should select image'));
       } else {
@@ -36,12 +37,9 @@ class AddImagesCubit extends Cubit<AddImagesState> {
         emit(UploadImagesSuccess(url: url));
       } catch (e) {
         emit(UploadImagesFailure(errMessage: e.toString()));
-        // ignore: avoid_print
-        print(e);
       }
     } catch (e) {
       emit(AddImagesFailure(errMessage: e.toString()));
-      print('ssssss');
     }
   }
 
@@ -64,12 +62,9 @@ class AddImagesCubit extends Cubit<AddImagesState> {
         emit(UploadImagesSuccess(url: url));
       } catch (e) {
         emit(UploadImagesFailure(errMessage: e.toString()));
-        // ignore: avoid_print
-        print(e);
       }
     } catch (e) {
       emit(AddImagesFailure(errMessage: e.toString()));
-      print(e);
     }
   }
 }

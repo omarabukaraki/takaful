@@ -91,6 +91,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                         onTap: () {
                           BlocProvider.of<AddImagesCubit>(context).image = [];
                           BlocProvider.of<AddImagesCubit>(context).url = [];
+                          BlocProvider.of<AddImagesCubit>(context).nameImage =
+                              [];
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
                               return const AddImages();
@@ -215,6 +217,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                         );
                       }
                       BlocProvider.of<AddImagesCubit>(context).image = [];
+                      BlocProvider.of<AddImagesCubit>(context).nameImage = [];
                       BlocProvider.of<AddImagesCubit>(context).url = [];
                     }
                   },
