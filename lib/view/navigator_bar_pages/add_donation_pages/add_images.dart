@@ -127,6 +127,8 @@ class _AddImagesState extends State<AddImages> {
                               child: AddImagesComponent(
                                 textOne: 'اضافة صورة',
                                 isOneText: true,
+                                iconSize: 30,
+                                fontSize: 12,
                               ),
                             ))
                         : Padding(
@@ -194,10 +196,17 @@ class ImageDisplayed extends StatelessWidget {
 
 class AddImagesComponent extends StatelessWidget {
   const AddImagesComponent(
-      {super.key, this.textOne, this.textTwo, this.isOneText});
+      {super.key,
+      this.textOne,
+      this.textTwo,
+      this.isOneText,
+      this.iconSize,
+      this.fontSize});
   final String? textOne;
   final String? textTwo;
   final bool? isOneText;
+  final double? iconSize;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -210,15 +219,15 @@ class AddImagesComponent extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(
+          Icon(
             Icons.image,
-            size: 40,
+            size: iconSize ?? 40,
             color: Colors.white,
           ),
           const SizedBox(height: 8),
           Text(
             textOne ?? 'الصورة الرئيسية',
-            style: const TextStyle(color: AppColor.kWhite, fontSize: 14),
+            style: TextStyle(color: AppColor.kWhite, fontSize: fontSize ?? 14),
           ),
           isOneText != true
               ? Text(textTwo ?? '(مطلوب)',

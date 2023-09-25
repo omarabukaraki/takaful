@@ -30,6 +30,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
   TextEditingController stateOfThePost = TextEditingController();
   TextEditingController description = TextEditingController();
   bool isLoading = false;
+  bool addedImage = false;
   List<String> urls = [];
   void clearText() {
     title.clear();
@@ -43,193 +44,201 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
     List<String> categoryAndItemService =
         ModalRoute.of(context)!.settings.arguments as List<String>;
     return Scaffold(
-      appBar: CustomAppBar(
-        textOne: categoryAndItemService[0],
-        textTwo: AppString.textAddDetailsToDonation,
-        button: true,
-        onTap: () {
-          // BlocProvider.of<AddImageCubit>(context).url = [];
-          Navigator.pop(context);
-        },
-      ),
-      body: BlocConsumer<PostCubit, PostState>(
-        listener: (context, state) {
-          if (state is PostLodging) {
-            isLoading = true;
-          } else if (state is PostAddSuccess) {
-            isLoading = false;
-            clearText();
-            counter = 0;
-            BlocProvider.of<AddImagesCubit>(context).image = [];
-            BlocProvider.of<AddImagesCubit>(context).nameImage = [];
-            BlocProvider.of<AddImagesCubit>(context).url = [];
-          } else if (state is PostFailure) {
-            isLoading = false;
-          }
-        },
-        builder: (context, state) {
-          return BlurryModalProgressHUD(
-            inAsyncCall: isLoading,
-            progressIndicator:
-                const SpinKitFadingCircle(color: AppColor.kPrimary, size: 90.0),
-            dismissible: false,
-            opacity: 0.4,
-            child: Form(
-              key: formKey,
-              child: ListView(children: [
-                const SizedBox(height: 10),
-                const Padding(
-                  padding: EdgeInsets.only(right: 29),
-                  child: Text(
-                    AppString.textAddImageToDonation,
-                    style: TextStyle(fontSize: 17, color: AppColor.kFont),
-                    textAlign: TextAlign.end,
+        appBar: CustomAppBar(
+          textOne: categoryAndItemService[0],
+          textTwo: AppString.textAddDetailsToDonation,
+          button: true,
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        body: BlocConsumer<PostCubit, PostState>(
+          listener: (context, state) {
+            if (state is PostLodging) {
+              isLoading = true;
+            } else if (state is PostAddSuccess) {
+              isLoading = false;
+              clearText();
+              counter = 0;
+              BlocProvider.of<AddImagesCubit>(context).image = [];
+              BlocProvider.of<AddImagesCubit>(context).nameImage = [];
+              BlocProvider.of<AddImagesCubit>(context).url = [];
+            } else if (state is PostFailure) {
+              isLoading = false;
+            }
+          },
+          builder: (context, state) {
+            return BlurryModalProgressHUD(
+              inAsyncCall: isLoading,
+              progressIndicator: const SpinKitFadingCircle(
+                  color: AppColor.kPrimary, size: 90.0),
+              dismissible: false,
+              opacity: 0.4,
+              child: Form(
+                key: formKey,
+                child: ListView(children: [
+                  const SizedBox(height: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 29),
+                    child: Text(
+                      AppString.textAddImageToDonation,
+                      style: TextStyle(fontSize: 17, color: AppColor.kFont),
+                      textAlign: TextAlign.end,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                BlocProvider.of<AddImagesCubit>(context).url.isEmpty
-                    ? GestureDetector(
-                        onTap: () {
-                          BlocProvider.of<AddImagesCubit>(context).image = [];
-                          BlocProvider.of<AddImagesCubit>(context).url = [];
-                          BlocProvider.of<AddImagesCubit>(context).nameImage =
-                              [];
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) {
-                              return const AddImages();
-                            },
-                          ));
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 5),
-                          width: double.infinity,
-                          height: 164,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: AppColor.kPrimary),
-                          child: const Icon(
-                            Icons.image,
-                            size: 60,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
-                    : Container(
-                        clipBehavior: Clip.antiAlias,
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 5),
-                        width: double.infinity,
-                        height: 164,
-                        decoration: BoxDecoration(
-                            color: AppColor.kPrimary,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.check,
-                              size: 60,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              'تم اضافة الصور بنجاح',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
+                  const SizedBox(height: 10),
+                  BlocConsumer<AddImagesCubit, AddImagesState>(
+                    listener: (context, state) {
+                      addedImage = true;
+                    },
+                    builder: (context, state) {
+                      return addedImage != true
+                          ? GestureDetector(
+                              onTap: () {
+                                BlocProvider.of<AddImagesCubit>(context).image =
+                                    [];
+                                BlocProvider.of<AddImagesCubit>(context).url =
+                                    [];
+                                BlocProvider.of<AddImagesCubit>(context)
+                                    .nameImage = [];
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) {
+                                    return const AddImages();
+                                  },
+                                ));
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 5),
+                                width: double.infinity,
+                                height: 164,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: AppColor.kPrimary),
+                                child: const Icon(
+                                  Icons.image,
+                                  size: 60,
+                                  color: Colors.white,
+                                ),
+                              ),
                             )
-                          ],
-                        ),
-                      ),
-                CustomTextFiled(
-                  controller: title,
-                  onChanged: (postTitle) {
-                    title.text = postTitle;
-                  },
-                  hintText: AppString.textTitle,
-                  icon: const Icon(Icons.title_rounded),
-                ),
-                CustomTextFiled(
-                  controller: location,
-                  onChanged: (postLocation) {
-                    location.text = postLocation;
-                  },
-                  hintText: AppString.textLocation,
-                  icon: const Icon(Icons.location_on),
-                ),
-                CustomTextFiled(
-                  controller: stateOfThePost,
-                  onChanged: (p0) {
-                    stateOfThePost.text = p0;
-                  },
-                  hintText: AppString.textState,
-                  icon: const Icon(Icons.fiber_new_rounded),
-                ),
-                categoryAndItemService[0].length <= 5
-                    ? CounterPost(
-                        counter: counter,
-                        onTapAdd: () {
-                          setState(() {
-                            if (counter < 500) {
-                              counter++;
-                            } else {
-                              counter = 500;
-                            }
-                          });
-                        },
-                        onTapRemove: () {
-                          setState(() {
-                            if (counter > 0) {
-                              counter--;
-                            } else {
-                              counter = 0;
-                            }
-                          });
-                        },
-                      )
-                    : const SizedBox(),
-                CustomTextFiled(
-                  controller: description,
-                  onChanged: (postDescription) {
-                    description.text = postDescription;
-                  },
-                  hintText: AppString.textDescription,
-                  icon: const Icon(Icons.description),
-                ),
-                const SizedBox(height: 10),
-                CustomButton(
-                  circular: 20,
-                  text: AppString.textPublishDonation,
-                  onTap: () async {
-                    if (BlocProvider.of<AddImagesCubit>(context).url.isEmpty) {
-                      showSankBar(context, 'الرجاء اضافة صور',
-                          color: AppColor.kRed);
-                    } else {
-                      if (formKey.currentState!.validate()) {
-                        BlocProvider.of<PostCubit>(context).addPost(
-                          postState: true,
-                          title: title.text,
-                          image: BlocProvider.of<AddImagesCubit>(context).url,
-                          category: categoryAndItemService[1],
-                          itemOrService: categoryAndItemService[0],
-                          description: description.text,
-                          location: location.text,
-                          state: stateOfThePost.text,
-                          count: counter,
-                        );
+                          : Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 5),
+                              width: double.infinity,
+                              height: 164,
+                              decoration: BoxDecoration(
+                                  color: AppColor.kPrimary,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.check,
+                                    size: 60,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    'تم اضافة الصور بنجاح',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            );
+                    },
+                  ),
+                  CustomTextFiled(
+                    controller: title,
+                    onChanged: (postTitle) {
+                      title.text = postTitle;
+                    },
+                    hintText: AppString.textTitle,
+                    icon: const Icon(Icons.title_rounded),
+                  ),
+                  CustomTextFiled(
+                    controller: location,
+                    onChanged: (postLocation) {
+                      location.text = postLocation;
+                    },
+                    hintText: AppString.textLocation,
+                    icon: const Icon(Icons.location_on),
+                  ),
+                  CustomTextFiled(
+                    controller: stateOfThePost,
+                    onChanged: (p0) {
+                      stateOfThePost.text = p0;
+                    },
+                    hintText: AppString.textState,
+                    icon: const Icon(Icons.fiber_new_rounded),
+                  ),
+                  categoryAndItemService[0].length <= 5
+                      ? CounterPost(
+                          counter: counter,
+                          onTapAdd: () {
+                            setState(() {
+                              if (counter < 500) {
+                                counter++;
+                              } else {
+                                counter = 500;
+                              }
+                            });
+                          },
+                          onTapRemove: () {
+                            setState(() {
+                              if (counter > 0) {
+                                counter--;
+                              } else {
+                                counter = 0;
+                              }
+                            });
+                          },
+                        )
+                      : const SizedBox(),
+                  CustomTextFiled(
+                    controller: description,
+                    onChanged: (postDescription) {
+                      description.text = postDescription;
+                    },
+                    hintText: AppString.textDescription,
+                    icon: const Icon(Icons.description),
+                  ),
+                  const SizedBox(height: 10),
+                  CustomButton(
+                    circular: 20,
+                    text: AppString.textPublishDonation,
+                    onTap: () async {
+                      if (BlocProvider.of<AddImagesCubit>(context)
+                          .url
+                          .isEmpty) {
+                        showSankBar(context, 'الرجاء اضافة صور',
+                            color: AppColor.kRed);
+                      } else {
+                        if (formKey.currentState!.validate()) {
+                          BlocProvider.of<PostCubit>(context).addPost(
+                            postState: true,
+                            title: title.text,
+                            image: BlocProvider.of<AddImagesCubit>(context).url,
+                            category: categoryAndItemService[1],
+                            itemOrService: categoryAndItemService[0],
+                            description: description.text,
+                            location: location.text,
+                            state: stateOfThePost.text,
+                            count: counter,
+                          );
+                        }
                       }
-                    }
-                  },
-                  textColor: AppColor.kWhite,
-                  color: AppColor.kPrimary,
-                ),
-                const SizedBox(
-                  height: 20,
-                )
-              ]),
-            ),
-          );
-        },
-      ),
-    );
+                    },
+                    textColor: AppColor.kWhite,
+                    color: AppColor.kPrimary,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  )
+                ]),
+              ),
+            );
+          },
+        ));
   }
 }
