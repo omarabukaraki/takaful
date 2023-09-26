@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/features/auth/presentation/views/login_page.dart';
-import 'package:takaful/view/navigator_bar_pages/profile_page/profile_app_bar.dart';
-import 'package:takaful/view/navigator_bar_pages/profile_page/profile_button.dart';
+import 'package:takaful/features/profile/presentation/views/widget/profile_app_bar.dart';
+import 'package:takaful/features/profile/presentation/views/widget/profile_button.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

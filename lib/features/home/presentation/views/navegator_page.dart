@@ -5,7 +5,7 @@ import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_donation.dart';
 import 'package:takaful/view/navigator_bar_pages/item_request_page/item_request_page.dart';
-import 'package:takaful/view/navigator_bar_pages/profile_page/profile_page.dart';
+import 'package:takaful/features/profile/presentation/views/profile_page.dart';
 import 'home_page.dart';
 
 class NavigatorBarPage extends StatefulWidget {
