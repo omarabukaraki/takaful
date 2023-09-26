@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Ad extends StatelessWidget {
-  const Ad({
+class AdApplication extends StatelessWidget {
+  const AdApplication({
     required this.image,
     super.key,
   });
@@ -13,7 +13,6 @@ class Ad extends StatelessWidget {
       child: Container(
         clipBehavior: Clip.antiAlias,
         width: double.infinity,
-        // height: 180,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
         ),

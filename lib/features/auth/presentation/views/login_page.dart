@@ -12,7 +12,7 @@ import 'package:takaful/helper/show_snak_bar.dart';
 import 'package:takaful/features/auth/presentation/views/register_page.dart';
 import '../../../../component/custom_button.dart';
 import '../../../../component/custom_textfiled.dart';
-import '../../../../view/navigator_bar_pages/navegator_page.dart';
+import '../../../home/presentation/views/navegator_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

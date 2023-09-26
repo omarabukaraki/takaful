@@ -11,7 +11,7 @@ import 'package:takaful/cubit/post_cubit/post_cubit.dart';
 import 'package:takaful/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:takaful/features/splash/presentation/views/splash_view.dart';
-import 'package:takaful/view/navigator_bar_pages/navegator_page.dart';
+import 'package:takaful/features/home/presentation/views/navegator_page.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {

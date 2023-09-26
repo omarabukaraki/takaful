@@ -1,7 +1,7 @@
 // ignore: unused_import
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:takaful/component/ad_post.dart';
+import 'package:takaful/features/home/presentation/views/widget/ad_post.dart';
 import 'package:takaful/component/custom_search_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:takaful/core/utils/app_assets.dart';
@@ -10,8 +10,8 @@ import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/view/items_page/items_type_page.dart';
 import 'package:takaful/view/notifcation_page.dart';
 import 'package:takaful/view/servives_pages/service_type_page.dart';
-import '../../component/ads_screen.dart';
-import '../../component/category.dart';
+import 'widget/ad_application.dart';
+import 'widget/category.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
               // carouselController: _controller,
               itemCount: images.length,
               itemBuilder: (context, index, realIndex) {
-                return Ad(
+                return AdApplication(
                   image: images[index],
                 );
               },
