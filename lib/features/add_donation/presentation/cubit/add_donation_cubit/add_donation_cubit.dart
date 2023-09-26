@@ -4,13 +4,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
-import 'package:takaful/models/post_model.dart';
+part 'add_donation_state.dart';
 
-part 'post_state.dart';
-
-class PostCubit extends Cubit<PostState> {
-  PostCubit() : super(PostInitial());
+class AddDonationCubit extends Cubit<AddDonationState> {
+  AddDonationCubit() : super(AddDonationInitial());
   CollectionReference posts = FirebaseFirestore.instance.collection('post');
+
   Future<void> addPost({
     required bool postState,
     required String title,
@@ -22,7 +21,7 @@ class PostCubit extends Cubit<PostState> {
     required String state,
     required int count,
   }) async {
-    emit(PostLodging());
+    emit(AddDonationLodging());
     try {
       await posts.add({
         'id': FirebaseAuth.instance.currentUser!.uid,
@@ -38,36 +37,9 @@ class PostCubit extends Cubit<PostState> {
         'createAt': DateTime.now().toString(),
         'donarAccount': FirebaseAuth.instance.currentUser!.email.toString(),
       });
-      emit(PostAddSuccess());
+      emit(AddDonationSuccess());
     } catch (e) {
-      emit(PostFailure());
-    }
-  }
-
-  void getPost() {
-    emit(PostLodging());
-    try {
-      posts.orderBy('createAt', descending: true).snapshots().listen((event) {
-        List<PostModel> postList = [];
-        for (var doc in event.docs) {
-          postList.add(PostModel(
-              doc['id'],
-              doc['postState'],
-              doc['title'],
-              doc['image'],
-              doc['category'],
-              doc['itemOrService'],
-              doc['description'],
-              doc['location'],
-              doc['state'],
-              doc['createAt'],
-              doc['donarAccount'],
-              doc['count']));
-        }
-        emit(PostSuccess(posts: postList));
-      });
-    } catch (e) {
-      emit(PostFailure());
+      emit(AddDonationFailure());
     }
   }
 }

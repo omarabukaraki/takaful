@@ -2,14 +2,14 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:takaful/features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/counter_post.dart';
 import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/component/custom_button.dart';
 import 'package:takaful/component/custom_textfiled.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/cubit/add_images_cubit/add_images_cubit.dart';
-import 'package:takaful/cubit/post_cubit/post_cubit.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/add_image_button.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
 import 'package:takaful/features/add_donation/presentation/views/add_images_page.dart';
@@ -53,11 +53,11 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
             Navigator.pop(context);
           },
         ),
-        body: BlocConsumer<PostCubit, PostState>(
+        body: BlocConsumer<AddDonationCubit, AddDonationState>(
           listener: (context, state) {
-            if (state is PostLodging) {
+            if (state is AddDonationLodging) {
               isLoading = true;
-            } else if (state is PostAddSuccess) {
+            } else if (state is AddDonationSuccess) {
               isLoading = false;
               clearText();
               counter = 0;
@@ -65,7 +65,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
               BlocProvider.of<AddImagesCubit>(context).nameImage = [];
               BlocProvider.of<AddImagesCubit>(context).url = [];
               addedImage = false;
-            } else if (state is PostFailure) {
+            } else if (state is AddDonationFailure) {
               isLoading = false;
             }
           },
@@ -182,7 +182,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                             color: AppColor.kRed);
                       } else {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<PostCubit>(context).addPost(
+                          BlocProvider.of<AddDonationCubit>(context).addPost(
                             postState: true,
                             title: title.text,
                             image: BlocProvider.of<AddImagesCubit>(context).url,

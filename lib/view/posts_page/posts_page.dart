@@ -3,7 +3,7 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/component/custom_app_bar.dart';
-import 'package:takaful/cubit/post_cubit/post_cubit.dart';
+import 'package:takaful/cubit/get_donation_cubit/get_donation_cubit.dart';
 import 'package:takaful/models/post_model.dart';
 import 'package:takaful/view/posts_page/post_screen.dart';
 import 'package:takaful/view/posts_page/post_component.dart';
@@ -21,7 +21,7 @@ class _PostsPageState extends State<PostsPage> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<PostCubit>(context).getPost();
+    BlocProvider.of<GetDonationCubit>(context).getPost();
   }
 
   List<PostModel> posts = [];
@@ -30,14 +30,14 @@ class _PostsPageState extends State<PostsPage> {
     List<dynamic> categoryAndItemName =
         ModalRoute.of(context)!.settings.arguments as List<dynamic>;
 
-    return BlocConsumer<PostCubit, PostState>(
+    return BlocConsumer<GetDonationCubit, GetDonationState>(
       listener: (context, state) {
-        if (state is PostLodging) {
+        if (state is GetDonationLodging) {
           isLodging = true;
-        } else if (state is PostSuccess) {
+        } else if (state is GetDonationSuccess) {
           posts = state.posts;
           isLodging = false;
-        } else if (state is PostFailure) {
+        } else if (state is GetDonationFailure) {
           isLodging = false;
           print('failure');
         }

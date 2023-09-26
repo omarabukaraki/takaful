@@ -8,7 +8,7 @@ import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/component/custom_button.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/cubit/add_images_cubit/add_images_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/add_images_component.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/alert_dialog_button.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/image_displayed.dart';

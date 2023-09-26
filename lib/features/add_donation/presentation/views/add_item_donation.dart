@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/component/custom_search_bar.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/cubit/add_images_cubit/add_images_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/features/add_donation/presentation/views/add_details_donation.dart';
 import '../../../../component/custom_app_bar.dart';
 import 'widgets/type_of_item_or_service.dart';

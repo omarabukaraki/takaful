@@ -6,8 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/bloc_observer.dart';
 import 'package:takaful/core/routes/app_routes.dart';
 import 'package:takaful/core/utils/app_colors.dart';
-import 'package:takaful/cubit/add_images_cubit/add_images_cubit.dart';
-import 'package:takaful/cubit/post_cubit/post_cubit.dart';
+import 'package:takaful/cubit/get_donation_cubit/get_donation_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:takaful/features/splash/presentation/views/splash_view.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           create: (context) => LoginCubit(),
         ),
         BlocProvider(
-          create: (context) => PostCubit(),
+          create: (context) => AddDonationCubit(),
         ),
         BlocProvider(
           create: (context) => RegisterCubit(),
@@ -42,6 +43,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AddImagesCubit(),
         ),
+        BlocProvider(
+          create: (context) => GetDonationCubit(),
+        )
       ],
       child: MaterialApp(
         title: 'takaful',
