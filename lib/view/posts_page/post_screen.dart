@@ -108,7 +108,6 @@ class _PostScreenState extends State<PostScreen> {
                         fontSize: 18,
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'ElMessiri',
                       ),
                       maxLines: 1,
                     ),

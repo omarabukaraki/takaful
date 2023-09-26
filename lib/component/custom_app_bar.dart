@@ -30,7 +30,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           style: TextStyle(
             fontSize: sizeFont ?? 21,
             color: AppColor.kPrimary,
-            fontFamily: 'ElMessiri',
           ),
         ),
         Text(
@@ -39,7 +38,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             fontSize: 10,
             color: AppColor.kFont,
             height: 1,
-            fontFamily: 'ElMessiri',
           ),
         )
       ]),

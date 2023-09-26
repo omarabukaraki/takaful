@@ -65,7 +65,6 @@ class AdPosts extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 16,
                 color: AppColor.kFont,
-                fontFamily: 'ElMessiri',
               ),
               textAlign: TextAlign.start,
             ),

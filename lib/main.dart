@@ -50,6 +50,14 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        title: 'takaful',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: 'ElMessiri',
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: AppColor.kPrimary, background: Colors.white),
+          useMaterial3: true,
+        ),
         routes: {
           AddServiceDonation.id: (context) => AddServiceDonation(),
           AddItemDonation.id: (context) => AddItemDonation(),
@@ -59,14 +67,6 @@ class MyApp extends StatelessWidget {
           NotificationPage.id: (context) => NotificationPage(),
           PostPage.id: (context) => PostPage(),
         },
-        title: 'takaful',
-        theme: ThemeData(
-          fontFamily: 'ElMessiri',
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: AppColor.kPrimary, background: Colors.white),
-          useMaterial3: true,
-        ),
-        debugShowCheckedModeBanner: false,
         home: (FirebaseAuth.instance.currentUser != null &&
                 FirebaseAuth.instance.currentUser!.emailVerified)
             ? NavigatorBarPage()

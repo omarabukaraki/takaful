@@ -34,7 +34,6 @@ class Category extends StatelessWidget {
             style: const TextStyle(
               fontSize: 14,
               color: AppColor.kFont,
-              fontFamily: 'ElMessiri',
             ),
           ),
         ],
