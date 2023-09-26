@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/features/get_donation/presentation/views/items_type_page.dart';
+import 'package:takaful/features/get_category/presentation/views/items_type_page.dart';
 import 'package:takaful/features/add_donation/presentation/views/add_details_donation.dart';
 import 'package:takaful/features/add_donation/presentation/views/add_item_donation.dart';
 import 'package:takaful/features/add_donation/presentation/views/add_service_donation.dart';
-import 'package:takaful/view/notifcation_page.dart';
+import 'package:takaful/features/notification/presentation/views/notifcation_page.dart';
 import 'package:takaful/features/get_donation/presentation/views/donations_page.dart';
-import 'package:takaful/features/get_donation/presentation/views/service_type_page.dart';
+import 'package:takaful/features/get_category/presentation/views/service_type_page.dart';
 
 abstract class AppRoutes {
   static Map<String, Widget Function(BuildContext)> route =

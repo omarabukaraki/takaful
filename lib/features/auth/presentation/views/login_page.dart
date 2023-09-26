@@ -5,13 +5,13 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:takaful/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/features/auth/presentation/views/widget/create_register_account_button.dart';
 import 'package:takaful/features/auth/presentation/views/widget/forget_password_button.dart';
-import 'package:takaful/component/logo_takaful.dart';
+import 'package:takaful/core/widgets/logo_takaful.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/helper/show_snak_bar.dart';
+import 'package:takaful/core/helper/show_snak_bar.dart';
 import 'package:takaful/features/auth/presentation/views/register_page.dart';
-import '../../../../component/custom_button.dart';
-import '../../../../component/custom_textfiled.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_textfiled.dart';
 import '../../../home/presentation/views/navegator_page.dart';
 
 class LoginPage extends StatefulWidget {

@@ -1,29 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:takaful/features/get_category/presentation/views/widget/category_menu.dart';
+import 'package:takaful/core/widgets/custom_app_bar.dart';
+import 'package:takaful/core/widgets/custom_search_bar.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/features/get_donation/presentation/views/donations_page.dart';
-import '../../../../component/category_menu.dart';
-import '../../../../component/custom_app_bar.dart';
-import '../../../../component/custom_search_bar.dart';
 
-class ServiceTypePage extends StatelessWidget {
-  const ServiceTypePage({super.key});
-  static String id = 'ServiceTypePage';
+class ItemTypePage extends StatelessWidget {
+  const ItemTypePage({super.key});
+  static String id = 'ItemTypePage';
 
   @override
   Widget build(BuildContext context) {
     String categoryName = ModalRoute.of(context)!.settings.arguments as String;
     double screenheigth = MediaQuery.of(context).size.height;
     final Stream<QuerySnapshot> categoryStream = FirebaseFirestore.instance
-        .collection('service category')
+        .collection('category')
         .orderBy('createAt')
         .snapshots();
+    //
     return Scaffold(
       appBar: CustomAppBar(
         onTap: () {
           Navigator.pop(context);
         },
-        textOne: 'الخدمات',
+        textOne: categoryName,
         textTwo: '',
         button: true,
         sizeFont: 26,
@@ -35,7 +36,7 @@ class ServiceTypePage extends StatelessWidget {
           children: [
             Center(
               child: Container(
-                margin: const EdgeInsets.only(top: 80),
+                margin: const EdgeInsets.symmetric(vertical: 80),
                 width: 100,
                 height: screenheigth,
                 decoration: const BoxDecoration(
@@ -51,6 +52,9 @@ class ServiceTypePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: CustomSearchBar(
                 icon: Icon(Icons.search), hintText: 'ابحث في تكافل'),
+          ),
+          const SizedBox(
+            height: 10,
           ),
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
@@ -84,7 +88,7 @@ class ServiceTypePage extends StatelessWidget {
                 );
               },
             ),
-          ),
+          )
         ]),
       ]),
     );

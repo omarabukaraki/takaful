@@ -2,14 +2,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/features/home/presentation/views/widget/ad_post.dart';
-import 'package:takaful/component/custom_search_bar.dart';
+import 'package:takaful/core/widgets/custom_search_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:takaful/core/utils/app_assets.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/features/get_donation/presentation/views/items_type_page.dart';
-import 'package:takaful/view/notifcation_page.dart';
-import 'package:takaful/features/get_donation/presentation/views/service_type_page.dart';
+import 'package:takaful/features/get_category/presentation/views/items_type_page.dart';
+import 'package:takaful/features/notification/presentation/views/notifcation_page.dart';
+import 'package:takaful/features/get_category/presentation/views/service_type_page.dart';
 import 'widget/ad_application.dart';
 import 'widget/category.dart';
 

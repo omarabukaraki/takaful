@@ -5,13 +5,13 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:takaful/features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
 import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/counter_post.dart';
-import 'package:takaful/component/custom_app_bar.dart';
-import 'package:takaful/component/custom_button.dart';
-import 'package:takaful/component/custom_textfiled.dart';
+import 'package:takaful/core/widgets/custom_app_bar.dart';
+import 'package:takaful/core/widgets/custom_button.dart';
+import 'package:takaful/core/widgets/custom_textfiled.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/add_image_button.dart';
-import 'package:takaful/helper/show_snak_bar.dart';
+import 'package:takaful/core/helper/show_snak_bar.dart';
 import 'package:takaful/features/add_donation/presentation/views/add_images_page.dart';
 
 class AddDetailsPost extends StatefulWidget {

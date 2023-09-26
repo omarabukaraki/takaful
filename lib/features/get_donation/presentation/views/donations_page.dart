@@ -2,7 +2,7 @@
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:takaful/component/custom_app_bar.dart';
+import 'package:takaful/core/widgets/custom_app_bar.dart';
 import 'package:takaful/features/get_donation/data/model/donation_model.dart';
 import 'package:takaful/features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
 import 'package:takaful/features/get_donation/presentation/views/donation_details_page.dart';

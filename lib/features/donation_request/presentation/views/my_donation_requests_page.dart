@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:takaful/component/custom_app_bar.dart';
+import 'package:takaful/core/widgets/custom_app_bar.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/features/donation_request/presentation/views/widget/my_donation_requests_component.dart';
 

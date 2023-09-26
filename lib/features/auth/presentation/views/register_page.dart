@@ -6,10 +6,10 @@ import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:takaful/features/auth/presentation/views/widget/create_register_account_button.dart';
-import 'package:takaful/helper/show_snak_bar.dart';
+import 'package:takaful/core/helper/show_snak_bar.dart';
 import 'package:takaful/features/auth/presentation/views/login_page.dart';
-import '../../../../../component/custom_button.dart';
-import '../../../../../component/custom_textfiled.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_textfiled.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
