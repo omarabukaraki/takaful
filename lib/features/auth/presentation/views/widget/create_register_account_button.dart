@@ -6,8 +6,12 @@ class CreateAccountButton extends StatelessWidget {
   const CreateAccountButton({
     Key? key,
     this.onTap,
+    this.textOne,
+    this.textTwo,
   }) : super(key: key);
   final void Function()? onTap;
+  final String? textOne;
+  final String? textTwo;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,11 +19,11 @@ class CreateAccountButton extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: onTap,
-          child: const Text(AppString.textCreateAccountArabic,
-              style: TextStyle(fontSize: 14, color: AppColor.kPrimary)),
+          child: Text(textOne ?? AppString.textCreateAccountArabic,
+              style: const TextStyle(fontSize: 14, color: AppColor.kPrimary)),
         ),
-        const Text(AppString.textDoNotHaveAccount,
-            style: TextStyle(color: AppColor.kFontSecondary)),
+        Text(textTwo ?? AppString.textDoNotHaveAccount,
+            style: const TextStyle(color: AppColor.kFontSecondary)),
       ],
     );
   }

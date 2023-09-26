@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:takaful/view/auth/login_page.dart';
+import 'package:takaful/features/auth/presentation/views/login_page.dart';
 import 'package:takaful/view/navigator_bar_pages/profile_page/profile_app_bar.dart';
 import 'package:takaful/view/navigator_bar_pages/profile_page/profile_button.dart';
 

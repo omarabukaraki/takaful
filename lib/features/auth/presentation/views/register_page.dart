@@ -4,11 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/cubit/register_cubit/register_cubit.dart';
+import 'package:takaful/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
+import 'package:takaful/features/auth/presentation/views/widget/create_register_account_button.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
-import 'package:takaful/view/auth/login_page.dart';
-import '../../../component/custom_button.dart';
-import '../../../component/custom_textfiled.dart';
+import 'package:takaful/features/auth/presentation/views/login_page.dart';
+import '../../../../../component/custom_button.dart';
+import '../../../../../component/custom_textfiled.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -138,27 +139,18 @@ class _RegisterPageState extends State<RegisterPage> {
                         }),
                     const SizedBox(height: 20),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                builder: (context) {
-                                  return const LoginPage();
-                                },
-                              ));
-                            },
-                            child: const Text(AppString.textLoginArabic,
-                                style: TextStyle(
-                                    fontSize: 14, color: AppColor.kPrimary)),
-                          ),
-                          const Text(AppString.textDoYouHaveAnAccount,
-                              style: TextStyle(color: AppColor.kFontSecondary)),
-                        ],
-                      ),
-                    ),
+                        padding: const EdgeInsets.all(8.0),
+                        child: CreateAccountButton(
+                          textOne: AppString.textLoginArabic,
+                          textTwo: AppString.textDoYouHaveAnAccount,
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return const LoginPage();
+                              },
+                            ));
+                          },
+                        )),
                     const SizedBox(height: 20)
                   ]),
                 ),

@@ -2,17 +2,17 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:takaful/component/create_account_button.dart';
-import 'package:takaful/component/forget_password_button.dart';
+import 'package:takaful/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:takaful/features/auth/presentation/views/widget/create_register_account_button.dart';
+import 'package:takaful/features/auth/presentation/views/widget/forget_password_button.dart';
 import 'package:takaful/component/logo_takaful.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
-import 'package:takaful/view/auth/register_page.dart';
-import '../../component/custom_button.dart';
-import '../../component/custom_textfiled.dart';
-import '../navigator_bar_pages/navegator_page.dart';
+import 'package:takaful/features/auth/presentation/views/register_page.dart';
+import '../../../../component/custom_button.dart';
+import '../../../../component/custom_textfiled.dart';
+import '../../../../view/navigator_bar_pages/navegator_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -127,6 +127,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
                   CreateAccountButton(
+                    textOne: AppString.textCreateAccountArabic,
+                    textTwo: AppString.textDoNotHaveAccount,
                     onTap: () {
                       Navigator.pushReplacement(context, MaterialPageRoute(
                         builder: (context) {

@@ -39,7 +39,7 @@ class _PostsPageState extends State<PostsPage> {
           isLodging = false;
         } else if (state is PostFailure) {
           isLodging = false;
-          print('falier');
+          print('failure');
         }
       },
       builder: (context, state) {

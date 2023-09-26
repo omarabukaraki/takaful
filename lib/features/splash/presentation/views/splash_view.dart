@@ -3,7 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:takaful/core/utils/app_assets.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/view/auth/login_page.dart';
+import 'package:takaful/features/auth/presentation/views/login_page.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
