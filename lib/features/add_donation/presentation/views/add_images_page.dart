@@ -9,16 +9,19 @@ import 'package:takaful/component/custom_button.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/cubit/add_images_cubit/add_images_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/add_images_component.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/alert_dialog_button.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/image_displayed.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
 
-class AddImages extends StatefulWidget {
-  const AddImages({super.key});
+class AddImagesPage extends StatefulWidget {
+  const AddImagesPage({super.key});
 
   @override
-  State<AddImages> createState() => _AddImagesState();
+  State<AddImagesPage> createState() => _AddImagesPageState();
 }
 
-class _AddImagesState extends State<AddImages> {
+class _AddImagesPageState extends State<AddImagesPage> {
   final imagePicker = ImagePicker();
   List<File> image = [];
   List<String> url = [];
@@ -58,7 +61,7 @@ class _AddImagesState extends State<AddImages> {
                             title: const Text(':' 'حدد الطريقة ',
                                 textAlign: TextAlign.center),
                             actions: [
-                              CustomButtonToAlertDialog(
+                              AlertDialogButton(
                                 titleButton: 'من المعرض',
                                 onTap: () {
                                   formGallery = true;
@@ -68,7 +71,7 @@ class _AddImagesState extends State<AddImages> {
                                 },
                               ),
                               const SizedBox(height: 10),
-                              CustomButtonToAlertDialog(
+                              AlertDialogButton(
                                 titleButton: 'بأستخدام الكاميرا',
                                 onTap: () async {
                                   formGallery = false;
@@ -95,7 +98,7 @@ class _AddImagesState extends State<AddImages> {
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     child: ImageDisplayed(image: image[0]),
                   ),
-            // start display grid view to pick image
+            // start display grid view to pick images
             //
             Expanded(
               child: Padding(
@@ -140,7 +143,7 @@ class _AddImagesState extends State<AddImages> {
               ),
             ),
             //
-            //end display grid view to pick image
+            //end display grid view to pick images
 
             //start custom button
             //
@@ -165,100 +168,6 @@ class _AddImagesState extends State<AddImages> {
             SizedBox(height: MediaQuery.of(context).size.height / 20)
           ]);
         },
-      ),
-    );
-  }
-}
-
-class ImageDisplayed extends StatelessWidget {
-  const ImageDisplayed({
-    super.key,
-    required this.image,
-  });
-
-  final File image;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 164,
-      decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-                color: Colors.black26, blurRadius: 4, offset: Offset(0, 1))
-          ],
-          borderRadius: BorderRadius.circular(20),
-          image: DecorationImage(image: FileImage(image), fit: BoxFit.cover)),
-    );
-  }
-}
-
-class AddImagesComponent extends StatelessWidget {
-  const AddImagesComponent(
-      {super.key,
-      this.textOne,
-      this.textTwo,
-      this.isOneText,
-      this.iconSize,
-      this.fontSize});
-  final String? textOne;
-  final String? textTwo;
-  final bool? isOneText;
-  final double? iconSize;
-  final double? fontSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 164,
-      decoration: BoxDecoration(boxShadow: const [
-        BoxShadow(color: AppColor.kGrey, blurRadius: 5, offset: Offset(0, 2))
-      ], borderRadius: BorderRadius.circular(20), color: AppColor.kPrimary),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.image,
-            size: iconSize ?? 40,
-            color: Colors.white,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            textOne ?? 'الصورة الرئيسية',
-            style: TextStyle(color: AppColor.kWhite, fontSize: fontSize ?? 14),
-          ),
-          isOneText != true
-              ? Text(textTwo ?? '(مطلوب)',
-                  style: const TextStyle(color: AppColor.kWhite, fontSize: 12))
-              : const SizedBox()
-        ],
-      ),
-    );
-  }
-}
-
-class CustomButtonToAlertDialog extends StatelessWidget {
-  const CustomButtonToAlertDialog({
-    Key? key,
-    this.titleButton,
-    this.onTap,
-  }) : super(key: key);
-  final String? titleButton;
-  final VoidCallback? onTap;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        height: 50,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: AppColor.kPrimary),
-        child: Center(
-            child: Text(titleButton ?? 'المعرض',
-                style: const TextStyle(color: AppColor.kWhite))),
       ),
     );
   }

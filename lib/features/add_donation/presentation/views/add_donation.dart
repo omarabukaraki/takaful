@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/component/custom_search_bar.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_item_donation.dart';
-import '../../../component/custom_app_bar.dart';
-import '../../../component/type_of_item_or_service.dart';
+import 'package:takaful/features/add_donation/presentation/views/add_item_donation.dart';
+import '../../../../component/custom_app_bar.dart';
+import 'widgets/type_of_item_or_service.dart';
 import 'add_service_donation.dart';
 
 class AddDonation extends StatelessWidget {

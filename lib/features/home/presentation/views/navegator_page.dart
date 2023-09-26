@@ -3,8 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_donation.dart';
-import 'package:takaful/view/navigator_bar_pages/item_request_page/item_request_page.dart';
+import 'package:takaful/features/add_donation/presentation/views/add_donation.dart';
+import 'package:takaful/features/donation_request/presentation/views/my_donation_requests_page.dart';
 import 'package:takaful/features/profile/presentation/views/profile_page.dart';
 import 'home_page.dart';
 
@@ -25,7 +25,7 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
   ];
   final screen = const [
     ProfilePage(),
-    ItemRequest(),
+    MyDonationRequests(),
     AddDonation(),
     HomePage()
   ];

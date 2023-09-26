@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/view/items_page/items_type_page.dart';
-import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_details_post_page.dart';
-import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_item_donation.dart';
-import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_service_donation.dart';
+import 'package:takaful/features/add_donation/presentation/views/add_details_donation.dart';
+import 'package:takaful/features/add_donation/presentation/views/add_item_donation.dart';
+import 'package:takaful/features/add_donation/presentation/views/add_service_donation.dart';
 import 'package:takaful/view/notifcation_page.dart';
 import 'package:takaful/view/posts_page/posts_page.dart';
 import 'package:takaful/view/servives_pages/service_type_page.dart';

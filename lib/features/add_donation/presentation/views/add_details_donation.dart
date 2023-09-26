@@ -2,7 +2,7 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:takaful/component/counter_post.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/counter_post.dart';
 import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/component/custom_button.dart';
 import 'package:takaful/component/custom_textfiled.dart';
@@ -10,8 +10,9 @@ import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/add_image_button.dart';
 import 'package:takaful/helper/show_snak_bar.dart';
-import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_images.dart';
+import 'package:takaful/features/add_donation/presentation/views/add_images_page.dart';
 
 class AddDetailsPost extends StatefulWidget {
   const AddDetailsPost({super.key});
@@ -104,14 +105,14 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                                     .nameImage = [];
                                 Navigator.push(context, MaterialPageRoute(
                                   builder: (context) {
-                                    return const AddImages();
+                                    return const AddImagesPage();
                                   },
                                 ));
                               },
-                              child: const AddImage(
+                              child: const AddImageButton(
                                   icon: Icons.image,
                                   text: AppString.textAddImageToDonation))
-                          : const AddImage();
+                          : const AddImageButton();
                     },
                   ),
                   CustomTextFiled(
@@ -206,40 +207,5 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
             );
           },
         ));
-  }
-}
-
-class AddImage extends StatelessWidget {
-  const AddImage({
-    super.key,
-    this.icon,
-    this.text,
-  });
-  final IconData? icon;
-  final String? text;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      width: double.infinity,
-      height: 164,
-      decoration: BoxDecoration(
-          color: AppColor.kPrimary, borderRadius: BorderRadius.circular(20)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon ?? Icons.check,
-            size: 40,
-            color: Colors.white,
-          ),
-          const SizedBox(height: 5),
-          Text(
-            text ?? 'تم اضافة الصور بنجاح',
-            style: const TextStyle(color: Colors.white, fontSize: 16),
-          )
-        ],
-      ),
-    );
   }
 }

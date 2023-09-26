@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/component/custom_search_bar.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/cubit/add_images_cubit/add_images_cubit.dart';
-import '../../../component/custom_app_bar.dart';
-import '../../../component/type_of_item_or_service.dart';
-import 'add_details_post_page.dart';
+import '../../../../component/custom_app_bar.dart';
+import 'widgets/type_of_item_or_service.dart';
+import 'add_details_donation.dart';
 
 class AddServiceDonation extends StatelessWidget {
   AddServiceDonation({super.key});
