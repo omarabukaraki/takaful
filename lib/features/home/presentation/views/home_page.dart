@@ -7,9 +7,9 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:takaful/core/utils/app_assets.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/view/items_page/items_type_page.dart';
+import 'package:takaful/features/get_donation/presentation/views/items_type_page.dart';
 import 'package:takaful/view/notifcation_page.dart';
-import 'package:takaful/view/servives_pages/service_type_page.dart';
+import 'package:takaful/features/get_donation/presentation/views/service_type_page.dart';
 import 'widget/ad_application.dart';
 import 'widget/category.dart';
 
