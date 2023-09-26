@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class PostCoverImage extends StatelessWidget {
-  const PostCoverImage({
+class DonationCoverImage extends StatelessWidget {
+  const DonationCoverImage({
     this.image,
     super.key,
   });

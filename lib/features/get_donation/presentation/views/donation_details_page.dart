@@ -1,18 +1,20 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:takaful/component/image_count.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/image_count.dart';
 import 'package:takaful/core/utils/app_colors.dart';
-import 'package:takaful/models/post_model.dart';
+import 'package:takaful/features/get_donation/data/model/donation_model.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_button.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_image.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_info.dart';
 
-class PostScreen extends StatefulWidget {
-  const PostScreen({super.key, this.postModel});
-  final PostModel? postModel;
+class DonationDetailsPage extends StatefulWidget {
+  const DonationDetailsPage({super.key, this.postModel});
+  final DonationModel? postModel;
   @override
-  State<PostScreen> createState() => _PostScreenState();
+  State<DonationDetailsPage> createState() => _DonationDetailsPageState();
 }
 
-class _PostScreenState extends State<PostScreen> {
+class _DonationDetailsPageState extends State<DonationDetailsPage> {
   int inIndex = 0;
 
   @override
@@ -29,7 +31,7 @@ class _PostScreenState extends State<PostScreen> {
                   // carouselController: _controller,
                   itemCount: widget.postModel!.image.length,
                   itemBuilder: (context, index, realIndex) {
-                    return ImagePostComponent(
+                    return DonationDetailsImage(
                       image: widget.postModel!.image[index],
                     );
                   },
@@ -59,7 +61,7 @@ class _PostScreenState extends State<PostScreen> {
                   right: 0,
                   child: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: CustomButton(
+                    child: DonationDetailsButton(
                       onTap: () {
                         Navigator.pop(context);
                       },
@@ -111,18 +113,18 @@ class _PostScreenState extends State<PostScreen> {
                       ),
                       maxLines: 1,
                     ),
-                    InformationPost(
+                    DonationDetailsInformation(
                         section: 'القسم',
                         data:
                             "${widget.postModel!.category} - ${widget.postModel!.itemOrService}"),
-                    InformationPost(
+                    DonationDetailsInformation(
                         section: 'الموقع', data: widget.postModel!.location),
-                    InformationPost(
+                    DonationDetailsInformation(
                         section: 'الحالة', data: widget.postModel!.state),
-                    InformationPost(
+                    DonationDetailsInformation(
                         section: 'تاريخ النشر',
                         data: widget.postModel!.createAt.substring(0, 10)),
-                    InformationPost(
+                    DonationDetailsInformation(
                         section: 'العدد',
                         data: widget.postModel!.count.toString()),
                     const Padding(
@@ -243,102 +245,6 @@ class _PostScreenState extends State<PostScreen> {
             ]),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class InformationPost extends StatelessWidget {
-  const InformationPost({
-    this.section,
-    this.data,
-    super.key,
-  });
-  final String? data;
-  final String? section;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      width: double.infinity,
-      height: 45,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              offset: Offset(0, 2),
-              blurRadius: 6,
-            )
-          ],
-          color: Colors.white),
-      child: Row(children: [
-        Expanded(
-            flex: 1,
-            child: Text(
-              data ?? 'الاستهلاكيات - الطعام',
-              textAlign: TextAlign.end,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.black,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.clip,
-            )),
-        Expanded(
-            flex: 1,
-            child: Text(
-              section ?? 'القسم',
-              textAlign: TextAlign.end,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.black,
-              ),
-            ))
-      ]),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  const CustomButton({
-    super.key,
-    this.onTap,
-  });
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: const CircleAvatar(
-        backgroundColor: Color.fromARGB(255, 122, 122, 122),
-        radius: 15,
-        child: Icon(
-          Icons.arrow_forward_ios_rounded,
-          color: Colors.white,
-          size: 18,
-        ),
-      ),
-    );
-  }
-}
-
-class ImagePostComponent extends StatelessWidget {
-  const ImagePostComponent({super.key, this.image});
-  final String? image;
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: CachedNetworkImage(
-        imageUrl: image!,
-        fit: BoxFit.fitHeight,
-        progressIndicatorBuilder: (context, url, downloadProgress) {
-          return CircularProgressIndicator(value: downloadProgress.progress);
-        },
-        errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );
   }

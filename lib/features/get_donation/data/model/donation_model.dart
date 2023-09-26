@@ -1,4 +1,4 @@
-class PostModel {
+class DonationModel {
   final String id;
   final bool postState;
   final String title;
@@ -11,7 +11,7 @@ class PostModel {
   final String state;
   final String createAt;
   final String donarAccount;
-  PostModel(
+  DonationModel(
     this.id,
     this.postState,
     this.title,
@@ -26,8 +26,8 @@ class PostModel {
     this.count,
   );
 
-  factory PostModel.fromJson(jsonData) {
-    return PostModel(
+  factory DonationModel.fromJson(jsonData) {
+    return DonationModel(
         jsonData['id'],
         jsonData['postState'],
         jsonData['title'],

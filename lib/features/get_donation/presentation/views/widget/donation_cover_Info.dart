@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 
-class PostCoverInformation extends StatelessWidget {
-  const PostCoverInformation({
+class DonationCoverInformation extends StatelessWidget {
+  const DonationCoverInformation({
     this.title,
     this.typePost,
     this.location,

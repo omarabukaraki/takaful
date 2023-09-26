@@ -4,7 +4,7 @@ import 'package:takaful/features/add_donation/presentation/views/add_details_don
 import 'package:takaful/features/add_donation/presentation/views/add_item_donation.dart';
 import 'package:takaful/features/add_donation/presentation/views/add_service_donation.dart';
 import 'package:takaful/view/notifcation_page.dart';
-import 'package:takaful/view/posts_page/posts_page.dart';
+import 'package:takaful/features/get_donation/presentation/views/donations_page.dart';
 import 'package:takaful/view/servives_pages/service_type_page.dart';
 
 abstract class AppRoutes {
@@ -16,6 +16,6 @@ abstract class AppRoutes {
     ItemTypePage.id: (context) => const ItemTypePage(),
     ServiceTypePage.id: (context) => const ServiceTypePage(),
     NotificationPage.id: (context) => const NotificationPage(),
-    PostsPage.id: (context) => const PostsPage(),
+    DonationsPage.id: (context) => const DonationsPage(),
   };
 }

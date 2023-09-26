@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
-import 'package:takaful/view/posts_page/posts_page.dart';
+import 'package:takaful/features/get_donation/presentation/views/donations_page.dart';
 import '../../component/category_menu.dart';
 import '../../component/custom_app_bar.dart';
 import '../../component/custom_search_bar.dart';
@@ -75,7 +75,7 @@ class ServiceTypePage extends StatelessWidget {
                         image: data['image'],
                         text: data['categoryName'],
                         onTap: () {
-                          Navigator.pushNamed(context, PostsPage.id,
+                          Navigator.pushNamed(context, DonationsPage.id,
                               arguments: [categoryName, data['categoryName']]);
                         },
                       );

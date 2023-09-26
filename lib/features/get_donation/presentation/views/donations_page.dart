@@ -3,20 +3,20 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/component/custom_app_bar.dart';
-import 'package:takaful/cubit/get_donation_cubit/get_donation_cubit.dart';
-import 'package:takaful/models/post_model.dart';
-import 'package:takaful/view/posts_page/post_screen.dart';
-import 'package:takaful/view/posts_page/post_component.dart';
+import 'package:takaful/features/get_donation/data/model/donation_model.dart';
+import 'package:takaful/features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
+import 'package:takaful/features/get_donation/presentation/views/donation_details_page.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_component.dart';
 
-class PostsPage extends StatefulWidget {
-  const PostsPage({super.key});
+class DonationsPage extends StatefulWidget {
+  const DonationsPage({super.key});
   static String id = 'PostsPage';
 
   @override
-  State<PostsPage> createState() => _PostsPageState();
+  State<DonationsPage> createState() => _DonationsPageState();
 }
 
-class _PostsPageState extends State<PostsPage> {
+class _DonationsPageState extends State<DonationsPage> {
   bool isLodging = false;
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _PostsPageState extends State<PostsPage> {
     BlocProvider.of<GetDonationCubit>(context).getPost();
   }
 
-  List<PostModel> posts = [];
+  List<DonationModel> posts = [];
   @override
   Widget build(BuildContext context) {
     List<dynamic> categoryAndItemName =
@@ -58,12 +58,12 @@ class _PostsPageState extends State<PostsPage> {
               itemCount: posts.length,
               itemBuilder: (context, index) {
                 return categoryAndItemName[1] == posts[index].itemOrService
-                    ? CustomPostComponent(
+                    ? DonationComponent(
                         posts: posts[index],
                         onTapRequest: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return PostScreen(postModel: posts[index]);
+                            return DonationDetailsPage(postModel: posts[index]);
                           }));
                         },
                       )

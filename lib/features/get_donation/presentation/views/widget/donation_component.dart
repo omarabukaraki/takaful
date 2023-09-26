@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/component/image_count.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/image_count.dart';
 import 'package:takaful/core/utils/app_colors.dart';
-import 'package:takaful/models/post_model.dart';
-import 'package:takaful/view/posts_page/post_cover_Info.dart';
-import 'package:takaful/view/posts_page/post_cover_image.dart';
+import 'package:takaful/features/get_donation/data/model/donation_model.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_cover_Info.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_cover_image.dart';
 
-class CustomPostComponent extends StatelessWidget {
-  const CustomPostComponent(
+class DonationComponent extends StatelessWidget {
+  const DonationComponent(
       {super.key, this.onTapRequest, this.onTapSave, this.posts});
-  final PostModel? posts;
+  final DonationModel? posts;
 
   final VoidCallback? onTapRequest;
   final VoidCallback? onTapSave;
@@ -35,7 +35,7 @@ class CustomPostComponent extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: PostCoverInformation(
+                    child: DonationCoverInformation(
                         title: posts!.title,
                         typePost:
                             '${posts!.category} , ${posts!.itemOrService}',
@@ -43,7 +43,7 @@ class CustomPostComponent extends StatelessWidget {
                   ),
                   Expanded(
                       flex: 1,
-                      child: PostCoverImage(
+                      child: DonationCoverImage(
                         image: posts!.image[0],
                       )),
                 ],

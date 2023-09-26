@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-import 'package:takaful/models/post_model.dart';
+import 'package:takaful/features/get_donation/data/model/donation_model.dart';
 
 part 'get_donation_state.dart';
 
@@ -12,9 +12,9 @@ class GetDonationCubit extends Cubit<GetDonationState> {
     emit(GetDonationLodging());
     try {
       posts.orderBy('createAt', descending: true).snapshots().listen((event) {
-        List<PostModel> postList = [];
+        List<DonationModel> postList = [];
         for (var doc in event.docs) {
-          postList.add(PostModel(
+          postList.add(DonationModel(
               doc['id'],
               doc['postState'],
               doc['title'],
