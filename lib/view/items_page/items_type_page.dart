@@ -79,7 +79,7 @@ class ItemTypePage extends StatelessWidget {
                         image: data['image'],
                         text: data['categoryName'],
                         onTap: () {
-                          Navigator.pushNamed(context, PostPage.id,
+                          Navigator.pushNamed(context, PostsPage.id,
                               arguments: [categoryName, data['categoryName']]);
                         },
                       );

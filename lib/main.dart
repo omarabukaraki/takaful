@@ -4,20 +4,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/bloc_observer.dart';
+import 'package:takaful/core/routes/app_routes.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/cubit/post_cubit/post_cubit.dart';
 import 'package:takaful/cubit/register_cubit/register_cubit.dart';
-import 'package:takaful/view/auth/splash_screen.dart';
-import 'package:takaful/view/items_page/items_type_page.dart';
-import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_details_post_page.dart';
-import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_item_donation.dart';
-import 'package:takaful/view/navigator_bar_pages/add_donation_pages/add_service_donation.dart';
+import 'package:takaful/features/splash/presentation/views/splash_view.dart';
 import 'package:takaful/view/navigator_bar_pages/navegator_page.dart';
-import 'package:takaful/view/notifcation_page.dart';
-import 'package:takaful/view/posts_page/posts_page.dart';
-import 'package:takaful/view/servives_pages/service_type_page.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -58,19 +52,11 @@ class MyApp extends StatelessWidget {
               seedColor: AppColor.kPrimary, background: Colors.white),
           useMaterial3: true,
         ),
-        routes: {
-          AddServiceDonation.id: (context) => AddServiceDonation(),
-          AddItemDonation.id: (context) => AddItemDonation(),
-          AddDetailsPost.id: (context) => AddDetailsPost(),
-          ItemTypePage.id: (context) => ItemTypePage(),
-          ServiceTypePage.id: (context) => ServiceTypePage(),
-          NotificationPage.id: (context) => NotificationPage(),
-          PostPage.id: (context) => PostPage(),
-        },
+        routes: AppRoutes.route,
         home: (FirebaseAuth.instance.currentUser != null &&
                 FirebaseAuth.instance.currentUser!.emailVerified)
             ? NavigatorBarPage()
-            : SplashScreen(),
+            : SplashView(),
       ),
     );
   }

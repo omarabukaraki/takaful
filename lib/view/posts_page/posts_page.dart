@@ -8,15 +8,15 @@ import 'package:takaful/models/post_model.dart';
 import 'package:takaful/view/posts_page/post_screen.dart';
 import 'package:takaful/view/posts_page/post_component.dart';
 
-class PostPage extends StatefulWidget {
-  const PostPage({super.key});
-  static String id = 'PostPage';
+class PostsPage extends StatefulWidget {
+  const PostsPage({super.key});
+  static String id = 'PostsPage';
 
   @override
-  State<PostPage> createState() => _PostPageState();
+  State<PostsPage> createState() => _PostsPageState();
 }
 
-class _PostPageState extends State<PostPage> {
+class _PostsPageState extends State<PostsPage> {
   bool isLodging = false;
   @override
   void initState() {
