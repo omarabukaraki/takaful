@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/component/custom_app_bar.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/view/navigator_bar_pages/item_request_page/item_request_component.dart';
+import 'package:takaful/features/donation_request/presentation/views/widget/my_donation_requests_component.dart';
 
-class ItemRequest extends StatelessWidget {
-  const ItemRequest({super.key});
+class MyDonationRequests extends StatelessWidget {
+  const MyDonationRequests({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ItemRequest extends StatelessWidget {
         backgroundColor: Colors.white,
         body: ListView(
           children: [
-            ItemRequestComponent(
+            MyDonationRequestsComponent(
               onTapAccept: () {
                 print('Accept');
               },

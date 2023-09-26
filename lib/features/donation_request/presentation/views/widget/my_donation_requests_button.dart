@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 
-class ItemRequestButton extends StatelessWidget {
-  const ItemRequestButton({
+class MyDonationRequestsButton extends StatelessWidget {
+  const MyDonationRequestsButton({
     super.key,
     this.nameButton,
     this.colorAndBorder,

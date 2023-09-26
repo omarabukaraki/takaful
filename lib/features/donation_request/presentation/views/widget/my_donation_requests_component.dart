@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:takaful/core/utils/app_colors.dart';
-import 'package:takaful/view/navigator_bar_pages/item_request_page/item_request_button.dart';
+import 'package:takaful/features/donation_request/presentation/views/widget/my_donation_requests_button.dart';
 
-class ItemRequestComponent extends StatelessWidget {
-  const ItemRequestComponent({
+class MyDonationRequestsComponent extends StatelessWidget {
+  const MyDonationRequestsComponent({
     Key? key,
     required this.title,
     this.nameUser,
@@ -91,7 +91,7 @@ class ItemRequestComponent extends StatelessWidget {
                       children: [
                         Expanded(
                             flex: 1,
-                            child: ItemRequestButton(
+                            child: MyDonationRequestsButton(
                               onTap: onTapReject,
                               colorAndBorder: false,
                               nameButton: 'رفض',
@@ -101,7 +101,7 @@ class ItemRequestComponent extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: ItemRequestButton(
+                          child: MyDonationRequestsButton(
                             onTap: onTapAccept,
                             colorAndBorder: true,
                             nameButton: 'قبول',
