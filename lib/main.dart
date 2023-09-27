@@ -8,6 +8,7 @@ import 'package:takaful/core/routes/app_routes.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
 import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/cubit/add_location/add_location_cubit.dart';
 import 'package:takaful/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:takaful/features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
@@ -45,7 +46,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetDonationCubit(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => AddLocationCubit(),
+        ),
       ],
       child: MaterialApp(
         title: 'takaful',

@@ -38,7 +38,7 @@ class DonationComponent extends StatelessWidget {
                     child: DonationCoverInformation(
                         title: posts!.title,
                         typePost:
-                            '${posts!.category} , ${posts!.itemOrService}',
+                            '${posts!.category} - ${posts!.itemOrService}',
                         location: posts!.location),
                   ),
                   Expanded(

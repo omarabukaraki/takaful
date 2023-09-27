@@ -2,17 +2,22 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:takaful/features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
-import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/counter_post.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:takaful/core/helper/show_snak_bar.dart';
+import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
 import 'package:takaful/core/widgets/custom_button.dart';
 import 'package:takaful/core/widgets/custom_textfiled.dart';
-import 'package:takaful/core/utils/app_colors.dart';
-import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/add_image_button.dart';
-import 'package:takaful/core/helper/show_snak_bar.dart';
+import 'package:takaful/features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/cubit/add_location/add_location_cubit.dart';
 import 'package:takaful/features/add_donation/presentation/views/add_images_page.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/add_image_button.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/counter_post.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/location_button.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/location_loading.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/text_feiled.dart';
 
 class AddDetailsPost extends StatefulWidget {
   const AddDetailsPost({super.key});
@@ -27,15 +32,19 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
   int counter = 0;
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController title = TextEditingController();
-  TextEditingController location = TextEditingController();
+  TextEditingController locationSubLocality = TextEditingController();
+  TextEditingController locationLocality = TextEditingController();
   TextEditingController stateOfThePost = TextEditingController();
   TextEditingController description = TextEditingController();
   bool isLoading = false;
+  bool isLocationLoading = false;
   bool addedImage = false;
+  bool addedLocation = false;
   List<String> urls = [];
+  List<Placemark> placemarks = [];
   void clearText() {
     title.clear();
-    location.clear();
+    locationSubLocality.clear();
     stateOfThePost.clear();
     description.clear();
   }
@@ -65,6 +74,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
               BlocProvider.of<AddImagesCubit>(context).nameImage = [];
               BlocProvider.of<AddImagesCubit>(context).url = [];
               addedImage = false;
+              addedLocation = false;
             } else if (state is AddDonationFailure) {
               isLoading = false;
             }
@@ -89,6 +99,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                     ),
                   ),
                   const SizedBox(height: 10),
+                  //start get images from user
+                  //
                   BlocConsumer<AddImagesCubit, AddImagesState>(
                     listener: (context, state) {
                       addedImage = true;
@@ -115,6 +127,10 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                           : const AddImageButton();
                     },
                   ),
+                  //
+                  //end get images from user
+
+                  //start get title from user
                   CustomTextFiled(
                     controller: title,
                     onChanged: (postTitle) {
@@ -123,14 +139,83 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                     hintText: AppString.textTitle,
                     icon: const Icon(Icons.title_rounded),
                   ),
-                  CustomTextFiled(
-                    controller: location,
-                    onChanged: (postLocation) {
-                      location.text = postLocation;
+                  //end get title from user
+
+                  //start get location from user
+                  //
+                  BlocConsumer<AddLocationCubit, AddLocationState>(
+                    listener: (context, state) {
+                      if (state is AddLocationLodging) {
+                        isLocationLoading = true;
+                      } else if (state is AddLocationSuccess) {
+                        addedLocation = true;
+                        isLocationLoading = false;
+                        placemarks = state.placemarks;
+                        locationSubLocality.text =
+                            placemarks[0].subLocality.toString();
+                        locationLocality.text =
+                            placemarks[0].locality.toString();
+                      } else if (state is AddLocationFailure) {
+                        isLocationLoading = false;
+                        showSankBar(context, state.errMessage);
+                      }
                     },
-                    hintText: AppString.textLocation,
-                    icon: const Icon(Icons.location_on),
+                    builder: (context, state) {
+                      return addedLocation != true
+                          ? SizedBox(
+                              child: isLocationLoading == false
+                                  ? LocationButton(
+                                      onTap: () {
+                                        BlocProvider.of<AddLocationCubit>(
+                                                context)
+                                            .getPosition();
+                                      },
+                                    )
+                                  : const LocationLoadingIndicator(),
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      child: TextFieldForLocation(
+                                        controller: locationSubLocality,
+                                        hintText: placemarks[0].subLocality,
+                                        onChanged: (value) {
+                                          locationSubLocality.text = value;
+                                        },
+                                        icon: const Icon(Icons.location_on),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      child: TextFieldForLocation(
+                                          controller: locationLocality,
+                                          readOnly: true,
+                                          onChanged: (p0) {
+                                            locationLocality.text = p0;
+                                          },
+                                          hintText: placemarks[0].locality,
+                                          icon: const Icon(
+                                              Icons.location_city_rounded)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                    },
                   ),
+                  //
+                  //end get location from user
+
+                  //start get state from user
                   CustomTextFiled(
                     controller: stateOfThePost,
                     onChanged: (p0) {
@@ -139,6 +224,9 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                     hintText: AppString.textState,
                     icon: const Icon(Icons.fiber_new_rounded),
                   ),
+                  //end get state from user
+
+                  //start get count from user
                   categoryAndItemService[0].length <= 5
                       ? CounterPost(
                           counter: counter,
@@ -162,6 +250,9 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                           },
                         )
                       : const SizedBox(),
+                  //end get count from user
+
+                  //start get desorption from user
                   CustomTextFiled(
                     controller: description,
                     onChanged: (postDescription) {
@@ -170,7 +261,10 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                     hintText: AppString.textDescription,
                     icon: const Icon(Icons.description),
                   ),
+                  //end get desorption from user
                   const SizedBox(height: 10),
+
+                  //start button to upload donation
                   CustomButton(
                     circular: 20,
                     text: AppString.textPublishDonation,
@@ -182,26 +276,31 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                             color: AppColor.kRed);
                       } else {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<AddDonationCubit>(context).addPost(
-                            postState: true,
-                            title: title.text,
-                            image: BlocProvider.of<AddImagesCubit>(context).url,
-                            category: categoryAndItemService[1],
-                            itemOrService: categoryAndItemService[0],
-                            description: description.text,
-                            location: location.text,
-                            state: stateOfThePost.text,
-                            count: counter,
-                          );
+                          if (placemarks.isNotEmpty) {
+                            BlocProvider.of<AddDonationCubit>(context).addPost(
+                              postState: true,
+                              title: title.text,
+                              image:
+                                  BlocProvider.of<AddImagesCubit>(context).url,
+                              category: categoryAndItemService[1],
+                              itemOrService: categoryAndItemService[0],
+                              description: description.text,
+                              location:
+                                  '${placemarks[0].locality} - ${locationSubLocality.text}',
+                              state: stateOfThePost.text,
+                              count: counter,
+                            );
+                          } else {
+                            showSankBar(context, 'الرجاء اضافة الموقع');
+                          }
                         }
                       }
                     },
                     textColor: AppColor.kWhite,
                     color: AppColor.kPrimary,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  )
+                  //end button to upload donation
+                  const SizedBox(height: 20)
                 ]),
               ),
             );
