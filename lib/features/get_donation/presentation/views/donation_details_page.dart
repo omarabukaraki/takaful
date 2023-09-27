@@ -91,7 +91,7 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                         margin: const EdgeInsets.symmetric(
                             horizontal: 30, vertical: 15),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(20),
                             color: AppColor.kPrimary),
                         child: const Center(
                             child: Text(
@@ -146,7 +146,7 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                       width: double.infinity,
                       height: 100,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(20),
                           boxShadow: const [
                             BoxShadow(
                               color: Colors.black12,
@@ -183,7 +183,7 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                         width: double.infinity,
                         height: 120,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(20),
                             boxShadow: const [
                               BoxShadow(
                                 color: Colors.black12,
@@ -222,7 +222,7 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                                 child: Container(
                                   margin: const EdgeInsets.only(left: 15),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(20),
                                     boxShadow: const [
                                       BoxShadow(
                                         color: Colors.black12,

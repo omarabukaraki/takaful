@@ -16,7 +16,7 @@ class DonationDetailsInformation extends StatelessWidget {
       width: double.infinity,
       height: 45,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: const [
             BoxShadow(
               color: Colors.black12,
