@@ -24,7 +24,7 @@ class _DonationsPageState extends State<DonationsPage> {
     BlocProvider.of<GetDonationCubit>(context).getPost();
   }
 
-  List<DonationModel> posts = [];
+  List<DonationModel> donation = [];
   @override
   Widget build(BuildContext context) {
     List<dynamic> categoryAndItemName =
@@ -35,7 +35,7 @@ class _DonationsPageState extends State<DonationsPage> {
         if (state is GetDonationLodging) {
           isLodging = true;
         } else if (state is GetDonationSuccess) {
-          posts = state.posts;
+          donation = state.donations;
           isLodging = false;
         } else if (state is GetDonationFailure) {
           isLodging = false;
@@ -55,15 +55,16 @@ class _DonationsPageState extends State<DonationsPage> {
           body: BlurryModalProgressHUD(
             inAsyncCall: isLodging,
             child: ListView.builder(
-              itemCount: posts.length,
+              itemCount: donation.length,
               itemBuilder: (context, index) {
-                return categoryAndItemName[1] == posts[index].itemOrService
+                return categoryAndItemName[1] == donation[index].itemOrService
                     ? DonationComponent(
-                        posts: posts[index],
+                        donation: donation[index],
                         onTapRequest: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return DonationDetailsPage(postModel: posts[index]);
+                            return DonationDetailsPage(
+                                postModel: donation[index]);
                           }));
                         },
                       )

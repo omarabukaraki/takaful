@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/features/auth/presentation/views/login_page.dart';
+import 'package:takaful/features/profile/presentation/views/my_donation.dart';
 import 'package:takaful/features/profile/presentation/views/widget/profile_app_bar.dart';
 import 'package:takaful/features/profile/presentation/views/widget/profile_button.dart';
 
@@ -24,9 +25,17 @@ class ProfilePage extends StatelessWidget {
                 icon: Icons.shopping_bag_rounded,
                 text: 'طلباتي'),
             ProfileButton(
-                screenHeigth: screenheigth,
-                icon: Icons.breakfast_dining_sharp,
-                text: 'تبرعاتي'),
+              screenHeigth: screenheigth,
+              icon: Icons.breakfast_dining_sharp,
+              text: 'تبرعاتي',
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyDonationPage(),
+                    ));
+              },
+            ),
             ProfileButton(
                 screenHeigth: screenheigth,
                 icon: Icons.favorite,

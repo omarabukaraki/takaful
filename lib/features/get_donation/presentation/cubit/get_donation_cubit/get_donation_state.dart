@@ -7,8 +7,8 @@ class GetDonationInitial extends GetDonationState {}
 
 // ignore: must_be_immutable
 class GetDonationSuccess extends GetDonationState {
-  List<DonationModel> posts = [];
-  GetDonationSuccess({required this.posts});
+  List<DonationModel> donations = [];
+  GetDonationSuccess({required this.donations});
 }
 
 class GetDonationLodging extends GetDonationState {}

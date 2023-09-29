@@ -7,8 +7,8 @@ import 'package:takaful/features/get_donation/presentation/views/widget/donation
 
 class DonationComponent extends StatelessWidget {
   const DonationComponent(
-      {super.key, this.onTapRequest, this.onTapSave, this.posts});
-  final DonationModel? posts;
+      {super.key, this.onTapRequest, this.onTapSave, this.donation});
+  final DonationModel? donation;
 
   final VoidCallback? onTapRequest;
   final VoidCallback? onTapSave;
@@ -36,19 +36,20 @@ class DonationComponent extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: DonationCoverInformation(
-                        title: posts!.title,
+                        title: donation!.title,
                         typePost:
-                            '${posts!.category} - ${posts!.itemOrService}',
-                        location: posts!.location),
+                            '${donation!.category} - ${donation!.itemOrService}',
+                        location: donation!.location),
                   ),
                   Expanded(
                       flex: 1,
                       child: DonationCoverImage(
-                        image: posts!.image[0],
+                        image: donation!.image[0],
                       )),
                 ],
               )),
-          Expanded(flex: 1, child: ImageCount(countImage: posts!.image.length)),
+          Expanded(
+              flex: 1, child: ImageCount(countImage: donation!.image.length)),
           Expanded(
               flex: 2,
               child: Row(

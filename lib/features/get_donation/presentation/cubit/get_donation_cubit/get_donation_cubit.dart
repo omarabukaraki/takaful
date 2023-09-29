@@ -28,7 +28,7 @@ class GetDonationCubit extends Cubit<GetDonationState> {
               doc['donarAccount'],
               doc['count']));
         }
-        emit(GetDonationSuccess(posts: postList));
+        emit(GetDonationSuccess(donations: postList));
       });
     } catch (e) {
       emit(GetDonationFailure());
