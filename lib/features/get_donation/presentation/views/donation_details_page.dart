@@ -124,9 +124,11 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                     DonationDetailsInformation(
                         section: 'تاريخ النشر',
                         data: widget.postModel!.createAt.substring(0, 10)),
-                    DonationDetailsInformation(
-                        section: 'العدد',
-                        data: widget.postModel!.count.toString()),
+                    widget.postModel!.itemOrService.length <= 5
+                        ? DonationDetailsInformation(
+                            section: 'العدد',
+                            data: widget.postModel!.count.toString())
+                        : const SizedBox(),
                     const Padding(
                       padding: EdgeInsets.only(top: 10),
                       child: Text(
