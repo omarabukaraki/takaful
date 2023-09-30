@@ -28,7 +28,6 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
             child: Column(children: [
               Stack(children: [
                 CarouselSlider.builder(
-                  // carouselController: _controller,
                   itemCount: widget.postModel!.image.length,
                   itemBuilder: (context, index, realIndex) {
                     return DonationDetailsImage(
@@ -57,16 +56,10 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                     ),
                   ),
                 ),
-                Positioned(
-                  right: 0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: DonationDetailsButton(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
+                DonationDetailsButton(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                 ),
               ]),
               Padding(
@@ -84,35 +77,10 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                       ),
                       maxLines: 1,
                     ),
-                    GestureDetector(
+                    RequestButton(
                       onTap: () {},
-                      child: Container(
-                        height: 40,
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 15),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: AppColor.kPrimary),
-                        child: const Center(
-                            child: Text(
-                          'طلب',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                      ),
                     ),
-                    const Text(
-                      'المعلومات',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      maxLines: 1,
-                    ),
+                    const HeadersDonationPage(text: 'المعلومات'),
                     DonationDetailsInformation(
                         section: 'القسم',
                         data:
@@ -129,124 +97,174 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                             section: 'العدد',
                             data: widget.postModel!.count.toString())
                         : const SizedBox(),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text(
-                        'الوصف',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 1,
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 5),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 15),
-                      width: double.infinity,
-                      height: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 6,
-                            )
-                          ],
-                          color: Colors.white),
-                      child: Text(
-                        widget.postModel!.description,
-                        textAlign: TextAlign.end,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text(
-                        'حساب المتبرع',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 1,
-                      ),
-                    ),
-                    Container(
-                        margin: const EdgeInsets.symmetric(vertical: 5),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15),
-                        width: double.infinity,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 6,
-                              )
-                            ],
-                            color: Colors.white),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    widget.postModel!.donarAccount,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    maxLines: 1,
-                                  ),
-                                  const Icon(
-                                    Icons.star_purple500_sharp,
-                                    color: Colors.yellow,
-                                    size: 20,
-                                  )
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                                flex: 1,
-                                child: Container(
-                                  margin: const EdgeInsets.only(left: 15),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 6,
-                                      )
-                                    ],
-                                    image: const DecorationImage(
-                                      image: AssetImage(
-                                          'assets/image/user_image.png'),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                )),
-                          ],
-                        )),
+                    const HeadersDonationPage(text: 'الوصف'),
+                    DescriptionBox(widget: widget),
+                    const HeadersDonationPage(text: 'حساب المتبرع'),
+                    DonarAccountBox(widget: widget),
                   ],
                 ),
               )
             ]),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class HeadersDonationPage extends StatelessWidget {
+  const HeadersDonationPage({super.key, this.text});
+  final String? text;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Text(
+        text ?? 'الوصف',
+        style: const TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+        maxLines: 1,
+      ),
+    );
+  }
+}
+
+class DonarAccountBox extends StatelessWidget {
+  const DonarAccountBox({
+    super.key,
+    required this.widget,
+  });
+
+  final DonationDetailsPage widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        width: double.infinity,
+        height: 120,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                offset: Offset(0, 2),
+                blurRadius: 6,
+              )
+            ],
+            color: Colors.white),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.postModel!.donarAccount,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                  ),
+                  const Icon(
+                    Icons.star_purple500_sharp,
+                    color: Colors.yellow,
+                    size: 20,
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+                flex: 1,
+                child: Container(
+                  margin: const EdgeInsets.only(left: 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        offset: Offset(0, 2),
+                        blurRadius: 6,
+                      )
+                    ],
+                    image: const DecorationImage(
+                      image: AssetImage('assets/image/user_image.png'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                )),
+          ],
+        ));
+  }
+}
+
+class DescriptionBox extends StatelessWidget {
+  const DescriptionBox({
+    super.key,
+    required this.widget,
+  });
+
+  final DonationDetailsPage widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      width: double.infinity,
+      height: 100,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0, 2),
+              blurRadius: 6,
+            )
+          ],
+          color: Colors.white),
+      child: Text(
+        widget.postModel!.description,
+        textAlign: TextAlign.end,
+        style: const TextStyle(
+          fontSize: 14,
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
+}
+
+class RequestButton extends StatelessWidget {
+  const RequestButton({super.key, this.onTap});
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 40,
+        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20), color: AppColor.kPrimary),
+        child: const Center(
+            child: Text(
+          'طلب',
+          style: TextStyle(
+            fontSize: 16,
+            color: AppColor.kWhite,
+            fontWeight: FontWeight.bold,
+          ),
+        )),
       ),
     );
   }
