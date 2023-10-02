@@ -1,5 +1,9 @@
 class DonationModel {
   final String id;
+  final String donarName;
+  final String donarImage;
+  final String donarMobileNumber;
+
   final bool postState;
   final String title;
   final List<dynamic> image;
@@ -13,6 +17,9 @@ class DonationModel {
   final String donarAccount;
   DonationModel(
     this.id,
+    this.donarName,
+    this.donarImage,
+    this.donarMobileNumber,
     this.postState,
     this.title,
     this.image,
@@ -29,6 +36,9 @@ class DonationModel {
   factory DonationModel.fromJson(jsonData) {
     return DonationModel(
         jsonData['id'],
+        jsonData['donarName'],
+        jsonData['donarImage'],
+        jsonData['donarMobileNumber'],
         jsonData['postState'],
         jsonData['title'],
         jsonData['image'],

@@ -10,21 +10,26 @@ class AddDonationCubit extends Cubit<AddDonationState> {
   AddDonationCubit() : super(AddDonationInitial());
   CollectionReference posts = FirebaseFirestore.instance.collection('post');
 
-  Future<void> addPost({
-    required bool postState,
-    required String title,
-    required List<String> image,
-    required String category,
-    required String itemOrService,
-    required String description,
-    required String location,
-    required String state,
-    required int count,
-  }) async {
+  Future<void> addPost(
+      {required bool postState,
+      required String title,
+      required List<String> image,
+      required String category,
+      required String itemOrService,
+      required String description,
+      required String location,
+      required String state,
+      required int count,
+      required String donarName,
+      required String donarImage,
+      required String donarMobileNumber}) async {
     emit(AddDonationLodging());
     try {
       await posts.add({
         'id': FirebaseAuth.instance.currentUser!.uid,
+        'donarName': donarName,
+        'donarImage': donarImage,
+        'donarMobileNumber': donarMobileNumber,
         'postState': true,
         'title': title,
         'image': image,

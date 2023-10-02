@@ -17,6 +17,9 @@ class GetDonationCubit extends Cubit<GetDonationState> {
           print(doc.id);
           postList.add(DonationModel(
               doc['id'],
+              doc['donarName'],
+              doc['donarImage'],
+              doc['donarMobileNumber'],
               doc['postState'],
               doc['title'],
               doc['image'],
