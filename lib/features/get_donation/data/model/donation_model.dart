@@ -3,7 +3,6 @@ class DonationModel {
   final String donarName;
   final String donarImage;
   final String donarMobileNumber;
-
   final bool postState;
   final String title;
   final List<dynamic> image;

@@ -166,7 +166,7 @@ class DonarAccountBox extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    widget.postModel!.donarAccount,
+                    widget.postModel!.donarName,
                     style: const TextStyle(
                       fontSize: 18,
                       color: Colors.black,
@@ -195,8 +195,8 @@ class DonarAccountBox extends StatelessWidget {
                         blurRadius: 6,
                       )
                     ],
-                    image: const DecorationImage(
-                      image: AssetImage('assets/image/user_image.png'),
+                    image: DecorationImage(
+                      image: NetworkImage(widget.postModel!.donarImage),
                       fit: BoxFit.fill,
                     ),
                   ),
