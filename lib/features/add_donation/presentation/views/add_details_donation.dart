@@ -76,11 +76,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
               BlocProvider.of<AddImagesCubit>(context).url = [];
               addedImage = false;
               addedLocation = false;
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                builder: (context) {
-                  return const MyDonationPage();
-                },
-              ));
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  MyDonationPage.id, ((route) => false));
             } else if (state is AddDonationFailure) {
               isLoading = false;
             }

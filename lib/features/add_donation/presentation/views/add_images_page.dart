@@ -125,11 +125,12 @@ class _AddImagesPageState extends State<AddImagesPage> {
                                 }
                               }
                             },
-                            child: const Padding(
-                              padding: EdgeInsets.all(5),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
                               child: AddImagesComponent(
                                 textOne: 'اضافة صورة',
-                                isOneText: true,
+                                textTwo: '(${index + 2})',
+                                isOneText: false,
                                 iconSize: 30,
                                 fontSize: 12,
                               ),

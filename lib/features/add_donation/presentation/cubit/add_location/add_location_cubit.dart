@@ -15,7 +15,7 @@ class AddLocationCubit extends Cubit<AddLocationState> {
     LocationPermission per;
     services = await Geolocator.isLocationServiceEnabled();
     if (services == false) {
-      emit(AddLocationFailure(errMessage: 'الرجاء اضافة الموقع'));
+      emit(AddLocationFailure(errMessage: 'الرجاء تشغيل الموقع'));
     } else {
       per = await Geolocator.checkPermission();
       if (per == LocationPermission.denied ||

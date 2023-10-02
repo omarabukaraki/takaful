@@ -1,12 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 
 class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ProfileAppBar({
     super.key,
+    this.text,
+    required this.image,
   });
-
+  final String? text;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -24,7 +27,7 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         Text(
-          FirebaseAuth.instance.currentUser!.email.toString(),
+          text ?? '1010',
           style: const TextStyle(
             fontSize: 12,
             color: AppColor.kFont,
@@ -37,7 +40,12 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           child: ClipRRect(
               borderRadius: BorderRadius.circular(50),
-              child: Image.asset('assets/image/user_image.png')),
+              child: Image(
+                image: CachedNetworkImageProvider(image),
+                fit: BoxFit.cover,
+                width: 40,
+                height: 40,
+              )),
         )
       ],
     );

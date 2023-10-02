@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+import 'package:takaful/core/utils/app_colors.dart';
+
+class ManageProfileTextField extends StatelessWidget {
+  const ManageProfileTextField(
+      {Key? key,
+      this.hintText,
+      this.onChanged,
+      this.icon,
+      this.controller,
+      this.readOnly})
+      : super(key: key);
+  final String? hintText;
+  final Function(String)? onChanged;
+  final IconData? icon;
+  final TextEditingController? controller;
+  final bool? readOnly;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: TextFormField(
+        // ignore: body_might_complete_normally_nullable
+        validator: (data) {
+          if (data!.isEmpty) {
+            return 'الحقل مطلوب'.padLeft(86);
+          }
+        },
+        controller: controller,
+        onChanged: onChanged,
+        textAlign: TextAlign.right,
+        readOnly: readOnly ?? false,
+        decoration: InputDecoration(
+          alignLabelWithHint: true,
+          floatingLabelAlignment: FloatingLabelAlignment.center,
+          hintText: hintText,
+          hintStyle: const TextStyle(
+            color: AppColor.kTextFiledFont,
+            fontSize: 15,
+          ),
+          filled: true,
+          fillColor: AppColor.kTextFiled,
+          border: const OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

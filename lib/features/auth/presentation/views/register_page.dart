@@ -23,7 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController password = TextEditingController();
   TextEditingController passwordTwo = TextEditingController();
   TextEditingController name = TextEditingController();
-  TextEditingController mobileNo = TextEditingController();
+  TextEditingController mobileNumber = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
   bool isLodding = false;
 
@@ -32,7 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
     password.clear();
     passwordTwo.clear();
     name.clear();
-    mobileNo.clear();
+    mobileNumber.clear();
   }
 
   @override
@@ -97,10 +97,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
                     ),
                     CustomTextFiled(
-                      controller: mobileNo,
+                      controller: mobileNumber,
                       hintText: AppString.textMobileNumberArabic,
-                      onChanged: (mobileNumber) {
-                        mobileNo.text = mobileNumber;
+                      onChanged: (mobileNum) {
+                        mobileNumber.text = mobileNum;
                       },
                     ),
                     CustomTextFiled(
@@ -129,6 +129,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             if (password.text == passwordTwo.text) {
                               BlocProvider.of<RegisterCubit>(context)
                                   .createUser(
+                                      name: name.text,
+                                      mobileNumber: mobileNumber.text,
                                       email: email.text,
                                       password: password.text);
                             } else {

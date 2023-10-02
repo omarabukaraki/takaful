@@ -14,6 +14,7 @@ class GetDonationCubit extends Cubit<GetDonationState> {
       posts.orderBy('createAt', descending: true).snapshots().listen((event) {
         List<DonationModel> postList = [];
         for (var doc in event.docs) {
+          print(doc.id);
           postList.add(DonationModel(
               doc['id'],
               doc['postState'],

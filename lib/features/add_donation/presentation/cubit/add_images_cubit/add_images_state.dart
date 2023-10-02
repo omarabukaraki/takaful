@@ -5,6 +5,8 @@ abstract class AddImagesState {}
 
 class AddImagesInitial extends AddImagesState {}
 
+class UploadImagesLoading extends AddImagesState {}
+
 // ignore: must_be_immutable
 class AddImagesSuccess extends AddImagesState {
   List<File> image = [];

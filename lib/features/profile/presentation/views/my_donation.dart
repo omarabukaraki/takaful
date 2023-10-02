@@ -8,7 +8,7 @@ import 'package:takaful/features/get_donation/presentation/views/widget/donation
 
 class MyDonationPage extends StatefulWidget {
   const MyDonationPage({super.key});
-
+  static String id = 'MyDonationPage';
   @override
   State<MyDonationPage> createState() => _MyDonationPageState();
 }

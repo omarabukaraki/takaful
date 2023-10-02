@@ -12,6 +12,7 @@ import 'package:takaful/features/add_donation/presentation/cubit/add_location/ad
 import 'package:takaful/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:takaful/features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
+import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 import 'package:takaful/features/splash/presentation/views/splash_view.dart';
 import 'package:takaful/features/home/presentation/views/navegator_page.dart';
 import 'firebase_options.dart';
@@ -49,6 +50,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AddLocationCubit(),
+        ),
+        BlocProvider(
+          create: (context) => GetUserDetailsCubit(),
         ),
       ],
       child: MaterialApp(

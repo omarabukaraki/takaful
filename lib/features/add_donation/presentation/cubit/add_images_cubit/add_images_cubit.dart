@@ -29,6 +29,7 @@ class AddImagesCubit extends Cubit<AddImagesState> {
       } else {
         emit(AddImagesSuccess(image: image));
       }
+      emit(UploadImagesLoading());
       try {
         var refStorage =
             FirebaseStorage.instance.ref('images/${nameImage[index]}');
