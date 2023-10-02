@@ -10,12 +10,13 @@ import 'package:takaful/core/widgets/custom_app_bar.dart';
 import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/features/auth/data/model/user_details_model.dart';
 import 'package:takaful/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:takaful/features/auth/presentation/views/login_page.dart';
 import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/add_image_profile_button.dart';
 import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/change_password_button.dart';
+import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/display_email.dart';
+import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/edit_text_field.dart';
 import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/manage_profile_button.dart';
-import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/text_fiald.dart';
-import 'package:takaful/features/splash/presentation/views/splash_view.dart';
 
 class ManageProfilePage extends StatefulWidget {
   const ManageProfilePage({super.key});
@@ -69,6 +70,7 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                   ? Column(
                       children: [
                         const SizedBox(height: 10),
+                        //start pick image and upload
                         BlocConsumer<AddImagesCubit, AddImagesState>(
                           listener: (context, state) {
                             if (state is UploadImagesLoading) {
@@ -103,7 +105,9 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                                     user: user);
                           },
                         ),
+                        //end pick image and upload
                         const SizedBox(height: 10),
+                        //start name text field
                         EditTextField(
                           labelText: 'الاسم',
                           readOnly: readOnly,
@@ -118,6 +122,9 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                             });
                           },
                         ),
+                        //end name text field
+
+                        //start mobile number text field
                         EditTextField(
                           onTap: () {
                             setState(() {
@@ -132,23 +139,14 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                             mobileNumber.text = mobileNum;
                           },
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 45),
-                                child: Text('البريد الالكتروني',
-                                    style: TextStyle(color: AppColor.kPrimary)),
-                              ),
-                              ManageProfileTextField(
-                                  readOnly: true,
-                                  hintText:
-                                      user.isNotEmpty ? user[0].email : ''),
-                            ],
-                          ),
-                        ),
+                        //end mobile number text field
+
+                        //start display email
+                        DisplayEmail(user: user),
+                        //end display email
+
+                        //start change password button
+                        //
                         ChangePasswordButton(
                           onTap: () {
                             BlocProvider.of<LoginCubit>(context)
@@ -158,6 +156,10 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                                 color: AppColor.kGreen);
                           },
                         ),
+                        //
+                        //end change password button
+
+                        //start delete account button
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 30, vertical: 30),
@@ -173,13 +175,16 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                                   } catch (e) {
                                     print(e);
                                   }
+                                  // ignore: use_build_context_synchronously
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => SplashView(),
+                                        builder: (context) => const LoginPage(),
                                       ));
                                 },
                               ),
+                              //start save edit button
+                              //
                               ManageProfileButton(
                                   onTap: () async {
                                     setState(() {
@@ -196,9 +201,12 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                                   },
                                   color: AppColor.kPrimary,
                                   text: 'حفظ التعديل'),
+                              //
+                              //end save edit button
                             ],
                           ),
                         )
+                        //end delete account button
                       ],
                     )
                   : const Center(child: CircularProgressIndicator()),
@@ -209,111 +217,3 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
     );
   }
 }
-
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
-
-//
-//
-
-class EditTextField extends StatelessWidget {
-  const EditTextField(
-      {super.key,
-      required this.readOnly,
-      this.onTap,
-      this.hintText,
-      this.labelText,
-      this.onChanged,
-      this.controller});
-
-  final bool readOnly;
-  final VoidCallback? onTap;
-  final String? hintText;
-  final String? labelText;
-  final TextEditingController? controller;
-  final Function(String)? onChanged;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 45),
-            child: Text(
-              labelText ?? 'label',
-              style: const TextStyle(color: AppColor.kPrimary),
-            ),
-          ),
-          Stack(alignment: const Alignment(1, -2), children: [
-            ManageProfileTextField(
-              controller: controller,
-              onChanged: onChanged,
-              hintText: hintText ?? 'الاسم',
-              readOnly: readOnly,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: GestureDetector(
-                onTap: onTap,
-                child: Container(
-                    width: 35,
-                    height: 35,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: AppColor.kPrimary),
-                    child: const Icon(
-                      Icons.edit,
-                      size: 16,
-                      color: Colors.white,
-                    )),
-              ),
-            ),
-          ]),
-        ],
-      ),
-    );
-  }
-}
-
-
-  // print(
-  //                         BlocProvider.of<GetUserDetailsCubit>(context).docId);
-  //                     users
-  //                         .doc(BlocProvider.of<GetUserDetailsCubit>(context)
-  //                             .docId)
-  //                         .update({'name': 'omar'});
-  //                     setState(() {
-  //                       readOnly = false;
-  //                     });
