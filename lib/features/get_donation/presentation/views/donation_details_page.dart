@@ -174,10 +174,35 @@ class DonarAccountBox extends StatelessWidget {
                     ),
                     maxLines: 1,
                   ),
-                  const Icon(
-                    Icons.star_purple500_sharp,
-                    color: Colors.yellow,
-                    size: 20,
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.star_purple500_sharp,
+                        color: Colors.yellow,
+                        size: 20,
+                      ),
+                      Icon(
+                        Icons.star_purple500_sharp,
+                        color: Colors.yellow,
+                        size: 20,
+                      ),
+                      Icon(
+                        Icons.star_purple500_sharp,
+                        color: Colors.yellow,
+                        size: 20,
+                      ),
+                      Icon(
+                        Icons.star_purple500_sharp,
+                        color: Colors.yellow,
+                        size: 20,
+                      ),
+                      Icon(
+                        Icons.star_purple500_sharp,
+                        color: Colors.yellow,
+                        size: 20,
+                      ),
+                    ],
                   )
                 ],
               ),
@@ -197,7 +222,7 @@ class DonarAccountBox extends StatelessWidget {
                     ],
                     image: DecorationImage(
                       image: NetworkImage(widget.postModel!.donarImage),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 )),

@@ -20,7 +20,6 @@ import 'package:takaful/features/add_donation/presentation/views/widgets/widgets
 import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/text_feiled.dart';
 import 'package:takaful/features/auth/data/model/user_details_model.dart';
 import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
-import 'package:takaful/features/profile/presentation/views/my_donation.dart';
 
 class AddDetailsPost extends StatefulWidget {
   const AddDetailsPost({super.key});
@@ -82,8 +81,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
               BlocProvider.of<AddImagesCubit>(context).url = [];
               addedImage = false;
               addedLocation = false;
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  MyDonationPage.id, ((route) => false));
+              // Navigator.of(context).pushNamedAndRemoveUntil(
+              //     MyDonationPage.id, ((route) => false));
             } else if (state is AddDonationFailure) {
               isLoading = false;
             }
