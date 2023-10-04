@@ -1,16 +1,16 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/helper/show_snak_bar.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
 import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/alert_dialog_button.dart';
 import 'package:takaful/features/auth/data/model/user_details_model.dart';
 import 'package:takaful/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:takaful/features/auth/presentation/views/login_page.dart';
+import 'package:takaful/features/profile/presentation/cubit/delete_account/delete_account_cubit.dart';
 import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/add_image_profile_button.dart';
 import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/change_password_button.dart';
@@ -167,20 +167,7 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                             children: [
                               ManageProfileButton(
                                 onTap: () async {
-                                  try {
-                                    await FirebaseAuth.instance.currentUser!
-                                        .delete();
-                                    await FirebaseAuth.instance.signOut();
-                                    await users.doc(docId).delete();
-                                  } catch (e) {
-                                    print(e);
-                                  }
-                                  // ignore: use_build_context_synchronously
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const LoginPage(),
-                                      ));
+                                  await confirmationDialog(context);
                                 },
                               ),
                               //start save edit button
@@ -214,6 +201,58 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
           );
         },
       ),
+    );
+  }
+
+  Future<dynamic> confirmationDialog(BuildContext context) async {
+    return await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('هل انت متأكد من حذف الحساب',
+              textAlign: TextAlign.center),
+          actions: [
+            Row(
+              children: [
+                Expanded(
+                  child: AlertDialogButton(
+                    titleButton: 'الغاء',
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                const SizedBox(width: 10),
+                BlocConsumer<DeleteAccountCubit, DeleteAccountState>(
+                  listener: (context, state) {
+                    if (state is DeleteAccountSuccess) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ));
+                      showSankBar(context, 'تم حذف الحساب بنجاح',
+                          color: AppColor.kGreen);
+                    }
+                  },
+                  builder: (context, state) {
+                    return Expanded(
+                      child: AlertDialogButton(
+                        color: AppColor.kRed,
+                        titleButton: 'حذف',
+                        onTap: () async {
+                          await BlocProvider.of<DeleteAccountCubit>(context)
+                              .deleteAccount(docId: docId!);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ],
+            )
+          ],
+        );
+      },
     );
   }
 }

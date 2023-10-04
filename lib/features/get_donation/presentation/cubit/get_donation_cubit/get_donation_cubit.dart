@@ -7,6 +7,7 @@ part 'get_donation_state.dart';
 
 class GetDonationCubit extends Cubit<GetDonationState> {
   GetDonationCubit() : super(GetDonationInitial());
+  String? docId;
   CollectionReference posts = FirebaseFirestore.instance.collection('post');
   void getPost() {
     emit(GetDonationLodging());
@@ -31,6 +32,7 @@ class GetDonationCubit extends Cubit<GetDonationState> {
               doc['createAt'],
               doc['donarAccount'],
               doc['count']));
+          docId = doc.id;
         }
         emit(GetDonationSuccess(donations: postList));
       });
