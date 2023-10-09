@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:takaful/features/get_donation/presentation/views/widget/image_count.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/features/get_donation/data/model/donation_model.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/donation_cover_Info.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/donation_cover_image.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_widget/donation_cover_Info.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_widget/donation_cover_image.dart';
 
 class DonationComponent extends StatelessWidget {
   const DonationComponent(

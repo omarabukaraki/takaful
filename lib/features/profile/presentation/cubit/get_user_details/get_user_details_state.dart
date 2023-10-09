@@ -14,6 +14,14 @@ class GetUserDetailsSuccess extends GetUserDetailsState {
   });
 }
 
+// ignore: must_be_immutable
+class GetUserDetailsSuccessForDonation extends GetUserDetailsState {
+  UserDetailsModel user;
+  GetUserDetailsSuccessForDonation({
+    required this.user,
+  });
+}
+
 class GetUserDetailsLoading extends GetUserDetailsState {}
 
 class GetUserDetailsFailure extends GetUserDetailsState {}

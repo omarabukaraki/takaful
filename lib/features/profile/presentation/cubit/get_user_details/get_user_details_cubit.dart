@@ -9,6 +9,7 @@ part 'get_user_details_state.dart';
 class GetUserDetailsCubit extends Cubit<GetUserDetailsState> {
   GetUserDetailsCubit() : super(GetUserDetailsInitial());
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference posts = FirebaseFirestore.instance.collection('post');
   String? docId;
 
   void getUserDetails() {
@@ -26,6 +27,27 @@ class GetUserDetailsCubit extends Cubit<GetUserDetailsState> {
             ));
             docId = doc.id;
             emit(GetUserDetailsSuccess(user: user));
+          }
+        }
+      });
+    } catch (e) {
+      emit(GetUserDetailsFailure());
+    }
+  }
+
+  void userDonationInformation({required String email}) async {
+    UserDetailsModel user;
+    try {
+      users.snapshots().listen((event) {
+        for (var doc in event.docs) {
+          if (doc['email'] == email) {
+            user = UserDetailsModel(
+              name: doc['name'],
+              email: doc['email'],
+              image: doc['image'],
+              mobileNumber: doc['mobileNumber'],
+            );
+            emit(GetUserDetailsSuccessForDonation(user: user));
           }
         }
       });
