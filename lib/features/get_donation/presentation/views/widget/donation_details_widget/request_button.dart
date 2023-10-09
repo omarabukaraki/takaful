@@ -13,7 +13,7 @@ class RequestButton extends StatelessWidget {
         height: 40,
         margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: AppColor.kPrimary),
+            borderRadius: BorderRadius.circular(10), color: AppColor.kPrimary),
         child: const Center(
             child: Text(
           'طلب',

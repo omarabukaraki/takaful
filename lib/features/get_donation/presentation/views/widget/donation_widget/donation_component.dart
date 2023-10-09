@@ -63,7 +63,7 @@ class DonationComponent extends StatelessWidget {
                         margin: const EdgeInsets.only(top: 5, left: 15),
                         decoration: BoxDecoration(
                           border: Border.all(color: AppColor.kPrimary),
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                         child: const Center(
                             child: Text(
@@ -84,7 +84,7 @@ class DonationComponent extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(top: 5, left: 15),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(10),
                             color: AppColor.kPrimary),
                         child: const Center(
                             child: Text(
