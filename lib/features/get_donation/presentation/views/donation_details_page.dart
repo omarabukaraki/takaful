@@ -3,6 +3,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/features/auth/data/model/user_details_model.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/discrption_box.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/request_button.dart';
+import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/title_donation_details_page.dart';
 import 'package:takaful/features/get_donation/presentation/views/widget/image_count.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/features/get_donation/data/model/donation_model.dart';
@@ -82,9 +85,11 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                       maxLines: 1,
                     ),
                     RequestButton(
-                      onTap: () {},
+                      onTap: () {
+                        print('request');
+                      },
                     ),
-                    const HeadersDonationPage(text: 'المعلومات'),
+                    const TitleDonationDetailsPage(text: 'المعلومات'),
                     DonationDetailsInformation(
                         section: 'القسم',
                         data:
@@ -101,9 +106,9 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                             section: 'العدد',
                             data: widget.postModel!.count.toString())
                         : const SizedBox(),
-                    const HeadersDonationPage(text: 'الوصف'),
+                    const TitleDonationDetailsPage(text: 'الوصف'),
                     DescriptionBox(widget: widget),
-                    const HeadersDonationPage(text: 'حساب المتبرع'),
+                    const TitleDonationDetailsPage(text: 'حساب المتبرع'),
                     DonarAccountBox(widget: widget),
                   ],
                 ),
@@ -111,26 +116,6 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
             ]),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class HeadersDonationPage extends StatelessWidget {
-  const HeadersDonationPage({super.key, this.text});
-  final String? text;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Text(
-        text ?? 'الوصف',
-        style: const TextStyle(
-          fontSize: 18,
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-        ),
-        maxLines: 1,
       ),
     );
   }
@@ -267,69 +252,5 @@ class _DonarAccountBoxState extends State<DonarAccountBox> {
             );
           },
         ));
-  }
-}
-
-class DescriptionBox extends StatelessWidget {
-  const DescriptionBox({
-    super.key,
-    required this.widget,
-  });
-
-  final DonationDetailsPage widget;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-      width: double.infinity,
-      height: 100,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              offset: Offset(0, 2),
-              blurRadius: 6,
-            )
-          ],
-          color: Colors.white),
-      child: Text(
-        widget.postModel!.description,
-        textAlign: TextAlign.end,
-        style: const TextStyle(
-          fontSize: 14,
-          color: Colors.black,
-        ),
-      ),
-    );
-  }
-}
-
-class RequestButton extends StatelessWidget {
-  const RequestButton({super.key, this.onTap});
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 40,
-        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: AppColor.kPrimary),
-        child: const Center(
-            child: Text(
-          'طلب',
-          style: TextStyle(
-            fontSize: 16,
-            color: AppColor.kWhite,
-            fontWeight: FontWeight.bold,
-          ),
-        )),
-      ),
-    );
   }
 }
