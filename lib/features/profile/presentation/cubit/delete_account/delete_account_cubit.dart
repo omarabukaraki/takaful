@@ -10,7 +10,9 @@ part 'delete_account_state.dart';
 class DeleteAccountCubit extends Cubit<DeleteAccountState> {
   DeleteAccountCubit() : super(DeleteAccountInitial());
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-  CollectionReference post = FirebaseFirestore.instance.collection('post');
+  // CollectionReference requestDonation =
+  //     FirebaseFirestore.instance.collection('request donation');
+  // CollectionReference post = FirebaseFirestore.instance.collection('donations');
   Future<dynamic> confirmationDialog(BuildContext context,
       {required String docId}) async {
     return await showDialog(
@@ -21,11 +23,15 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState> {
     );
   }
 
-  Future<void> deleteAccount({required String docId, required}) async {
+  Future<void> deleteAccount({required String docId}) async {
     try {
+      // await requestDonation.doc().delete();
+      // await post.doc().delete();
+      try {
+        await users.doc(docId).delete();
+      } catch (e) {}
       await FirebaseAuth.instance.currentUser!.delete();
       await FirebaseAuth.instance.signOut();
-      await users.doc(docId).delete();
       emit(DeleteAccountSuccess());
     } catch (e) {
       emit(DeleteAccountFailure(errMessage: e.toString()));

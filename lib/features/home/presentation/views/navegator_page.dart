@@ -52,6 +52,7 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
         currentIndex: _currentIndex,
         onTap: (value) {
           setState(() {});
+
           _currentIndex = value;
         },
         items: const [

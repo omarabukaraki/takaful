@@ -1,5 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:takaful/core/helper/show_snak_bar.dart';
+import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/features/donation_request/presentation/cubit/cubit/request_donation_cubit.dart';
 import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/discrption_box.dart';
 import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/donar_account_box.dart';
 import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/request_button.dart';
@@ -19,7 +24,7 @@ class DonationDetailsPage extends StatefulWidget {
 
 class _DonationDetailsPageState extends State<DonationDetailsPage> {
   int inIndex = 0;
-
+  bool isRequest = false;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -89,11 +94,38 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                       ),
                       maxLines: 1,
                     ),
-                    RequestButton(
-                      onTap: () {
-                        print('request');
-                      },
-                    ),
+                    widget.postModel!.donarAccount !=
+                            FirebaseAuth.instance.currentUser!.email!
+                        ? isRequest != true
+                            ? RequestButton(
+                                onTap: () {
+                                  showSankBar(context, 'تم الطلب بنجاح',
+                                      color: AppColor.kGreen);
+                                  BlocProvider.of<RequestDonationCubit>(context)
+                                      .request(
+                                          // postId: '',
+                                          titleDonation:
+                                              widget.postModel!.title,
+                                          donarAccount:
+                                              widget.postModel!.donarAccount,
+                                          serviceReceiveAccount: FirebaseAuth
+                                              .instance.currentUser!.email!);
+                                  setState(() {
+                                    isRequest = true;
+                                  });
+                                },
+                              )
+                            : RequestButton(
+                                nameButton: 'الغاء الطلب',
+                                onTap: () {
+                                  setState(() {
+                                    isRequest = false;
+                                  });
+                                  showSankBar(context, 'الغاء الطلب');
+                                })
+                        : RequestButton(onTap: () {
+                            showSankBar(context, 'لا يمكنك طلب هاذ التبرع');
+                          }),
                     const TitleDonationDetailsPage(text: 'المعلومات'),
                     DonationDetailsInformation(
                         section: 'القسم',

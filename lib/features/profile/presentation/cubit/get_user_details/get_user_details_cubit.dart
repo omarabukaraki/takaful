@@ -36,6 +36,7 @@ class GetUserDetailsCubit extends Cubit<GetUserDetailsState> {
   }
 
   void userDonationInformation({required String email}) async {
+    emit(GetUserDetailsLoadingForDonation());
     UserDetailsModel user;
     try {
       users.snapshots().listen((event) {

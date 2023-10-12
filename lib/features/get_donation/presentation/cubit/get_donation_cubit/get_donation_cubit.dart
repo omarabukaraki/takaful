@@ -7,16 +7,19 @@ part 'get_donation_state.dart';
 
 class GetDonationCubit extends Cubit<GetDonationState> {
   GetDonationCubit() : super(GetDonationInitial());
-  String? docId;
-  CollectionReference posts = FirebaseFirestore.instance.collection('post');
+  CollectionReference donations =
+      FirebaseFirestore.instance.collection('donations');
   void getPost() {
     emit(GetDonationLodging());
     try {
-      posts.orderBy('createAt', descending: true).snapshots().listen((event) {
-        List<DonationModel> postList = [];
+      donations
+          .orderBy('createAt', descending: true)
+          .snapshots()
+          .listen((event) {
+        List<DonationModel> donationsList = [];
+        // List<String> docId = [];
         for (var doc in event.docs) {
-          print(doc.id);
-          postList.add(DonationModel(
+          donationsList.add(DonationModel(
               doc['id'],
               doc['donarName'],
               doc['donarImage'],
@@ -32,9 +35,10 @@ class GetDonationCubit extends Cubit<GetDonationState> {
               doc['createAt'],
               doc['donarAccount'],
               doc['count']));
-          docId = doc.id;
+          // docId.add(doc.id);
+          // print(docId);
         }
-        emit(GetDonationSuccess(donations: postList));
+        emit(GetDonationSuccess(donations: donationsList));
       });
     } catch (e) {
       emit(GetDonationFailure());

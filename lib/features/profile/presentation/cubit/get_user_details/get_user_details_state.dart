@@ -14,10 +14,20 @@ class GetUserDetailsSuccess extends GetUserDetailsState {
   });
 }
 
+class GetUserDetailsLoadingForDonation extends GetUserDetailsState {}
+
 // ignore: must_be_immutable
 class GetUserDetailsSuccessForDonation extends GetUserDetailsState {
   UserDetailsModel user;
   GetUserDetailsSuccessForDonation({
+    required this.user,
+  });
+}
+
+// ignore: must_be_immutable
+class GetUserDetailsSuccessForRequestDonation extends GetUserDetailsState {
+  List<UserDetailsModel> user;
+  GetUserDetailsSuccessForRequestDonation({
     required this.user,
   });
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:takaful/core/utils/app_colors.dart';
@@ -9,14 +10,16 @@ class MyDonationRequestsComponent extends StatelessWidget {
     required this.title,
     this.nameUser,
     this.time,
+    required this.image,
     this.onTapAccept,
     this.onTapReject,
   }) : super(key: key);
   final String title;
   final String? nameUser;
-  final double? time;
+  final String? time;
   final VoidCallback? onTapAccept;
   final VoidCallback? onTapReject;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +120,7 @@ class MyDonationRequestsComponent extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: Text(
-                            'قبل ' '$time ' 'دقيقة',
+                            'قبل ' '$time ',
                             style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.black,
@@ -137,11 +140,9 @@ class MyDonationRequestsComponent extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 10, bottom: 10, right: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  image: const DecorationImage(
-                      image: AssetImage(
-                        'assets/image/team-01.jpg',
-                      ),
-                      fit: BoxFit.fill),
+                  image: DecorationImage(
+                      image: CachedNetworkImageProvider(image),
+                      fit: BoxFit.cover),
                   boxShadow: const [
                     BoxShadow(
                         color: Colors.black12,

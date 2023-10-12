@@ -23,6 +23,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         FirebaseAuth.instance.currentUser!.sendEmailVerification();
         emit(RegisterSuccess());
         await users.add({
+          'id': FirebaseAuth.instance.currentUser!.uid,
           'name': name,
           'email': email,
           'mobileNumber': mobileNumber,
