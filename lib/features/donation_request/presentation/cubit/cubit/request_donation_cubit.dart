@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:takaful/features/donation_request/data/model/request_donation.dart';
 
@@ -21,7 +22,7 @@ class RequestDonationCubit extends Cubit<RequestDonationState> {
       'serviceReceiverId': FirebaseAuth.instance.currentUser!.uid,
       'titleDonation': titleDonation,
       'donarAccount': donarAccount,
-      'timeRequest': DateTime.now().minute,
+      'timeRequest': DateTime.now().toString(),
       'serviceReceiverAccount': serviceReceiveAccount
     });
   }
@@ -40,7 +41,7 @@ class RequestDonationCubit extends Cubit<RequestDonationState> {
               // serviceReceiverId: doc['serviceReceiverId'],
               donarAccount: doc['donarAccount'],
               serviceReceiverAccount: doc['serviceReceiverAccount'],
-              timeRequest: doc['timeRequest'].toString(),
+              timeRequest: doc['timeRequest'],
               titleDonation: doc['titleDonation']));
           requestId.add(doc.id);
         }

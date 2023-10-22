@@ -115,14 +115,8 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                                   });
                                 },
                               )
-                            : RequestButton(
-                                nameButton: 'الغاء الطلب',
-                                onTap: () {
-                                  setState(() {
-                                    isRequest = false;
-                                  });
-                                  showSankBar(context, 'الغاء الطلب');
-                                })
+                            : CancelRequestButton(
+                                onTap: () {}, nameButton: 'الغاء الطلب')
                         : RequestButton(onTap: () {
                             showSankBar(context, 'لا يمكنك طلب هاذ التبرع');
                           }),
@@ -154,6 +148,35 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
             ]),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CancelRequestButton extends StatelessWidget {
+  const CancelRequestButton(
+      {super.key, this.nameButton, this.isRequest, this.onTap});
+  final String? nameButton;
+  final bool? isRequest;
+  final void Function()? onTap;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 40,
+        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), color: AppColor.kRed),
+        child: Center(
+            child: Text(
+          nameButton ?? 'طلب',
+          style: const TextStyle(
+            fontSize: 16,
+            color: AppColor.kWhite,
+            fontWeight: FontWeight.bold,
+          ),
+        )),
       ),
     );
   }

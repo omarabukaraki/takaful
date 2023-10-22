@@ -120,7 +120,7 @@ class MyDonationRequestsComponent extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: Text(
-                            'قبل ' '$time ',
+                            time.toString(),
                             style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.black,

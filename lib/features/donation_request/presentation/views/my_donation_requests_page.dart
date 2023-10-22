@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
@@ -5,6 +7,8 @@ import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/features/auth/data/model/user_details_model.dart';
 import 'package:takaful/features/donation_request/data/model/request_donation.dart';
 import 'package:takaful/features/donation_request/presentation/cubit/cubit/request_donation_cubit.dart';
+import 'package:takaful/features/donation_request/presentation/views/widget/my_donation_requests_component.dart';
+import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 
 class MyDonationRequests extends StatefulWidget {
   const MyDonationRequests({super.key});
@@ -15,14 +19,14 @@ class MyDonationRequests extends StatefulWidget {
 
 class _MyDonationRequestsState extends State<MyDonationRequests> {
   List<RequestDonationModel> requests = [];
-  List<UserDetailsModel> user = [];
   List<String> requestId = [];
   bool isLoading = false;
-  @override
-  void initState() {
-    BlocProvider.of<RequestDonationCubit>(context).getRequest();
-    super.initState();
-  }
+  String userEmail = '';
+  // @override
+  // void initState() {
+  //   BlocProvider.of<RequestDonationCubit>(context).getRequest();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +36,7 @@ class _MyDonationRequestsState extends State<MyDonationRequests> {
           isLoading = true;
         } else if (state is RequestDonationSuccess) {
           requests = state.requests;
-          // requestId = state.requestId;
-          // for (int i = 0; i < requests.length; i++) {
-          //   // BlocProvider.of<GetUserDetailsCubit>(context)
-          //   //     .userDonationInformation(
-          //   //         email: requests[i].serviceReceiverAccount);
-          // }
+          requestId = state.requestId;
           isLoading = false;
         } else if (state is RequestDonationFailure) {
           isLoading = false;
@@ -48,27 +47,84 @@ class _MyDonationRequestsState extends State<MyDonationRequests> {
             appBar: const CustomAppBar(
                 button: false, textOne: AppString.textItemRequest, textTwo: ''),
             backgroundColor: Colors.white,
-            body: ListView.builder(
-              itemCount: requests.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.blue,
-                  ),
-                  width: double.infinity,
-                  height: 100,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Center(
-                      child: Text(
-                    requests[index].titleDonation,
-                    style: const TextStyle(fontSize: 24),
-                  )),
-                );
-              },
-            ));
+            body: isLoading != true
+                ? ListView.builder(
+                    itemCount: requests.length,
+                    itemBuilder: (context, index) {
+                      return const SizedBox();
+                      // BlocProvider.of<GetUserDetailsCubit>(context)
+                      //     .userDonationInformation(
+                      //         email: requests[index].serviceReceiverAccount);
+                      // return requests[index].donarAccount ==
+                      //         FirebaseAuth.instance.currentUser!.email
+                      //     ? NewWidgets(
+                      //         requestId: requestId[index],
+                      //         requests: requests[index],
+                      //         userEmail: requests[index].serviceReceiverAccount,
+                      //         index: index,
+                      //         length: requests.length,
+                      //       )
+                      //     : const SizedBox();
+                    },
+                  )
+                : const Center(child: CircularProgressIndicator()));
+      },
+    );
+  }
+}
+
+class NewWidgets extends StatefulWidget {
+  const NewWidgets({
+    this.length,
+    this.requestId,
+    super.key,
+    this.index,
+    this.userEmail,
+    required this.requests,
+  });
+
+  final RequestDonationModel requests;
+  final String? userEmail;
+  final int? index;
+  final int? length;
+  final String? requestId;
+  @override
+  State<NewWidgets> createState() => _NewWidgetsState();
+}
+
+class _NewWidgetsState extends State<NewWidgets> {
+  List<UserDetailsModel> user = [];
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<GetUserDetailsCubit, GetUserDetailsState>(
+      listener: (context, state) {
+        if (state is GetUserDetailsSuccessForDonation) {
+          user.add(state.user);
+          print('name: ${user}');
+        } else if (state is GetUserDetailsLoadingForDonation) {
+          isLoading = true;
+        }
+      },
+      builder: (context, state) {
+        return MyDonationRequestsComponent(
+            onTapReject: () async {
+              try {
+                await FirebaseFirestore.instance
+                    .collection('request donation')
+                    .doc(widget.requestId)
+                    .delete();
+              } catch (e) {}
+            },
+            nameUser: user.isNotEmpty && widget.index! < user.length
+                ? user[widget.index!].name
+                : '',
+            title: widget.requests.titleDonation,
+            time: widget.requests.timeRequest.substring(0, 16),
+            image: user.isNotEmpty && widget.index! < user.length
+                ? user[widget.index!].image
+                : 'https://firebasestorage.googleapis.com/v0/b/takafultest-2ef6f.appspot.com/o/imagesForApplication%2Fuser_image.jpg?alt=media&token=1742bede-af30-493e-8e79-b08ca3c7bb0f');
       },
     );
   }
