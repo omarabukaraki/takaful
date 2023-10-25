@@ -21,16 +21,16 @@ class TypeOfDonationComponent extends StatelessWidget {
       child: Row(children: [
         Expanded(
           child: TypeOfDonationButton(
-            onTap: onTapShown,
-            text: 'معروض',
+            onTap: onTapRequired,
+            text: 'مطلوب',
             isSelectedOne: isSelectedOne,
             isSelectedTwo: !isSelectedTwo,
           ),
         ),
         Expanded(
           child: TypeOfDonationButton(
-            onTap: onTapRequired,
-            text: 'مطلوب',
+            onTap: onTapShown,
+            text: 'معروض',
             isSelectedOne: !isSelectedOne,
             isSelectedTwo: isSelectedTwo,
           ),

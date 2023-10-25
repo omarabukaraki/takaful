@@ -45,7 +45,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
   List<Placemark> placemarks = [];
   bool isSelectedOne = false;
   bool isSelectedTwo = true;
-  String typeOfDonation = 'مطلوب';
+  String typeOfDonation = 'معروض';
 
   void clearText() {
     title.clear();
@@ -229,15 +229,15 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   TypeOfDonationComponent(
                       onTapRequired: () {
                         setState(() {
-                          isSelectedOne = false;
-                          isSelectedTwo = true;
+                          isSelectedOne = true;
+                          isSelectedTwo = false;
                           typeOfDonation = 'مطلوب';
                         });
                       },
                       onTapShown: () {
                         setState(() {
-                          isSelectedOne = true;
-                          isSelectedTwo = false;
+                          isSelectedOne = false;
+                          isSelectedTwo = true;
                           typeOfDonation = 'معروض';
                         });
                       },
