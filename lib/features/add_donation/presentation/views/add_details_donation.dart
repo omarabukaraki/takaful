@@ -19,7 +19,6 @@ import 'package:takaful/features/add_donation/presentation/views/widgets/widgets
 import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/location_loading.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/text_feiled.dart';
 import 'package:takaful/features/auth/data/model/user_details_model.dart';
-import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 
 class AddDetailsPost extends StatefulWidget {
   const AddDetailsPost({super.key});
@@ -45,9 +44,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
   List<String> urls = [];
   List<Placemark> placemarks = [];
   List<UserDetailsModel> user = [];
-  String name = '';
-  String mobileNumber = '';
-  String donarImage = '';
+
   void clearText() {
     title.clear();
     locationSubLocality.clear();
@@ -273,57 +270,41 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   const SizedBox(height: 10),
 
                   //start button to upload donation
-                  BlocConsumer<GetUserDetailsCubit, GetUserDetailsState>(
-                    listener: (context, state) {
-                      if (state is GetUserDetailsSuccess) {
-                        user = state.user;
-                        name = state.user[0].name;
-                        mobileNumber = state.user[0].mobileNumber;
-                        donarImage = state.user[0].image;
+                  CustomButton(
+                    circular: 20,
+                    text: AppString.textPublishDonation,
+                    onTap: () async {
+                      if (BlocProvider.of<AddImagesCubit>(context)
+                          .url
+                          .isEmpty) {
+                        showSankBar(context, 'الرجاء اضافة صور',
+                            color: AppColor.kRed);
+                      } else {
+                        if (formKey.currentState!.validate()) {
+                          if (placemarks.isNotEmpty) {
+                            BlocProvider.of<AddDonationCubit>(context).addPost(
+                              postState: true,
+                              title: title.text,
+                              image:
+                                  BlocProvider.of<AddImagesCubit>(context).url,
+                              category: categoryAndItemService[1],
+                              itemOrService: categoryAndItemService[0],
+                              description: description.text,
+                              location:
+                                  '${placemarks[0].locality} - ${locationSubLocality.text}',
+                              state: stateOfThePost.text,
+                              count: counter,
+                            );
+                          } else {
+                            showSankBar(context, 'الرجاء اضافة الموقع');
+                          }
+                        }
                       }
                     },
-                    builder: (context, state) {
-                      return CustomButton(
-                        circular: 20,
-                        text: AppString.textPublishDonation,
-                        onTap: () async {
-                          if (BlocProvider.of<AddImagesCubit>(context)
-                              .url
-                              .isEmpty) {
-                            showSankBar(context, 'الرجاء اضافة صور',
-                                color: AppColor.kRed);
-                          } else {
-                            if (formKey.currentState!.validate()) {
-                              if (placemarks.isNotEmpty) {
-                                BlocProvider.of<AddDonationCubit>(context)
-                                    .addPost(
-                                  donarName: name,
-                                  donarImage: donarImage,
-                                  donarMobileNumber: mobileNumber,
-                                  postState: true,
-                                  title: title.text,
-                                  image:
-                                      BlocProvider.of<AddImagesCubit>(context)
-                                          .url,
-                                  category: categoryAndItemService[1],
-                                  itemOrService: categoryAndItemService[0],
-                                  description: description.text,
-                                  location:
-                                      '${placemarks[0].locality} - ${locationSubLocality.text}',
-                                  state: stateOfThePost.text,
-                                  count: counter,
-                                );
-                              } else {
-                                showSankBar(context, 'الرجاء اضافة الموقع');
-                              }
-                            }
-                          }
-                        },
-                        textColor: AppColor.kWhite,
-                        color: AppColor.kPrimary,
-                      );
-                    },
+                    textColor: AppColor.kWhite,
+                    color: AppColor.kPrimary,
                   ),
+
                   //end button to upload donation
                   const SizedBox(height: 20)
                 ]),
