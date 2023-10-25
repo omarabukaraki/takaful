@@ -19,12 +19,7 @@ class GetUserDetailsCubit extends Cubit<GetUserDetailsState> {
         List<UserDetailsModel> user = [];
         for (var doc in event.docs) {
           if (doc['email'] == FirebaseAuth.instance.currentUser!.email) {
-            user.add(UserDetailsModel(
-              name: doc['name'],
-              email: doc['email'],
-              image: doc['image'],
-              mobileNumber: doc['mobileNumber'],
-            ));
+            user.add(UserDetailsModel.fromJson(doc));
             docId = doc.id;
             emit(GetUserDetailsSuccess(user: user));
           }
@@ -42,12 +37,7 @@ class GetUserDetailsCubit extends Cubit<GetUserDetailsState> {
       users.snapshots().listen((event) {
         for (var doc in event.docs) {
           if (doc['email'] == email) {
-            user = UserDetailsModel(
-              name: doc['name'],
-              email: doc['email'],
-              image: doc['image'],
-              mobileNumber: doc['mobileNumber'],
-            );
+            user = UserDetailsModel.fromJson(doc);
             emit(GetUserDetailsSuccessForDonation(user: user));
           }
         }
@@ -57,3 +47,11 @@ class GetUserDetailsCubit extends Cubit<GetUserDetailsState> {
     }
   }
 }
+
+
+// UserDetailsModel(
+//               name: doc['name'],
+//               email: doc['email'],
+//               image: doc['image'],
+//               mobileNumber: doc['mobileNumber'],
+//             )
