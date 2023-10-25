@@ -53,7 +53,6 @@ class _AddImagesPageState extends State<AddImagesPage> {
                     onTap: () {
                       //start show dialog and display to choose
                       //
-                      //
                       showDialog(
                         context: context,
                         builder: (context) {
@@ -85,7 +84,6 @@ class _AddImagesPageState extends State<AddImagesPage> {
                         },
                       );
                       //
-                      //
                       //end show dialog and display to choose
                     },
                     child: const Padding(
@@ -114,7 +112,7 @@ class _AddImagesPageState extends State<AddImagesPage> {
                             onTap: () async {
                               if (image.isEmpty) {
                                 showSankBar(
-                                    context, 'please select cover of post');
+                                    context, 'الرجاء اختيار الصورة الرئيسية');
                               } else {
                                 if (formGallery == true) {
                                   BlocProvider.of<AddImagesCubit>(context)
@@ -155,8 +153,6 @@ class _AddImagesPageState extends State<AddImagesPage> {
                     textColor: AppColor.kWhite,
                     onTap: () {
                       if (image.isNotEmpty) {
-                        // BlocProvider.of<AddImagesCubit>(context).nameImage = [];
-                        // BlocProvider.of<AddImagesCubit>(context).image = [];
                         Navigator.pop(context);
                       } else {
                         showSankBar(context, 'الرجاء اختيار صورة');

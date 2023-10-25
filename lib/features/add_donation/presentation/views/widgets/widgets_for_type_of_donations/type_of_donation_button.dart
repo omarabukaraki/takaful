@@ -21,7 +21,7 @@ class TypeOfDonationButton extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
         width: double.infinity,
-        height: 64,
+        height: 62,
         decoration: BoxDecoration(
             border: isSelectedOne == true || isSelectedTwo == true
                 ? Border.all(color: AppColor.kPrimary, width: 2)
