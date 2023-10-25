@@ -28,17 +28,18 @@ class DonationModel {
 
   factory DonationModel.fromJson(dynamic jsonData) {
     return DonationModel(
-        jsonData['id'],
-        jsonData['postState'],
-        jsonData['title'],
-        jsonData['image'],
-        jsonData['category'],
-        jsonData['itemOrService'],
-        jsonData['description'],
-        jsonData['location'],
-        jsonData['count'],
-        jsonData['state'],
-        jsonData['createAt'],
-        jsonData['donarAccount']);
+      jsonData['id'],
+      jsonData['postState'],
+      jsonData['title'],
+      jsonData['image'],
+      jsonData['category'],
+      jsonData['itemOrService'],
+      jsonData['description'],
+      jsonData['location'],
+      jsonData['count'],
+      jsonData['state'],
+      jsonData['createAt'],
+      jsonData['donarAccount'],
+    );
   }
 }

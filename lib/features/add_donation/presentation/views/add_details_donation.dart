@@ -304,7 +304,6 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                     textColor: AppColor.kWhite,
                     color: AppColor.kPrimary,
                   ),
-
                   //end button to upload donation
                   const SizedBox(height: 20)
                 ]),
