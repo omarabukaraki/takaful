@@ -9,9 +9,9 @@ import 'package:takaful/core/widgets/custom_button.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/add_images_component.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/alert_dialog_button.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/image_displayed.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_image/add_images_component.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_image/alert_dialog_button.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_image/image_displayed.dart';
 import 'package:takaful/core/helper/show_snak_bar.dart';
 
 class AddImagesPage extends StatefulWidget {

@@ -128,6 +128,9 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                     DonationDetailsInformation(
                         section: 'الموقع', data: widget.postModel!.location),
                     DonationDetailsInformation(
+                        section: 'نوع التبرع',
+                        data: widget.postModel!.typeOfDonation),
+                    DonationDetailsInformation(
                         section: 'الحالة', data: widget.postModel!.state),
                     DonationDetailsInformation(
                         section: 'تاريخ النشر',

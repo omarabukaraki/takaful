@@ -21,6 +21,7 @@ class AddDonationCubit extends Cubit<AddDonationState> {
     required String location,
     required String state,
     required int count,
+    required String typeOfDonation,
   }) async {
     emit(AddDonationLodging());
     try {
@@ -37,6 +38,7 @@ class AddDonationCubit extends Cubit<AddDonationState> {
         'state': state,
         'createAt': DateTime.now().toString(),
         'donarAccount': FirebaseAuth.instance.currentUser!.email.toString(),
+        'typeOfDonation': typeOfDonation,
       });
       emit(AddDonationSuccess());
     } catch (e) {

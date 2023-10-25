@@ -11,6 +11,7 @@ class DonationModel {
   final String state;
   final String createAt;
   final String donarAccount;
+  final String typeOfDonation;
   DonationModel(
     this.id,
     this.postState,
@@ -24,6 +25,7 @@ class DonationModel {
     this.state,
     this.createAt,
     this.donarAccount,
+    this.typeOfDonation,
   );
 
   factory DonationModel.fromJson(dynamic jsonData) {
@@ -40,6 +42,7 @@ class DonationModel {
       jsonData['state'],
       jsonData['createAt'],
       jsonData['donarAccount'],
+      jsonData['typeOfDonation'],
     );
   }
 }

@@ -13,12 +13,11 @@ import 'package:takaful/features/add_donation/presentation/cubit/add_donation_cu
 import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
 import 'package:takaful/features/add_donation/presentation/cubit/add_location/add_location_cubit.dart';
 import 'package:takaful/features/add_donation/presentation/views/add_images_page.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/add_image_button.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_image/add_image_button.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/counter_post.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/location_button.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/location_loading.dart';
 import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/text_feiled.dart';
-import 'package:takaful/features/auth/data/model/user_details_model.dart';
 
 class AddDetailsPost extends StatefulWidget {
   const AddDetailsPost({super.key});
@@ -41,9 +40,11 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
   bool isLocationLoading = false;
   bool addedImage = false;
   bool addedLocation = false;
-  List<String> urls = [];
+  // List<String> urls = [];
   List<Placemark> placemarks = [];
-  List<UserDetailsModel> user = [];
+  bool isSelectedOne = false;
+  bool isSelectedTwo = true;
+  String typeOfDonation = 'مطلوب';
 
   void clearText() {
     title.clear();
@@ -78,6 +79,9 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
               BlocProvider.of<AddImagesCubit>(context).url = [];
               addedImage = false;
               addedLocation = false;
+              isSelectedOne = false;
+              isSelectedTwo = true;
+              typeOfDonation = 'مطلوب';
               // Navigator.of(context).pushNamedAndRemoveUntil(
               //     MyDonationPage.id, ((route) => false));
             } else if (state is AddDonationFailure) {
@@ -220,6 +224,26 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   //
                   //end get location from user
 
+                  //start get type of donation
+                  TypeOfDonationComponent(
+                      onTapRequired: () {
+                        setState(() {
+                          isSelectedOne = false;
+                          isSelectedTwo = true;
+                          typeOfDonation = 'مطلوب';
+                        });
+                      },
+                      onTapShown: () {
+                        setState(() {
+                          isSelectedOne = true;
+                          isSelectedTwo = false;
+                          typeOfDonation = 'معروض';
+                        });
+                      },
+                      isSelectedOne: isSelectedOne,
+                      isSelectedTwo: isSelectedTwo),
+                  //end get type of donation
+
                   //start get state from user
                   CustomTextFiled(
                     controller: stateOfThePost,
@@ -294,6 +318,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                                   '${placemarks[0].locality} - ${locationSubLocality.text}',
                               state: stateOfThePost.text,
                               count: counter,
+                              typeOfDonation: typeOfDonation,
                             );
                           } else {
                             showSankBar(context, 'الرجاء اضافة الموقع');
@@ -311,5 +336,79 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
             );
           },
         ));
+  }
+}
+
+class TypeOfDonationComponent extends StatelessWidget {
+  const TypeOfDonationComponent(
+      {super.key,
+      required this.isSelectedOne,
+      required this.isSelectedTwo,
+      this.onTapRequired,
+      this.onTapShown});
+
+  final bool isSelectedOne;
+  final bool isSelectedTwo;
+  final VoidCallback? onTapShown;
+  final VoidCallback? onTapRequired;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      child: Row(children: [
+        Expanded(
+          child: TypeOfDonationButton(
+            onTap: onTapShown,
+            text: 'معروض',
+            isSelectedOne: isSelectedOne,
+            isSelectedTwo: !isSelectedTwo,
+          ),
+        ),
+        Expanded(
+          child: TypeOfDonationButton(
+            onTap: onTapRequired,
+            text: 'مطلوب',
+            isSelectedOne: !isSelectedOne,
+            isSelectedTwo: isSelectedTwo,
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+class TypeOfDonationButton extends StatelessWidget {
+  const TypeOfDonationButton({
+    super.key,
+    required this.isSelectedOne,
+    required this.isSelectedTwo,
+    this.onTap,
+    this.text,
+  });
+  final bool isSelectedOne;
+  final bool isSelectedTwo;
+  final void Function()? onTap;
+  final String? text;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        width: double.infinity,
+        height: 64,
+        decoration: BoxDecoration(
+            border: isSelectedOne == true || isSelectedTwo == true
+                ? Border.all(color: AppColor.kPrimary, width: 2)
+                : Border.all(color: AppColor.kTextFiled, width: 0),
+            borderRadius: BorderRadius.circular(20),
+            color: AppColor.kTextFiled),
+        child: Center(
+            child: Text(text ?? 'مطلوب',
+                style: const TextStyle(color: AppColor.kTextFiledFont))),
+      ),
+    );
   }
 }
