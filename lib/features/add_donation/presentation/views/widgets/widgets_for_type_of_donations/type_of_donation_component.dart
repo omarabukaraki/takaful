@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/features/add_donation/presentation/views/add_details_donation.dart';
+import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_type_of_donations/type_of_donation_button.dart';
 
 class TypeOfDonationComponent extends StatelessWidget {
   const TypeOfDonationComponent(
