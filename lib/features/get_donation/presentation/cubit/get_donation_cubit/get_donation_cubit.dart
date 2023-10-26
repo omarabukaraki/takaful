@@ -28,6 +28,41 @@ class GetDonationCubit extends Cubit<GetDonationState> {
     }
   }
 }
+//   void getPostWithFiller(bool filter) {
+//     emit(GetDonationLodging());
+//     try {
+//       if (filter == false) {
+//         donations
+//             .where('typeOfDonation', isEqualTo: 'معروض')
+//             .snapshots()
+//             .listen((event) {
+//           List<DonationModel> donationsList = [];
+//           // List<String> docId = [];
+//           for (var doc in event.docs) {
+//             donationsList.add(DonationModel.fromJson(doc));
+//             // docId.add(doc.id);
+//           }
+//           emit(GetDonationSuccess(donations: donationsList));
+//         });
+//       } else {
+//         donations
+//             .where('typeOfDonation', isEqualTo: 'مطلوب')
+//             .snapshots()
+//             .listen((event) {
+//           List<DonationModel> donationsList = [];
+//           // List<String> docId = [];
+//           for (var doc in event.docs) {
+//             donationsList.add(DonationModel.fromJson(doc));
+//             // docId.add(doc.id);
+//           }
+//           emit(GetDonationSuccess(donations: donationsList));
+//         });
+//       }
+//     } catch (e) {
+//       emit(GetDonationFailure());
+//     }
+//   }
+// }
 // DonationModel(
 //               doc['id'],
 //               doc['postState'],

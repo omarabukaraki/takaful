@@ -91,7 +91,6 @@ class OrderAndFilter extends StatelessWidget {
   const OrderAndFilter({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -101,14 +100,12 @@ class OrderAndFilter extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(children: [
           Expanded(child: OrderButton(onTap: () {
-            // ignore: avoid_print
             print('order');
           })),
           Expanded(
               flex: 2,
               child: FilterResultButton(
                 onTap: () {
-                  //ignore: avoid_print
                   print('filter the result');
                 },
               )),

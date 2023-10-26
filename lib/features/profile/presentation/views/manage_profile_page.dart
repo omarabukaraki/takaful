@@ -84,6 +84,7 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                               BlocProvider.of<AddImagesCubit>(context)
                                   .nameImage = [];
                               url = [];
+                              Navigator.pop(context);
                             }
                           },
                           builder: (context, state) {
