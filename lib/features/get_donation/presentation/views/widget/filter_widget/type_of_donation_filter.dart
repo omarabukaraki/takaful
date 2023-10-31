@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/utils/app_colors.dart';
+
+import '../../../cubit/get_donation_cubit/get_donation_cubit.dart';
 
 class TypeOfDonationFilter extends StatefulWidget {
   const TypeOfDonationFilter({
@@ -13,9 +16,11 @@ class TypeOfDonationFilter extends StatefulWidget {
 class _TypeOfDonationFilterState extends State<TypeOfDonationFilter> {
   List<String> typeOfDonation = ['الكل', 'مطلوب', 'معروض'];
   String type = 'الكل';
-  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    int? currentIndex =
+        BlocProvider.of<GetDonationCubit>(context).currentIndexType;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -46,10 +51,13 @@ class _TypeOfDonationFilterState extends State<TypeOfDonationFilter> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      setState(() {
-                        type = typeOfDonation[index];
-                        currentIndex = index;
-                      });
+                      type = typeOfDonation[index];
+                      currentIndex = index;
+                      BlocProvider.of<GetDonationCubit>(context)
+                          .typeOfDonation = type.toString();
+                      BlocProvider.of<GetDonationCubit>(context)
+                          .currentIndexType = index;
+                      setState(() {});
                       print(type);
                     },
                     child: currentIndex == index

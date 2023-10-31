@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
 
 class LocationFilter extends StatefulWidget {
   const LocationFilter({super.key});
@@ -9,7 +11,7 @@ class LocationFilter extends StatefulWidget {
 }
 
 class _LocationFilterState extends State<LocationFilter> {
-  List<String> typeOfDonation = [
+  List<String> locations = [
     'كل المدن',
     'عمان',
     'إربد',
@@ -24,10 +26,12 @@ class _LocationFilterState extends State<LocationFilter> {
     'معان',
     'الطفيلة',
   ];
-  String type = 'كل المدن';
-  int currentIndex = 0;
+  String location = 'كل المدن';
+
   @override
   Widget build(BuildContext context) {
+    int? currentIndex =
+        BlocProvider.of<GetDonationCubit>(context).currentIndexLocation;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -50,7 +54,7 @@ class _LocationFilterState extends State<LocationFilter> {
             child: Directionality(
               textDirection: TextDirection.rtl,
               child: GridView.builder(
-                itemCount: typeOfDonation.length,
+                itemCount: locations.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 3.2,
@@ -59,8 +63,13 @@ class _LocationFilterState extends State<LocationFilter> {
                   return GestureDetector(
                     onTap: () {
                       setState(() {
-                        type = typeOfDonation[index];
+                        location = locations[index];
                         currentIndex = index;
+                        print(location);
+                        BlocProvider.of<GetDonationCubit>(context).location =
+                            location.toString();
+                        BlocProvider.of<GetDonationCubit>(context)
+                            .currentIndexLocation = index;
                       });
                     },
                     child: currentIndex == index
@@ -73,7 +82,7 @@ class _LocationFilterState extends State<LocationFilter> {
                                 border: Border.all(color: AppColor.kPrimary),
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColor.kTextFiled),
-                            child: Center(child: Text(typeOfDonation[index])),
+                            child: Center(child: Text(locations[index])),
                           )
                         : Container(
                             margin: const EdgeInsets.symmetric(
@@ -84,7 +93,7 @@ class _LocationFilterState extends State<LocationFilter> {
                                 border: Border.all(color: AppColor.kWhite),
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColor.kTextFiled),
-                            child: Center(child: Text(typeOfDonation[index])),
+                            child: Center(child: Text(locations[index])),
                           ),
                   );
                 },

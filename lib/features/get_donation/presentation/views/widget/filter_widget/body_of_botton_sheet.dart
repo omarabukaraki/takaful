@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:takaful/features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
 import '../../../../../../core/utils/app_colors.dart';
 import 'fulter_button_to_bottn_sheet.dart';
 import 'location_filter.dart';
@@ -28,7 +30,14 @@ class _BodyOfBottomSheetState extends State<BodyOfBottomSheet> {
           const LocationFilter(),
           const SizedBox(height: 30),
           FilterButtonToBottomSheet(
-            onTap: () {},
+            onTap: () {
+              BlocProvider.of<GetDonationCubit>(context).getPostWithFiller(
+                  donation:
+                      BlocProvider.of<GetDonationCubit>(context).typeOfDonation,
+                  location:
+                      BlocProvider.of<GetDonationCubit>(context).location);
+              Navigator.pop(context);
+            },
           )
         ]),
       ),

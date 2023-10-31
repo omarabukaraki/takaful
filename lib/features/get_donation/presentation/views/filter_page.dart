@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/filter_widget/body_of_botton_sheet.dart';
+import 'widget/filter_widget/body_of_botton_sheet.dart';
 
 class FilterPage extends StatelessWidget {
   const FilterPage({

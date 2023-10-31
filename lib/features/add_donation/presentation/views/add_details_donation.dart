@@ -6,19 +6,19 @@ import 'package:geocoding/geocoding.dart';
 import 'package:takaful/core/helper/show_snak_bar.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/core/widgets/custom_app_bar.dart';
-import 'package:takaful/core/widgets/custom_button.dart';
-import 'package:takaful/core/widgets/custom_textfiled.dart';
-import 'package:takaful/features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
-import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
-import 'package:takaful/features/add_donation/presentation/cubit/add_location/add_location_cubit.dart';
-import 'package:takaful/features/add_donation/presentation/views/add_images_page.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_image/add_image_button.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/counter_post.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/location_button.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/location_loading.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_location/text_feiled.dart';
-import 'package:takaful/features/add_donation/presentation/views/widgets/widgets_for_type_of_donations/type_of_donation_component.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_textfiled.dart';
+import '../cubit/add_donation_cubit/add_donation_cubit.dart';
+import '../cubit/add_images_cubit/add_images_cubit.dart';
+import '../cubit/add_location/add_location_cubit.dart';
+import 'add_images_page.dart';
+import 'widgets/counter_post.dart';
+import 'widgets/widgets_for_image/add_image_button.dart';
+import 'widgets/widgets_for_location/location_button.dart';
+import 'widgets/widgets_for_location/location_loading.dart';
+import 'widgets/widgets_for_location/text_feiled.dart';
+import 'widgets/widgets_for_type_of_donations/type_of_donation_component.dart';
 
 class AddDetailsPost extends StatefulWidget {
   const AddDetailsPost({super.key});
@@ -315,8 +315,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                               category: categoryAndItemService[1],
                               itemOrService: categoryAndItemService[0],
                               description: description.text,
-                              location:
-                                  '${placemarks[0].locality} - ${locationSubLocality.text}',
+                              location: placemarks[0].locality!,
+                              subLocation: locationSubLocality.text,
                               state: stateOfThePost.text,
                               count: counter,
                               typeOfDonation: typeOfDonation,
@@ -339,3 +339,4 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
         ));
   }
 }
+  // '${placemarks[0].locality} - ${locationSubLocality.text}'

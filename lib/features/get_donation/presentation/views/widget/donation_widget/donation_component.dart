@@ -36,10 +36,12 @@ class DonationComponent extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: DonationCoverInformation(
-                        title: donation!.title,
-                        typePost:
-                            '${donation!.category} - ${donation!.itemOrService}',
-                        location: donation!.location),
+                      title: donation!.title,
+                      typePost:
+                          '${donation!.category} - ${donation!.itemOrService}',
+                      location:
+                          '${donation!.location} - ${donation!.subLocation}',
+                    ),
                   ),
                   Expanded(
                       flex: 1,

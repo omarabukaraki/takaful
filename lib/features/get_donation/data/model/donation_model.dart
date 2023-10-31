@@ -7,6 +7,7 @@ class DonationModel {
   final String itemOrService;
   final String description;
   final String location;
+  final String subLocation;
   final int count;
   final String state;
   final String createAt;
@@ -21,6 +22,7 @@ class DonationModel {
     this.itemOrService,
     this.description,
     this.location,
+    this.subLocation,
     this.count,
     this.state,
     this.createAt,
@@ -38,6 +40,7 @@ class DonationModel {
       jsonData['itemOrService'],
       jsonData['description'],
       jsonData['location'],
+      jsonData['subLocation'],
       jsonData['count'],
       jsonData['state'],
       jsonData['createAt'],
