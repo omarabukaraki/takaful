@@ -58,6 +58,7 @@ class AdPosts extends StatelessWidget {
             width: double.infinity,
             height: 197,
           ),
+          const SizedBox(height: 5),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Text(
@@ -69,22 +70,23 @@ class AdPosts extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  ratingNumber ?? '4.9',
-                  style: const TextStyle(color: Colors.yellow),
-                ),
-                const Icon(
-                  Icons.star_rate_rounded,
-                  color: Colors.yellow,
-                )
-              ],
-            ),
-          ),
+
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 5),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.end,
+          //     children: [
+          //       Text(
+          //         ratingNumber ?? '4.9',
+          //         style: const TextStyle(color: Colors.yellow),
+          //       ),
+          //       const Icon(
+          //         Icons.star_rate_rounded,
+          //         color: Colors.yellow,
+          //       )
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
