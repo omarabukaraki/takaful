@@ -43,8 +43,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
   bool addedLocation = false;
   // List<String> urls = [];
   List<Placemark> placemarks = [];
-  bool isSelectedOne = false;
-  bool isSelectedTwo = true;
+
   String typeOfDonation = 'معروض';
 
   void clearText() {
@@ -80,9 +79,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
               BlocProvider.of<AddImagesCubit>(context).url = [];
               addedImage = false;
               addedLocation = false;
-              isSelectedOne = false;
-              isSelectedTwo = true;
-              typeOfDonation = 'مطلوب';
+
+              typeOfDonation = 'معروض';
               // Navigator.of(context).pushNamedAndRemoveUntil(
               //     MyDonationPage.id, ((route) => false));
             } else if (state is AddDonationFailure) {
@@ -227,22 +225,18 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
 
                   //start get type of donation
                   TypeOfDonationComponent(
-                      onTapRequired: () {
-                        setState(() {
-                          isSelectedOne = true;
-                          isSelectedTwo = false;
-                          typeOfDonation = 'مطلوب';
-                        });
-                      },
-                      onTapShown: () {
-                        setState(() {
-                          isSelectedOne = false;
-                          isSelectedTwo = true;
-                          typeOfDonation = 'معروض';
-                        });
-                      },
-                      isSelectedOne: isSelectedOne,
-                      isSelectedTwo: isSelectedTwo),
+                    onTapRequired: () {
+                      setState(() {
+                        typeOfDonation = 'مطلوب';
+                      });
+                    },
+                    onTapShown: () {
+                      setState(() {
+                        typeOfDonation = 'معروض';
+                      });
+                    },
+                    typeOfDonation: typeOfDonation,
+                  ),
                   //end get type of donation
 
                   //start get state from user

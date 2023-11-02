@@ -41,11 +41,10 @@ class AddLocationCubit extends Cubit<AddLocationState> {
       emit(AddLocationLodging());
       placemarks = await placemarkFromCoordinates(latitude, longitude,
           localeIdentifier: 'ar');
+      print(placemarks);
       emit(AddLocationSuccess(placemarks: placemarks));
     } catch (e) {
       emit(AddLocationFailure(errMessage: e.toString()));
-      // ignore: avoid_print
-      print(e.toString());
     }
   }
 }

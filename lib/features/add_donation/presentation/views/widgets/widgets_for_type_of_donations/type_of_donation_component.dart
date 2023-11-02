@@ -3,14 +3,8 @@ import 'package:takaful/features/add_donation/presentation/views/widgets/widgets
 
 class TypeOfDonationComponent extends StatelessWidget {
   const TypeOfDonationComponent(
-      {super.key,
-      required this.isSelectedOne,
-      required this.isSelectedTwo,
-      this.onTapRequired,
-      this.onTapShown});
-
-  final bool isSelectedOne;
-  final bool isSelectedTwo;
+      {super.key, this.onTapRequired, this.onTapShown, this.typeOfDonation});
+  final String? typeOfDonation;
   final VoidCallback? onTapShown;
   final VoidCallback? onTapRequired;
 
@@ -23,16 +17,14 @@ class TypeOfDonationComponent extends StatelessWidget {
           child: TypeOfDonationButton(
             onTap: onTapRequired,
             text: 'مطلوب',
-            isSelectedOne: isSelectedOne,
-            isSelectedTwo: !isSelectedTwo,
+            typeOfDonation: typeOfDonation,
           ),
         ),
         Expanded(
           child: TypeOfDonationButton(
             onTap: onTapShown,
             text: 'معروض',
-            isSelectedOne: !isSelectedOne,
-            isSelectedTwo: isSelectedTwo,
+            typeOfDonation: typeOfDonation,
           ),
         ),
       ]),

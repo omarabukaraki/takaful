@@ -13,7 +13,7 @@ class LocationFilter extends StatefulWidget {
 class _LocationFilterState extends State<LocationFilter> {
   List<String> locations = [
     'كل المدن',
-    'عمان',
+    'عمّان',
     'إربد',
     'الزرقاء',
     'السلط',

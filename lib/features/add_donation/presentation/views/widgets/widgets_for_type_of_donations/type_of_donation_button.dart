@@ -2,17 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 
 class TypeOfDonationButton extends StatelessWidget {
-  const TypeOfDonationButton({
-    super.key,
-    required this.isSelectedOne,
-    required this.isSelectedTwo,
-    this.onTap,
-    this.text,
-  });
-  final bool isSelectedOne;
-  final bool isSelectedTwo;
+  const TypeOfDonationButton(
+      {super.key, this.onTap, this.text, this.typeOfDonation});
+
   final void Function()? onTap;
   final String? text;
+  final String? typeOfDonation;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +18,7 @@ class TypeOfDonationButton extends StatelessWidget {
         width: double.infinity,
         height: 62,
         decoration: BoxDecoration(
-            border: isSelectedOne == true || isSelectedTwo == true
+            border: typeOfDonation == text
                 ? Border.all(color: AppColor.kPrimary, width: 2)
                 : Border.all(color: AppColor.kTextFiled, width: 0),
             borderRadius: BorderRadius.circular(20),
