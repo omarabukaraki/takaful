@@ -5,16 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/helper/show_snak_bar.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
-import 'package:takaful/features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
-import 'package:takaful/features/auth/data/model/user_details_model.dart';
-import 'package:takaful/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
-import 'package:takaful/features/profile/presentation/cubit/delete_account/delete_account_cubit.dart';
-import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
-import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/add_image_profile_button.dart';
-import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/change_password_button.dart';
-import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/display_email.dart';
-import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/edit_text_field.dart';
-import 'package:takaful/features/profile/presentation/views/widget/widget_manage_profile/manage_profile_button.dart';
+import '../../../add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
+import '../../../auth/data/model/user_details_model.dart';
+import '../../../auth/presentation/cubit/login_cubit/login_cubit.dart';
+import '../cubit/delete_account/delete_account_cubit.dart';
+import '../cubit/get_user_details/get_user_details_cubit.dart';
+import 'widget/widget_manage_profile/add_image_profile_button.dart';
+import 'widget/widget_manage_profile/change_password_button.dart';
+import 'widget/widget_manage_profile/display_email.dart';
+import 'widget/widget_manage_profile/edit_text_field.dart';
+import 'widget/widget_manage_profile/manage_profile_button.dart';
 
 class ManageProfilePage extends StatefulWidget {
   const ManageProfilePage({super.key});

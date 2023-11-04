@@ -5,7 +5,7 @@ import 'package:takaful/features/auth/data/model/user_details_model.dart';
 import 'package:takaful/features/auth/presentation/views/login_page.dart';
 import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 import 'package:takaful/features/profile/presentation/views/manage_profile_page.dart';
-import 'package:takaful/features/profile/presentation/views/my_donation.dart';
+import 'package:takaful/features/profile/presentation/views/my_donation/my_donation_page.dart';
 import 'package:takaful/features/profile/presentation/views/widget/profile_app_bar.dart';
 import 'package:takaful/features/profile/presentation/views/widget/profile_button.dart';
 

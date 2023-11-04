@@ -18,7 +18,7 @@ import 'widgets/widgets_for_image/add_image_button.dart';
 import 'widgets/widgets_for_location/location_button.dart';
 import 'widgets/widgets_for_location/location_loading.dart';
 import 'widgets/widgets_for_location/text_feiled.dart';
-import 'widgets/widgets_for_type_of_donations/type_of_donation_component.dart';
+import '../../../../core/widgets/type_of_donation_component.dart';
 
 class AddDetailsPost extends StatefulWidget {
   const AddDetailsPost({super.key});
