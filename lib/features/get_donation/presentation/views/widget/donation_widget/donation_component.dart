@@ -6,12 +6,13 @@ import 'package:takaful/features/get_donation/presentation/views/widget/donation
 import 'package:takaful/features/get_donation/presentation/views/widget/donation_widget/donation_cover_image.dart';
 
 class DonationComponent extends StatelessWidget {
-  const DonationComponent(
-      {super.key, this.onTapRequest, this.onTapSave, this.donation});
-  final DonationModel? donation;
+  const  DonationComponent(
+      {super.key, this.onTapRequest, this.onTapSave, this.donation,this.isSaved});
 
+  final DonationModel? donation;
   final VoidCallback? onTapRequest;
   final VoidCallback? onTapSave;
+  final bool ?isSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -56,28 +57,21 @@ class DonationComponent extends StatelessWidget {
               flex: 2,
               child: Row(
                 children: [
-                  Expanded(
-                    flex: 1,
+                isSaved!=true ?  Expanded(
+                  flex: 1,
                     child: GestureDetector(
                       onTap: onTapSave,
-                      child: Container(
-                        height: 100,
-                        margin: const EdgeInsets.only(top: 5, left: 15),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: AppColor.kPrimary),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Center(
-                            child: Text(
-                          'حفظ',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColor.kPrimary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
+                      child: const CustomButtonToDonationComponent(),
+                    ),
+                  ): Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                      child: const CustomButtonToDonationComponent(
+                        text: 'تم الحفظ',
+                        color: AppColor.kGreen,
                       ),
                     ),
+                 
                   ),
                   Expanded(
                     flex: 1,
@@ -104,6 +98,32 @@ class DonationComponent extends StatelessWidget {
               ))
         ]),
       ),
+    );
+  }
+}
+
+class CustomButtonToDonationComponent extends StatelessWidget {
+  const CustomButtonToDonationComponent({super.key, this.text, this.color});
+  final String? text;
+  final Color? color;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      margin: const EdgeInsets.only(top: 5, left: 15),
+      decoration: BoxDecoration(
+        border: Border.all(color: color ?? AppColor.kPrimary),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Center(
+          child: Text(
+        text ?? 'حفظ',
+        style: TextStyle(
+          fontSize: 16,
+          color: color ?? AppColor.kPrimary,
+          fontWeight: FontWeight.bold,
+        ),
+      )),
     );
   }
 }
