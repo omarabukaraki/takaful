@@ -36,12 +36,12 @@ class ItemTypePage extends StatelessWidget {
           children: [
             Center(
               child: Container(
-                margin: const EdgeInsets.symmetric(vertical: 80),
+                margin: const EdgeInsets.only(top: 80),
                 width: 100,
                 height: screenheigth,
                 decoration: const BoxDecoration(
                     borderRadius:
-                        BorderRadius.horizontal(left: Radius.circular(38)),
+                        BorderRadius.only(topLeft: Radius.circular(38)),
                     color: AppColor.kPrimary),
               ),
             ),

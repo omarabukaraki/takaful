@@ -39,7 +39,7 @@ class AddDonation extends StatelessWidget {
                 arguments: AppString.textServices);
           },
         ),
-        const TypeOfItemOrService(title: AppString.textOther)
+        // const TypeOfItemOrService(title: AppString.textOther)
       ]),
     );
   }

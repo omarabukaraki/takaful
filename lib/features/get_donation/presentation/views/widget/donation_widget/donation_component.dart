@@ -6,13 +6,17 @@ import 'package:takaful/features/get_donation/presentation/views/widget/donation
 import 'package:takaful/features/get_donation/presentation/views/widget/donation_widget/donation_cover_image.dart';
 
 class DonationComponent extends StatelessWidget {
-  const  DonationComponent(
-      {super.key, this.onTapRequest, this.onTapSave, this.donation,this.isSaved});
+  const DonationComponent(
+      {super.key,
+      this.onTapRequest,
+      this.onTapSave,
+      this.donation,
+      this.isSaved});
 
   final DonationModel? donation;
   final VoidCallback? onTapRequest;
   final VoidCallback? onTapSave;
-  final bool ?isSaved;
+  final bool? isSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -52,27 +56,47 @@ class DonationComponent extends StatelessWidget {
                 ],
               )),
           Expanded(
-              flex: 1, child: ImageCount(countImage: donation!.image.length)),
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  // Container(
+                  //   width: 95,
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(5),
+                  //     color: AppColor.kFontSecondary,
+                  //   ),
+                  //   child: Center(
+                  //       child: Text(
+                  //     donation!.typeOfDonation.toString(),
+                  //     style: const TextStyle(color: AppColor.kWhite),
+                  //   )),
+                  // ),
+                  // const SizedBox(width: 10),
+                  ImageCount(countImage: donation!.image.length),
+                ],
+              )),
           Expanded(
               flex: 2,
               child: Row(
                 children: [
-                isSaved!=true ?  Expanded(
-                  flex: 1,
-                    child: GestureDetector(
-                      onTap: onTapSave,
-                      child: const CustomButtonToDonationComponent(),
-                    ),
-                  ): Expanded(
-                    flex: 1,
-                    child: GestureDetector(
-                      child: const CustomButtonToDonationComponent(
-                        text: 'تم الحفظ',
-                        color: AppColor.kGreen,
-                      ),
-                    ),
-                 
-                  ),
+                  isSaved != true
+                      ? Expanded(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: onTapSave,
+                            child: const CustomButtonToDonationComponent(),
+                          ),
+                        )
+                      : Expanded(
+                          flex: 1,
+                          child: GestureDetector(
+                            child: const CustomButtonToDonationComponent(
+                              text: 'تم الحفظ',
+                              color: AppColor.kGreen,
+                            ),
+                          ),
+                        ),
                   Expanded(
                     flex: 1,
                     child: GestureDetector(

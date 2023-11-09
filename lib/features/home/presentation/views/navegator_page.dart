@@ -5,7 +5,7 @@ import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/features/add_donation/presentation/views/add_donation.dart';
 import 'package:takaful/features/donation_request/presentation/views/my_donation_requests_page.dart';
-import 'package:takaful/features/profile/presentation/views/profile_page.dart';
+import '../../../profile/presentation/views/profile_page.dart';
 import 'home_page.dart';
 
 class NavigatorBarPage extends StatefulWidget {
@@ -66,7 +66,7 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera_enhance, color: AppColor.kPrimary),
-            label: 'أضف تبرع',
+            label: 'أضف إعلان',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home_rounded, color: AppColor.kPrimary),
@@ -77,3 +77,33 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
     );
   }
 }
+
+// class ProfileTest extends StatelessWidget {
+//   const ProfileTest({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//       child: Padding(
+//         padding: const EdgeInsets.symmetric(horizontal: 115),
+//         child: ElevatedButton(
+//           onPressed: () async {
+//             await FirebaseAuth.instance.signOut();
+//             // ignore: use_build_context_synchronously
+//             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+//               builder: (context) {
+//                 return const LoginPage();
+//               },
+//             ), (route) => false);
+//           },
+//           child: const Row(children: [
+//             Text('تسجيل خروج'),
+//             SizedBox(width: 10),
+//             Icon(Icons.logout)
+//           ]),
+//         ),
+//       ),
+//     ));
+//   }
+// }

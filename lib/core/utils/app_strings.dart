@@ -22,7 +22,8 @@ abstract class AppString {
   static const String textSearchInTakaful = 'ابحث في تكافل';
   static const String textAllCategory = 'جميع الأقسام';
   static const String textServices = 'الخدمات';
-  static const String textItems = 'الاستهلاكيات';
+  // static const String textItems = 'الاستهلاكيات';
+  static const String textItems = 'التبرعات العينية';
   static const String textOther = 'أخرى';
   static const String textModernElements = 'العناصر الحديثة';
   static const String textKeepBrowsing = 'استمر في التصفح';

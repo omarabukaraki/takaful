@@ -66,7 +66,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => EditAndDeleteDonationCubit(),
         ),
-        BlocProvider(create: (context) => SaveDonationCubit(),)
+        BlocProvider(
+          create: (context) => SaveDonationCubit(),
+        )
       ],
       child: MaterialApp(
         title: 'takaful',

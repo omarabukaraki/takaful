@@ -7,8 +7,8 @@ import 'package:takaful/core/utils/app_assets.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/features/get_category/presentation/views/items_type_page.dart';
-import 'package:takaful/features/notification/presentation/views/notifcation_page.dart';
 import 'package:takaful/features/get_category/presentation/views/service_type_page.dart';
+import '../../../notification/presentation/views/notifcation_page.dart';
 import 'widget/ad_application.dart';
 import 'widget/category.dart';
 
@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Category(
                     image: AppAssets.assetsImageServicesImage,
-                    text: 'الخدمات',
+                    text: AppString.textServices,
                     onTap: () {
                       Navigator.pushNamed(context, ServiceTypePage.id,
                           arguments: AppString.textServices);
@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Category(
                     image: AppAssets.assetsImageItemsImage,
-                    text: 'الاستهلاكيات',
+                    text: AppString.textItems,
                     onTap: () {
                       Navigator.pushNamed(context, ItemTypePage.id,
                           arguments: AppString.textItems);

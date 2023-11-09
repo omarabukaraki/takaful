@@ -206,7 +206,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                                           horizontal: 10),
                                       child: TextFieldForLocation(
                                           controller: locationLocality,
-                                          readOnly: true,
+                                          // readOnly: true,
                                           onChanged: (p0) {
                                             locationLocality.text = p0;
                                           },

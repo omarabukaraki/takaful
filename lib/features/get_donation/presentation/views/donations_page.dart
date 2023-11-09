@@ -1,6 +1,5 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
@@ -22,7 +21,7 @@ class DonationsPage extends StatefulWidget {
 
 class _DonationsPageState extends State<DonationsPage> {
   bool isLodging = false;
-  List<String> docId=[] ;
+  List<String> docId = [];
   List<SaveDonationModel> savedDonation = [];
   @override
   void initState() {
@@ -65,40 +64,29 @@ class _DonationsPageState extends State<DonationsPage> {
             child: Column(
               children: [
                 const OrderAndFilter(),
-                BlocConsumer<SaveDonationCubit, SaveDonationState>(
-                  listener: (context, state) {
-                  if(state is SaveDonationSuccess){
-                    savedDonation = state.donationSaved;
-                  }                  },
-                  builder: (context, state) {
-                    return Expanded(
-                                  child: ListView.builder(
-                                    itemCount: donation.length,
-                                    itemBuilder: (context, index) {
-                                      return categoryAndItemName[1] ==
-                                              donation[index].itemOrService
-                                          ? DonationComponent(isSaved:savedDonation[index].donationId!=''  && FirebaseAuth.instance.currentUser!.uid == savedDonation[index].userId ? true : false,
-                                            onTapSave: () async{ 
-                                              setState(() {
-                                                
-                                              });
-                                           await BlocProvider.of<SaveDonationCubit>(context).saveDonation(docId: docId[index]);
-                                            },
-                                              donation: donation[index],
-                                              onTapRequest: () {
-                                                Navigator.push(context,
-                                                    MaterialPageRoute(builder: (context) {
-                                                  return DonationDetailsPage(
-                                                      postModel: donation[index]);
-                                                }));
-                                              },
-                                            )
-                                          : const SizedBox();
-                                    },
-                                  ),
-                                );
-                  },
-                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: donation.length,
+                    itemBuilder: (context, index) {
+                      return categoryAndItemName[1] ==
+                              donation[index].itemOrService
+                          ? donation[index].postState == true
+                              ? DonationComponent(
+                                  isSaved: false,
+                                  donation: donation[index],
+                                  onTapRequest: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return DonationDetailsPage(
+                                          postModel: donation[index]);
+                                    }));
+                                  },
+                                )
+                              : const SizedBox()
+                          : const SizedBox();
+                    },
+                  ),
+                )
               ],
             ),
           ),
@@ -110,3 +98,19 @@ class _DonationsPageState extends State<DonationsPage> {
 
 
 // if(donation_id == donation_id from request and user_id == user_id)
+// isSaved:savedDonation[index].donationId!=''  && FirebaseAuth.instance.currentUser!.uid == savedDonation[index].userId ? true : false
+//  BlocConsumer<SaveDonationCubit, SaveDonationState>(
+//                   listener: (context, state) {
+//                     if (state is SaveDonationSuccess) {
+//                       savedDonation = state.donationSaved;
+//                     }
+//                   },
+//                   builder: (context, state) {
+//                     return    },
+//                 ),
+        // onTapSave: () async {
+        //                             setState(() {});
+        //                             await BlocProvider.of<SaveDonationCubit>(
+        //                                     context)
+        //                                 .saveDonation(docId: docId[index]);
+        //                           },
