@@ -32,7 +32,6 @@ class OrderAndFilter extends StatelessWidget {
                       return const FilterPage();
                     },
                   );
-                  print('filter the result');
                 },
               )),
         ]),

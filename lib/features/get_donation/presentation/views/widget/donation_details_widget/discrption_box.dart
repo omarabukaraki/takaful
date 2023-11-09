@@ -27,7 +27,7 @@ class DescriptionBox extends StatelessWidget {
           ],
           color: Colors.white),
       child: Text(
-        widget.postModel!.description,
+        widget.donationModel!.description,
         textAlign: TextAlign.end,
         style: const TextStyle(
           fontSize: 14,

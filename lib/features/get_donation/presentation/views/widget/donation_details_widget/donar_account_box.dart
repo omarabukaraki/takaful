@@ -20,8 +20,8 @@ class DonarAccountBox extends StatefulWidget {
 class _DonarAccountBoxState extends State<DonarAccountBox> {
   @override
   void initState() {
-    BlocProvider.of<GetUserDetailsCubit>(context)
-        .userDonationInformation(email: widget.widget.postModel!.donarAccount);
+    BlocProvider.of<GetUserDetailsCubit>(context).userDonationInformation(
+        email: widget.widget.donationModel!.donarAccount);
     super.initState();
   }
 

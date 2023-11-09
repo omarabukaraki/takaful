@@ -11,14 +11,14 @@ class RequestDonationCubit extends Cubit<RequestDonationState> {
   RequestDonationCubit() : super(RequestDonationInitial());
   CollectionReference requestDonation =
       FirebaseFirestore.instance.collection('request donation');
+  bool isRequested = false;
   Future<void> request(
-      {
-      // required String postId,
+      {required String postId,
       required String titleDonation,
       required String donarAccount,
       required String serviceReceiveAccount}) async {
     requestDonation.add({
-      // 'postId': postId,
+      'postId': postId,
       'serviceReceiverId': FirebaseAuth.instance.currentUser!.uid,
       'titleDonation': titleDonation,
       'donarAccount': donarAccount,
@@ -38,7 +38,8 @@ class RequestDonationCubit extends Cubit<RequestDonationState> {
         List<String> requestId = [];
         for (var doc in event.docs) {
           requests.add(RequestDonationModel(
-              // serviceReceiverId: doc['serviceReceiverId'],
+              postId: doc['postId'],
+              serviceReceiverId: doc['serviceReceiverId'],
               donarAccount: doc['donarAccount'],
               serviceReceiverAccount: doc['serviceReceiverAccount'],
               timeRequest: doc['timeRequest'],
@@ -52,5 +53,11 @@ class RequestDonationCubit extends Cubit<RequestDonationState> {
     }
   }
 
-  void deleteRequest() {}
+  Future<void> deleteRequest({required String docId}) async {
+    try {
+      await requestDonation.doc(docId).delete();
+    } catch (e) {
+      print(e);
+    }
+  }
 }

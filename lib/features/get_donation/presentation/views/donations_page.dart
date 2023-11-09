@@ -3,7 +3,6 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
-import 'package:takaful/features/get_donation/presentation/cubit/save_donation_cubit/save_donation_cubit.dart';
 import 'package:takaful/features/get_donation/presentation/cubit/save_donation_cubit/save_donation_model.dart';
 import '../../data/model/donation_model.dart';
 import '../cubit/get_donation_cubit/get_donation_cubit.dart';
@@ -27,7 +26,7 @@ class _DonationsPageState extends State<DonationsPage> {
   void initState() {
     super.initState();
     BlocProvider.of<GetDonationCubit>(context).getPost();
-    BlocProvider.of<SaveDonationCubit>(context).getSavedDonation();
+    // BlocProvider.of<SaveDonationCubit>(context).getSavedDonation();
   }
 
   List<DonationModel> donation = [];
@@ -78,7 +77,8 @@ class _DonationsPageState extends State<DonationsPage> {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
                                       return DonationDetailsPage(
-                                          postModel: donation[index]);
+                                          docId: docId[index],
+                                          donationModel: donation[index]);
                                     }));
                                   },
                                 )

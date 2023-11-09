@@ -23,7 +23,7 @@ class DonationComponent extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       width: double.infinity,
-      height: 190,
+      height: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
@@ -108,7 +108,7 @@ class DonationComponent extends StatelessWidget {
                             color: AppColor.kPrimary),
                         child: const Center(
                             child: Text(
-                          'طلب',
+                          'عرض',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
