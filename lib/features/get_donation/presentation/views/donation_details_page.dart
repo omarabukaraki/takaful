@@ -1,3 +1,5 @@
+import 'package:takaful/features/donation_request/presentation/cubit/get_donation_request/get_donation_request_cubit.dart';
+
 import '../../../donation_request/presentation/cubit/request_donaiton/request_donation_cubit.dart';
 import 'widget/image_count.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -194,7 +196,7 @@ class RequestDonationProcess extends StatefulWidget {
 class _RequestDonationProcessState extends State<RequestDonationProcess> {
   @override
   void initState() {
-    BlocProvider.of<RequestDonationCubit>(context).getRequest();
+    BlocProvider.of<GetDonationRequestCubit>(context).getRequest();
     super.initState();
   }
 
@@ -203,7 +205,7 @@ class _RequestDonationProcessState extends State<RequestDonationProcess> {
   bool checker = false;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RequestDonationCubit, RequestDonationState>(
+    return BlocConsumer<GetDonationRequestCubit, GetDonationRequestState>(
       builder: (context, state) {
         return (checker)
             ? RequestButton(
@@ -227,7 +229,7 @@ class _RequestDonationProcessState extends State<RequestDonationProcess> {
               );
       },
       listener: (context, state) {
-        if (state is RequestDonationSuccess) {
+        if (state is GetDonationRequestSuccess) {
           for (int i = 0; i < state.requests.length; i++) {
             if (state.requests[i].donationId == widget.docId &&
                 state.requests[i].serviceReceiverAccount ==

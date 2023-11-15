@@ -27,31 +27,31 @@ class RequestDonationCubit extends Cubit<RequestDonationState> {
     });
   }
 
-  void getRequest() {
-    emit(RequestDonationLoading());
-    try {
-      requestDonation
-          .orderBy('timeRequest', descending: true)
-          .snapshots()
-          .listen((event) {
-        List<RequestDonationModel> requests = [];
-        List<String> requestId = [];
-        for (var doc in event.docs) {
-          requests.add(RequestDonationModel(
-              donationId: doc['donationId'],
-              serviceReceiverId: doc['serviceReceiverId'],
-              donarAccount: doc['donarAccount'],
-              serviceReceiverAccount: doc['serviceReceiverAccount'],
-              timeRequest: doc['timeRequest'],
-              titleDonation: doc['titleDonation']));
-          requestId.add(doc.id);
-        }
-        emit(RequestDonationSuccess(requests: requests, requestId: requestId));
-      });
-    } catch (e) {
-      emit(RequestDonationFailure());
-    }
-  }
+  // void getRequest() {
+  //   emit(RequestDonationLoading());
+  //   try {
+  //     requestDonation
+  //         .orderBy('timeRequest', descending: true)
+  //         .snapshots()
+  //         .listen((event) {
+  //       List<RequestDonationModel> requests = [];
+  //       List<String> requestId = [];
+  //       for (var doc in event.docs) {
+  //         requests.add(RequestDonationModel(
+  //             donationId: doc['donationId'],
+  //             serviceReceiverId: doc['serviceReceiverId'],
+  //             donarAccount: doc['donarAccount'],
+  //             serviceReceiverAccount: doc['serviceReceiverAccount'],
+  //             timeRequest: doc['timeRequest'],
+  //             titleDonation: doc['titleDonation']));
+  //         requestId.add(doc.id);
+  //       }
+  //       emit(RequestDonationSuccess(requests: requests, requestId: requestId));
+  //     });
+  //   } catch (e) {
+  //     emit(RequestDonationFailure());
+  //   }
+  // }
 
   Future<void> deleteRequest({required String docId}) async {
     try {
