@@ -32,15 +32,15 @@ class _MyDonationRequestsState extends State<MyDonationRequests> {
   Widget build(BuildContext context) {
     return BlocConsumer<RequestDonationCubit, RequestDonationState>(
       listener: (context, state) {
-        if (state is RequestDonationLoading) {
-          isLoading = true;
-        } else if (state is RequestDonationSuccess) {
-          requests = state.requests;
-          requestId = state.requestId;
-          isLoading = false;
-        } else if (state is RequestDonationFailure) {
-          isLoading = false;
-        }
+        // if (state is RequestDonationLoading) {
+        //   isLoading = true;
+        // } else if (state is RequestDonationSuccess) {
+        //   requests = state.requests;
+        //   requestId = state.requestId;
+        //   isLoading = false;
+        // } else if (state is RequestDonationFailure) {
+        //   isLoading = false;
+        // }
       },
       builder: (context, state) {
         return Scaffold(

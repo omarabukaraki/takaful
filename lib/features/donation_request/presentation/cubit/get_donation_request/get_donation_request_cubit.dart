@@ -1,9 +1,9 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../data/model/request_donation.dart';
-
 part 'get_donation_request_state.dart';
 
 class GetDonationRequestCubit extends Cubit<GetDonationRequestState> {
