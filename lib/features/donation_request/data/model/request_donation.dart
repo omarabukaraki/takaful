@@ -4,9 +4,9 @@ class RequestDonationModel {
   String serviceReceiverAccount;
   String titleDonation;
   String timeRequest;
-  String postId;
+  String donationId;
   RequestDonationModel(
-      {required this.postId,
+      {required this.donationId,
       required this.serviceReceiverId,
       required this.donarAccount,
       required this.serviceReceiverAccount,
@@ -14,7 +14,7 @@ class RequestDonationModel {
       required this.titleDonation});
   factory RequestDonationModel.fromJson(jsonData) {
     return RequestDonationModel(
-        postId: jsonData['postId'],
+        donationId: jsonData['donationId'],
         serviceReceiverId: jsonData['serviceReceiverId'],
         donarAccount: jsonData['donarAccount'],
         serviceReceiverAccount: jsonData['serviceReceiverAccount'],

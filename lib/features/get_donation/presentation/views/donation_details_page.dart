@@ -1,22 +1,19 @@
+import 'widget/image_count.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import 'package:takaful/features/donation_request/presentation/cubit/cubit/request_donation_cubit.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/discrption_box.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/donar_account_box.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/request_button.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/title_donation_details_page.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/image_count.dart';
-import 'package:takaful/features/get_donation/data/model/donation_model.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/donation_details_button.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/donation_details_image.dart';
-import 'package:takaful/features/get_donation/presentation/views/widget/donation_details_widget/donation_details_info.dart';
-
+import '../../data/model/donation_model.dart';
+import 'widget/donation_details_widget/request_button.dart';
+import 'widget/donation_details_widget/discrption_box.dart';
+import 'widget/donation_details_widget/donar_account_box.dart';
+import 'widget/donation_details_widget/donation_details_info.dart';
 import '../../../donation_request/data/model/request_donation.dart';
+import 'widget/donation_details_widget/donation_details_image.dart';
+import 'widget/donation_details_widget/donation_details_button.dart';
+import 'widget/donation_details_widget/title_donation_details_page.dart';
+import '../../../donation_request/presentation/cubit/cubit/request_donation_cubit.dart';
 
 class DonationDetailsPage extends StatefulWidget {
   const DonationDetailsPage({super.key, this.donationModel, this.docId});
@@ -103,7 +100,7 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
 
                     widget.donationModel!.id !=
                             FirebaseAuth.instance.currentUser!.uid
-                        ? RequestWidget(
+                        ? RequestDonationProcess(
                             donationModel: widget.donationModel,
                             docId: widget.docId,
                           )
@@ -156,95 +153,72 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
   }
 }
 
-class CancelRequestButton extends StatelessWidget {
-  const CancelRequestButton(
-      {super.key, this.nameButton, this.isRequest, this.onTap});
-  final String? nameButton;
-  final bool? isRequest;
-  final void Function()? onTap;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 40,
-        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: AppColor.kRed),
-        child: Center(
-            child: Text(
-          nameButton ?? 'طلب',
-          style: const TextStyle(
-            fontSize: 16,
-            color: AppColor.kWhite,
-            fontWeight: FontWeight.bold,
-          ),
-        )),
-      ),
-    );
-  }
-}
+// class CancelRequestButton extends StatelessWidget {
+//   const CancelRequestButton(
+//       {super.key, this.nameButton, this.isRequest, this.onTap});
+//   final String? nameButton;
+//   final bool? isRequest;
+//   final void Function()? onTap;
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: onTap,
+//       child: Container(
+//         height: 40,
+//         margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+//         decoration: BoxDecoration(
+//             borderRadius: BorderRadius.circular(10), color: AppColor.kRed),
+//         child: Center(
+//             child: Text(
+//           nameButton ?? 'طلب',
+//           style: const TextStyle(
+//             fontSize: 16,
+//             color: AppColor.kWhite,
+//             fontWeight: FontWeight.bold,
+//           ),
+//         )),
+//       ),
+//     );
+//   }
+// }
 
-class RequestWidget extends StatefulWidget {
-  const RequestWidget({super.key, this.donationModel, this.docId});
+class RequestDonationProcess extends StatefulWidget {
+  const RequestDonationProcess({super.key, this.donationModel, this.docId});
   final String? docId;
   final DonationModel? donationModel;
 
   @override
-  State<RequestWidget> createState() => _RequestWidgetState();
+  State<RequestDonationProcess> createState() => _RequestDonationProcessState();
 }
 
-class _RequestWidgetState extends State<RequestWidget> {
+class _RequestDonationProcessState extends State<RequestDonationProcess> {
   @override
   void initState() {
     BlocProvider.of<RequestDonationCubit>(context).getRequest();
-    // BlocProvider.of<RequestDonationCubit>(context).isRequested =
-    //     request != null ? true : false;
     super.initState();
   }
 
   RequestDonationModel? request;
   String? requestId;
-
+  bool checker = false;
   @override
   Widget build(BuildContext context) {
-    // bool req = BlocProvider.of<RequestDonationCubit>(context).isRequested;
-
     return BlocConsumer<RequestDonationCubit, RequestDonationState>(
       builder: (context, state) {
-        return (request != null &&
-                FirebaseAuth.instance.currentUser!.email ==
-                    request!.serviceReceiverAccount &&
-                widget.docId == request!.postId)
+        return (checker)
             ? RequestButton(
                 color: Colors.green,
                 nameButton: 'الغاء الطلب',
                 onTap: () async {
-                  BlocProvider.of<RequestDonationCubit>(context).getRequest();
-                  print((request != null &&
-                      FirebaseAuth.instance.currentUser!.email ==
-                          request!.serviceReceiverAccount &&
-                      widget.docId == request!.postId));
-                  setState(() {
-                    BlocProvider.of<RequestDonationCubit>(context).isRequested =
-                        false;
-                  });
-
+                  checker = false;
                   await BlocProvider.of<RequestDonationCubit>(context)
                       .deleteRequest(docId: requestId!);
                 },
               )
             : RequestButton(
                 onTap: () async {
-                  BlocProvider.of<RequestDonationCubit>(context).getRequest();
-                  print(request);
-                  setState(() {
-                    BlocProvider.of<RequestDonationCubit>(context).isRequested =
-                        true;
-                  });
-
                   await BlocProvider.of<RequestDonationCubit>(context).request(
-                      postId: widget.docId.toString(),
+                      donationId: widget.docId.toString(),
                       titleDonation: widget.donationModel!.title,
                       donarAccount: widget.donationModel!.donarAccount,
                       serviceReceiveAccount:
@@ -255,13 +229,13 @@ class _RequestWidgetState extends State<RequestWidget> {
       listener: (context, state) {
         if (state is RequestDonationSuccess) {
           for (int i = 0; i < state.requests.length; i++) {
-            if (state.requests[i].postId == widget.docId) {
-              print(state.requests.length);
+            if (state.requests[i].donationId == widget.docId &&
+                state.requests[i].serviceReceiverAccount ==
+                    FirebaseAuth.instance.currentUser!.email) {
               request = state.requests[i];
               requestId = state.requestId[i];
-            } else {
-              request = null;
-            }
+              checker = true;
+            } else {}
           }
         }
       },
@@ -277,38 +251,3 @@ class _RequestWidgetState extends State<RequestWidget> {
 //   'serviceReceiveAccount': 'serviceReceiveAccount'
 // });
 /*********************{sub collection}********************* */
-
-//  widget.postModel!.donarAccount !=
-//             FirebaseAuth.instance.currentUser!.email!
-//         ? isRequest != true
-//             ? RequestButton(
-//                 onTap: () {
-//                   showSankBar(context, 'تم الطلب بنجاح',
-//                       color: AppColor.kGreen);
-//                   BlocProvider.of<RequestDonationCubit>(context).request(
-//                       // postId: '',
-//                       titleDonation: widget.postModel!.title,
-//                       donarAccount: widget.postModel!.donarAccount,
-//                       serviceReceiveAccount:
-//                           FirebaseAuth.instance.currentUser!.email!);
-//                   setState(() {
-//                     isRequest = true;
-//                   });
-//                 },
-//               )
-//             : CancelRequestButton(onTap: () {}, nameButton: 'الغاء الطلب')
-//         : RequestButton(onTap: () {
-//             showSankBar(context, 'لا يمكنك طلب هاذ التبرع');
-//           });
-  // : RequestButton(
-            //     onTap: () async {
-            //       await BlocProvider.of<RequestDonationCubit>(context)
-            //           .request(
-            //               postId: widget.docId.toString(),
-            //               titleDonation: widget.donationModel!.title,
-            //               donarAccount: widget.donationModel!.donarAccount,
-            //               serviceReceiveAccount: FirebaseAuth
-            //                   .instance.currentUser!.email
-            //                   .toString());
-            //     },
-            //   )
