@@ -12,13 +12,16 @@ class SaveDonationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: const CustomAppBar(textOne: 'الإعلانات المحفوظة',textTwo: '',button: false),
-      body: SaveDonationComponent(),
+    return Scaffold(
+      appBar: CustomAppBar(
+          button: true,
+          onTap: () => Navigator.pop(context),
+          textOne: 'الإعلانات المحفوظة',
+          textTwo: ''),
+      body: const SaveDonationComponent(),
     );
   }
 }
-
 
 class SaveDonationComponent extends StatelessWidget {
   const SaveDonationComponent(
@@ -44,7 +47,7 @@ class SaveDonationComponent extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-          Expanded(
+          const Expanded(
               flex: 5,
               child: Row(
                 children: [
@@ -52,7 +55,8 @@ class SaveDonationComponent extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: DonationCoverInformation(
-                        title: 'donation!.title sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss' ,
+                        title:
+                            'donation!.title sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss',
                         typePost:
                             '{donation!.category} - {donation!.itemOrService}',
                         location:
@@ -64,15 +68,15 @@ class SaveDonationComponent extends StatelessWidget {
                   Expanded(
                       flex: 1,
                       child: DonationCoverImage(
-                        image: 'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
+                        image:
+                            'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
                       )),
                   //end image donation
                 ],
               )),
           //start display image counter
-          Expanded(
-              flex: 1, child: ImageCount(countImage: 1)),
-              // donation!.image.length
+          const Expanded(flex: 1, child: ImageCount(countImage: 1)),
+          // donation!.image.length
           //end display image counter
 
           //start buttons delete and edit
