@@ -30,8 +30,11 @@ class _MyDonationPageState extends State<MyDonationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          const CustomAppBar(button: false, textOne: 'تبرعاتي', textTwo: ''),
+      appBar: CustomAppBar(
+          button: true,
+          onTap: () => Navigator.pop(context),
+          textOne: 'تبرعاتي',
+          textTwo: ''),
       body: BlocConsumer<GetDonationCubit, GetDonationState>(
         listener: (context, state) {
           if (state is GetDonationSuccess) {
