@@ -22,13 +22,7 @@ class GetDonationRequestCubit extends Cubit<GetDonationRequestState> {
         List<RequestDonationModel> requests = [];
         List<String> requestId = [];
         for (var doc in event.docs) {
-          requests.add(RequestDonationModel(
-              donationId: doc['donationId'],
-              serviceReceiverId: doc['serviceReceiverId'],
-              donarAccount: doc['donarAccount'],
-              serviceReceiverAccount: doc['serviceReceiverAccount'],
-              timeRequest: doc['timeRequest'],
-              titleDonation: doc['titleDonation']));
+          requests.add(RequestDonationModel.fromJson(doc));
           requestId.add(doc.id);
         }
         emit(GetDonationRequestSuccess(
@@ -39,3 +33,11 @@ class GetDonationRequestCubit extends Cubit<GetDonationRequestState> {
     }
   }
 }
+
+// RequestDonationModel(
+//               donationId: doc['donationId'],
+//               serviceReceiverId: doc['serviceReceiverId'],
+//               donarAccount: doc['donarAccount'],
+//               serviceReceiverAccount: doc['serviceReceiverAccount'],
+//               timeRequest: doc['timeRequest'],
+//               titleDonation: doc['titleDonation'])
