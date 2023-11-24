@@ -10,6 +10,8 @@ import 'package:takaful/features/profile/presentation/views/save_doantion/save_d
 import 'package:takaful/features/profile/presentation/views/widget/profile_app_bar.dart';
 import 'package:takaful/features/profile/presentation/views/widget/profile_button.dart';
 
+import 'my_request/my_request_page.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
   static String id = 'ProfilePage';
@@ -62,9 +64,19 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                 ),
                 ProfileButton(
-                    screenHeigth: screenheigth,
-                    icon: Icons.shopping_bag_rounded,
-                    text: 'طلباتي'),
+                  screenHeigth: screenheigth,
+                  icon: Icons.shopping_bag_rounded,
+                  text: 'طلباتي',
+                  onTap: () {
+                    // BlocProvider.of<GetDonationRequestCubit>(context)
+                    //     .donationList = [];
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyRequestPage(),
+                        ));
+                  },
+                ),
                 ProfileButton(
                   screenHeigth: screenheigth,
                   icon: Icons.breakfast_dining_sharp,
@@ -78,9 +90,15 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                 ),
                 ProfileButton(
-                    screenHeigth: screenheigth,
-                    icon: Icons.favorite,
-                    text: 'الإعلانات المحفوظة',onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => const SaveDonationPage(),)),),
+                  screenHeigth: screenheigth,
+                  icon: Icons.favorite,
+                  text: 'الإعلانات المحفوظة',
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SaveDonationPage(),
+                      )),
+                ),
                 ProfileButton(
                     screenHeigth: screenheigth,
                     icon: Icons.settings,

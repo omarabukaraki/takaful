@@ -40,7 +40,8 @@ class _MyDonationPageState extends State<MyDonationPage> {
           if (state is GetDonationSuccess) {
             donation = state.donations;
             docId = state.docId;
-          }
+          } else if (state is GetDonationLodging) {
+          } else if (state is GetDonationFailure) {}
         },
         builder: (context, state) {
           return ListView.builder(

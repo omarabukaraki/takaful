@@ -4,8 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/features/donation_request/presentation/views/widget/my_donation_requests_button.dart';
 
-class MyDonationRequestsComponent extends StatelessWidget {
-  const MyDonationRequestsComponent({
+class MyDonationRequestsItem extends StatelessWidget {
+  const MyDonationRequestsItem({
     Key? key,
     required this.title,
     this.nameUser,

@@ -19,3 +19,9 @@ class GetDonationRequestSuccess extends GetDonationRequestState {
 class GetDonationRequestFailure extends GetDonationRequestState {}
 
 class GetDonationRequestLoading extends GetDonationRequestState {}
+
+// ignore: must_be_immutable
+class GetPostSuccess extends GetDonationRequestState {
+  List<DonationModel> donationList = [];
+  GetPostSuccess({required this.donationList});
+}

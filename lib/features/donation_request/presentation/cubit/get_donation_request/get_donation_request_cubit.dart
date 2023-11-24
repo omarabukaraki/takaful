@@ -1,8 +1,10 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:takaful/features/get_donation/data/model/donation_model.dart';
 import '../../../data/model/request_donation.dart';
 part 'get_donation_request_state.dart';
 
@@ -33,11 +35,3 @@ class GetDonationRequestCubit extends Cubit<GetDonationRequestState> {
     }
   }
 }
-
-// RequestDonationModel(
-//               donationId: doc['donationId'],
-//               serviceReceiverId: doc['serviceReceiverId'],
-//               donarAccount: doc['donarAccount'],
-//               serviceReceiverAccount: doc['serviceReceiverAccount'],
-//               timeRequest: doc['timeRequest'],
-//               titleDonation: doc['titleDonation'])
