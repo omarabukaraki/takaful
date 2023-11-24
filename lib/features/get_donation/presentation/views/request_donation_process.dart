@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 import '../../../donation_request/data/model/request_donation.dart';
 import '../../../donation_request/presentation/cubit/get_request_from_user/get_request_from_user_cubit.dart';
 import '../../data/model/donation_model.dart';
@@ -34,8 +35,8 @@ class _RequestDonationProcessState extends State<RequestDonationProcess> {
       builder: (context, state) {
         return (checker)
             ? RequestButton(
-                color: Colors.green,
-                nameButton: 'الغاء الطلب',
+                color: AppColor.kGreen,
+                nameButton: AppString.textCancelRequest,
                 onTap: () async {
                   checker = false;
                   await BlocProvider.of<GetRequestFromUserCubit>(context)

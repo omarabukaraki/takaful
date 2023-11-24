@@ -49,6 +49,7 @@ abstract class AppString {
   static const String textOtherServices = 'خدمات أخرى';
   static const String textItemRequest = 'طلبات تبرعاتي';
   static const String textSaveEdit = 'حفظ التعديل';
+  static const String textCancelRequest = 'الغاء الطلب';
 //static const String textClothes = 'أثاث';
 //static const String textClothes = 'أثاث';
 }
