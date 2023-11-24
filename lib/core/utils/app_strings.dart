@@ -50,6 +50,11 @@ abstract class AppString {
   static const String textItemRequest = 'طلبات تبرعاتي';
   static const String textSaveEdit = 'حفظ التعديل';
   static const String textCancelRequest = 'الغاء الطلب';
+  static const String textPublishDate = 'تاريخ النشر';
+  static const String textTypeOfDonation = 'نوع التبرع';
+  static const String textSection = 'القسم';
+  static const String textInformation = 'المعلومات';
+  static const String textAdvertiser = 'صاحب الإعلان';
 //static const String textClothes = 'أثاث';
 //static const String textClothes = 'أثاث';
 }

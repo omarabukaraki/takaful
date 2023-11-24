@@ -1,10 +1,10 @@
 import 'request_donation_process.dart';
-import 'widget/image_count.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import '../../data/model/donation_model.dart';
+import 'widget/donation_details_widget/image_count_and_full_count.dart';
 import 'widget/donation_details_widget/request_button.dart';
 import 'widget/donation_details_widget/discrption_box.dart';
 import 'widget/donation_details_widget/donar_account_box.dart';
@@ -56,17 +56,10 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                 //end display images the donation
 
                 //start image counter
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: ImageCount(
-                      countImage: inIndex + 1,
-                      height: 25,
-                    ),
-                  ),
-                ),
+                ImageCountAndFullCount(
+                    fullCountImage: widget.donationModel!.image.length,
+                    countImage: inIndex + 1,
+                    height: 25),
                 //end image counter
 
                 //start button to return to donations page
@@ -84,6 +77,7 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    //start title donation
                     Text(
                       widget.donationModel!.title,
                       style: const TextStyle(
@@ -92,10 +86,10 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                         fontWeight: FontWeight.bold,
                       ),
                       maxLines: 1,
-                    ), //
-                    //
-                    //
+                    ),
+                    //end title donation
 
+                    //start request button
                     widget.donationModel!.id !=
                             FirebaseAuth.instance.currentUser!.uid
                         ? widget.donationModel!.typeOfDonation != 'مطلوب'
@@ -112,13 +106,16 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                               Navigator.pop(context);
                             },
                           ),
+                    //end request button
 
-                    //
-                    //
-                    //
-                    const TitleDonationDetailsPage(text: 'المعلومات'),
+                    //start information  title
+                    const TitleDonationDetailsPage(
+                        text: AppString.textInformation),
+                    //end information  title
+
+                    //start information  body
                     DonationDetailsInformation(
-                        section: 'القسم',
+                        section: AppString.textSection,
                         data:
                             "${widget.donationModel!.category} - ${widget.donationModel!.itemOrService}"),
                     DonationDetailsInformation(
@@ -126,23 +123,32 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                         data:
                             "${widget.donationModel!.location} - ${widget.donationModel!.subLocation}"),
                     DonationDetailsInformation(
-                        section: 'نوع التبرع',
+                        section: AppString.textTypeOfDonation,
                         data: widget.donationModel!.typeOfDonation),
                     DonationDetailsInformation(
                         section: AppString.textState,
                         data: widget.donationModel!.state),
                     DonationDetailsInformation(
-                        section: 'تاريخ النشر',
+                        section: AppString.textPublishDate,
                         data: widget.donationModel!.createAt.substring(0, 10)),
                     widget.donationModel!.itemOrService.length <= 5
                         ? DonationDetailsInformation(
                             section: AppString.textCounter,
                             data: widget.donationModel!.count.toString())
                         : const SizedBox(),
-                    const TitleDonationDetailsPage(text: 'الوصف'),
+                    //end information  body
+
+                    //start description title and body
+                    const TitleDonationDetailsPage(
+                        text: AppString.textDescription),
+                    //end description title and body
+
+                    //Start donar title and body
                     DescriptionBox(widget: widget),
-                    const TitleDonationDetailsPage(text: ''),
+                    const TitleDonationDetailsPage(
+                        text: AppString.textAdvertiser),
                     DonarAccountBox(widget: widget),
+                    //end donar title and body
                   ],
                 ),
               )
