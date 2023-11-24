@@ -3,7 +3,6 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
-import 'package:takaful/features/get_donation/presentation/cubit/save_donation_cubit/save_donation_model.dart';
 import '../../data/model/donation_model.dart';
 import '../cubit/get_donation_cubit/get_donation_cubit.dart';
 import 'donation_details_page.dart';
@@ -21,12 +20,11 @@ class DonationsPage extends StatefulWidget {
 class _DonationsPageState extends State<DonationsPage> {
   bool isLodging = false;
   List<String> docId = [];
-  List<SaveDonationModel> savedDonation = [];
+
   @override
   void initState() {
     super.initState();
     BlocProvider.of<GetDonationCubit>(context).getPost();
-    // BlocProvider.of<SaveDonationCubit>(context).getSavedDonation();
   }
 
   List<DonationModel> donation = [];
@@ -45,7 +43,6 @@ class _DonationsPageState extends State<DonationsPage> {
           isLodging = false;
         } else if (state is GetDonationFailure) {
           isLodging = false;
-          print('failure');
         }
       },
       builder: (context, state) {

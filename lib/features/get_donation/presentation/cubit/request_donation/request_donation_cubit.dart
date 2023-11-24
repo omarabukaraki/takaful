@@ -18,13 +18,18 @@ class RequestDonationCubit extends Cubit<RequestDonationState> {
       required String titleDonation,
       required String donarAccount,
       required String serviceReceiveAccount}) async {
-    await donation.doc(donarId).collection('request_donation').add({
-      'donationId': donationId,
-      'serviceReceiverId': FirebaseAuth.instance.currentUser!.uid,
-      'titleDonation': titleDonation,
-      'donarAccount': donarAccount,
-      'timeRequest': DateTime.now().toString(),
-      'serviceReceiverAccount': serviceReceiveAccount
-    });
+    try {
+      await donation.doc(donarId).collection('request_donation').add({
+        'donationId': donationId,
+        'serviceReceiverId': FirebaseAuth.instance.currentUser!.uid,
+        'titleDonation': titleDonation,
+        'donarAccount': donarAccount,
+        'timeRequest': DateTime.now().toString(),
+        'serviceReceiverAccount': serviceReceiveAccount
+      });
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
   }
 }
