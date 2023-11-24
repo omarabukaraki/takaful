@@ -26,8 +26,6 @@ class GetRequestFromUserCubit extends Cubit<GetRequestFromUserState> {
         }
         emit(GetRequestFromUserSuccess(
             requests: requests, requestId: requestId));
-        // emit(GetDonationRequestSuccess(
-        //     requests: requests, requestId: requestId));
       });
     } catch (e) {
       emit(GetRequestFromUserFailure());

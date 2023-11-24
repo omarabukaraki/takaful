@@ -14,24 +14,24 @@ class GetDonationRequestCubit extends Cubit<GetDonationRequestState> {
   CollectionReference requestDonation =
       FirebaseFirestore.instance.collection('request donation');
 
-  void getRequest() {
-    emit(GetDonationRequestLoading());
-    try {
-      requestDonation
-          .orderBy('timeRequest', descending: true)
-          .snapshots()
-          .listen((event) {
-        List<RequestDonationModel> requests = [];
-        List<String> requestId = [];
-        for (var doc in event.docs) {
-          requests.add(RequestDonationModel.fromJson(doc));
-          requestId.add(doc.id);
-        }
-        emit(GetDonationRequestSuccess(
-            requests: requests, requestId: requestId));
-      });
-    } catch (e) {
-      emit(GetDonationRequestFailure());
-    }
-  }
+  // void getRequest() {
+  //   emit(GetDonationRequestLoading());
+  //   try {
+  //     requestDonation
+  //         .orderBy('timeRequest', descending: true)
+  //         .snapshots()
+  //         .listen((event) {
+  //       List<RequestDonationModel> requests = [];
+  //       List<String> requestId = [];
+  //       for (var doc in event.docs) {
+  //         requests.add(RequestDonationModel.fromJson(doc));
+  //         requestId.add(doc.id);
+  //       }
+  //       emit(GetDonationRequestSuccess(
+  //           requests: requests, requestId: requestId));
+  //     });
+  //   } catch (e) {
+  //     emit(GetDonationRequestFailure());
+  //   }
+  // }
 }

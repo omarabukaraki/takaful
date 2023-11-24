@@ -16,7 +16,7 @@ class _MyRequestPageState extends State<MyRequestPage> {
   // List<DonationModel> donations = [];
   @override
   void initState() {
-    BlocProvider.of<GetDonationRequestCubit>(context).getRequest();
+    // BlocProvider.of<GetDonationRequestCubit>(context).getRequest();
     // BlocProvider.of<GetDonationCubit>(context).getPost();
     super.initState();
   }

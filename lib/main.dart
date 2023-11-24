@@ -12,7 +12,7 @@ import 'features/add_donation/presentation/cubit/add_images_cubit/add_images_cub
 import 'features/add_donation/presentation/cubit/add_location/add_location_cubit.dart';
 import 'features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'features/auth/presentation/cubit/register_cubit/register_cubit.dart';
-import 'features/donation_request/presentation/cubit/get_donation_request/cubit/get_request_from_user_cubit.dart';
+import 'features/donation_request/presentation/cubit/get_donation_request/get_request_from_user/get_request_from_user_cubit.dart';
 import 'features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
 import 'features/get_donation/presentation/cubit/request_donation/request_donation_cubit.dart';
 import 'features/home/presentation/views/navegator_page.dart';

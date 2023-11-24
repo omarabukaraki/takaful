@@ -1,4 +1,4 @@
-import '../../../donation_request/presentation/cubit/get_donation_request/cubit/get_request_from_user_cubit.dart';
+import '../../../donation_request/presentation/cubit/get_donation_request/get_request_from_user/get_request_from_user_cubit.dart';
 import '../cubit/request_donation/request_donation_cubit.dart';
 import 'widget/image_count.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -257,12 +257,3 @@ class _RequestDonationProcessState extends State<RequestDonationProcess> {
     );
   }
 }
-/*********************{sub collection}********************* */
-// CollectionReference donation =
-//     FirebaseFirestore.instance.collection('donations');
-// await donation.doc(widget.docId).collection('test').add({
-//   'titleDonation': 'titleDonation',
-//   'donarAccount': 'donarAccount',
-//   'serviceReceiveAccount': 'serviceReceiveAccount'
-// });
-/*********************{sub collection}********************* */

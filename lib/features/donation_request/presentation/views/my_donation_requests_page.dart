@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
-import '../cubit/get_donation_request/cubit/get_request_from_user_cubit.dart';
+import '../cubit/get_donation_request/get_request_from_user/get_request_from_user_cubit.dart';
 import 'widget/my_donation_request_component.dart';
 import 'package:takaful/features/donation_request/data/model/request_donation.dart';
 import '../../../profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
