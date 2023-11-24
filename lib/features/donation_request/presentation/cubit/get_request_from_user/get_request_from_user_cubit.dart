@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../../data/model/request_donation.dart';
+import '../../../data/model/request_donation.dart';
 part 'get_request_from_user_state.dart';
 
 class GetRequestFromUserCubit extends Cubit<GetRequestFromUserState> {
