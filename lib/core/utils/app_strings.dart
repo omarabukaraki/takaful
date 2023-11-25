@@ -55,6 +55,5 @@ abstract class AppString {
   static const String textSection = 'القسم';
   static const String textInformation = 'المعلومات';
   static const String textAdvertiser = 'صاحب الإعلان';
-//static const String textClothes = 'أثاث';
-//static const String textClothes = 'أثاث';
+  static const String textRequired = 'مطلوب';
 }

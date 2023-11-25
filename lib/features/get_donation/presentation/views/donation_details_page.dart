@@ -1,3 +1,5 @@
+import 'package:takaful/core/utils/app_colors.dart';
+
 import 'request_donation_process.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,7 +30,7 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      color: Colors.white,
+      color: AppColor.kWhite,
       child: SafeArea(
         child: Scaffold(
           body: SingleChildScrollView(
@@ -92,7 +94,8 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                     //start request button
                     widget.donationModel!.id !=
                             FirebaseAuth.instance.currentUser!.uid
-                        ? widget.donationModel!.typeOfDonation != 'مطلوب'
+                        ? widget.donationModel!.typeOfDonation !=
+                                AppString.textRequired
                             ? RequestDonationProcess(
                                 donationModel: widget.donationModel,
                                 docId: widget.docId,

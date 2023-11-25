@@ -7,6 +7,7 @@ import '../../../donation_request/data/model/request_donation.dart';
 import '../../../donation_request/presentation/cubit/get_request_from_user/get_request_from_user_cubit.dart';
 import '../../data/model/donation_model.dart';
 import '../cubit/request_donation/request_donation_cubit.dart';
+import 'helper/custom_alert_Dialog.dart';
 import 'widget/donation_details_widget/request_button.dart';
 
 class RequestDonationProcess extends StatefulWidget {
@@ -39,13 +40,16 @@ class _RequestDonationProcessState extends State<RequestDonationProcess> {
                 nameButton: AppString.textCancelRequest,
                 onTap: () async {
                   checker = false;
-                  await BlocProvider.of<GetRequestFromUserCubit>(context)
-                      .deleteRequest(
-                          donarId: widget.donationModel!.id, docId: requestId!);
+                  customAlertDialogCancelRequest(
+                          donarId: widget.donationModel!.id,
+                          requestId: requestId!,
+                          context)
+                      .show();
                 },
               )
             : RequestButton(
                 onTap: () async {
+                  customAlertDialogRequest(context).show();
                   await BlocProvider.of<RequestDonationCubit>(context)
                       .requestThePost(
                           donarId: widget.donationModel!.id.toString(),

@@ -7,7 +7,7 @@ abstract class AppColor {
   static const Color kTextFiled = Color(0xffF2F2F2);
   static const Color kTextFiledFont = Color.fromARGB(255, 117, 117, 117);
   static const Color kWhite = Colors.white;
-  static const Color kGreen = Colors.green;
+  static const Color kGreen = Color(0xff00ca71);
   static const Color kRed = Colors.red;
   static const Color kGrey = Colors.grey;
 }
