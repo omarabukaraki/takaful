@@ -30,6 +30,7 @@ class GetUserDetailsCubit extends Cubit<GetUserDetailsState> {
     }
   }
 
+  UserDetailsModel? userForPhone;
   void userDonationInformation({required String email}) async {
     emit(GetUserDetailsLoadingForDonation());
     UserDetailsModel user;
@@ -38,6 +39,7 @@ class GetUserDetailsCubit extends Cubit<GetUserDetailsState> {
         for (var doc in event.docs) {
           if (doc['email'] == email) {
             user = UserDetailsModel.fromJson(doc);
+            userForPhone = user;
             emit(GetUserDetailsSuccessForDonation(user: user));
           }
         }

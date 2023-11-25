@@ -1,5 +1,5 @@
 import 'package:takaful/core/utils/app_colors.dart';
-
+import 'helper/custom_alert_Dialog.dart';
 import 'request_donation_process.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,6 +29,7 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
       color: AppColor.kWhite,
       child: SafeArea(
@@ -100,8 +101,13 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                                 donationModel: widget.donationModel,
                                 docId: widget.docId,
                               )
-                            : const RequestButton(
-                                nameButton: 'اظهار رقم الهاتف',
+                            : RequestButton(
+                                nameButton: 'اجراء مكالمة',
+                                onTap: () async {
+                                  // await FlutterPhoneDirectCaller.callNumber(
+                                  //     '0786996089');
+                                  alertDialogPhone(context).show();
+                                },
                               )
                         : RequestButton(
                             nameButton: 'رجوع',

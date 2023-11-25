@@ -45,11 +45,12 @@ class GetDonationCubit extends Cubit<GetDonationState> {
             .snapshots()
             .listen((event) {
           List<DonationModel> donationsList = [];
-
+          List<String> docId = [];
           for (var doc in event.docs) {
             donationsList.add(DonationModel.fromJson(doc));
+            docId.add(doc.id);
           }
-          emit(GetDonationSuccess(donations: donationsList, docId: []));
+          emit(GetDonationSuccess(donations: donationsList, docId: docId));
         });
       } catch (e) {
         emit(GetDonationFailure());
@@ -61,11 +62,12 @@ class GetDonationCubit extends Cubit<GetDonationState> {
             .snapshots()
             .listen((event) {
           List<DonationModel> donationsList = [];
-
+          List<String> docId = [];
           for (var doc in event.docs) {
             donationsList.add(DonationModel.fromJson(doc));
+            docId.add(doc.id);
           }
-          emit(GetDonationSuccess(donations: donationsList, docId: []));
+          emit(GetDonationSuccess(donations: donationsList, docId: docId));
         });
       } catch (e) {
         emit(GetDonationFailure());
@@ -78,11 +80,12 @@ class GetDonationCubit extends Cubit<GetDonationState> {
             .snapshots()
             .listen((event) {
           List<DonationModel> donationsList = [];
-
+          List<String> docId = [];
           for (var doc in event.docs) {
             donationsList.add(DonationModel.fromJson(doc));
+            docId.add(doc.id);
           }
-          emit(GetDonationSuccess(donations: donationsList, docId: []));
+          emit(GetDonationSuccess(donations: donationsList, docId: docId));
           // emit(GetDonationSuccess(donations: donationsList));
         });
       } catch (e) {
