@@ -15,7 +15,7 @@ class GetRequestFromUserCubit extends Cubit<GetRequestFromUserState> {
     try {
       users
           .doc(donarId)
-          .collection('request_donation')
+          .collection('my_donation_requests')
           .orderBy('timeRequest', descending: true)
           .snapshots()
           .listen((event) {

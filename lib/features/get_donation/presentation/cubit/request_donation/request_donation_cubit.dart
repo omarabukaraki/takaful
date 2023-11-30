@@ -19,7 +19,7 @@ class RequestDonationCubit extends Cubit<RequestDonationState> {
       required String donarAccount,
       required String serviceReceiveAccount}) async {
     try {
-      await donation.doc(donarId).collection('request_donation').add({
+      await donation.doc(donarId).collection('my_donation_requests').add({
         'donationId': donationId,
         'serviceReceiverId': FirebaseAuth.instance.currentUser!.uid,
         'titleDonation': titleDonation,

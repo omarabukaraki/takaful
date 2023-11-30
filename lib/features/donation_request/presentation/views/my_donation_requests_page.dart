@@ -56,6 +56,7 @@ class _MyDonationRequestsState extends State<MyDonationRequests> {
   }
 
   MyDonationRequestComponent myDonationRequest(int index) {
+    //used to get user information by the account from request
     BlocProvider.of<GetUserDetailsCubit>(context)
         .userDonationInformation(email: requests[index].serviceReceiverAccount);
     return MyDonationRequestComponent(
