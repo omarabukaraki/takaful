@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../../../core/utils/app_colors.dart';
-import '../../../../../get_donation/data/model/donation_model.dart';
-import '../../../../../get_donation/presentation/views/widget/donation_widget/donation_cover_Info.dart';
-import '../../../../../get_donation/presentation/views/widget/donation_widget/donation_cover_image.dart';
-import '../../../../../get_donation/presentation/views/widget/image_count.dart';
+import '../../get_donation/data/model/donation_model.dart';
+import '../../get_donation/presentation/views/widget/donation_widget/donation_cover_Info.dart';
+import '../../get_donation/presentation/views/widget/donation_widget/donation_cover_image.dart';
+import '../../get_donation/presentation/views/widget/image_count.dart';
 
 class MyDonationComponent extends StatelessWidget {
   const MyDonationComponent(
@@ -37,7 +37,7 @@ class MyDonationComponent extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: DonationCoverInformation(
-                        title: donation!.title ,
+                        title: donation!.title,
                         typePost:
                             '${donation!.category} - ${donation!.itemOrService}',
                         location:

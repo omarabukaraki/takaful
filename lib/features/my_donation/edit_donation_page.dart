@@ -5,9 +5,9 @@ import 'package:takaful/core/utils/app_strings.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_textfiled.dart';
-import '../../../../add_donation/presentation/views/widgets/counter_post.dart';
 import '../../../../../core/widgets/type_of_donation_component.dart';
-import '../../../../get_donation/data/model/donation_model.dart';
+import '../add_donation/presentation/views/widgets/counter_post.dart';
+import '../get_donation/data/model/donation_model.dart';
 import 'cubit/cubit/edit_and_delete_donation_cubit.dart';
 import 'widget/image_donation_cover.dart';
 
