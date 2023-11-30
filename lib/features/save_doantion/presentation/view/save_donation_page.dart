@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
 
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../get_donation/data/model/donation_model.dart';
-import '../../../../get_donation/presentation/views/widget/donation_widget/donation_cover_Info.dart';
-import '../../../../get_donation/presentation/views/widget/donation_widget/donation_cover_image.dart';
-import '../../../../get_donation/presentation/views/widget/image_count.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../get_donation/data/model/donation_model.dart';
+import '../../../get_donation/presentation/views/widget/donation_widget/donation_cover_Info.dart';
+import '../../../get_donation/presentation/views/widget/donation_widget/donation_cover_image.dart';
+import '../../../get_donation/presentation/views/widget/image_count.dart';
 
 class SaveDonationPage extends StatelessWidget {
   const SaveDonationPage({super.key});

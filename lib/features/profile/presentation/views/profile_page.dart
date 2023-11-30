@@ -5,12 +5,12 @@ import 'package:takaful/features/auth/data/model/user_details_model.dart';
 import 'package:takaful/features/auth/presentation/views/login_page.dart';
 import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 import 'package:takaful/features/profile/presentation/views/manage_profile_page.dart';
-import 'package:takaful/features/profile/presentation/views/save_doantion/save_donation_page.dart';
+import 'package:takaful/features/save_doantion/presentation/view/save_donation_page.dart';
 import 'package:takaful/features/profile/presentation/views/widget/profile_app_bar.dart';
 import 'package:takaful/features/profile/presentation/views/widget/profile_button.dart';
 
 import '../../../my_donation/presentation/view/my_donation_page.dart';
-import 'my_request/my_request_page.dart';
+import '../../../my_request/presentation/view/my_request_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
