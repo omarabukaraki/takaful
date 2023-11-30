@@ -2,13 +2,13 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/utils/app_strings.dart';
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/widgets/custom_button.dart';
-import '../../../../../core/widgets/custom_textfiled.dart';
-import '../../../../../core/widgets/type_of_donation_component.dart';
-import '../add_donation/presentation/views/widgets/counter_post.dart';
-import '../get_donation/data/model/donation_model.dart';
-import 'cubit/cubit/edit_and_delete_donation_cubit.dart';
+import '../../../../../../../core/utils/app_colors.dart';
+import '../../../../../../../core/widgets/custom_button.dart';
+import '../../../../../../../core/widgets/custom_textfiled.dart';
+import '../../../../../../../core/widgets/type_of_donation_component.dart';
+import '../../../add_donation/presentation/views/widgets/counter_post.dart';
+import '../../../get_donation/data/model/donation_model.dart';
+import '../cubit/cubit/edit_and_delete_donation_cubit.dart';
 import 'widget/image_donation_cover.dart';
 
 class EditDonationPage extends StatefulWidget {

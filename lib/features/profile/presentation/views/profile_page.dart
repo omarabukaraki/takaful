@@ -9,7 +9,7 @@ import 'package:takaful/features/profile/presentation/views/save_doantion/save_d
 import 'package:takaful/features/profile/presentation/views/widget/profile_app_bar.dart';
 import 'package:takaful/features/profile/presentation/views/widget/profile_button.dart';
 
-import '../../../my_donation/my_donation_page.dart';
+import '../../../my_donation/presentation/view/my_donation_page.dart';
 import 'my_request/my_request_page.dart';
 
 class ProfilePage extends StatefulWidget {

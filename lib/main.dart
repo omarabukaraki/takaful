@@ -15,7 +15,7 @@ import 'features/donation_request/presentation/cubit/get_request_from_user/get_r
 import 'features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
 import 'features/get_donation/presentation/cubit/request_donation/request_donation_cubit.dart';
 import 'features/home/presentation/views/navegator_page.dart';
-import 'features/my_donation/cubit/cubit/edit_and_delete_donation_cubit.dart';
+import 'features/my_donation/presentation/cubit/cubit/edit_and_delete_donation_cubit.dart';
 import 'features/profile/presentation/cubit/delete_account/delete_account_cubit.dart';
 import 'features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 import 'features/splash/presentation/views/splash_view.dart';

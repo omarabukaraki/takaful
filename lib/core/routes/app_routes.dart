@@ -8,7 +8,7 @@ import 'package:takaful/features/get_donation/presentation/views/donations_page.
 import 'package:takaful/features/get_category/presentation/views/service_type_page.dart';
 import 'package:takaful/features/profile/presentation/views/profile_page.dart';
 
-import '../../features/my_donation/my_donation_page.dart';
+import '../../features/my_donation/presentation/view/my_donation_page.dart';
 
 abstract class AppRoutes {
   static Map<String, Widget Function(BuildContext)> route =
