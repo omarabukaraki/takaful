@@ -9,6 +9,7 @@ part 'get_request_from_user_state.dart';
 class GetRequestFromUserCubit extends Cubit<GetRequestFromUserState> {
   GetRequestFromUserCubit() : super(GetRequestFromUserInitial());
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+
   void getRequestFromUser({required String donarId}) {
     emit(GetRequestFromUserLoading());
     try {
@@ -20,10 +21,12 @@ class GetRequestFromUserCubit extends Cubit<GetRequestFromUserState> {
           .listen((event) {
         List<RequestDonationModel> requests = [];
         List<String> requestId = [];
+
         for (var doc in event.docs) {
           requests.add(RequestDonationModel.fromJson(doc));
           requestId.add(doc.id);
         }
+
         emit(GetRequestFromUserSuccess(
             requests: requests, requestId: requestId));
       });

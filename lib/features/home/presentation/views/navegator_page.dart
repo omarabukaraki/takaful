@@ -1,5 +1,3 @@
-// ignore: unused_import
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/utils/app_strings.dart';
@@ -77,33 +75,26 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
     );
   }
 }
-
-// class ProfileTest extends StatelessWidget {
-//   const ProfileTest({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         body: Center(
-//       child: Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 115),
-//         child: ElevatedButton(
-//           onPressed: () async {
-//             await FirebaseAuth.instance.signOut();
-//             // ignore: use_build_context_synchronously
-//             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-//               builder: (context) {
-//                 return const LoginPage();
-//               },
-//             ), (route) => false);
-//           },
-//           child: const Row(children: [
-//             Text('تسجيل خروج'),
-//             SizedBox(width: 10),
-//             Icon(Icons.logout)
-//           ]),
-//         ),
-//       ),
-//     ));
-//   }
-// }
+// BottomNavigationBarItem(
+//                   icon: Stack(
+//                     children: [
+//                       const Icon(Icons.shopping_bag_rounded,
+//                           color: AppColor.kPrimary),
+//                       Positioned(
+//                         right: 0,
+//                         child: CircleAvatar(
+//                             backgroundColor: Colors.red,
+//                             radius: 8,
+//                             child: Center(
+//                                 child: Text(
+//                               BlocProvider.of<GetRequestFromUserCubit>(context)
+//                                   .requestsCount
+//                                   .toString(),
+//                               style: const TextStyle(
+//                                   color: Colors.white, fontSize: 12),
+//                             ))),
+//                       ),
+//                     ],
+//                   ),
+//                   label: AppString.textItemRequest,
+//                 ),
