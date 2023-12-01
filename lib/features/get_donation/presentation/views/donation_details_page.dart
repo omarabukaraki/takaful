@@ -88,7 +88,8 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
-                      maxLines: 1,
+                      textAlign: TextAlign.end,
+                      maxLines: 2,
                     ),
                     //end title donation
 
