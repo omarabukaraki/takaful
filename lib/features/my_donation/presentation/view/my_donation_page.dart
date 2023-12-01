@@ -1,6 +1,8 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
 import 'package:takaful/features/get_donation/data/model/donation_model.dart';
 import '../../../get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
@@ -53,9 +55,30 @@ class _MyDonationPageState extends State<MyDonationPage> {
                   ? MyDonationComponent(
                       donation: donation[index],
                       onTapDelete: () async {
-                        await BlocProvider.of<EditAndDeleteDonationCubit>(
-                                context)
-                            .deleteDonation(docId: docId[index]);
+                        AwesomeDialog(
+                          context: context,
+                          animType: AnimType.scale,
+                          dialogType: DialogType.warning,
+                          body: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                'هل انت متأكد من حذف التبرع ؟',
+                              ),
+                            ),
+                          ),
+                          btnOkText: 'تراجع',
+                          btnCancelText: 'حذف',
+                          title: 'This is Ignored',
+                          desc: 'This is also Ignored',
+                          btnCancelOnPress: () async {
+                            await BlocProvider.of<EditAndDeleteDonationCubit>(
+                                    context)
+                                .deleteDonation(docId: docId[index]);
+                          },
+                          btnOkColor: AppColor.kPrimary,
+                          btnOkOnPress: () {},
+                        ).show();
                       },
                       onTapEdit: () {
                         Navigator.push(

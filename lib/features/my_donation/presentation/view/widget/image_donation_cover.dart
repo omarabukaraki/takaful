@@ -16,7 +16,7 @@ class ImageDonationCover extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       margin: const EdgeInsets.all(20),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.width / 1.5,
+      height: MediaQuery.of(context).size.width / 1.8,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           boxShadow: const [

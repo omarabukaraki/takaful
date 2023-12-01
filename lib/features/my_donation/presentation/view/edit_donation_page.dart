@@ -2,6 +2,7 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/utils/app_strings.dart';
+import 'package:takaful/core/widgets/custom_app_bar.dart';
 import '../../../../../../../core/utils/app_colors.dart';
 import '../../../../../../../core/widgets/custom_button.dart';
 import '../../../../../../../core/widgets/custom_textfiled.dart';
@@ -52,6 +53,14 @@ class _EditDonationPageState extends State<EditDonationPage> {
       },
       builder: (context, state) {
         return Scaffold(
+          appBar: CustomAppBar(
+            textOne: 'تعديل التبرع',
+            textTwo: '',
+            button: true,
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
           body: SafeArea(
             child: BlurryModalProgressHUD(
               inAsyncCall: isLoading,
@@ -149,6 +158,7 @@ class _EditDonationPageState extends State<EditDonationPage> {
                               state: stateOfThePost.text,
                               count: count,
                               description: description.text);
+                      Navigator.pop(context);
                     },
                     textColor: AppColor.kWhite,
                     color: AppColor.kPrimary,
