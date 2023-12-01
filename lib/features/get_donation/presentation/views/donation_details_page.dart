@@ -8,7 +8,7 @@ import 'package:takaful/core/utils/app_strings.dart';
 import '../../data/model/donation_model.dart';
 import 'widget/donation_details_widget/image_count_and_full_count.dart';
 import 'widget/donation_details_widget/request_button.dart';
-import 'widget/donation_details_widget/discrption_box.dart';
+import 'widget/donation_details_widget/discription_box.dart';
 import 'widget/donation_details_widget/donar_account_box.dart';
 import 'widget/donation_details_widget/donation_details_info.dart';
 import 'widget/donation_details_widget/donation_details_image.dart';
