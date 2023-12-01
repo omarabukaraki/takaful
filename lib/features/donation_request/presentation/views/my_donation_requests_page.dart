@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
-import '../cubit/get_request_from_user/get_request_from_user_cubit.dart';
+import '../cubit/get_request/get_request_cubit.dart';
 import 'widget/my_donation_request_component.dart';
 import 'package:takaful/features/donation_request/data/model/request_donation.dart';
 import '../../../profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
@@ -18,9 +18,7 @@ class MyDonationRequests extends StatefulWidget {
 class _MyDonationRequestsState extends State<MyDonationRequests> {
   @override
   void initState() {
-    BlocProvider.of<GetRequestFromUserCubit>(context).getRequest();
-    // BlocProvider.of<GetRequestFromUserCubit>(context)
-    //     .getRequestFromUser(donarId: FirebaseAuth.instance.currentUser!.uid);
+    BlocProvider.of<GetRequestCubit>(context).getRequest();
     super.initState();
   }
 
@@ -33,15 +31,15 @@ class _MyDonationRequestsState extends State<MyDonationRequests> {
     return Scaffold(
         appBar: const CustomAppBar(
             button: false, textOne: AppString.textItemRequest, textTwo: ''),
-        body: BlocConsumer<GetRequestFromUserCubit, GetRequestFromUserState>(
+        body: BlocConsumer<GetRequestCubit, GetRequestState>(
           listener: (context, state) {
-            if (state is GetRequestFromUserLoading) {
+            if (state is GetRequestLoading) {
               isLoading = true;
-            } else if (state is GetRequestFromUserSuccess) {
+            } else if (state is GetRequestSuccess) {
               requests = state.requests;
               requestId = state.requestId;
               isLoading = false;
-            } else if (state is GetRequestFromUserFailure) {
+            } else if (state is GetRequestFailure) {
               isLoading = false;
             }
           },

@@ -3,8 +3,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-
-import '../../../../donation_request/presentation/cubit/get_request_from_user/get_request_from_user_cubit.dart';
+import '../../../../donation_request/presentation/cubit/get_request/get_request_cubit.dart';
 import '../../../../profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 
 AwesomeDialog customAlertDialogCancelRequest(BuildContext context,
@@ -26,7 +25,7 @@ AwesomeDialog customAlertDialogCancelRequest(BuildContext context,
     title: 'This is Ignored',
     desc: 'This is also Ignored',
     btnCancelOnPress: () async {
-      await BlocProvider.of<GetRequestFromUserCubit>(context)
+      await BlocProvider.of<GetRequestCubit>(context)
           .deleteRequest(docId: requestId);
     },
     btnOkOnPress: () {},

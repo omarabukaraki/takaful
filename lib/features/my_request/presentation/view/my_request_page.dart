@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
 import 'package:takaful/features/donation_request/data/model/request_donation.dart';
 import 'package:takaful/features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
-import '../../../donation_request/presentation/cubit/get_request_from_user/get_request_from_user_cubit.dart';
+import '../../../donation_request/presentation/cubit/get_request/get_request_cubit.dart';
 import 'widget/my_request_process.dart';
 
 class MyRequestPage extends StatefulWidget {
@@ -18,7 +18,7 @@ class _MyRequestPageState extends State<MyRequestPage> {
   //start get all request to donation
   @override
   void initState() {
-    BlocProvider.of<GetRequestFromUserCubit>(context).getRequest();
+    BlocProvider.of<GetRequestCubit>(context).getRequest();
     super.initState();
   }
   //end get all request to donation
@@ -35,15 +35,15 @@ class _MyRequestPageState extends State<MyRequestPage> {
           onTap: () => Navigator.pop(context),
           textOne: 'طلباتي',
           textTwo: ''),
-      body: BlocConsumer<GetRequestFromUserCubit, GetRequestFromUserState>(
+      body: BlocConsumer<GetRequestCubit, GetRequestState>(
         listener: (context, state) {
-          if (state is GetRequestFromUserLoading) {
+          if (state is GetRequestLoading) {
             isLoading = true;
-          } else if (state is GetRequestFromUserSuccess) {
+          } else if (state is GetRequestSuccess) {
             requests = state.requests;
             requestId = state.requestId;
             isLoading = false;
-          } else if (state is GetRequestFromUserFailure) {
+          } else if (state is GetRequestFailure) {
             isLoading = false;
           }
         },

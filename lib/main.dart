@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/bloc_observer.dart';
 import 'package:takaful/core/routes/app_routes.dart';
-import 'package:takaful/features/donation_request/presentation/cubit/get_donation_request/get_donation_request_cubit.dart';
 import 'core/utils/app_colors.dart';
 import 'features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
 import 'features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
 import 'features/add_donation/presentation/cubit/add_location/add_location_cubit.dart';
 import 'features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'features/auth/presentation/cubit/register_cubit/register_cubit.dart';
-import 'features/donation_request/presentation/cubit/get_request_from_user/get_request_from_user_cubit.dart';
+import 'features/donation_request/presentation/cubit/get_request/get_request_cubit.dart';
 import 'features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
 import 'features/get_donation/presentation/cubit/request_donation/request_donation_cubit.dart';
 import 'features/home/presentation/views/navegator_page.dart';
@@ -64,14 +63,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => RequestDonationCubit(),
         ),
-        BlocProvider(
-          create: (context) => GetDonationRequestCubit(),
-        ),
+
         BlocProvider(
           create: (context) => EditAndDeleteDonationCubit(),
         ),
         BlocProvider(
-          create: (context) => GetRequestFromUserCubit(),
+          create: (context) => GetRequestCubit(),
         ),
         // BlocProvider(
         //   create: (context) => SaveDonationCubit(),

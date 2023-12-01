@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../auth/data/model/user_details_model.dart';
 import '../../../../profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 import '../../../data/model/request_donation.dart';
-import '../../cubit/get_request_from_user/get_request_from_user_cubit.dart';
+import '../../cubit/get_request/get_request_cubit.dart';
 import 'my_donation_requests_component.dart';
 
 class MyDonationRequestComponent extends StatefulWidget {
@@ -43,7 +43,7 @@ class _MyDonationRequestComponentState
             ? MyDonationRequestsItem(
                 onTapReject: () async {
                   try {
-                    await BlocProvider.of<GetRequestFromUserCubit>(context)
+                    await BlocProvider.of<GetRequestCubit>(context)
                         .deleteRequest(
                             // donarId: FirebaseAuth.instance.currentUser!.uid,
                             docId: widget.requestId!);

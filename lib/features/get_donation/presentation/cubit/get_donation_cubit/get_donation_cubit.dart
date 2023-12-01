@@ -93,18 +93,4 @@ class GetDonationCubit extends Cubit<GetDonationState> {
       }
     }
   }
-
-// DonationModel(
-//               doc['id'],
-//               doc['postState'],
-//               doc['title'],
-//               doc['image'],
-//               doc['category'],
-//               doc['itemOrService'],
-//               doc['description'],
-//               doc['location'],
-//               doc['state'],
-//               doc['createAt'],
-//               doc['donarAccount'],
-//               doc['count'])
 }
