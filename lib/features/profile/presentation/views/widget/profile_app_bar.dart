@@ -27,7 +27,7 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         Text(
-          text ?? '1010',
+          text ?? 'الاسم',
           style: const TextStyle(
             fontSize: 12,
             color: AppColor.kFont,

@@ -100,6 +100,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       )),
                 ),
                 ProfileButton(
+                  screenHeigth: screenheigth,
+                  icon: Icons.verified,
+                  text: 'توثيق الحساب',
+                  onTap: () {},
+                ),
+                ProfileButton(
                     screenHeigth: screenheigth,
                     icon: Icons.settings,
                     text: 'الاعدادات'),
