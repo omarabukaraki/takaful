@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../auth/data/model/user_details_model.dart';
@@ -46,7 +45,7 @@ class _MyDonationRequestComponentState
                   try {
                     await BlocProvider.of<GetRequestFromUserCubit>(context)
                         .deleteRequest(
-                            donarId: FirebaseAuth.instance.currentUser!.uid,
+                            // donarId: FirebaseAuth.instance.currentUser!.uid,
                             docId: widget.requestId!);
                   } catch (e) {
                     print(e);

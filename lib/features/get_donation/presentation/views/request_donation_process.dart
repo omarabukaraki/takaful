@@ -22,8 +22,9 @@ class RequestDonationProcess extends StatefulWidget {
 class _RequestDonationProcessState extends State<RequestDonationProcess> {
   @override
   void initState() {
-    BlocProvider.of<GetRequestFromUserCubit>(context)
-        .getRequestFromUser(donarId: widget.donationModel!.id);
+    BlocProvider.of<GetRequestFromUserCubit>(context).getRequest();
+    // BlocProvider.of<GetRequestFromUserCubit>(context)
+    //     .getRequestFromUser(donarId: widget.donationModel!.id);
     super.initState();
   }
 
@@ -51,7 +52,7 @@ class _RequestDonationProcessState extends State<RequestDonationProcess> {
                 onTap: () async {
                   customAlertDialogRequest(context).show();
                   await BlocProvider.of<RequestDonationCubit>(context)
-                      .requestThePost(
+                      .requestDonation(
                           donarId: widget.donationModel!.id.toString(),
                           donationId: widget.docId.toString(),
                           titleDonation: widget.donationModel!.title,
@@ -59,6 +60,15 @@ class _RequestDonationProcessState extends State<RequestDonationProcess> {
                           serviceReceiveAccount: FirebaseAuth
                               .instance.currentUser!.email
                               .toString());
+                  // await BlocProvider.of<RequestDonationCubit>(context)
+                  //     .requestThePost(
+                  //         donarId: widget.donationModel!.id.toString(),
+                  //         donationId: widget.docId.toString(),
+                  //         titleDonation: widget.donationModel!.title,
+                  //         donarAccount: widget.donationModel!.donarAccount,
+                  //         serviceReceiveAccount: FirebaseAuth
+                  //             .instance.currentUser!.email
+                  //             .toString());
                 },
               );
       },

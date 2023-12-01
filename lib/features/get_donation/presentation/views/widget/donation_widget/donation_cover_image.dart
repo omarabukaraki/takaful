@@ -16,7 +16,7 @@ class DonationCoverImage extends StatelessWidget {
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(8),
             boxShadow: const [
               BoxShadow(
                   color: Colors.black12, blurRadius: 4, offset: Offset(0, 1))

@@ -9,24 +9,22 @@ part 'get_request_from_user_state.dart';
 class GetRequestFromUserCubit extends Cubit<GetRequestFromUserState> {
   GetRequestFromUserCubit() : super(GetRequestFromUserInitial());
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference requests =
+      FirebaseFirestore.instance.collection('requests');
 
-  void getRequestFromUser({required String donarId}) {
+  void getRequest() {
     emit(GetRequestFromUserLoading());
     try {
-      users
-          .doc(donarId)
-          .collection('my_donation_requests')
+      requests
           .orderBy('timeRequest', descending: true)
           .snapshots()
           .listen((event) {
         List<RequestDonationModel> requests = [];
         List<String> requestId = [];
-
         for (var doc in event.docs) {
           requests.add(RequestDonationModel.fromJson(doc));
           requestId.add(doc.id);
         }
-
         emit(GetRequestFromUserSuccess(
             requests: requests, requestId: requestId));
       });
@@ -37,17 +35,53 @@ class GetRequestFromUserCubit extends Cubit<GetRequestFromUserState> {
     }
   }
 
-  Future<void> deleteRequest(
-      {required String donarId, required String docId}) async {
+  // void getRequestFromUser({required String donarId}) {
+  //   emit(GetRequestFromUserLoading());
+  //   try {
+  //     users
+  //         .doc(donarId)
+  //         .collection('my_donation_requests')
+  //         .orderBy('timeRequest', descending: true)
+  //         .snapshots()
+  //         .listen((event) {
+  //       List<RequestDonationModel> requests = [];
+  //       List<String> requestId = [];
+
+  //       for (var doc in event.docs) {
+  //         requests.add(RequestDonationModel.fromJson(doc));
+  //         requestId.add(doc.id);
+  //       }
+
+  //       emit(GetRequestFromUserSuccess(
+  //           requests: requests, requestId: requestId));
+  //     });
+  //   } catch (e) {
+  //     emit(GetRequestFromUserFailure());
+  //     // ignore: avoid_print
+  //     print(e);
+  //   }
+  // }
+
+  Future<void> deleteRequest({required String docId}) async {
     try {
-      await users
-          .doc(donarId)
-          .collection('request_donation')
-          .doc(docId)
-          .delete();
+      await requests.doc(docId).delete();
     } catch (e) {
       // ignore: avoid_print
       print(e);
     }
   }
+
+  // Future<void> deleteRequest(
+  //     {required String donarId, required String docId}) async {
+  //   try {
+  //     await users
+  //         .doc(donarId)
+  //         .collection('request_donation')
+  //         .doc(docId)
+  //         .delete();
+  //   } catch (e) {
+  //     // ignore: avoid_print
+  //     print(e);
+  //   }
+  // }
 }

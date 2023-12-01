@@ -27,7 +27,7 @@ AwesomeDialog customAlertDialogCancelRequest(BuildContext context,
     desc: 'This is also Ignored',
     btnCancelOnPress: () async {
       await BlocProvider.of<GetRequestFromUserCubit>(context)
-          .deleteRequest(donarId: donarId, docId: requestId);
+          .deleteRequest(docId: requestId);
     },
     btnOkOnPress: () {},
   );

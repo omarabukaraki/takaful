@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
 import 'package:takaful/features/donation_request/data/model/request_donation.dart';
-import 'package:takaful/features/donation_request/presentation/cubit/get_donation_request/get_donation_request_cubit.dart';
+import 'package:takaful/features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
+import '../../../donation_request/presentation/cubit/get_request_from_user/get_request_from_user_cubit.dart';
+import 'widget/my_request_process.dart';
 
 class MyRequestPage extends StatefulWidget {
   const MyRequestPage({super.key});
@@ -12,28 +15,17 @@ class MyRequestPage extends StatefulWidget {
 }
 
 class _MyRequestPageState extends State<MyRequestPage> {
-  List<RequestDonationModel> request = [];
-  // List<DonationModel> donations = [];
+  //start get all request to donation
   @override
   void initState() {
-    // BlocProvider.of<GetDonationRequestCubit>(context).getRequest();
-    // BlocProvider.of<GetDonationCubit>(context).getPost();
+    BlocProvider.of<GetRequestFromUserCubit>(context).getRequest();
     super.initState();
   }
+  //end get all request to donation
 
-  // void checker() {
-  //   List<String> donationId = BlocProvider.of<GetDonationCubit>(context).docId;
-  //   var set = Set.of(request);
-  //   print(set.containsAll(donationId));
-  // }
-  // void dd() {
-  //   BlocProvider.of<GetDonationRequestCubit>(context).donationList = [];
-  //   for (int i = 0; i < request.length; i++) {
-  //     BlocProvider.of<GetDonationRequestCubit>(context)
-  //         .getPostById(donationId: request[i].donationId);
-  //     print('i : ${i}}');
-  //   }
-  // }
+  List<RequestDonationModel> requests = [];
+  List<String> requestId = [];
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,62 +35,40 @@ class _MyRequestPageState extends State<MyRequestPage> {
           onTap: () => Navigator.pop(context),
           textOne: 'طلباتي',
           textTwo: ''),
-      body: BlocConsumer<GetDonationRequestCubit, GetDonationRequestState>(
+      body: BlocConsumer<GetRequestFromUserCubit, GetRequestFromUserState>(
         listener: (context, state) {
-          if (state is GetDonationRequestSuccess) {
-            request = state.requests;
-            // .where((element) => BlocProvider.of<GetDonationCubit>(context)
-            //     .docId
-            //     .contains(element.donationId))
-            // .toList();
-          } else if (state is GetDonationRequestLoading) {
-          } else if (state is GetDonationRequestFailure) {}
-          // else if (state is GetPostSuccess) {
-          //   donations = state.donationList;
-          // }
+          if (state is GetRequestFromUserLoading) {
+            isLoading = true;
+          } else if (state is GetRequestFromUserSuccess) {
+            requests = state.requests;
+            requestId = state.requestId;
+            isLoading = false;
+          } else if (state is GetRequestFromUserFailure) {
+            isLoading = false;
+          }
         },
         builder: (context, state) {
-          return Column(
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    // dd();
-                    // checker();
-                  },
-                  child: const Text('get request ')),
-              Expanded(
-                child: ListView.builder(
-                    itemCount: request.length,
-                    itemBuilder: (context, index) => Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black26,
-                                    blurRadius: 5,
-                                    offset: Offset(0, 2))
-                              ]),
-                          margin: const EdgeInsets.all(16),
-                          child: Center(
-                              child: Text(
-                            request[index].titleDonation,
-                            style: const TextStyle(fontSize: 24),
-                          )),
-                        )),
-              ),
-            ],
-          );
+          return isLoading != true
+              ? ListView.builder(
+                  itemCount: requests.length,
+                  itemBuilder: (context, index) => myRequest(index))
+              : const Center(
+                  child: CircularProgressIndicator(),
+                );
         },
       ),
     );
   }
-}
-// context
-//                         .read<GetDonationRequestCubit>()
-//                         .donationList
 
-//  MyDonationComponent(
-//                             donation: BlocProvider.of<GetDonationCubit>(context)
-//                                 .donationsList[index])
+  Widget myRequest(int index) {
+    BlocProvider.of<GetDonationCubit>(context).getPost();
+    return requests[index].serviceReceiverAccount ==
+            FirebaseAuth.instance.currentUser!.email
+        ? MyRequestProcess(
+            request: requests[index],
+            index: index,
+            requestId: requestId[index],
+          )
+        : const SizedBox();
+  }
+}

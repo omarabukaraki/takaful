@@ -18,8 +18,9 @@ class MyDonationRequests extends StatefulWidget {
 class _MyDonationRequestsState extends State<MyDonationRequests> {
   @override
   void initState() {
-    BlocProvider.of<GetRequestFromUserCubit>(context)
-        .getRequestFromUser(donarId: FirebaseAuth.instance.currentUser!.uid);
+    BlocProvider.of<GetRequestFromUserCubit>(context).getRequest();
+    // BlocProvider.of<GetRequestFromUserCubit>(context)
+    //     .getRequestFromUser(donarId: FirebaseAuth.instance.currentUser!.uid);
     super.initState();
   }
 
@@ -55,14 +56,17 @@ class _MyDonationRequestsState extends State<MyDonationRequests> {
         ));
   }
 
-  MyDonationRequestComponent myDonationRequest(int index) {
+  Widget myDonationRequest(int index) {
     //used to get user information by the account from request
     BlocProvider.of<GetUserDetailsCubit>(context)
         .userDonationInformation(email: requests[index].serviceReceiverAccount);
-    return MyDonationRequestComponent(
-      requests: requests[index],
-      index: index,
-      requestId: requestId[index],
-    );
+    return requests[index].donarAccount ==
+            FirebaseAuth.instance.currentUser!.email
+        ? MyDonationRequestComponent(
+            requests: requests[index],
+            index: index,
+            requestId: requestId[index],
+          )
+        : const SizedBox();
   }
 }
