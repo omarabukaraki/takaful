@@ -5,7 +5,6 @@ class AdPosts extends StatelessWidget {
   const AdPosts({
     required this.headerText,
     required this.image,
-    this.ratingNumber,
     this.titlePost,
     this.onTap,
     super.key,
@@ -14,7 +13,7 @@ class AdPosts extends StatelessWidget {
   final String headerText;
   final VoidCallback? onTap;
   final String? titlePost;
-  final String? ratingNumber;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -70,23 +69,6 @@ class AdPosts extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
           ),
-
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 5),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.end,
-          //     children: [
-          //       Text(
-          //         ratingNumber ?? '4.9',
-          //         style: const TextStyle(color: Colors.yellow),
-          //       ),
-          //       const Icon(
-          //         Icons.star_rate_rounded,
-          //         color: Colors.yellow,
-          //       )
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     );

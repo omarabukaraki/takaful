@@ -12,11 +12,11 @@ class GetDonationCubit extends Cubit<GetDonationState> {
   String location = 'كل المدن';
   int currentIndexType = 0;
   int currentIndexLocation = 0;
-  void getPost() {
+  void getPost({bool descending = true}) {
     emit(GetDonationLodging());
     try {
       donations
-          .orderBy('createAt', descending: true)
+          .orderBy('createAt', descending: descending)
           .snapshots()
           .listen((event) {
         List<DonationModel> donationsList = [];

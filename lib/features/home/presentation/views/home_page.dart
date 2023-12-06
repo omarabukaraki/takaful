@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:takaful/features/home/presentation/views/Modern_Elements_page.dart';
+import 'package:takaful/features/home/presentation/views/keep_browsing_page.dart';
 import 'package:takaful/features/home/presentation/views/widget/ad_post.dart';
 import 'package:takaful/core/widgets/custom_search_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -123,10 +125,11 @@ class _HomePageState extends State<HomePage> {
                     ? MainAxisAlignment.spaceBetween
                     : MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Category(
+                  Category(
                     image: AppAssets.assetsImageUntitled2,
                     text: AppString.textAllCategory,
                     radiusTwo: 30,
+                    onTap: () {},
                   ),
                   Category(
                     image: AppAssets.assetsImageServicesImage,
@@ -150,28 +153,36 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 25,
             ),
-            const Column(
-              children: [
-                AdPosts(
-                  headerText: AppString.textModernElements,
-                  image: 'assets/image/ui.png',
-                  ratingNumber: '4.8',
-                  titlePost: 'وجبة لشخص صالحة لمدة يوم',
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                AdPosts(
-                  headerText: AppString.textKeepBrowsing,
-                  image: 'assets/image/K13.png',
-                  titlePost: 'ملابس أطفال لعمر ثلاثة سنوات',
-                  ratingNumber: '4.3',
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
-            )
+            AdPosts(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return const ModernElementsPage();
+                  },
+                ));
+              },
+              headerText: AppString.textModernElements,
+              image: 'assets/image/ui.png',
+              titlePost: 'وجبة لشخص صالحة لمدة يوم',
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            AdPosts(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return const KeepBrowsingPage();
+                  },
+                ));
+              },
+              headerText: AppString.textKeepBrowsing,
+              image: 'assets/image/K13.png',
+              titlePost: 'ملابس أطفال لعمر ثلاثة سنوات',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
           ],
         ),
       ),
