@@ -63,7 +63,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => RequestDonationCubit(),
         ),
-
         BlocProvider(
           create: (context) => EditAndDeleteDonationCubit(),
         ),

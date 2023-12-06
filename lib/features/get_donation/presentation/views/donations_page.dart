@@ -68,15 +68,16 @@ class _DonationsPageState extends State<DonationsPage> {
                               donation[index].itemOrService
                           ? donation[index].postState == true
                               ? DonationComponent(
-                                  isSaved: false,
+                                  donationId: docId[index],
                                   donation: donation[index],
                                   onTapRequest: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return DonationDetailsPage(
-                                          docId: docId[index],
-                                          donationModel: donation[index]);
-                                    }));
+                                    Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) {
+                                        return DonationDetailsPage(
+                                            docId: docId[index],
+                                            donationModel: donation[index]);
+                                      },
+                                    ));
                                   },
                                 )
                               : const SizedBox()
@@ -92,22 +93,3 @@ class _DonationsPageState extends State<DonationsPage> {
     );
   }
 }
-
-
-// if(donation_id == donation_id from request and user_id == user_id)
-// isSaved:savedDonation[index].donationId!=''  && FirebaseAuth.instance.currentUser!.uid == savedDonation[index].userId ? true : false
-//  BlocConsumer<SaveDonationCubit, SaveDonationState>(
-//                   listener: (context, state) {
-//                     if (state is SaveDonationSuccess) {
-//                       savedDonation = state.donationSaved;
-//                     }
-//                   },
-//                   builder: (context, state) {
-//                     return    },
-//                 ),
-        // onTapSave: () async {
-        //                             setState(() {});
-        //                             await BlocProvider.of<SaveDonationCubit>(
-        //                                     context)
-        //                                 .saveDonation(docId: docId[index]);
-        //                           },

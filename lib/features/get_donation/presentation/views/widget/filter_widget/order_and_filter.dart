@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../filter_page.dart';
 import 'filter_result_button.dart';
-import 'order_button.dart';
 
 class OrderAndFilter extends StatelessWidget {
   const OrderAndFilter({
@@ -15,9 +14,11 @@ class OrderAndFilter extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(children: [
-          Expanded(child: OrderButton(onTap: () {
-            print('order');
-          })),
+          // Expanded(child:
+          //        OrderButton(onTap: () {
+          //         print('order');
+          //       })
+          //       ),
           Expanded(
               flex: 2,
               child: FilterResultButton(
