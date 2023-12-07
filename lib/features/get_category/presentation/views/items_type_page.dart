@@ -6,10 +6,16 @@ import 'package:takaful/core/widgets/custom_search_bar.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/features/get_donation/presentation/views/donations_page.dart';
 
-class ItemTypePage extends StatelessWidget {
+class ItemTypePage extends StatefulWidget {
   const ItemTypePage({super.key});
   static String id = 'ItemTypePage';
 
+  @override
+  State<ItemTypePage> createState() => _ItemTypePageState();
+}
+
+class _ItemTypePageState extends State<ItemTypePage> {
+  var searchName = '';
   @override
   Widget build(BuildContext context) {
     String categoryName = ModalRoute.of(context)!.settings.arguments as String;
@@ -18,7 +24,7 @@ class ItemTypePage extends StatelessWidget {
         .collection('category')
         .orderBy('createAt')
         .snapshots();
-    //
+
     return Scaffold(
       appBar: CustomAppBar(
         onTap: () {
@@ -48,17 +54,29 @@ class ItemTypePage extends StatelessWidget {
           ],
         ),
         Column(children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: CustomSearchBar(
-                icon: Icon(Icons.search), hintText: 'ابحث في تكافل'),
+                onChanged: (value) {
+                  setState(() {
+                    searchName = value;
+                  });
+                },
+                icon: const Icon(Icons.search),
+                hintText: 'ابحث في تكافل'),
           ),
           const SizedBox(
             height: 10,
           ),
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
-              stream: categoryStream,
+              stream: searchName != ''
+                  ? FirebaseFirestore.instance
+                      .collection('category')
+                      .orderBy('categoryName')
+                      .startAt([searchName]).endAt(
+                          ["$searchName\uf8ff"]).snapshots()
+                  : categoryStream,
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError) {
