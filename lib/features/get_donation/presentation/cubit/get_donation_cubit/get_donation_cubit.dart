@@ -93,4 +93,22 @@ class GetDonationCubit extends Cubit<GetDonationState> {
       }
     }
   }
+
+  void getDonationBySearch({required String searchName}) {
+    List<DonationModel> donation = [];
+    List<String> donationId = [];
+    FirebaseFirestore.instance
+        .collection('donations')
+        .orderBy('title')
+        .startAt([searchName])
+        .endAt(["$searchName\uf8ff"])
+        .snapshots()
+        .listen((event) {
+          for (var doc in event.docs) {
+            donation.add(DonationModel.fromJson(doc));
+            donationId.add(doc.id);
+          }
+          emit(GetDonationSuccess(donations: donation, docId: donationId));
+        });
+  }
 }
