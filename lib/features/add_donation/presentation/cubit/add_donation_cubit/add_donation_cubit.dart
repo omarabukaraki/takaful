@@ -41,6 +41,7 @@ class AddDonationCubit extends Cubit<AddDonationState> {
         'createAt': DateTime.now().toString(),
         'donarAccount': FirebaseAuth.instance.currentUser!.email.toString(),
         'typeOfDonation': typeOfDonation,
+        'isTaken': false,
       });
       emit(AddDonationSuccess());
     } catch (e) {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/bloc_observer.dart';
 import 'package:takaful/core/routes/app_routes.dart';
+import 'package:takaful/features/donation_request/presentation/cubit/edit_donation/edit_donation_cubit.dart';
 import 'core/utils/app_colors.dart';
 import 'features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
 import 'features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
@@ -69,6 +70,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => GetRequestCubit(),
         ),
+        //just to test
+        BlocProvider(
+          create: (context) => EditDonationCubit(),
+        )
         // BlocProvider(
         //   create: (context) => SaveDonationCubit(),
         // )

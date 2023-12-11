@@ -66,7 +66,8 @@ class _DonationsPageState extends State<DonationsPage> {
                     itemBuilder: (context, index) {
                       return categoryAndItemName[1] ==
                               donation[index].itemOrService
-                          ? donation[index].postState == true
+                          ? donation[index].postState == true &&
+                                  donation[index].isTaken != true
                               ? DonationComponent(
                                   donationId: docId[index],
                                   donation: donation[index],
@@ -75,7 +76,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                       builder: (context) {
                                         return DonationDetailsPage(
                                             docId: docId[index],
-                                            donationModel: donation[index]);
+                                            donation: donation[index]);
                                       },
                                     ));
                                   },

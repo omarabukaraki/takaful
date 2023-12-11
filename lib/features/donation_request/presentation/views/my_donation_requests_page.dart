@@ -61,6 +61,8 @@ class _MyDonationRequestsState extends State<MyDonationRequests> {
     return requests[index].donarAccount ==
             FirebaseAuth.instance.currentUser!.email
         ? MyDonationRequestComponent(
+            requestIdList: requestId,
+            requestList: requests,
             requests: requests[index],
             index: index,
             requestId: requestId[index],

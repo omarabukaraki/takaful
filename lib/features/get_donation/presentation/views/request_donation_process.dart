@@ -35,7 +35,7 @@ class _RequestDonationProcessState extends State<RequestDonationProcess> {
       builder: (context, state) {
         return (checker)
             ? RequestButton(
-                color: AppColor.kGreen,
+                color: AppColor.kRed,
                 nameButton: AppString.textCancelRequest,
                 onTap: () async {
                   checker = false;

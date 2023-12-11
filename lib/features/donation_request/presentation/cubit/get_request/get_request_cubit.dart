@@ -34,6 +34,10 @@ class GetRequestCubit extends Cubit<GetRequestState> {
     }
   }
 
+  Future<void> editRequest({required String requestId}) async {
+    await requests.doc(requestId).update({'isApproved': true});
+  }
+
   Future<void> deleteRequest({required String docId}) async {
     try {
       await requests.doc(docId).delete();

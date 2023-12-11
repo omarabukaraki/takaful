@@ -1,30 +1,34 @@
-import 'package:takaful/core/utils/app_colors.dart';
-import 'helper/custom_alert_Dialog.dart';
-import 'request_donation_process.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:takaful/core/utils/app_strings.dart';
-import '../../data/model/donation_model.dart';
-import 'widget/donation_details_widget/image_count_and_full_count.dart';
-import 'widget/donation_details_widget/request_button.dart';
-import 'widget/donation_details_widget/description_box.dart';
-import 'widget/donation_details_widget/donar_account_box.dart';
-import 'widget/donation_details_widget/donation_details_info.dart';
-import 'widget/donation_details_widget/donation_details_image.dart';
-import 'widget/donation_details_widget/donation_details_button.dart';
-import 'widget/donation_details_widget/title_donation_details_page.dart';
+import 'package:takaful/core/utils/app_colors.dart';
+import '../../../core/utils/app_strings.dart';
+import '../../donation_request/data/model/request_donation.dart';
+import '../../get_donation/data/model/donation_model.dart';
+import '../../get_donation/presentation/views/request_donation_process.dart';
+import '../../get_donation/presentation/views/widget/donation_details_widget/description_box.dart';
+import '../../get_donation/presentation/views/widget/donation_details_widget/donar_account_box.dart';
+import '../../get_donation/presentation/views/widget/donation_details_widget/donation_details_button.dart';
+import '../../get_donation/presentation/views/widget/donation_details_widget/donation_details_image.dart';
+import '../../get_donation/presentation/views/widget/donation_details_widget/donation_details_info.dart';
+import '../../get_donation/presentation/views/widget/donation_details_widget/image_count_and_full_count.dart';
+import '../../get_donation/presentation/views/widget/donation_details_widget/title_donation_details_page.dart';
 
-class DonationDetailsPage extends StatefulWidget {
-  const DonationDetailsPage(
-      {super.key, required this.donation, required this.docId});
+class MyRequestDonationDetailsPage extends StatefulWidget {
+  const MyRequestDonationDetailsPage(
+      {super.key,
+      required this.donation,
+      required this.docId,
+      required this.request});
   final DonationModel donation;
   final String docId;
+  final RequestDonationModel request;
   @override
-  State<DonationDetailsPage> createState() => _DonationDetailsPageState();
+  State<MyRequestDonationDetailsPage> createState() =>
+      _MyRequestDonationDetailsPageState();
 }
 
-class _DonationDetailsPageState extends State<DonationDetailsPage> {
+class _MyRequestDonationDetailsPageState
+    extends State<MyRequestDonationDetailsPage> {
   int inIndex = 0;
   bool isRequest = false;
   @override
@@ -95,26 +99,27 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                     //end title donation
 
                     //start request button
-                    widget.donation.id != FirebaseAuth.instance.currentUser!.uid
-                        ? widget.donation.typeOfDonation !=
-                                AppString.textRequired
-                            ? RequestDonationProcess(
-                                donationModel: widget.donation,
-                                docId: widget.docId,
-                              )
-                            : RequestButton(
-                                nameButton: 'اجراء مكالمة',
-                                onTap: () async {
-                                  // await FlutterPhoneDirectCaller.callNumber(
-                                  //     '0786996089');
-                                  alertDialogPhone(context).show();
-                                },
-                              )
-                        : RequestButton(
-                            nameButton: 'رجوع',
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
+                    widget.request.isApproved != true
+                        ? RequestDonationProcess(
+                            donationModel: widget.donation,
+                            docId: widget.docId,
+                          )
+                        : Container(
+                            height: 40,
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 15),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColor.kGreen),
+                            child: const Center(
+                                child: Text(
+                              'تم القبول',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: AppColor.kWhite,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
                           ),
                     //end request button
 
@@ -154,9 +159,7 @@ class _DonationDetailsPageState extends State<DonationDetailsPage> {
                     //end description title and body
 
                     //Start donar title and body
-                    DescriptionBox(
-                      description: widget.donation.description,
-                    ),
+                    DescriptionBox(description: widget.donation.description),
                     const TitleDonationDetailsPage(
                         text: AppString.textAdvertiser),
                     DonarAccountBox(donarAccount: widget.donation.donarAccount),

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:takaful/features/get_donation/presentation/views/donation_details_page.dart';
 
 class DescriptionBox extends StatelessWidget {
   const DescriptionBox({
     super.key,
-    required this.widget,
+    required this.description,
   });
 
-  final DonationDetailsPage widget;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class DescriptionBox extends StatelessWidget {
           ],
           color: Colors.white),
       child: Text(
-        widget.donationModel!.description,
+        description,
         textAlign: TextAlign.end,
         style: const TextStyle(
           fontSize: 14,

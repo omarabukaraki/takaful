@@ -13,39 +13,40 @@ class DonationModel {
   final String createAt;
   final String donarAccount;
   final String typeOfDonation;
+  final bool isTaken;
   DonationModel(
-    this.id,
-    this.postState,
-    this.title,
-    this.image,
-    this.category,
-    this.itemOrService,
-    this.description,
-    this.location,
-    this.subLocation,
-    this.count,
-    this.state,
-    this.createAt,
-    this.donarAccount,
-    this.typeOfDonation,
-  );
+      this.id,
+      this.postState,
+      this.title,
+      this.image,
+      this.category,
+      this.itemOrService,
+      this.description,
+      this.location,
+      this.subLocation,
+      this.count,
+      this.state,
+      this.createAt,
+      this.donarAccount,
+      this.typeOfDonation,
+      this.isTaken);
 
   factory DonationModel.fromJson(dynamic jsonData) {
     return DonationModel(
-      jsonData['id'],
-      jsonData['postState'],
-      jsonData['title'],
-      jsonData['image'],
-      jsonData['category'],
-      jsonData['itemOrService'],
-      jsonData['description'],
-      jsonData['location'],
-      jsonData['subLocation'],
-      jsonData['count'],
-      jsonData['state'],
-      jsonData['createAt'],
-      jsonData['donarAccount'],
-      jsonData['typeOfDonation'],
-    );
+        jsonData['id'],
+        jsonData['postState'],
+        jsonData['title'],
+        jsonData['image'],
+        jsonData['category'],
+        jsonData['itemOrService'],
+        jsonData['description'],
+        jsonData['location'],
+        jsonData['subLocation'],
+        jsonData['count'],
+        jsonData['state'],
+        jsonData['createAt'],
+        jsonData['donarAccount'],
+        jsonData['typeOfDonation'],
+        jsonData['isTaken']);
   }
 }

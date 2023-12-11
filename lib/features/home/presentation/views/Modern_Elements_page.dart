@@ -52,7 +52,7 @@ class _ModernElementsPageState extends State<ModernElementsPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => DonationDetailsPage(
-                                donationModel: donations[index],
+                                donation: donations[index],
                                 docId: donationId[index]),
                           ));
                     },

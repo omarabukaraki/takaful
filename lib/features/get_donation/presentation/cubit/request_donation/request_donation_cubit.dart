@@ -26,7 +26,8 @@ class RequestDonationCubit extends Cubit<RequestDonationState> {
       'titleDonation': titleDonation,
       'donarAccount': donarAccount,
       'timeRequest': DateTime.now().toString(),
-      'serviceReceiverAccount': serviceReceiveAccount
+      'serviceReceiverAccount': serviceReceiveAccount,
+      'isApproved': false,
     });
   }
 }

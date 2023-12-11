@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../donation_request/data/model/request_donation.dart';
 import '../../../../get_donation/data/model/donation_model.dart';
 import '../../../../get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
-import '../../../../get_donation/presentation/views/donation_details_page.dart';
+import '../../my_request_donation_details_page.dart';
 import 'my_request_component.dart';
 
 class MyRequestProcess extends StatefulWidget {
@@ -50,9 +50,10 @@ class _MyRequestProcessState extends State<MyRequestProcess> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DonationDetailsPage(
-                          donationModel: donations[widget.index!],
+                        builder: (context) => MyRequestDonationDetailsPage(
+                          donation: donations[widget.index!],
                           docId: docId[docIndex],
+                          request: widget.request,
                         ),
                       ));
                 },

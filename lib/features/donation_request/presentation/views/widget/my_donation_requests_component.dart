@@ -1,6 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/features/donation_request/presentation/views/widget/my_donation_requests_button.dart';
 
@@ -10,9 +12,11 @@ class MyDonationRequestsItem extends StatelessWidget {
     required this.title,
     this.nameUser,
     this.time,
-    required this.image,
     this.onTapAccept,
     this.onTapReject,
+    required this.image,
+    required this.isApproved,
+    required this.isNotApproved,
   }) : super(key: key);
   final String title;
   final String? nameUser;
@@ -20,6 +24,8 @@ class MyDonationRequestsItem extends StatelessWidget {
   final VoidCallback? onTapAccept;
   final VoidCallback? onTapReject;
   final String image;
+  final bool isApproved;
+  final bool isNotApproved;
 
   @override
   Widget build(BuildContext context) {
@@ -86,35 +92,51 @@ class MyDonationRequestsItem extends StatelessWidget {
                           overflow: TextOverflow.ellipsis)),
                 ),
 
-                //start button accept and reject
                 Expanded(
                     flex: 1,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
+                        //start button accept and reject
                         Expanded(
-                            flex: 1,
-                            child: MyDonationRequestsButton(
-                              onTap: onTapReject,
-                              colorAndBorder: false,
-                              nameButton: 'رفض',
-                            )),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: MyDonationRequestsButton(
-                            onTap: onTapAccept,
-                            colorAndBorder: true,
-                            nameButton: 'قبول',
-                          ),
+                          flex: 2,
+                          child: isApproved == !true
+                              ? Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 1,
+                                        child: MyDonationRequestsButton(
+                                          onTap: onTapReject,
+                                          colorAndBorder: false,
+                                          nameButton: 'رفض',
+                                        )),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: MyDonationRequestsButton(
+                                        onTap: onTapAccept,
+                                        colorAndBorder: true,
+                                        nameButton: 'قبول',
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: AppColor.kGreen),
+                                  child: const Center(
+                                    child: Text(
+                                      'تم القبول',
+                                      style: TextStyle(color: AppColor.kWhite),
+                                    ),
+                                  )),
                         ),
                         //end button accept and reject
 
-                        const SizedBox(
-                          width: 5,
-                        ),
+                        const SizedBox(width: 5),
 
                         //start display time of notification
                         Expanded(

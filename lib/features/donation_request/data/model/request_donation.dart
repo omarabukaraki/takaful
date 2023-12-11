@@ -1,17 +1,19 @@
 class RequestDonationModel {
-  String serviceReceiverId;
-  String donarAccount;
-  String serviceReceiverAccount;
-  String titleDonation;
-  String timeRequest;
-  String donationId;
+  final String serviceReceiverId;
+  final String donarAccount;
+  final String serviceReceiverAccount;
+  final String titleDonation;
+  final String timeRequest;
+  final String donationId;
+  final bool isApproved;
   RequestDonationModel(
       {required this.donationId,
       required this.serviceReceiverId,
       required this.donarAccount,
       required this.serviceReceiverAccount,
       required this.timeRequest,
-      required this.titleDonation});
+      required this.titleDonation,
+      required this.isApproved});
   factory RequestDonationModel.fromJson(jsonData) {
     return RequestDonationModel(
         donationId: jsonData['donationId'],
@@ -19,6 +21,7 @@ class RequestDonationModel {
         donarAccount: jsonData['donarAccount'],
         serviceReceiverAccount: jsonData['serviceReceiverAccount'],
         timeRequest: jsonData['timeRequest'],
-        titleDonation: jsonData['titleDonation']);
+        titleDonation: jsonData['titleDonation'],
+        isApproved: jsonData['isApproved']);
   }
 }

@@ -69,19 +69,21 @@ class _HomePageState extends State<HomePage> {
         return Expanded(
           child: ListView.builder(
               itemCount: donation.length,
-              itemBuilder: (context, index) => DonationComponent(
-                    donation: donation[index],
-                    donationId: donationId[index],
-                    onTapRequest: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DonationDetailsPage(
-                                    donationModel: donation[index],
-                                    docId: donationId[index],
-                                  )));
-                    },
-                  )),
+              itemBuilder: (context, index) => donation[index].isTaken == !true
+                  ? DonationComponent(
+                      donation: donation[index],
+                      donationId: donationId[index],
+                      onTapRequest: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DonationDetailsPage(
+                                      donation: donation[index],
+                                      docId: donationId[index],
+                                    )));
+                      },
+                    )
+                  : const SizedBox()),
         );
       },
     );

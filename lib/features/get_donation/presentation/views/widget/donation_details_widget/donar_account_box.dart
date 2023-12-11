@@ -2,16 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/features/auth/data/model/user_details_model.dart';
-import 'package:takaful/features/get_donation/presentation/views/donation_details_page.dart';
 import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 
 class DonarAccountBox extends StatefulWidget {
   const DonarAccountBox({
     super.key,
-    required this.widget,
+    required this.donarAccount,
   });
 
-  final DonationDetailsPage widget;
+  final String donarAccount;
 
   @override
   State<DonarAccountBox> createState() => _DonarAccountBoxState();
@@ -20,8 +19,8 @@ class DonarAccountBox extends StatefulWidget {
 class _DonarAccountBoxState extends State<DonarAccountBox> {
   @override
   void initState() {
-    BlocProvider.of<GetUserDetailsCubit>(context).userDonationInformation(
-        email: widget.widget.donationModel!.donarAccount);
+    BlocProvider.of<GetUserDetailsCubit>(context)
+        .userDonationInformation(email: widget.donarAccount);
     super.initState();
   }
 
