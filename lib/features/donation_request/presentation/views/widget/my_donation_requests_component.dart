@@ -2,9 +2,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:takaful/core/utils/app_colors.dart';
 import 'package:takaful/features/donation_request/presentation/views/widget/my_donation_requests_button.dart';
+
+import 'accept_widget.dart';
 
 class MyDonationRequestsItem extends StatelessWidget {
   const MyDonationRequestsItem({
@@ -16,7 +17,6 @@ class MyDonationRequestsItem extends StatelessWidget {
     this.onTapReject,
     required this.image,
     required this.isApproved,
-    required this.isNotApproved,
   }) : super(key: key);
   final String title;
   final String? nameUser;
@@ -25,7 +25,6 @@ class MyDonationRequestsItem extends StatelessWidget {
   final VoidCallback? onTapReject;
   final String image;
   final bool isApproved;
-  final bool isNotApproved;
 
   @override
   Widget build(BuildContext context) {
@@ -123,16 +122,7 @@ class MyDonationRequestsItem extends StatelessWidget {
                                     ),
                                   ],
                                 )
-                              : Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: AppColor.kGreen),
-                                  child: const Center(
-                                    child: Text(
-                                      'تم القبول',
-                                      style: TextStyle(color: AppColor.kWhite),
-                                    ),
-                                  )),
+                              : const AcceptWidget(),
                         ),
                         //end button accept and reject
 

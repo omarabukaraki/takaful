@@ -56,4 +56,5 @@ abstract class AppString {
   static const String textInformation = 'المعلومات';
   static const String textAdvertiser = 'صاحب الإعلان';
   static const String textRequired = 'مطلوب';
+  static const String textAccepted = 'تم القبول';
 }

@@ -60,7 +60,9 @@ class _MyDonationRequestsState extends State<MyDonationRequests> {
         .userDonationInformation(email: requests[index].serviceReceiverAccount);
     return requests[index].donarAccount ==
             FirebaseAuth.instance.currentUser!.email
-        ? MyDonationRequestComponent(
+        ?
+        //need a refactor code to delete duplicated data
+        MyDonationRequestComponent(
             requestIdList: requestId,
             requestList: requests,
             requests: requests[index],

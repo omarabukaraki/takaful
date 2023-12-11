@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         return Expanded(
           child: ListView.builder(
               itemCount: donation.length,
-              itemBuilder: (context, index) => donation[index].isTaken == !true
+              itemBuilder: (context, index) => donation[index].isTaken != true
                   ? DonationComponent(
                       donation: donation[index],
                       donationId: donationId[index],

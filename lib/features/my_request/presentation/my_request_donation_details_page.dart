@@ -113,7 +113,7 @@ class _MyRequestDonationDetailsPageState
                                 color: AppColor.kGreen),
                             child: const Center(
                                 child: Text(
-                              'تم القبول',
+                              AppString.textAccepted,
                               style: TextStyle(
                                 fontSize: 16,
                                 color: AppColor.kWhite,
