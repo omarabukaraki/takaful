@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/bloc_observer.dart';
 import 'package:takaful/core/routes/app_routes.dart';
 import 'package:takaful/features/donation_request/presentation/cubit/accept_request/accept_request_cubit.dart';
+import 'package:takaful/features/notification/presentation/cubit/notification_cubit/notification_cubit.dart';
+import 'package:takaful/notification_services.dart';
 import 'core/utils/app_colors.dart';
 import 'features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
 import 'features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
@@ -12,6 +15,7 @@ import 'features/add_donation/presentation/cubit/add_location/add_location_cubit
 import 'features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'features/donation_request/presentation/cubit/get_request/get_request_cubit.dart';
+import 'features/donation_request/presentation/cubit/send_notification/send_notification_cubit.dart';
 import 'features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
 import 'features/get_donation/presentation/cubit/request_donation/request_donation_cubit.dart';
 import 'features/home/presentation/views/navegator_page.dart';
@@ -27,6 +31,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await notificationInitialize();
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
+
   runApp(const MyApp());
 }
 
@@ -73,7 +80,13 @@ class MyApp extends StatelessWidget {
         //just to test
         BlocProvider(
           create: (context) => AcceptRequestCubit(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => SendNotificationCubit(),
+        ),
+        BlocProvider(
+          create: (context) => NotificationCubit(),
+        ),
         // BlocProvider(
         //   create: (context) => SaveDonationCubit(),
         // )
@@ -88,10 +101,13 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         routes: AppRoutes.route,
-        home: (FirebaseAuth.instance.currentUser != null &&
-                FirebaseAuth.instance.currentUser!.emailVerified)
-            ? const NavigatorBarPage()
-            : const SplashView(),
+        home:
+            //  const Test()
+
+            (FirebaseAuth.instance.currentUser != null &&
+                    FirebaseAuth.instance.currentUser!.emailVerified)
+                ? const NavigatorBarPage()
+                : const SplashView(),
       ),
     );
   }

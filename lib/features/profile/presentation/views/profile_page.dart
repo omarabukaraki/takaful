@@ -7,7 +7,7 @@ import 'package:takaful/features/profile/presentation/cubit/get_user_details/get
 import 'package:takaful/features/profile/presentation/views/manage_profile_page.dart';
 import 'package:takaful/features/profile/presentation/views/widget/profile_app_bar.dart';
 import 'package:takaful/features/profile/presentation/views/widget/profile_button.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 import '../../../my_donation/presentation/view/my_donation_page.dart';
 import '../../../my_request/presentation/view/my_request_page.dart';
@@ -117,11 +117,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     text: 'مشاركة التطبيق'),
                 ProfileButton(
                     onTap: () async {
-                      Uri uri = Uri.parse(
-                          'mailto:takafulapplication@gmail.com?subject=Contact with Takaful Admin &body=Hi, Admin Takaful');
-                      if (!await launchUrl(uri)) {
-                        print(uri);
-                      }
+                      // Uri uri = Uri.parse(
+                      //     'mailto:takafulapplication@gmail.com?subject=Contact with Takaful Admin &body=Hi, Admin Takaful');
+                      // if (!await launchUrl(uri)) {
+                      //   print(uri);
+                      // }
                     },
                     screenHeigth: screenheigth,
                     icon: Icons.contact_support_rounded,

@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:takaful/features/donation_request/presentation/cubit/accept_request/accept_request_cubit.dart';
+// import 'package:takaful/features/donation_request/presentation/cubit/accept_request/accept_request_cubit.dart';
+import 'package:takaful/features/donation_request/presentation/cubit/send_notification/send_notification_cubit.dart';
 import '../../../../auth/data/model/user_details_model.dart';
 import '../../../../profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
 import '../../../data/model/request_donation.dart';
+import '../../cubit/accept_request/accept_request_cubit.dart';
 import '../../cubit/get_request/get_request_cubit.dart';
 import 'my_donation_requests_component.dart';
 
@@ -53,6 +56,19 @@ class _MyDonationRequestComponentState
                     donationId: widget.requests.donationId,
                     requestId: widget.requestId,
                   );
+                  // ignore: use_build_context_synchronously
+                  await BlocProvider.of<SendNotificationCubit>(context)
+                      .sendPushNotification(
+                    context: context,
+                    userId: user[widget.index].id,
+                    typeOfNotification: 'requestDonation',
+                    title: 'تم قبول طلبك',
+                    body: widget.requests.titleDonation,
+                    token: user[widget.index].userToken,
+                    donarEmail: FirebaseAuth.instance.currentUser!.email ?? '',
+                  );
+
+                  // ignore: use_build_context_synchronously
                   await BlocProvider.of<AcceptRequestCubit>(context)
                       .deleteRejectedRequest(
                           request: widget.requests,

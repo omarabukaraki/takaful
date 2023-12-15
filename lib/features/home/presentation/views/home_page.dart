@@ -6,6 +6,7 @@ import 'package:takaful/features/get_donation/presentation/views/donation_detail
 import 'package:takaful/features/get_donation/presentation/views/widget/donation_widget/donation_component.dart';
 import 'package:takaful/core/widgets/custom_search_bar.dart';
 import 'package:takaful/core/utils/app_strings.dart';
+import 'package:takaful/notification_services.dart';
 import 'home_page_content.dart';
 import 'widget/home_page_app_bar.dart';
 
@@ -20,6 +21,12 @@ class _HomePageState extends State<HomePage> {
   var searchName = '';
   List<DonationModel> donation = [];
   List<String> donationId = [];
+  @override
+  void initState() {
+    changeUserToken();
+    getForegroundNotification();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

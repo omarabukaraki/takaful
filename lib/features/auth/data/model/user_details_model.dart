@@ -1,4 +1,5 @@
 class UserDetailsModel {
+  String id;
   String name;
   String email;
   String mobileNumber;
@@ -6,7 +7,8 @@ class UserDetailsModel {
   String userToken;
 
   UserDetailsModel(
-      {required this.image,
+      {required this.id,
+      required this.image,
       required this.name,
       required this.email,
       required this.mobileNumber,
@@ -14,6 +16,7 @@ class UserDetailsModel {
 
   factory UserDetailsModel.fromJson(data) {
     return UserDetailsModel(
+        id: data['id'],
         name: data['name'],
         email: data['email'],
         image: data['image'],
