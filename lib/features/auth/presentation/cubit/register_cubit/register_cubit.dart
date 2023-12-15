@@ -47,7 +47,11 @@ class RegisterCubit extends Cubit<RegisterState> {
 }
 
 Future<String> getToken() async {
-  final String? token = await FirebaseMessaging.instance.getToken();
-  if (token == null) return '';
-  return token;
+  try {
+    final String? token = await FirebaseMessaging.instance.getToken();
+    if (token == null) return '';
+    return token;
+  } catch (e) {
+    return '';
+  }
 }

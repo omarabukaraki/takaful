@@ -25,11 +25,7 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState> {
 
   Future<void> deleteAccount({required String docId}) async {
     try {
-      // await requestDonation.doc().delete();
-      // await post.doc().delete();
-      try {
-        await users.doc(docId).delete();
-      } catch (e) {}
+      await users.doc(docId).delete();
       await FirebaseAuth.instance.currentUser!.delete();
       await FirebaseAuth.instance.signOut();
       emit(DeleteAccountSuccess());
