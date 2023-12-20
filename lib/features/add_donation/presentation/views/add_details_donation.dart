@@ -55,8 +55,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> categoryAndItemService =
-        ModalRoute.of(context)!.settings.arguments as List<String>;
+    List<String?> categoryAndItemService =
+        ModalRoute.of(context)!.settings.arguments as List<String?>;
     return Scaffold(
         appBar: CustomAppBar(
           textOne: categoryAndItemService[0],
@@ -251,7 +251,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                   //end get state from user
 
                   //start get count from user
-                  categoryAndItemService[0].length <= 5
+                  categoryAndItemService[0]!.length <= 5
                       ? CounterPost(
                           counter: counter,
                           onTapAdd: () {
@@ -306,8 +306,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                               title: title.text,
                               image:
                                   BlocProvider.of<AddImagesCubit>(context).url,
-                              category: categoryAndItemService[1],
-                              itemOrService: categoryAndItemService[0],
+                              category: categoryAndItemService[1]!,
+                              itemOrService: categoryAndItemService[0]!,
                               description: description.text,
                               location: placemarks[0].locality!,
                               subLocation: locationSubLocality.text,

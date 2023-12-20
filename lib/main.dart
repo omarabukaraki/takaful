@@ -16,6 +16,7 @@ import 'features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'features/donation_request/presentation/cubit/get_request/get_request_cubit.dart';
 import 'features/donation_request/presentation/cubit/send_notification/send_notification_cubit.dart';
+import 'features/get_category/presentation/cubit/cubit/get_category_cubit.dart';
 import 'features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
 import 'features/get_donation/presentation/cubit/request_donation/request_donation_cubit.dart';
 import 'features/home/presentation/views/navegator_page.dart';
@@ -44,52 +45,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => LoginCubit(),
-        ),
-        BlocProvider(
-          create: (context) => AddDonationCubit(),
-        ),
-        BlocProvider(
-          create: (context) => RegisterCubit(),
-        ),
-        BlocProvider(
-          create: (context) => AddImagesCubit(),
-        ),
-        BlocProvider(
-          create: (context) => GetDonationCubit(),
-        ),
-        BlocProvider(
-          create: (context) => AddLocationCubit(),
-        ),
-        BlocProvider(
-          create: (context) => GetUserDetailsCubit(),
-        ),
-        BlocProvider(
-          create: (context) => DeleteAccountCubit(),
-        ),
-        BlocProvider(
-          create: (context) => RequestDonationCubit(),
-        ),
-        BlocProvider(
-          create: (context) => EditAndDeleteDonationCubit(),
-        ),
-        BlocProvider(
-          create: (context) => GetRequestCubit(),
-        ),
-        //just to test
-        BlocProvider(
-          create: (context) => AcceptRequestCubit(),
-        ),
-        BlocProvider(
-          create: (context) => SendNotificationCubit(),
-        ),
-        BlocProvider(
-          create: (context) => NotificationCubit(),
-        ),
-        // BlocProvider(
-        //   create: (context) => SaveDonationCubit(),
-        // )
+        BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider(create: (context) => AddDonationCubit()),
+        BlocProvider(create: (context) => RegisterCubit()),
+        BlocProvider(create: (context) => AddImagesCubit()),
+        BlocProvider(create: (context) => GetDonationCubit()),
+        BlocProvider(create: (context) => AddLocationCubit()),
+        BlocProvider(create: (context) => GetUserDetailsCubit()),
+        BlocProvider(create: (context) => DeleteAccountCubit()),
+        BlocProvider(create: (context) => RequestDonationCubit()),
+        BlocProvider(create: (context) => EditAndDeleteDonationCubit()),
+        BlocProvider(create: (context) => GetRequestCubit()),
+        BlocProvider(create: (context) => AcceptRequestCubit()),
+        BlocProvider(create: (context) => SendNotificationCubit()),
+        BlocProvider(create: (context) => NotificationCubit()),
+        BlocProvider(create: (context) => GetCategoryCubit())
       ],
       child: MaterialApp(
         title: 'takaful',

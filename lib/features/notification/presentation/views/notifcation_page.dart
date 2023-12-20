@@ -66,7 +66,8 @@ class _NotificationPageState extends State<NotificationPage> {
     BlocProvider.of<GetUserDetailsCubit>(context)
         .userDonationInformation(email: notificationData[index].donarEmail);
     return notificationData[index].userId ==
-            FirebaseAuth.instance.currentUser!.uid
+                FirebaseAuth.instance.currentUser!.uid ||
+            notificationData[index].userId == '0'
         ? NotificationComponent(
             index: index,
             notificationData: notificationData[index],
