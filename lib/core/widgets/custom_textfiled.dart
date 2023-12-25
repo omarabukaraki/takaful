@@ -37,6 +37,7 @@ class CustomTextFiled extends StatelessWidget {
         controller: controller,
         onChanged: onChanged,
         textAlign: TextAlign.end,
+
         decoration: InputDecoration(
           suffixIcon: icon,
           hintText: hintText,

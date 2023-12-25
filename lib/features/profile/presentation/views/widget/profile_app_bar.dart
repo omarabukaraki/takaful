@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:takaful/core/utils/app_colors.dart';
 
 class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const ProfileAppBar({
-    super.key,
-    this.text,
-    required this.image,
-  });
+  const ProfileAppBar(
+      {super.key, this.text, required this.image, required this.isVerified});
   final String? text;
   final String image;
+  final bool isVerified;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -18,23 +16,37 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
       shadowColor: Colors.grey.shade50,
       backgroundColor: Colors.white,
       centerTitle: true,
-      title: Column(children: [
-        const Text(
-          'حسابي',
-          style: TextStyle(
-            fontSize: 21,
-            color: AppColor.kPrimary,
-          ),
-        ),
-        Text(
-          text ?? 'الاسم',
-          style: const TextStyle(
-            fontSize: 12,
-            color: AppColor.kFont,
-            height: 1.5,
-          ),
-        )
-      ]),
+      title: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
+              'حسابي',
+              style: TextStyle(
+                fontSize: 21,
+                color: AppColor.kPrimary,
+              ),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                isVerified == true
+                    ? const Icon(Icons.verified, color: Colors.blue, size: 16)
+                    : const SizedBox(),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  text ?? 'الاسم',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppColor.kFont,
+                    height: 1.5,
+                  ),
+                )
+              ],
+            )
+          ]),
       actions: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),

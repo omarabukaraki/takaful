@@ -29,7 +29,7 @@ class NotificationCubit extends Cubit<NotificationState> {
   void getNotification() {
     emit(NotificationLoading());
     try {
-      notification.snapshots().listen((event) {
+      notification.orderBy('acceptTime').snapshots().listen((event) {
         List<NotificationModel> notificationData = [];
         for (var doc in event.docs) {
           notificationData.add(NotificationModel.fromJson(doc));

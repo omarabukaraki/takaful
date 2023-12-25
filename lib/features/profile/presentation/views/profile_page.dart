@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:takaful/features/account_verification/presentation/view/account_verification_page.dart';
 import 'package:takaful/features/auth/data/model/user_details_model.dart';
 import 'package:takaful/features/auth/presentation/views/login_page.dart';
 import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
@@ -43,6 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
       builder: (context, state) {
         return Scaffold(
           appBar: ProfileAppBar(
+            isVerified: user.isNotEmpty ? user[0].isVerified : false,
             text: user.isNotEmpty ? user[0].name : '',
             image: user.isNotEmpty
                 ? user[0].image
@@ -105,7 +107,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   screenHeigth: screenheigth,
                   icon: Icons.verified,
                   text: 'توثيق الحساب',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const AccountVerificationPage()));
+                  },
                 ),
                 ProfileButton(
                     screenHeigth: screenheigth,

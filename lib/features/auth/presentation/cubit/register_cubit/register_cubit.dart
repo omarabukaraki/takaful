@@ -29,6 +29,8 @@ class RegisterCubit extends Cubit<RegisterState> {
           'email': email,
           'mobileNumber': mobileNumber,
           'userToken': await getToken(),
+          'isVerified': false,
+          'createAt': DateTime.now().month,
           'image':
               'https://firebasestorage.googleapis.com/v0/b/takafultest-2ef6f.appspot.com/o/imagesForApplication%2Fuser_image.jpg?alt=media&token=1742bede-af30-493e-8e79-b08ca3c7bb0f&_gl=1*1p08skf*_ga*MTU3NDc4MjEzNi4xNjk0MDE3NjE4*_ga_CW55HF8NVT*MTY5NjA3NzM3Mi41Mi4xLjE2OTYwNzc4NzMuNTMuMC4w'
         });

@@ -17,6 +17,7 @@ class MyDonationRequestsItem extends StatelessWidget {
     this.onTapReject,
     required this.image,
     required this.isApproved,
+    required this.isVerified,
   }) : super(key: key);
   final String title;
   final String? nameUser;
@@ -25,6 +26,7 @@ class MyDonationRequestsItem extends StatelessWidget {
   final VoidCallback? onTapReject;
   final String image;
   final bool isApproved;
+  final bool isVerified;
 
   @override
   Widget build(BuildContext context) {
@@ -84,11 +86,25 @@ class MyDonationRequestsItem extends StatelessWidget {
                 //end title
                 Expanded(
                   flex: 1,
-                  child: Text(' اسم الطالب' ':' ' $nameUser',
-                      style: const TextStyle(
-                          fontSize: 11,
-                          color: AppColor.kFont,
-                          overflow: TextOverflow.ellipsis)),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      isVerified
+                          ? const Icon(Icons.verified,
+                              color: Colors.blue, size: 16)
+                          : const SizedBox(),
+                      const SizedBox(width: 5),
+                      Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Text(' اسم الطالب' ':' ' $nameUser',
+                            style: const TextStyle(
+                                fontSize: 11,
+                                color: AppColor.kFont,
+                                overflow: TextOverflow.ellipsis)),
+                      ),
+                    ],
+                  ),
                 ),
 
                 Expanded(

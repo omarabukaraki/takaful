@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:takaful/features/donation_request/presentation/cubit/accept_request/accept_request_cubit.dart';
 import 'package:takaful/features/donation_request/presentation/cubit/send_notification/send_notification_cubit.dart';
 import '../../../../auth/data/model/user_details_model.dart';
 import '../../../../profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
@@ -83,6 +82,9 @@ class _MyDonationRequestComponentState
                     print(e);
                   }
                 },
+                isVerified: user.length > widget.index
+                    ? user[widget.index].isVerified
+                    : false,
                 nameUser:
                     user.length > widget.index ? user[widget.index].name : '',
                 title: widget.requests.titleDonation,

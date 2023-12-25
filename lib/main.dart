@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/bloc_observer.dart';
 import 'package:takaful/core/routes/app_routes.dart';
+import 'package:takaful/features/account_verification/presentation/cubit/account_verification/account_verification_cubit.dart';
 import 'package:takaful/features/donation_request/presentation/cubit/accept_request/accept_request_cubit.dart';
 import 'package:takaful/features/notification/presentation/cubit/notification_cubit/notification_cubit.dart';
 import 'package:takaful/notification_services.dart';
 import 'core/utils/app_colors.dart';
+import 'features/account_verification/presentation/cubit/add_image_to_verification_account_cubit/add_image_to_verification_account_cubit.dart';
 import 'features/add_donation/presentation/cubit/add_donation_cubit/add_donation_cubit.dart';
 import 'features/add_donation/presentation/cubit/add_images_cubit/add_images_cubit.dart';
 import 'features/add_donation/presentation/cubit/add_location/add_location_cubit.dart';
@@ -59,7 +61,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AcceptRequestCubit()),
         BlocProvider(create: (context) => SendNotificationCubit()),
         BlocProvider(create: (context) => NotificationCubit()),
-        BlocProvider(create: (context) => GetCategoryCubit())
+        BlocProvider(create: (context) => GetCategoryCubit()),
+        BlocProvider(create: (context) => AccountVerificationCubit()),
+        BlocProvider(create: (context) => AddImageToVerificationAccountCubit()),
       ],
       child: MaterialApp(
         title: 'takaful',

@@ -29,7 +29,7 @@ class _NotificationComponentState extends State<NotificationComponent> {
         if (state is GetUserDetailsSuccessForDonation) {
           users.add(state.user);
         } else if (state is GetUserDetailsLoadingForDonation) {
-          users = [];
+          // users = [];
         }
       },
       builder: (context, state) {

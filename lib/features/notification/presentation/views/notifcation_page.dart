@@ -49,15 +49,34 @@ class _NotificationPageState extends State<NotificationPage> {
           },
           builder: (context, state) {
             return ListView.builder(
-              itemCount: notificationData.length,
-              itemBuilder: (context, index) => isLoading != true
-                  ? notificationProcess(
-                      index: index,
-                    )
-                  : const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-            );
+                itemCount: notificationData.length,
+                itemBuilder: (context, index) => isLoading != true
+                    ? notificationData[index].typeOfNotification ==
+                            'requestDonation'
+                        ? notificationProcess(
+                            index: index,
+                          )
+                        : Container(
+                            margin: const EdgeInsets.all(16),
+                            width: double.infinity,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.amber,
+                            ),
+                            child: Center(
+                                child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(notificationData[index].titleNotification),
+                                const SizedBox(height: 10),
+                                Text(notificationData[index].bodyNotification),
+                              ],
+                            )),
+                          )
+                    : const Center(
+                        child: CircularProgressIndicator(),
+                      ));
           },
         ));
   }
@@ -66,8 +85,7 @@ class _NotificationPageState extends State<NotificationPage> {
     BlocProvider.of<GetUserDetailsCubit>(context)
         .userDonationInformation(email: notificationData[index].donarEmail);
     return notificationData[index].userId ==
-                FirebaseAuth.instance.currentUser!.uid ||
-            notificationData[index].userId == '0'
+            FirebaseAuth.instance.currentUser!.uid
         ? NotificationComponent(
             index: index,
             notificationData: notificationData[index],

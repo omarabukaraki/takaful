@@ -57,15 +57,29 @@ class _DonarAccountBoxState extends State<DonarAccountBox> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        userDetailsModel != null ? userDetailsModel!.name : '',
-                        // widget.postModel!.donarName,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 1,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          userDetailsModel != null
+                              ? userDetailsModel!.isVerified == true
+                                  ? const Icon(Icons.verified,
+                                      color: Colors.blue, size: 19)
+                                  : const SizedBox()
+                              : const SizedBox(),
+                          const SizedBox(width: 5),
+                          Text(
+                            userDetailsModel != null
+                                ? userDetailsModel!.name
+                                : '',
+                            // widget.postModel!.donarName,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 1,
+                          ),
+                        ],
                       ),
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.end,
