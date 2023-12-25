@@ -14,13 +14,7 @@ class NavigatorBarPage extends StatefulWidget {
 }
 
 class _NavigatorBarPageState extends State<NavigatorBarPage> {
-  int inIndex = 0;
   int _currentIndex = 3;
-  List<String> images = [
-    'assets/image/801.png',
-    'assets/image/banner_f4638420-4d69-47bb-bff4-83aad34e8f45.jpg',
-    'assets/image/نماذج-التبرع_العربية-1013x441.png'
-  ];
   final screen = const [
     ProfilePage(),
     MyDonationRequests(),
@@ -49,9 +43,9 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (value) {
-          setState(() {});
-
-          _currentIndex = value;
+          setState(() {
+            _currentIndex = value;
+          });
         },
         items: const [
           BottomNavigationBarItem(
@@ -75,26 +69,3 @@ class _NavigatorBarPageState extends State<NavigatorBarPage> {
     );
   }
 }
-// BottomNavigationBarItem(
-//                   icon: Stack(
-//                     children: [
-//                       const Icon(Icons.shopping_bag_rounded,
-//                           color: AppColor.kPrimary),
-//                       Positioned(
-//                         right: 0,
-//                         child: CircleAvatar(
-//                             backgroundColor: Colors.red,
-//                             radius: 8,
-//                             child: Center(
-//                                 child: Text(
-//                               BlocProvider.of<GetRequestFromUserCubit>(context)
-//                                   .requestsCount
-//                                   .toString(),
-//                               style: const TextStyle(
-//                                   color: Colors.white, fontSize: 12),
-//                             ))),
-//                       ),
-//                     ],
-//                   ),
-//                   label: AppString.textItemRequest,
-//                 ),
