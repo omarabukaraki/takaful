@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:takaful/core/utils/app_constants.dart';
 import 'package:takaful/features/notification/presentation/cubit/notification_cubit/notification_cubit.dart';
-
 part 'send_notification_state.dart';
 
 class SendNotificationCubit extends Cubit<SendNotificationState> {

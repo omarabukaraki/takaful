@@ -7,6 +7,7 @@ import 'package:takaful/bloc_observer.dart';
 import 'package:takaful/core/routes/app_routes.dart';
 import 'package:takaful/features/account_verification/presentation/cubit/account_verification/account_verification_cubit.dart';
 import 'package:takaful/features/donation_request/presentation/cubit/accept_request/accept_request_cubit.dart';
+import 'package:takaful/features/home/presentation/cubit/cubit/get_ads_cubit.dart';
 import 'package:takaful/features/notification/presentation/cubit/notification_cubit/notification_cubit.dart';
 import 'package:takaful/notification_services.dart';
 import 'core/utils/app_colors.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => GetCategoryCubit()),
         BlocProvider(create: (context) => AccountVerificationCubit()),
         BlocProvider(create: (context) => AddImageToVerificationAccountCubit()),
+        BlocProvider(create: (context) => GetAdsCubit()),
       ],
       child: MaterialApp(
         title: 'takaful',
@@ -75,13 +77,10 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         routes: AppRoutes.route,
-        home:
-            //  const Test()
-
-            (FirebaseAuth.instance.currentUser != null &&
-                    FirebaseAuth.instance.currentUser!.emailVerified)
-                ? const NavigatorBarPage()
-                : const SplashView(),
+        home: (FirebaseAuth.instance.currentUser != null &&
+                FirebaseAuth.instance.currentUser!.emailVerified)
+            ? const NavigatorBarPage()
+            : const SplashView(),
       ),
     );
   }
