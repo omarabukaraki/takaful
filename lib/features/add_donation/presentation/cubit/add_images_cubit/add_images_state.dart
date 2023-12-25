@@ -1,6 +1,5 @@
 part of 'add_images_cubit.dart';
 
-@immutable
 abstract class AddImagesState {}
 
 class AddImagesInitial extends AddImagesState {}

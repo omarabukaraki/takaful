@@ -65,7 +65,7 @@ class _LocationFilterState extends State<LocationFilter> {
                       setState(() {
                         location = locations[index];
                         currentIndex = index;
-                        print(location);
+                        // print(location);
                         BlocProvider.of<GetDonationCubit>(context).location =
                             location.toString();
                         BlocProvider.of<GetDonationCubit>(context)

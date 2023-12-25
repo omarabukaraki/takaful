@@ -79,7 +79,7 @@ class _MyDonationRequestComponentState
                     await BlocProvider.of<GetRequestCubit>(context)
                         .deleteRequest(docId: widget.requestId);
                   } catch (e) {
-                    print(e);
+                    e.toString();
                   }
                 },
                 isVerified: user.length > widget.index

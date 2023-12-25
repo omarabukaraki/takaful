@@ -158,6 +158,7 @@ class _EditDonationPageState extends State<EditDonationPage> {
                               state: stateOfThePost.text,
                               count: count,
                               description: description.text);
+                      // ignore: use_build_context_synchronously
                       Navigator.pop(context);
                     },
                     textColor: AppColor.kWhite,

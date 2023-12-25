@@ -1,12 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'get_user_details_cubit.dart';
 
-@immutable
 abstract class GetUserDetailsState {}
 
 class GetUserDetailsInitial extends GetUserDetailsState {}
 
-// ignore: must_be_immutable
 class GetUserDetailsSuccess extends GetUserDetailsState {
   List<UserDetailsModel> user;
   GetUserDetailsSuccess({
@@ -16,7 +14,6 @@ class GetUserDetailsSuccess extends GetUserDetailsState {
 
 class GetUserDetailsLoadingForDonation extends GetUserDetailsState {}
 
-// ignore: must_be_immutable
 class GetUserDetailsSuccessForDonation extends GetUserDetailsState {
   UserDetailsModel user;
   GetUserDetailsSuccessForDonation({
@@ -24,7 +21,6 @@ class GetUserDetailsSuccessForDonation extends GetUserDetailsState {
   });
 }
 
-// ignore: must_be_immutable
 class GetUserDetailsSuccessForRequestDonation extends GetUserDetailsState {
   List<UserDetailsModel> user;
   GetUserDetailsSuccessForRequestDonation({

@@ -13,8 +13,8 @@ import '../../features/my_donation/presentation/view/my_donation_page.dart';
 abstract class AppRoutes {
   static Map<String, Widget Function(BuildContext)> route =
       <String, WidgetBuilder>{
-    AddServiceDonation.id: (context) => AddServiceDonation(),
-    AddItemDonation.id: (context) => AddItemDonation(),
+    AddServiceDonation.id: (context) => const AddServiceDonation(),
+    AddItemDonation.id: (context) => const AddItemDonation(),
     AddDetailsPost.id: (context) => const AddDetailsPost(),
     ItemTypePage.id: (context) => const ItemTypePage(),
     ServiceTypePage.id: (context) => const ServiceTypePage(),

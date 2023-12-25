@@ -1,7 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meta/meta.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 part 'update_user_data_state.dart';
 
 class UpdateUserDataCubit extends Cubit<UpdateUserDataState> {

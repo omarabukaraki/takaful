@@ -1,6 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 part 'edit_and_delete_donation_state.dart';
 
 class EditAndDeleteDonationCubit extends Cubit<EditAndDeleteDonationState> {
@@ -38,7 +37,7 @@ class EditAndDeleteDonationCubit extends Cubit<EditAndDeleteDonationState> {
           .doc(docId)
           .delete();
     } catch (e) {
-      print(e);
+      e.toString();
     }
   }
 }

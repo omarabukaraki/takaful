@@ -58,7 +58,7 @@ class _TypeOfDonationFilterState extends State<TypeOfDonationFilter> {
                       BlocProvider.of<GetDonationCubit>(context)
                           .currentIndexType = index;
                       setState(() {});
-                      print(type);
+                      // print(type);
                     },
                     child: currentIndex == index
                         ? Container(

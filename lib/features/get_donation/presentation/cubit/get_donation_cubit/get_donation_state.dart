@@ -1,6 +1,5 @@
 part of 'get_donation_cubit.dart';
 
-@immutable
 abstract class GetDonationState {}
 
 class GetDonationInitial extends GetDonationState {}

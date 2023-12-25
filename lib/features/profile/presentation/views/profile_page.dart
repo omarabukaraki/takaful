@@ -33,11 +33,11 @@ class _ProfilePageState extends State<ProfilePage> {
     return BlocConsumer<GetUserDetailsCubit, GetUserDetailsState>(
       listener: (context, state) {
         if (state is GetUserDetailsLoading) {
-          print('loading');
+          // print('loading');
         } else if (state is GetUserDetailsSuccess) {
           user = state.user;
         } else if (state is GetUserDetailsFailure) {
-          print('failure');
+          // print('failure');
         }
       },
       builder: (context, state) {

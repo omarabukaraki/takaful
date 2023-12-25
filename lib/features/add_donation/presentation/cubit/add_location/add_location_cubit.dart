@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:meta/meta.dart';
+
 part 'add_location_state.dart';
 
 class AddLocationCubit extends Cubit<AddLocationState> {
@@ -41,7 +41,7 @@ class AddLocationCubit extends Cubit<AddLocationState> {
       emit(AddLocationLodging());
       placemarks = await placemarkFromCoordinates(latitude, longitude,
           localeIdentifier: 'ar');
-      print(placemarks);
+      // print(placemarks);
       emit(AddLocationSuccess(placemarks: placemarks));
     } catch (e) {
       emit(AddLocationFailure(errMessage: e.toString()));
