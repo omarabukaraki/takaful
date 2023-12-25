@@ -35,7 +35,7 @@ class _MyDonationPageState extends State<MyDonationPage> {
       appBar: CustomAppBar(
           button: true,
           onTap: () => Navigator.pop(context),
-          textOne: 'تبرعاتي',
+          textOne: 'إعلاناتي',
           textTwo: ''),
       body: BlocConsumer<GetDonationCubit, GetDonationState>(
         listener: (context, state) {

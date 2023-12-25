@@ -79,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ProfileButton(
                   screenHeigth: screenheigth,
                   icon: Icons.breakfast_dining_sharp,
-                  text: 'تبرعاتي',
+                  text: 'إعلاناتي',
                   onTap: () {
                     Navigator.push(
                         context,
