@@ -45,19 +45,23 @@ class _KeepBrowsingPageState extends State<KeepBrowsingPage> {
         builder: (context, state) {
           return ListView.builder(
               itemCount: donations.length,
-              itemBuilder: (context, index) => DonationComponent(
-                    donation: donations[index],
-                    donationId: donationId[index],
-                    onTapRequest: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DonationDetailsPage(
-                                donation: donations[index],
-                                docId: donationId[index]),
-                          ));
-                    },
-                  ));
+              itemBuilder: (context, index) =>
+                  (donations[index].postState == true &&
+                          donations[index].isTaken != true)
+                      ? DonationComponent(
+                          donation: donations[index],
+                          donationId: donationId[index],
+                          onTapRequest: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DonationDetailsPage(
+                                      donation: donations[index],
+                                      docId: donationId[index]),
+                                ));
+                          },
+                        )
+                      : const SizedBox());
         },
       ),
     );
