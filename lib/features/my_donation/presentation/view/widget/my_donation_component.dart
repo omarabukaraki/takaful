@@ -7,11 +7,16 @@ import '../../../../get_donation/presentation/views/widget/image_count.dart';
 
 class MyDonationComponent extends StatelessWidget {
   const MyDonationComponent(
-      {super.key, this.onTapEdit, this.onTapDelete, this.donation});
+      {super.key,
+      this.onTapEdit,
+      this.onTapDelete,
+      this.donation,
+      this.isTaken});
 
   final DonationModel? donation;
   final VoidCallback? onTapEdit;
   final VoidCallback? onTapDelete;
+  final bool? isTaken;
 
   @override
   Widget build(BuildContext context) {
@@ -62,58 +67,73 @@ class MyDonationComponent extends StatelessWidget {
           //start buttons delete and edit
           Expanded(
               flex: 2,
-              child: Row(
-                children: [
-                  //start delete button
-                  Expanded(
-                    flex: 1,
-                    child: GestureDetector(
-                      onTap: onTapDelete,
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 5, left: 15),
-                        decoration: BoxDecoration(
-                          color: AppColor.kRed,
-                          borderRadius: BorderRadius.circular(10),
+              child: isTaken != true
+                  ? Row(
+                      children: [
+                        //start delete button
+                        Expanded(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: onTapDelete,
+                            child: Container(
+                              margin: const EdgeInsets.only(top: 5, left: 15),
+                              decoration: BoxDecoration(
+                                color: AppColor.kRed,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: const Center(
+                                  child: Text(
+                                'حذف',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: AppColor.kWhite,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
+                            ),
+                          ),
                         ),
-                        child: const Center(
-                            child: Text(
-                          'حذف',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColor.kWhite,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                      ),
-                    ),
-                  ),
-                  //end delete button
+                        //end delete button
 
-                  //start edit button
-                  Expanded(
-                    flex: 1,
-                    child: GestureDetector(
-                      onTap: onTapEdit,
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 5, left: 15),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColor.kPrimary),
-                        child: const Center(
-                            child: Text(
-                          'تعديل',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                        //start edit button
+                        Expanded(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: onTapEdit,
+                            child: Container(
+                              margin: const EdgeInsets.only(top: 5, left: 15),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: AppColor.kPrimary),
+                              child: const Center(
+                                  child: Text(
+                                'تعديل',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
+                            ),
                           ),
-                        )),
-                      ),
-                    ),
-                  )
-                  //end edit button
-                ],
-              ))
+                        )
+                        //end edit button
+                      ],
+                    )
+                  : Container(
+                      margin: const EdgeInsets.only(top: 5, left: 15),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColor.kPrimary),
+                      child: const Center(
+                          child: Text(
+                        'تم التبرع',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ))))
           //end buttons delete and edit
         ]),
       ),

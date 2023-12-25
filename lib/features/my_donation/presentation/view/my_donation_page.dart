@@ -53,6 +53,7 @@ class _MyDonationPageState extends State<MyDonationPage> {
               return donation[index].id ==
                       FirebaseAuth.instance.currentUser!.uid
                   ? MyDonationComponent(
+                      isTaken: donation[index].isTaken,
                       donation: donation[index],
                       onTapDelete: () async {
                         AwesomeDialog(
