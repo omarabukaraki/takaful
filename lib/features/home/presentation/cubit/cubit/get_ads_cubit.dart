@@ -11,7 +11,7 @@ class GetAdsCubit extends Cubit<GetAdsState> {
   void getAd() {
     emit(GetAdsLoading());
     try {
-      ads.snapshots().listen((event) {
+      ads.orderBy('createAt').snapshots().listen((event) {
         List<AdModel> adList = [];
         for (var doc in event.docs) {
           adList.add(AdModel.fromJson(doc));

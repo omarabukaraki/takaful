@@ -82,14 +82,29 @@ class _NotificationComponentState extends State<NotificationComponent> {
                         const Expanded(child: SizedBox()),
                         Expanded(
                           flex: 1,
-                          child: Text(
-                              'صاحب الإعلان '
-                              ':'
-                              ' ${users.length > widget.index ? users[widget.index].name : ''}',
-                              style: const TextStyle(
-                                  fontSize: 11,
-                                  color: AppColor.kFont,
-                                  overflow: TextOverflow.ellipsis)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              users.length > widget.index
+                                  ? users[widget.index].isVerified
+                                      ? const Icon(Icons.verified,
+                                          color: Colors.blue, size: 16)
+                                      : const SizedBox()
+                                  : const SizedBox(),
+                              const SizedBox(width: 5),
+                              Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: Text(
+                                    'صاحب الإعلان '
+                                    ':'
+                                    ' ${users.length > widget.index ? users[widget.index].name : ''}',
+                                    style: const TextStyle(
+                                        fontSize: 11,
+                                        color: AppColor.kFont,
+                                        overflow: TextOverflow.ellipsis)),
+                              ),
+                            ],
+                          ),
                         ),
                         const Expanded(child: SizedBox()),
 

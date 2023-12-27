@@ -37,7 +37,7 @@ Future<bool> notificationInitialize() {
         channelShowBadge: true,
         locked: true,
         playSound: true,
-        // onlyAlertOnce: true,
+        onlyAlertOnce: true,
         defaultRingtoneType: DefaultRingtoneType.Notification)
   ]);
 }

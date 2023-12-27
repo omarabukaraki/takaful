@@ -94,8 +94,6 @@ class GetDonationCubit extends Cubit<GetDonationState> {
   }
 
   void getDonationBySearch({required String searchName}) {
-    List<DonationModel> donation = [];
-    List<String> donationId = [];
     FirebaseFirestore.instance
         .collection('donations')
         .orderBy('title')
@@ -103,6 +101,8 @@ class GetDonationCubit extends Cubit<GetDonationState> {
         .endAt(["$searchName\uf8ff"])
         .snapshots()
         .listen((event) {
+          List<DonationModel> donation = [];
+          List<String> donationId = [];
           for (var doc in event.docs) {
             donation.add(DonationModel.fromJson(doc));
             donationId.add(doc.id);
