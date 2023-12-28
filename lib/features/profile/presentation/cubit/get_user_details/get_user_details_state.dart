@@ -16,6 +16,7 @@ class GetUserDetailsLoadingForDonation extends GetUserDetailsState {}
 
 class GetUserDetailsSuccessForDonation extends GetUserDetailsState {
   UserDetailsModel user;
+
   GetUserDetailsSuccessForDonation({
     required this.user,
   });

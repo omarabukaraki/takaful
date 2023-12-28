@@ -2,10 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/widgets/custom_app_bar.dart';
-import 'package:takaful/features/profile/presentation/cubit/get_user_details/get_user_details_cubit.dart';
+import 'package:takaful/features/auth/data/model/user_details_model.dart';
+import 'package:takaful/features/notification/presentation/cubit/get_user_and_notification/get_user_and_notification_cubit.dart';
+import 'package:takaful/features/notification/presentation/views/widget/notification_component.dart';
 import '../../data/model/notification_model.dart';
-import '../cubit/notification_cubit/notification_cubit.dart';
-import 'widget/notification_component.dart';
+import 'widget/type_of_notification_component.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -18,12 +19,14 @@ class NotificationPage extends StatefulWidget {
 class _NotificationPageState extends State<NotificationPage> {
   @override
   void initState() {
-    BlocProvider.of<NotificationCubit>(context).getNotification();
+    BlocProvider.of<GetUserAndNotificationCubit>(context)
+        .getUsersAndNotification();
     super.initState();
   }
 
-  List<NotificationModel> notificationData = [];
-  bool isLoading = true;
+  bool isLoading = false;
+  List<NotificationModel> notificationList = [];
+  List<UserDetailsModel> userList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -36,60 +39,38 @@ class _NotificationPageState extends State<NotificationPage> {
             Navigator.pop(context);
           },
         ),
-        body: BlocConsumer<NotificationCubit, NotificationState>(
+        body: BlocConsumer<GetUserAndNotificationCubit,
+            GetUserAndNotificationState>(
           listener: (context, state) {
-            if (state is NotificationLoading) {
-              isLoading = true;
-            } else if (state is NotificationSuccess) {
-              notificationData = state.notificationData;
+            if (state is GetNotificationSuccess) {
+              notificationList = state.notificationList;
               isLoading = false;
-            } else if (state is NotificationFailure) {
+            } else if (state is GetUserSuccess) {
+              userList = state.userList;
+            } else if (state is GetUserAndNotificationLoading) {
+              isLoading = true;
+            } else if (state is GetUserAndNotificationFailure) {
               isLoading = false;
             }
           },
           builder: (context, state) {
-            return ListView.builder(
-                itemCount: notificationData.length,
-                itemBuilder: (context, index) => isLoading != true
-                    ? notificationData[index].typeOfNotification ==
-                            'requestDonation'
-                        ? notificationProcess(
-                            index: index,
-                          )
-                        : Container(
-                            margin: const EdgeInsets.all(16),
-                            width: double.infinity,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.amber,
-                            ),
-                            child: Center(
-                                child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(notificationData[index].titleNotification),
-                                const SizedBox(height: 10),
-                                Text(notificationData[index].bodyNotification),
-                              ],
-                            )),
-                          )
-                    : const Center(
-                        child: CircularProgressIndicator(),
-                      ));
+            return isLoading != true
+                ? ListView.builder(
+                    itemBuilder: (context, index) => FirebaseAuth
+                                .instance.currentUser!.uid ==
+                            notificationList[index].userId
+                        ? notificationList[index].typeOfNotification == 'ARN'
+                            ? NotificationComponent(
+                                notificationList: notificationList[index],
+                                userList: userList[index],
+                              )
+                            : TypeOfNotificationComponent(
+                                notificationList: notificationList[index])
+                        : const SizedBox(),
+                    itemCount: userList.length,
+                  )
+                : const Center(child: CircularProgressIndicator());
           },
         ));
-  }
-
-  Widget notificationProcess({required int index}) {
-    BlocProvider.of<GetUserDetailsCubit>(context)
-        .userDonationInformation(email: notificationData[index].donarEmail);
-    return notificationData[index].userId ==
-            FirebaseAuth.instance.currentUser!.uid
-        ? NotificationComponent(
-            index: index,
-            notificationData: notificationData[index],
-          )
-        : const SizedBox();
   }
 }

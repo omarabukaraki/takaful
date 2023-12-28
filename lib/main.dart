@@ -8,6 +8,7 @@ import 'package:takaful/core/routes/app_routes.dart';
 import 'package:takaful/features/account_verification/presentation/cubit/account_verification/account_verification_cubit.dart';
 import 'package:takaful/features/donation_request/presentation/cubit/accept_request/accept_request_cubit.dart';
 import 'package:takaful/features/home/presentation/cubit/cubit/get_ads_cubit.dart';
+import 'package:takaful/features/notification/presentation/cubit/get_user_and_notification/get_user_and_notification_cubit.dart';
 import 'package:takaful/features/notification/presentation/cubit/notification_cubit/notification_cubit.dart';
 import 'package:takaful/notification_services.dart';
 import 'core/utils/app_colors.dart';
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AccountVerificationCubit()),
         BlocProvider(create: (context) => AddImageToVerificationAccountCubit()),
         BlocProvider(create: (context) => GetAdsCubit()),
+        BlocProvider(create: (context) => GetUserAndNotificationCubit()),
       ],
       child: MaterialApp(
         title: 'takaful',

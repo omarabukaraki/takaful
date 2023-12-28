@@ -25,19 +25,4 @@ class NotificationCubit extends Cubit<NotificationState> {
       'donarEmail': donarEmail,
     });
   }
-
-  void getNotification() {
-    emit(NotificationLoading());
-    try {
-      notification.orderBy('acceptTime').snapshots().listen((event) {
-        List<NotificationModel> notificationData = [];
-        for (var doc in event.docs) {
-          notificationData.add(NotificationModel.fromJson(doc));
-        }
-        emit(NotificationSuccess(notificationData: notificationData));
-      });
-    } catch (e) {
-      emit(NotificationFailure());
-    }
-  }
 }

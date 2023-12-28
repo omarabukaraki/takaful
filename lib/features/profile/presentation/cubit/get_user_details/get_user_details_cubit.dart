@@ -32,9 +32,10 @@ class GetUserDetailsCubit extends Cubit<GetUserDetailsState> {
   UserDetailsModel? userForPhone;
   void userDonationInformation({required String email}) async {
     emit(GetUserDetailsLoadingForDonation());
-    UserDetailsModel user;
+
     try {
       users.snapshots().listen((event) {
+        UserDetailsModel user;
         for (var doc in event.docs) {
           if (doc['email'] == email) {
             user = UserDetailsModel.fromJson(doc);
