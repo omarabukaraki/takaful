@@ -57,8 +57,9 @@ class _NotificationPageState extends State<NotificationPage> {
             return notificationList.isNotEmpty
                 ? ListView.builder(
                     itemBuilder: (context, index) => FirebaseAuth
-                                .instance.currentUser!.uid ==
-                            notificationList[index].userId
+                                    .instance.currentUser!.uid ==
+                                notificationList[index].userId ||
+                            notificationList[index].userId == 'all'
                         ? notificationList[index].typeOfNotification == 'ARN'
                             ? NotificationComponent(
                                 notificationList: notificationList[index],
