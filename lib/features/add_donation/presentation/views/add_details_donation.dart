@@ -302,7 +302,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                         if (formKey.currentState!.validate()) {
                           if (placemarks.isNotEmpty) {
                             BlocProvider.of<AddDonationCubit>(context).addPost(
-                              postState: true,
+                              postState: false,
                               title: title.text,
                               image:
                                   BlocProvider.of<AddImagesCubit>(context).url,

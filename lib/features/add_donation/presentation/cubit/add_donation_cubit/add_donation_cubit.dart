@@ -28,7 +28,7 @@ class AddDonationCubit extends Cubit<AddDonationState> {
     try {
       await donations.add({
         'id': FirebaseAuth.instance.currentUser!.uid,
-        'postState': true,
+        'postState': postState,
         'title': title,
         'image': image,
         'category': category,
