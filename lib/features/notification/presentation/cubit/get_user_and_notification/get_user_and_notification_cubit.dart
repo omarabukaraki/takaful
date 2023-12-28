@@ -31,8 +31,8 @@ class GetUserAndNotificationCubit extends Cubit<GetUserAndNotificationState> {
             }
             emit(GetUserSuccess(userList: userList));
           });
-          emit(GetNotificationSuccess(notificationList: notificationList));
         }
+        emit(GetNotificationSuccess(notificationList: notificationList));
       });
     } catch (e) {
       emit(GetUserAndNotificationFailure());

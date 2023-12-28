@@ -44,9 +44,9 @@ class _NotificationPageState extends State<NotificationPage> {
           listener: (context, state) {
             if (state is GetNotificationSuccess) {
               notificationList = state.notificationList;
-              isLoading = false;
             } else if (state is GetUserSuccess) {
               userList = state.userList;
+              isLoading = false;
             } else if (state is GetUserAndNotificationLoading) {
               isLoading = true;
             } else if (state is GetUserAndNotificationFailure) {
@@ -54,7 +54,7 @@ class _NotificationPageState extends State<NotificationPage> {
             }
           },
           builder: (context, state) {
-            return isLoading != true
+            return notificationList.isNotEmpty
                 ? ListView.builder(
                     itemBuilder: (context, index) => FirebaseAuth
                                 .instance.currentUser!.uid ==
@@ -69,7 +69,7 @@ class _NotificationPageState extends State<NotificationPage> {
                         : const SizedBox(),
                     itemCount: userList.length,
                   )
-                : const Center(child: CircularProgressIndicator());
+                : const SizedBox();
           },
         ));
   }

@@ -60,13 +60,12 @@ class _MyDonationRequestComponentState
                       .sendPushNotification(
                     context: context,
                     userId: user[widget.index].id,
-                    typeOfNotification: 'requestDonation',
+                    typeOfNotification: 'ARN',
                     title: 'تم قبول طلبك',
                     body: widget.requests.titleDonation,
                     token: user[widget.index].userToken,
                     donarEmail: FirebaseAuth.instance.currentUser!.email ?? '',
                   );
-
                   // ignore: use_build_context_synchronously
                   await BlocProvider.of<AcceptRequestCubit>(context)
                       .deleteRejectedRequest(
