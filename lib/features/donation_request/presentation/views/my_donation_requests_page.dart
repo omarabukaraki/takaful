@@ -24,7 +24,7 @@ class _MyDonationRequestsState extends State<MyDonationRequests> {
 
   List<RequestDonationModel> requests = [];
   List<String> requestId = [];
-  bool isLoading = true;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +45,19 @@ class _MyDonationRequestsState extends State<MyDonationRequests> {
           },
           builder: (context, state) {
             return isLoading != true
-                ? ListView.builder(
-                    itemCount: requests.length,
-                    itemBuilder: (context, index) => myDonationRequest(index),
-                  )
+                ? SingleChildScrollView(
+                    child: Column(children: requestDataList(requests)))
                 : const Center(child: CircularProgressIndicator());
           },
         ));
+  }
+
+  List<Widget> requestDataList(List<RequestDonationModel> requests) {
+    List<Widget> itemList = [];
+    for (int i = 0; i < requests.length; i++) {
+      itemList.add(myDonationRequest(i));
+    }
+    return itemList;
   }
 
   Widget myDonationRequest(int index) {
