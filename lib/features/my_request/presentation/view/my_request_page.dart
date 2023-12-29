@@ -49,15 +49,22 @@ class _MyRequestPageState extends State<MyRequestPage> {
         },
         builder: (context, state) {
           return isLoading != true
-              ? ListView.builder(
-                  itemCount: requests.length,
-                  itemBuilder: (context, index) => myRequest(index))
+              ? SingleChildScrollView(
+                  child: Column(children: requestDataList(requests)))
               : const Center(
                   child: CircularProgressIndicator(),
                 );
         },
       ),
     );
+  }
+
+  List<Widget> requestDataList(List<RequestDonationModel> requests) {
+    List<Widget> itemList = [];
+    for (int i = 0; i < requests.length; i++) {
+      itemList.add(myRequest(i));
+    }
+    return itemList;
   }
 
   Widget myRequest(int index) {
