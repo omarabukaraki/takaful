@@ -65,7 +65,9 @@ class _AdComponentState extends State<AdComponent> {
                         ),
                       )
                     : const SizedBox()
-                : const Center(child: CircularProgressIndicator()),
+                : const SizedBox(
+                    height: 200,
+                    child: Center(child: CircularProgressIndicator())),
             AnimatedSmoothIndicator(
                 effect: const ExpandingDotsEffect(
                   dotWidth: 9,
