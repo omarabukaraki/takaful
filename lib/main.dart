@@ -22,6 +22,7 @@ import 'features/donation_request/presentation/cubit/get_request/get_request_cub
 import 'features/donation_request/presentation/cubit/send_notification/send_notification_cubit.dart';
 import 'features/get_category/presentation/cubit/cubit/get_category_cubit.dart';
 import 'features/get_donation/presentation/cubit/get_donation_cubit/get_donation_cubit.dart';
+import 'features/get_donation/presentation/cubit/rating_user/rating_user_cubit.dart';
 import 'features/get_donation/presentation/cubit/request_donation/request_donation_cubit.dart';
 import 'features/home/presentation/views/navegator_page.dart';
 import 'features/my_donation/presentation/cubit/cubit/edit_and_delete_donation_cubit.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AddImageToVerificationAccountCubit()),
         BlocProvider(create: (context) => GetAdsCubit()),
         BlocProvider(create: (context) => GetUserAndNotificationCubit()),
+        BlocProvider(create: (context) => RatingUserCubit()),
       ],
       child: MaterialApp(
         title: 'takaful',

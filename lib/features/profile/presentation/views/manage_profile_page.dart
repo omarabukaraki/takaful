@@ -15,6 +15,7 @@ import 'widget/widget_manage_profile/change_password_button.dart';
 import 'widget/widget_manage_profile/display_email.dart';
 import 'widget/widget_manage_profile/edit_text_field.dart';
 import 'widget/widget_manage_profile/manage_profile_button.dart';
+import 'widget/widget_manage_profile/rating_box.dart';
 
 class ManageProfilePage extends StatefulWidget {
   const ManageProfilePage({super.key});
@@ -144,6 +145,7 @@ class _ManageProfilePageState extends State<ManageProfilePage> {
                         DisplayEmail(user: user),
                         //end display email
 
+                        RatingBox(user: user),
                         //start change password button
                         //
                         ChangePasswordButton(

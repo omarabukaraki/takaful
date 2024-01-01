@@ -162,7 +162,9 @@ class _MyRequestDonationDetailsPageState
                     DescriptionBox(description: widget.donation.description),
                     const TitleDonationDetailsPage(
                         text: AppString.textAdvertiser),
-                    DonarAccountBox(donarAccount: widget.donation.donarAccount),
+                    DonarAccountBox(
+                        donarAccount: widget.donation.donarAccount,
+                        userId: widget.donation.id),
                     //end donar title and body
                   ],
                 ),
