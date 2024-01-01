@@ -8,6 +8,7 @@ import 'package:takaful/core/widgets/custom_search_bar.dart';
 import 'package:takaful/core/utils/app_strings.dart';
 import 'package:takaful/notification_services.dart';
 import 'home_page_content.dart';
+import 'widget/custom_warning_component.dart';
 import 'widget/home_page_app_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -74,10 +75,11 @@ class _HomePageState extends State<HomePage> {
       },
       builder: (context, state) {
         return Expanded(
-          child: ListView.builder(
-              itemCount: donation.length,
-              itemBuilder: (context, index) =>
-                  (donation[index].postState == true &&
+          child: donation.isNotEmpty
+              ? ListView.builder(
+                  itemCount: donation.length,
+                  itemBuilder: (context, index) => (donation[index].postState ==
+                              true &&
                           donation[index].isTaken != true)
                       ? DonationComponent(
                           donation: donation[index],
@@ -92,7 +94,8 @@ class _HomePageState extends State<HomePage> {
                                         )));
                           },
                         )
-                      : const SizedBox()),
+                      : const SizedBox())
+              : const CustomWarningComponent(),
         );
       },
     );
