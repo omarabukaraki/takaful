@@ -1,0 +1,120 @@
+import 'package:flutter/material.dart';
+import 'package:takaful/core/utils/app_colors.dart';
+
+class CustomTextFiledForAuth extends StatelessWidget {
+  const CustomTextFiledForAuth(
+      {super.key,
+      this.hintText,
+      this.onChanged,
+      this.typeText = false,
+      this.icon,
+      this.typeKeyboardNumber,
+      this.controller});
+  final String? hintText;
+  final Function(String)? onChanged;
+  final bool typeText;
+  final Icon? icon;
+  final bool? typeKeyboardNumber;
+  final TextEditingController? controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: TextFormField(
+        // ignore: body_might_complete_normally_nullable
+        validator: (data) {
+          if (data!.isEmpty) {
+            return 'الحقل مطلوب'.padLeft(86);
+          } else if (!RegExp(r'\S+@\S+\.\S+').hasMatch(data)) {
+            return 'يرجى إدخال بريد الكتروني الصحيح'.padLeft(77);
+          }
+        },
+
+        keyboardType: typeKeyboardNumber == true
+            ? TextInputType.number
+            : TextInputType.text,
+        obscureText: typeText,
+        controller: controller,
+        onChanged: onChanged,
+        textAlign: TextAlign.end,
+
+        decoration: InputDecoration(
+          suffixIcon: icon,
+          hintText: hintText,
+          hintStyle: const TextStyle(
+            color: AppColor.kTextFiledFont,
+            fontSize: 15,
+          ),
+          filled: true,
+          fillColor: AppColor.kTextFiled,
+          border: const OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomTextFiledForPhone extends StatelessWidget {
+  const CustomTextFiledForPhone(
+      {super.key,
+      this.hintText,
+      this.onChanged,
+      this.typeText = false,
+      this.icon,
+      this.typeKeyboardNumber,
+      this.controller});
+  final String? hintText;
+  final Function(String)? onChanged;
+  final bool typeText;
+  final Icon? icon;
+  final bool? typeKeyboardNumber;
+  final TextEditingController? controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: TextFormField(
+        // ignore: body_might_complete_normally_nullable
+        validator: (data) {
+          if (data!.isEmpty) {
+            return 'الحقل مطلوب'.padLeft(86);
+          } else if (!RegExp(r'(^(078|077|079)\d{7}$)').hasMatch(data)) {
+            return 'أدخل رقم هاتف صالح'.padLeft(83);
+          }
+        },
+
+        keyboardType: typeKeyboardNumber == true
+            ? TextInputType.number
+            : TextInputType.text,
+        obscureText: typeText,
+        controller: controller,
+        onChanged: onChanged,
+        textAlign: TextAlign.end,
+
+        decoration: InputDecoration(
+          suffixIcon: icon,
+          hintText: hintText,
+          hintStyle: const TextStyle(
+            color: AppColor.kTextFiledFont,
+            fontSize: 15,
+          ),
+          filled: true,
+          fillColor: AppColor.kTextFiled,
+          border: const OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

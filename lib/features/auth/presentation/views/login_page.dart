@@ -13,6 +13,7 @@ import 'package:takaful/features/auth/presentation/views/register_page.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_textfiled.dart';
 import '../../../home/presentation/views/navegator_page.dart';
+import 'widget/custom_text_filed_for_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -91,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                         height: 1.4285714285714286),
                   ),
                   const SizedBox(height: 20),
-                  CustomTextFiled(
+                  CustomTextFiledForAuth(
                     icon: const Icon(Icons.email, color: AppColor.kPrimary),
                     hintText: AppString.textEmailArabic,
                     onChanged: (emailAddress) {

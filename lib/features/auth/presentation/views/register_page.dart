@@ -10,6 +10,7 @@ import 'package:takaful/core/helper/show_snak_bar.dart';
 import 'package:takaful/features/auth/presentation/views/login_page.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_textfiled.dart';
+import 'widget/custom_text_filed_for_auth.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -89,14 +90,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         name.text = userName;
                       },
                     ),
-                    CustomTextFiled(
+                    CustomTextFiledForAuth(
                       controller: email,
                       hintText: AppString.textEmailArabic,
                       onChanged: (emailAddress) {
                         email.text = emailAddress;
                       },
                     ),
-                    CustomTextFiled(
+                    CustomTextFiledForPhone(
                       controller: mobileNumber,
                       hintText: AppString.textMobileNumberArabic,
                       onChanged: (mobileNum) {
