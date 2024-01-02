@@ -57,4 +57,7 @@ abstract class AppString {
   static const String textAdvertiser = 'صاحب الإعلان';
   static const String textRequired = 'مطلوب';
   static const String textAccepted = 'تم القبول';
+  static const String addImageInOrder = 'الرجاء اضافة الصور بالترتيب';
+  static const String isEmptyYouShouldSelectImage =
+      'فارغ! يجب عليك تحديد الصورة';
 }

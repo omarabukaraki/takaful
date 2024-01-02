@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:path/path.dart';
-
+import 'package:takaful/core/utils/app_strings.dart';
 part 'add_images_state.dart';
 
 class AddImagesCubit extends Cubit<AddImagesState> {
@@ -23,9 +21,9 @@ class AddImagesCubit extends Cubit<AddImagesState> {
       if (pickedImage == null) return;
       image.insert(index, File(pickedImage.path));
       nameImage.insert(index, basename(pickedImage.path));
-      // print("nameImage : $nameImage");
       if (image.isEmpty) {
-        emit(AddImagesFailure(errMessage: 'is empty! you should select image'));
+        emit(AddImagesFailure(
+            errMessage: AppString.isEmptyYouShouldSelectImage));
       } else {
         emit(AddImagesSuccess(image: image));
       }
@@ -40,7 +38,7 @@ class AddImagesCubit extends Cubit<AddImagesState> {
         emit(UploadImagesFailure(errMessage: e.toString()));
       }
     } catch (e) {
-      emit(AddImagesFailure(errMessage: e.toString()));
+      emit(AddImagesFailure(errMessage: AppString.addImageInOrder));
     }
   }
 
@@ -51,7 +49,8 @@ class AddImagesCubit extends Cubit<AddImagesState> {
       image.insert(index, File(pickedImage.path));
       nameImage.insert(index, basename(pickedImage.path));
       if (image.isEmpty) {
-        emit(AddImagesFailure(errMessage: 'is empty! you should select image'));
+        emit(AddImagesFailure(
+            errMessage: AppString.isEmptyYouShouldSelectImage));
       } else {
         emit(AddImagesSuccess(image: image));
       }
@@ -65,7 +64,7 @@ class AddImagesCubit extends Cubit<AddImagesState> {
         emit(UploadImagesFailure(errMessage: e.toString()));
       }
     } catch (e) {
-      emit(AddImagesFailure(errMessage: e.toString()));
+      emit(AddImagesFailure(errMessage: AppString.addImageInOrder));
     }
   }
 }
