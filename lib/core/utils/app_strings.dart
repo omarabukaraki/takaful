@@ -47,11 +47,11 @@ abstract class AppString {
   static const String textPlumbingServices = 'خدمات سباكة';
   static const String textCarpentryServices = 'خدمات نجارة';
   static const String textOtherServices = 'خدمات أخرى';
-  static const String textItemRequest = 'طلبات تبرعاتي';
+  static const String textItemRequest = 'طلبات إعلاناتي';
   static const String textSaveEdit = 'حفظ التعديل';
   static const String textCancelRequest = 'الغاء الطلب';
   static const String textPublishDate = 'تاريخ النشر';
-  static const String textTypeOfDonation = 'نوع التبرع';
+  static const String textTypeOfDonation = 'نوع الإعلان';
   static const String textSection = 'القسم';
   static const String textInformation = 'المعلومات';
   static const String textAdvertiser = 'صاحب الإعلان';
@@ -62,4 +62,5 @@ abstract class AppString {
       'فارغ! يجب عليك تحديد الصورة';
   static const String pleaseAddPictures = 'الرجاء اضافة صور';
   static const String pleaseAddTheLocation = 'الرجاء اضافة الموقع';
+  static const String editPost = 'تعديل الإعلان';
 }

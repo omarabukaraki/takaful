@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takaful/core/utils/app_colors.dart';
+import 'package:takaful/core/utils/app_strings.dart';
 
 import '../../../cubit/get_donation_cubit/get_donation_cubit.dart';
 
@@ -25,7 +26,7 @@ class _TypeOfDonationFilterState extends State<TypeOfDonationFilter> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         const Text(
-          'نوع التبرع',
+          AppString.textTypeOfDonation,
           style: TextStyle(color: AppColor.kFont, fontSize: 18),
         ),
         const SizedBox(
@@ -58,7 +59,6 @@ class _TypeOfDonationFilterState extends State<TypeOfDonationFilter> {
                       BlocProvider.of<GetDonationCubit>(context)
                           .currentIndexType = index;
                       setState(() {});
-                      // print(type);
                     },
                     child: currentIndex == index
                         ? Container(

@@ -54,7 +54,7 @@ class _EditDonationPageState extends State<EditDonationPage> {
       builder: (context, state) {
         return Scaffold(
           appBar: CustomAppBar(
-            textOne: 'تعديل التبرع',
+            textOne: AppString.editPost,
             textTwo: '',
             button: true,
             onTap: () {

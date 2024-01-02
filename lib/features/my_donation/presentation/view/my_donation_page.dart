@@ -64,7 +64,7 @@ class _MyDonationPageState extends State<MyDonationPage> {
                             padding: EdgeInsets.all(8.0),
                             child: Center(
                               child: Text(
-                                'هل انت متأكد من حذف التبرع ؟',
+                                'هل انت متأكد من حذف الإعلان ؟',
                               ),
                             ),
                           ),
