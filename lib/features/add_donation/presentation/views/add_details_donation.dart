@@ -309,7 +309,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                               category: categoryAndItemService[1]!,
                               itemOrService: categoryAndItemService[0]!,
                               description: description.text,
-                              location: placemarks[0].locality!,
+                              location: locationLocality.text,
                               subLocation: locationSubLocality.text,
                               state: stateOfThePost.text,
                               count: counter,
