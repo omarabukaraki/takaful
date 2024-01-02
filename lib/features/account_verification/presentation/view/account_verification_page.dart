@@ -62,26 +62,40 @@ class _AccountVerificationPageState extends State<AccountVerificationPage> {
                 label: 'البريد الالكتروني',
                 hintText: user != null ? user!.email : ''),
             const SizedBox(height: 20),
-            CustomButton(
-              color: AppColor.kPrimary,
-              textColor: AppColor.kWhite,
-              text: 'إرسال طلب',
-              onTap: () async {
-                if (url != null) {
-                  await BlocProvider.of<AccountVerificationCubit>(context)
-                      .sendVerificationRequest(
-                          image: url!,
-                          userEmail: FirebaseAuth.instance.currentUser!.email!);
-                  url = null;
-                  showSankBar(context, 'تم ارسال الطلب بنجاح',
-                      color: AppColor.kGreen);
-                  Navigator.pop(context);
-                } else {
-                  showSankBar(context, 'الرجاء إضافة صورة',
-                      color: AppColor.kRed);
-                }
-              },
-            ),
+            user != null
+                ? user!.isVerified != true
+                    ? CustomButton(
+                        color: AppColor.kPrimary,
+                        textColor: AppColor.kWhite,
+                        text: 'إرسال طلب',
+                        onTap: () async {
+                          if (url != null) {
+                            await BlocProvider.of<AccountVerificationCubit>(
+                                    context)
+                                .sendVerificationRequest(
+                                    image: url!,
+                                    userEmail: FirebaseAuth
+                                        .instance.currentUser!.email!);
+                            url = null;
+                            showSankBar(context, 'تم ارسال الطلب بنجاح',
+                                color: AppColor.kGreen);
+                            Navigator.pop(context);
+                          } else {
+                            showSankBar(context, 'الرجاء إضافة صورة',
+                                color: AppColor.kRed);
+                          }
+                        },
+                      )
+                    : CustomButton(
+                        color: AppColor.kPrimary,
+                        textColor: AppColor.kWhite,
+                        text: 'لقد تم توثيقك بالفعل',
+                        onTap: () async {
+                          showSankBar(context, 'لقد تم توثيقك بالفعل',
+                              color: AppColor.kGreen);
+                        },
+                      )
+                : const CircularProgressIndicator(),
           ]);
         },
       ),
