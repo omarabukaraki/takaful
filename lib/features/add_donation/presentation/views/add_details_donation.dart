@@ -296,7 +296,7 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                       if (BlocProvider.of<AddImagesCubit>(context)
                           .url
                           .isEmpty) {
-                        showSankBar(context, 'الرجاء اضافة صور',
+                        showSankBar(context, AppString.pleaseAddPictures,
                             color: AppColor.kRed);
                       } else {
                         if (formKey.currentState!.validate()) {
@@ -316,7 +316,8 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
                               typeOfDonation: typeOfDonation,
                             );
                           } else {
-                            showSankBar(context, 'الرجاء اضافة الموقع');
+                            showSankBar(
+                                context, AppString.pleaseAddTheLocation);
                           }
                         }
                       }
@@ -333,4 +334,3 @@ class _AddDetailsPostState extends State<AddDetailsPost> {
         ));
   }
 }
-  // '${placemarks[0].locality} - ${locationSubLocality.text}'

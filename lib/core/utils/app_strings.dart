@@ -28,20 +28,20 @@ abstract class AppString {
   static const String textModernElements = 'العناصر الحديثة';
   static const String textKeepBrowsing = 'استمر في التصفح';
   static const String textSearchInCategory = 'ابحث في  القسم';
-  static const String textWhatsYouDonation = 'ما الذي تود التبرع به';
+  static const String textWhatsYouDonation = 'ما الذي تود الإعلان عنه';
   static const String textChooseTheCategoryToAddDonation =
-      'اختر القسم المناسب لإضافة التبرع';
+      'اختر القسم المناسب لإضافة الإعلان';
   static const String textFood = 'طعام';
   static const String textClothes = 'ملابس';
   static const String textFurniture = 'أثاث';
-  static const String textAddDetailsToDonation = 'أضف تفاصيل التبرع';
-  static const String textAddImageToDonation = 'أضف صور للتبرع';
+  static const String textAddDetailsToDonation = 'أضف تفاصيل الإعلان';
+  static const String textAddImageToDonation = 'أضف صور للإعلان';
   static const String textTitle = 'العنوان';
   static const String textLocation = 'الموقع';
   static const String textState = 'الحالة';
   static const String textCounter = 'العدد';
   static const String textDescription = 'الوصف';
-  static const String textPublishDonation = 'نشر التبرع';
+  static const String textPublishDonation = 'نشر الإعلان';
   static const String textBlacksmithServices = 'خدمات حدادة';
   static const String textElectricalServices = 'خدمات كهربائية';
   static const String textPlumbingServices = 'خدمات سباكة';
@@ -60,4 +60,6 @@ abstract class AppString {
   static const String addImageInOrder = 'الرجاء اضافة الصور بالترتيب';
   static const String isEmptyYouShouldSelectImage =
       'فارغ! يجب عليك تحديد الصورة';
+  static const String pleaseAddPictures = 'الرجاء اضافة صور';
+  static const String pleaseAddTheLocation = 'الرجاء اضافة الموقع';
 }
