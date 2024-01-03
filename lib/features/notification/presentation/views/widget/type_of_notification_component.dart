@@ -63,10 +63,13 @@ class TypeOfNotificationComponent extends StatelessWidget {
                     color: AppColor.kWhite,
                   )
                 : notificationList.typeOfNotification == 'SNFA'
-                    ? const Icon(
-                        Icons.travel_explore,
-                        size: 36,
-                        color: AppColor.kWhite,
+                    ? const CircleAvatar(
+                        backgroundColor: AppColor.kPrimary,
+                        child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 25,
+                            backgroundImage:
+                                AssetImage('assets/image/logoTakaful.png')),
                       )
                     : notificationList.typeOfNotification == 'RRN'
                         ? const Icon(

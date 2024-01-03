@@ -152,6 +152,7 @@ class _EditDonationPageState extends State<EditDonationPage> {
                     onTap: () async {
                       await BlocProvider.of<EditAndDeleteDonationCubit>(context)
                           .editDonationData(
+                              postState: widget.donation!.postState,
                               docId: widget.docId!,
                               title: title.text,
                               typeOfDonation: typeOfDonation,

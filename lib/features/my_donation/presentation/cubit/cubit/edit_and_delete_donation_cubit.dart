@@ -13,7 +13,8 @@ class EditAndDeleteDonationCubit extends Cubit<EditAndDeleteDonationState> {
       required String typeOfDonation,
       required String state,
       required int count,
-      required String description}) async {
+      required String description,
+      required bool postState}) async {
     emit(EditDonationLoading());
     try {
       await donations.doc(docId).update({
@@ -22,7 +23,7 @@ class EditAndDeleteDonationCubit extends Cubit<EditAndDeleteDonationState> {
         'state': state,
         'count': count,
         'description': description,
-        'postState': true,
+        'postState': postState,
       });
       emit(EditDonationSuccess());
     } catch (e) {
